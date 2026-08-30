@@ -1080,15 +1080,31 @@ button {
   color: var(--st-cyan);
 }
 
-.filter-select {
-  padding: 7px 10px;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-soft);
-  border-radius: 8px;
-  font-size: 12px;
-  color: var(--text-primary);
-  font-weight: 500;
-  cursor: pointer;
+/* =========================================================
+   UTILITY CLASSES (used inline in markup)
+   ========================================================= */
+.d-flex {
+  display: flex;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.justify-content-between {
+  justify-content: space-between;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.gap-1 {
+  gap: 4px;
+}
+
+.gap-2 {
+  gap: 8px;
 }
 
 /* =========================================================
@@ -1342,6 +1358,15 @@ button {
     justify-content: center;
     flex-wrap: wrap;
   }
+
+  .pay-donut-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .pay-legend {
+    width: 100%;
+  }
 }
 
 /* =========================================================
@@ -1462,22 +1487,36 @@ table.st-table {
 
 table.st-table thead th {
   text-align: left;
-  padding: 10px 14px;
+  padding: 12px 16px;
   font-size: 10.5px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   color: var(--text-muted);
-  background: var(--bg-surface-alt);
+  background: var(--bg-surface);
   border-bottom: 1px solid var(--border-soft);
   white-space: nowrap;
 }
 
+table.st-table thead th:last-child {
+  text-align: right;
+}
+
+table.st-table thead th:last-child span,
+table.st-table thead th:last-child {
+  position: relative;
+}
+
+table.st-table thead tr {
+  position: relative;
+}
+
 table.st-table tbody td {
-  padding: 11px 14px;
+  padding: 14px 16px;
   border-bottom: 1px solid var(--divider);
   color: var(--text-primary);
   vertical-align: middle;
+  font-size: 12.5px;
 }
 
 table.st-table tbody tr {
@@ -1499,15 +1538,38 @@ table.st-table tbody tr:last-child td {
 }
 
 .avatar {
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border-radius: 50%;
   display: inline-grid;
   place-items: center;
   color: #fff;
   font-weight: 700;
-  font-size: 11px;
+  font-size: 10.5px;
   flex-shrink: 0;
+}
+
+.avatar-wrap {
+  position: relative;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.avatar-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  flex-shrink: 0;
+}
+
+.avatar-wrap .avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .avatar-row {
@@ -1621,16 +1683,20 @@ table.st-table tbody tr:last-child td {
   gap: 3px;
 }
 
+.row-actions {
+  gap: 4px;
+}
+
 .row-actions button {
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
+  width: 30px;
+  height: 30px;
+  border-radius: 7px;
   border: 1px solid var(--border-soft);
   background: var(--bg-surface);
   color: var(--text-secondary);
   display: grid;
   place-items: center;
-  font-size: 12px;
+  font-size: 12.5px;
   transition: all var(--dur-fast) var(--ease);
 }
 
@@ -1940,13 +2006,13 @@ table.st-table tbody tr:last-child td {
 .pay-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
-  margin-bottom: 14px;
+  gap: 10px;
+  margin-bottom: 18px;
 }
 
 .pay-box {
-  padding: 10px;
-  border-radius: var(--radius-sm);
+  padding: 12px;
+  border-radius: var(--radius-md);
   border: 1px solid var(--border-soft);
 }
 
@@ -1971,78 +2037,125 @@ table.st-table tbody tr:last-child td {
 }
 
 .pay-lbl {
-  font-size: 9.5px;
+  font-size: 10px;
   font-weight: 700;
   letter-spacing: 0.5px;
   text-transform: uppercase;
-}
-
-.pay-box.received .pay-lbl {
-  color: var(--st-green);
-}
-
-.pay-box.pending .pay-lbl {
-  color: #B45309;
-}
-
-.pay-box.refunded .pay-lbl {
-  color: var(--st-red);
-}
-
-.pay-box.today .pay-lbl {
-  color: var(--st-blue);
+  color: var(--text-muted);
 }
 
 .pay-val {
   font-family: 'Plus Jakarta Sans';
-  font-size: 16px;
+  font-size: 19px;
   font-weight: 800;
-  margin-top: 2px;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
 
-.pay-methods-list {
+.pay-val i {
+  font-size: 14px;
+}
+
+.pay-box.received .pay-val {
+  color: var(--st-green);
+}
+
+.pay-box.pending .pay-val {
+  color: #B45309;
+}
+
+.pay-box.refunded .pay-val {
+  color: var(--st-red);
+}
+
+.pay-box.today .pay-val {
+  color: var(--st-blue);
+}
+
+.pay-donut-wrap {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.pay-donut-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  flex-shrink: 0;
+}
+
+.pay-donut-chart {
+  width: 100%;
+  height: 100%;
+}
+
+.pay-donut-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.pay-donut-total {
+  font-family: 'Plus Jakarta Sans';
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+}
+
+.pay-donut-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  margin-top: 3px;
+}
+
+.pay-legend {
+  flex: 1;
+  min-width: 0;
   display: flex;
   flex-direction: column;
-  gap: 6px;
-  margin-bottom: 10px;
+  gap: 8px;
 }
 
-.pm-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.pay-legend-title {
   font-size: 11.5px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
 }
 
-.pm-name {
+.pay-legend-item {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.pay-legend-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.pay-legend-name {
+  flex: 1;
+  min-width: 0;
   color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.pm-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 2px;
-}
-
-.pm-row b {
+.pay-legend-value {
   font-weight: 700;
   color: var(--text-primary);
-}
-
-.pay-bar {
-  height: 6px;
-  background: var(--bg-surface-alt);
-  border-radius: 999px;
-  overflow: hidden;
-  display: flex;
-}
-
-.pay-bar span {
-  display: block;
-  height: 100%;
+  font-size: 12.5px;
+  flex-shrink: 0;
 }
 
 /* =========================================================
@@ -2130,10 +2243,10 @@ table.st-table tbody tr:last-child td {
    ========================================================= */
 .visa-row {
   display: grid;
-  grid-template-columns: 36px 70px 32px 1fr 110px 60px;
+  grid-template-columns: 46px minmax(88px, auto) 32px 1fr 110px 60px;
   gap: 10px;
   align-items: center;
-  padding: 9px 0;
+  padding: 10px 0;
   border-bottom: 1px solid var(--divider);
   font-size: 12px;
 }
@@ -2142,15 +2255,32 @@ table.st-table tbody tr:last-child td {
   border-bottom: none;
 }
 
+.visa-flag-code {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+
+.visa-flag {
+  font-size: 16px;
+  line-height: 1;
+}
+
 .visa-code {
   font-weight: 700;
-  font-size: 11px;
+  font-size: 9.5px;
   color: var(--text-muted);
+  letter-spacing: 0.3px;
 }
 
 .visa-country {
   font-weight: 600;
   color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .visa-count {
@@ -2724,6 +2854,51 @@ table.st-table tbody tr:last-child td {
   .topbar-search {
     display: none;
   }
+
+  table.st-table thead th {
+    font-size: 10px;
+    padding: 10px 12px;
+  }
+
+  table.st-table tbody td {
+    padding: 12px;
+    font-size: 12px;
+  }
+
+  .avatar {
+    width: 26px;
+    height: 26px;
+    font-size: 10px;
+  }
+
+  .avatar-row .n {
+    font-size: 12px;
+  }
+
+  .service-tag {
+    font-size: 10.5px;
+    padding: 3px 7px;
+  }
+
+  .row-actions button {
+    width: 28px;
+    height: 28px;
+    font-size: 12px;
+  }
+
+  .visa-row {
+    grid-template-columns: 42px minmax(78px, auto) 30px 1fr 90px 50px;
+    font-size: 11px;
+    gap: 8px;
+  }
+
+  .visa-flag {
+    font-size: 14px;
+  }
+
+  .visa-code {
+    font-size: 9px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2829,7 +3004,25 @@ table.st-table tbody tr:last-child td {
   }
 
   .visa-row {
-    grid-template-columns: 32px 60px 28px 1fr;
+    grid-template-columns: 38px minmax(70px, auto) 28px 1fr;
+    gap: 8px;
+  }
+
+  .visa-flag {
+    font-size: 13px;
+  }
+
+  .visa-code {
+    font-size: 8.5px;
+  }
+
+  .visa-country {
+    font-size: 11.5px;
+  }
+
+  .visa-count {
+    font-size: 11px;
+    padding: 2px 6px;
   }
 
   .visa-stage,
@@ -2867,6 +3060,23 @@ table.st-table tbody tr:last-child td {
     grid-template-columns: 1fr 1fr;
   }
 
+  .pay-val {
+    font-size: 16px;
+  }
+
+  .pay-donut-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .pay-donut-total {
+    font-size: 16px;
+  }
+
+  .pay-legend-item {
+    font-size: 11px;
+  }
+
   .ops-grid {
     grid-template-columns: 1fr 1fr;
   }
@@ -2877,6 +3087,74 @@ table.st-table tbody tr:last-child td {
 
   .jump-tip {
     display: none;
+  }
+
+  .card-head {
+    padding: 12px 14px;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .card-head h3 {
+    font-size: 13px;
+  }
+
+  .card-head .sub {
+    font-size: 11px;
+  }
+
+  table.st-table thead th {
+    font-size: 9.5px;
+    padding: 9px 10px;
+  }
+
+  table.st-table tbody td {
+    padding: 10px;
+    font-size: 11.5px;
+  }
+
+  .bid {
+    font-size: 11.5px;
+  }
+
+  .avatar {
+    width: 24px;
+    height: 24px;
+    font-size: 9.5px;
+  }
+
+  .avatar-row {
+    gap: 7px;
+  }
+
+  .avatar-row .n {
+    font-size: 11.5px;
+  }
+
+  .service-tag {
+    font-size: 10px;
+    padding: 2px 6px;
+  }
+
+  .status-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+
+  .pay-status {
+    font-size: 11px;
+  }
+
+  .row-actions button {
+    width: 26px;
+    height: 26px;
+    font-size: 11px;
+  }
+
+  .card-foot {
+    flex-direction: column;
+    align-items: flex-start !important;
+    gap: 8px;
   }
 }
 
@@ -2931,5 +3209,67 @@ table.st-table tbody tr:last-child td {
 
   .wq-items {
     flex-direction: column;
+  }
+
+  table.st-table thead th {
+    font-size: 9px;
+    padding: 8px;
+  }
+
+  table.st-table tbody td {
+    padding: 8px;
+    font-size: 11px;
+  }
+
+  .avatar {
+    width: 22px;
+    height: 22px;
+    font-size: 9px;
+  }
+
+  .avatar-row .n {
+    font-size: 11px;
+  }
+
+  .service-tag span {
+    display: none;
+  }
+
+  .service-tag {
+    font-size: 0;
+    padding: 4px 6px;
+  }
+
+  .service-tag i {
+    font-size: 12px;
+  }
+
+  .row-actions button {
+    width: 24px;
+    height: 24px;
+    font-size: 10px;
+  }
+
+  .visa-row {
+    grid-template-columns: 32px minmax(58px, auto) 26px 1fr;
+    gap: 6px;
+    padding: 8px 0;
+  }
+
+  .visa-flag {
+    font-size: 12px;
+  }
+
+  .visa-code {
+    display: none;
+  }
+
+  .visa-country {
+    font-size: 11px;
+  }
+
+  .visa-count {
+    font-size: 10px;
+    padding: 2px 5px;
   }
 }

@@ -677,7 +677,11 @@
                   <td><b class="bid">ST-98421</b></td>
                   <td>
                     <div class="avatar-row">
-                      <div class="avatar" style="background: #0072BC;">NI</div>
+                      <span class="avatar-wrap">
+                        <img class="avatar-img" src="images/customer/01.jpg" alt="Nusrat Jahan"
+                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                        <div class="avatar" style="background: #0072BC; display: none;">NI</div>
+                      </span>
                       <div class="n">Nusrat Jahan</div>
                     </div>
                   </td>
@@ -698,7 +702,11 @@
                   <td><b class="bid">ST-98420</b></td>
                   <td>
                     <div class="avatar-row">
-                      <div class="avatar" style="background: #00A651;">AR</div>
+                      <span class="avatar-wrap">
+                        <img class="avatar-img" src="images/customer/02.jpg" alt="Arif Rahman"
+                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                        <div class="avatar" style="background: #00A651; display: none;">AR</div>
+                      </span>
                       <div class="n">Arif Rahman</div>
                     </div>
                   </td>
@@ -719,7 +727,11 @@
                   <td><b class="bid">ST-98419</b></td>
                   <td>
                     <div class="avatar-row">
-                      <div class="avatar" style="background: #F59E0B;">MH</div>
+                      <span class="avatar-wrap">
+                        <img class="avatar-img" src="images/customer/03.jpg" alt="Mehedi Hasan"
+                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                        <div class="avatar" style="background: #F59E0B; display: none;">MH</div>
+                      </span>
                       <div class="n">Mehedi Hasan</div>
                     </div>
                   </td>
@@ -740,7 +752,11 @@
                   <td><b class="bid">ST-98418</b></td>
                   <td>
                     <div class="avatar-row">
-                      <div class="avatar" style="background: #8B5CF6;">SK</div>
+                      <span class="avatar-wrap">
+                        <img class="avatar-img" src="images/customer/04.jpg" alt="Sadia Karim"
+                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                        <div class="avatar" style="background: #8B5CF6; display: none;">SK</div>
+                      </span>
                       <div class="n">Sadia Karim</div>
                     </div>
                   </td>
@@ -761,7 +777,11 @@
                   <td><b class="bid">ST-98417</b></td>
                   <td>
                     <div class="avatar-row">
-                      <div class="avatar" style="background: #ED1C24;">TA</div>
+                      <span class="avatar-wrap">
+                        <img class="avatar-img" src="images/customer/05.jpg" alt="Tariq Ahmed"
+                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                        <div class="avatar" style="background: #ED1C24; display: none;">TA</div>
+                      </span>
                       <div class="n">Tariq Ahmed</div>
                     </div>
                   </td>
@@ -1056,39 +1076,57 @@
               <div class="pay-grid">
                 <div class="pay-box received">
                   <div class="pay-lbl">TOTAL RECEIVED</div>
-                  <div class="pay-val">৳38.2L</div>
+                  <div class="pay-val"><i class="bi bi-arrow-up-right"></i> ৳38.2L</div>
                 </div>
                 <div class="pay-box pending">
                   <div class="pay-lbl">PENDING</div>
-                  <div class="pay-val">6.8L</div>
+                  <div class="pay-val"><i class="bi bi-arrow-up-right"></i> ৳6.8L</div>
                 </div>
                 <div class="pay-box refunded">
                   <div class="pay-lbl">REFUNDED</div>
-                  <div class="pay-val">৳1.4L</div>
+                  <div class="pay-val"><i class="bi bi-arrow-down-right"></i> ৳1.4L</div>
                 </div>
                 <div class="pay-box today">
                   <div class="pay-lbl">TODAY'S COLLECTION</div>
-                  <div class="pay-val">৳2.4L</div>
+                  <div class="pay-val"><i class="bi bi-arrow-up-right"></i> ৳2.4L</div>
                 </div>
               </div>
-              <div class="pay-methods-list">
-                <div class="pm-row"><span class="pm-name"><span class="pm-dot"
-                      style="background: #E11D74;"></span>bKash</span><b>38%</b></div>
-                <div class="pm-row"><span class="pm-name"><span class="pm-dot"
-                      style="background: #E74F2C;"></span>Nagad</span><b>24%</b></div>
-                <div class="pm-row"><span class="pm-name"><span class="pm-dot"
-                      style="background: var(--st-blue);"></span>Bank Transfer</span><b>22%</b></div>
-                <div class="pm-row"><span class="pm-name"><span class="pm-dot" style="background: #1A1F71;"></span>Visa
-                    / Mastercard</span><b>11%</b></div>
-                <div class="pm-row"><span class="pm-name"><span class="pm-dot"
-                      style="background: var(--st-green);"></span>Cash</span><b>5%</b></div>
-              </div>
-              <div class="pay-bar">
-                <span style="width: 38%; background: #E11D74;"></span>
-                <span style="width: 24%; background: #E74F2C;"></span>
-                <span style="width: 22%; background: var(--st-blue);"></span>
-                <span style="width: 11%; background: #1A1F71;"></span>
-                <span style="width: 5%; background: var(--st-green);"></span>
+              <div class="pay-donut-wrap">
+                <div class="pay-donut-container">
+                  <div class="pay-donut-chart" id="paymentDonut"></div>
+                  <div class="pay-donut-center">
+                    <div class="pay-donut-total">1,284</div>
+                    <div class="pay-donut-label">Total</div>
+                  </div>
+                </div>
+                <div class="pay-legend">
+                  <div class="pay-legend-title">Payment Methods</div>
+                  <div class="pay-legend-item">
+                    <span class="pay-legend-dot" style="background: #E11D74;"></span>
+                    <span class="pay-legend-name">bKash</span>
+                    <span class="pay-legend-value">38%</span>
+                  </div>
+                  <div class="pay-legend-item">
+                    <span class="pay-legend-dot" style="background: #E74F2C;"></span>
+                    <span class="pay-legend-name">Nagad</span>
+                    <span class="pay-legend-value">24%</span>
+                  </div>
+                  <div class="pay-legend-item">
+                    <span class="pay-legend-dot" style="background: var(--st-blue);"></span>
+                    <span class="pay-legend-name">Bank Transfer</span>
+                    <span class="pay-legend-value">22%</span>
+                  </div>
+                  <div class="pay-legend-item">
+                    <span class="pay-legend-dot" style="background: #1A1F71;"></span>
+                    <span class="pay-legend-name">Visa / Mastercard</span>
+                    <span class="pay-legend-value">11%</span>
+                  </div>
+                  <div class="pay-legend-item">
+                    <span class="pay-legend-dot" style="background: var(--st-green);"></span>
+                    <span class="pay-legend-name">Cash</span>
+                    <span class="pay-legend-value">5%</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1152,7 +1190,10 @@
             </div>
             <div class="card-body">
               <div class="visa-row">
-                <div class="visa-code">GB</div>
+                <div class="visa-flag-code">
+                  <span class="visa-flag">🇬🇧</span>
+                  <span class="visa-code">GB</span>
+                </div>
                 <div class="visa-country">UK</div>
                 <div class="visa-count">13</div>
                 <div class="visa-bar-wrap">
@@ -1162,7 +1203,10 @@
                 <div class="visa-days">8 days</div>
               </div>
               <div class="visa-row">
-                <div class="visa-code">US</div>
+                <div class="visa-flag-code">
+                  <span class="visa-flag">🇺🇸</span>
+                  <span class="visa-code">US</span>
+                </div>
                 <div class="visa-country">USA</div>
                 <div class="visa-count">9</div>
                 <div class="visa-bar-wrap">
@@ -1172,7 +1216,10 @@
                 <div class="visa-days">9 days</div>
               </div>
               <div class="visa-row">
-                <div class="visa-code">CA</div>
+                <div class="visa-flag-code">
+                  <span class="visa-flag">🇨🇦</span>
+                  <span class="visa-code">CA</span>
+                </div>
                 <div class="visa-country">Canada</div>
                 <div class="visa-count">14</div>
                 <div class="visa-bar-wrap">
@@ -1182,7 +1229,10 @@
                 <div class="visa-days">12 days</div>
               </div>
               <div class="visa-row">
-                <div class="visa-code">MY</div>
+                <div class="visa-flag-code">
+                  <span class="visa-flag">🇲🇾</span>
+                  <span class="visa-code">MY</span>
+                </div>
                 <div class="visa-country">Malaysia</div>
                 <div class="visa-count">11</div>
                 <div class="visa-bar-wrap">
@@ -1192,7 +1242,10 @@
                 <div class="visa-days">14 days</div>
               </div>
               <div class="visa-row">
-                <div class="visa-code">AE</div>
+                <div class="visa-flag-code">
+                  <span class="visa-flag">🇦🇪</span>
+                  <span class="visa-code">AE</span>
+                </div>
                 <div class="visa-country">UAE</div>
                 <div class="visa-count">8</div>
                 <div class="visa-bar-wrap">
@@ -1202,7 +1255,10 @@
                 <div class="visa-days">12 days</div>
               </div>
               <div class="visa-row">
-                <div class="visa-code">SA</div>
+                <div class="visa-flag-code">
+                  <span class="visa-flag">🇸🇦</span>
+                  <span class="visa-code">SA</span>
+                </div>
                 <div class="visa-country">Saudi Arabia</div>
                 <div class="visa-count">12</div>
                 <div class="visa-bar-wrap">

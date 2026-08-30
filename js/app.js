@@ -309,10 +309,68 @@
     `;
   }
 
+  function renderPaymentDonut() {
+    const wrap = $('#paymentDonut');
+    if (!wrap) return;
+
+    const size = 120;
+    const strokeWidth = 14;
+    const radius = (size - strokeWidth) / 2;
+    const center = size / 2;
+    const circumference = 2 * Math.PI * radius;
+
+    const data = [
+      { v: 38, c: '#E11D74' },
+      { v: 24, c: '#E74F2C' },
+      { v: 22, c: cssVar('--st-blue') },
+      { v: 11, c: '#1A1F71' },
+      { v: 5, c: cssVar('--st-green') },
+    ];
+
+    let offset = 0;
+    let segments = '';
+
+    data.forEach((d) => {
+      const dashArray = (d.v / 100) * circumference;
+      const dashOffset = -offset;
+
+      segments += `
+      <circle
+        cx="${center}"
+        cy="${center}"
+        r="${radius}"
+        fill="none"
+        stroke="${d.c}"
+        stroke-width="${strokeWidth}"
+        stroke-dasharray="${dashArray} ${circumference}"
+        stroke-dashoffset="${dashOffset}"
+        transform="rotate(-90 ${center} ${center})"
+      />
+    `;
+
+      offset += dashArray;
+    });
+
+    wrap.innerHTML = `
+    <svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
+      <circle
+        cx="${center}"
+        cy="${center}"
+        r="${radius}"
+        fill="none"
+        stroke="#f1f5f9"
+        stroke-width="${strokeWidth}"
+      />
+      ${segments}
+    </svg>
+  `;
+  }
+
   function renderAllCharts() {
     renderRevenueChart();
     renderBookingDonut();
     renderCustomerChart();
+    renderPaymentDonut();
   }
 
   /* ---------- Scroll reveal ---------- */
