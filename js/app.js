@@ -33,6 +33,34 @@
     }
   });
 
+  /* ---------- Collapsed sidebar tooltips ---------- */
+  let tipEl = null;
+  function ensureTip() {
+    if (!tipEl) {
+      tipEl = document.createElement('div');
+      tipEl.className = 'nav-tooltip';
+      document.body.appendChild(tipEl);
+    }
+    return tipEl;
+  }
+  function isCollapsedMode() {
+    return shell.classList.contains('sidebar-collapsed') || window.innerWidth <= 1024;
+  }
+  $$('.nav-item[data-tip]').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+      if (!isCollapsedMode() || sidebar.classList.contains('mobile-open')) return;
+      const tip = ensureTip();
+      tip.textContent = item.getAttribute('data-tip');
+      const r = item.getBoundingClientRect();
+      tip.style.left = `${r.right + 10}px`;
+      tip.style.top = `${r.top + r.height / 2}px`;
+      tip.classList.add('show');
+    });
+    item.addEventListener('mouseleave', () => {
+      if (tipEl) tipEl.classList.remove('show');
+    });
+  });
+
   /* ---------- Submenu toggle ---------- */
   $$('.nav-item.has-sub').forEach(item => {
     item.addEventListener('click', () => {
