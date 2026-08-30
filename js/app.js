@@ -34,32 +34,36 @@
   });
 
   /* ---------- Collapsed sidebar tooltips ---------- */
-  let tipEl = null;
-  function ensureTip() {
-    if (!tipEl) {
-      tipEl = document.createElement('div');
-      tipEl.className = 'nav-tooltip';
-      document.body.appendChild(tipEl);
-    }
-    return tipEl;
-  }
-  function isCollapsedMode() {
+  const navTooltip = document.createElement('div');
+  navTooltip.className = 'nav-tooltip';
+  document.body.appendChild(navTooltip);
+
+  function isSidebarIconOnly() {
+    if (sidebar.classList.contains('mobile-open')) return false;
     return shell.classList.contains('sidebar-collapsed') || window.innerWidth <= 1024;
   }
-  $$('.nav-item[data-tip]').forEach(item => {
-    item.addEventListener('mouseenter', () => {
-      if (!isCollapsedMode() || sidebar.classList.contains('mobile-open')) return;
-      const tip = ensureTip();
-      tip.textContent = item.getAttribute('data-tip');
-      const r = item.getBoundingClientRect();
-      tip.style.left = `${r.right + 10}px`;
-      tip.style.top = `${r.top + r.height / 2}px`;
-      tip.classList.add('show');
-    });
-    item.addEventListener('mouseleave', () => {
-      if (tipEl) tipEl.classList.remove('show');
-    });
+
+  const sidebarNav = $('.sidebar-nav');
+
+  sidebarNav.addEventListener('mouseover', e => {
+    const item = e.target.closest('.nav-item[data-tip]');
+    if (!item || !isSidebarIconOnly()) return;
+    const r = item.getBoundingClientRect();
+    navTooltip.textContent = item.getAttribute('data-tip');
+    navTooltip.style.left = `${r.right + 10}px`;
+    navTooltip.style.top = `${r.top + r.height / 2}px`;
+    navTooltip.classList.add('show');
   });
+
+  sidebarNav.addEventListener('mouseout', e => {
+    const item = e.target.closest('.nav-item[data-tip]');
+    const toEl = e.relatedTarget;
+    if (item && (!toEl || !item.contains(toEl))) {
+      navTooltip.classList.remove('show');
+    }
+  });
+
+  window.addEventListener('scroll', () => navTooltip.classList.remove('show'), true);
 
   /* ---------- Submenu toggle ---------- */
   $$('.nav-item.has-sub').forEach(item => {
