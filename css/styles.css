@@ -3701,6 +3701,18 @@ table.st-table tbody tr:last-child td {
     padding: 14px;
   }
 
+  .topbar {
+    justify-content: space-between;
+  }
+
+  .breadcrumb-mini {
+    display: none;
+  }
+
+  .quick-add-dropdown {
+    display: none;
+  }
+
   .profile-btn .meta {
     display: none;
   }
