@@ -225,7 +225,7 @@
     const wrap = $('#revenueChart');
     if (!wrap) return;
     const w = wrap.clientWidth || 600;
-    const h = 260;
+    const h = wrap.clientHeight || 260;
     const pad = { l: 40, r: 12, t: 16, b: 28 };
     const cw = w - pad.l - pad.r;
     const ch = h - pad.t - pad.b;
@@ -297,8 +297,8 @@
     const wrap = $('#bookingDonut');
     if (!wrap) return;
 
-    const size = 160;
-    const strokeWidth = 16;
+    const size = wrap.clientWidth || 160;
+    const strokeWidth = size <= 100 ? 11 : 16;
     const radius = (size - strokeWidth) / 2;
     const center = size / 2;
     const circumference = 2 * Math.PI * radius;
