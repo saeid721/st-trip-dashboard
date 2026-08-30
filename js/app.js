@@ -189,6 +189,22 @@
     }
   });
 
+  /* ---------- Bottom navigation (mobile) ---------- */
+  const bnItems = $$('.bn-item');
+  bnItems.forEach(item => {
+    item.addEventListener('click', () => {
+      bnItems.forEach(i => i.classList.remove('active'));
+      item.classList.add('active');
+    });
+  });
+
+  const bnFabBtn = $('#bnFabBtn');
+  if (bnFabBtn) {
+    bnFabBtn.addEventListener('click', () => {
+      showToast('success', 'Quick Add', 'Opening quick create menu...');
+    });
+  }
+
   /* ---------- Row actions ---------- */
   $$('.row-actions button').forEach(btn => {
     btn.addEventListener('click', (e) => {
