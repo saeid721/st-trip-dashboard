@@ -522,10 +522,17 @@ button {
   border-color: var(--st-blue-100);
 }
 
-.breadcrumb-mini {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
+.topbar-brand-mobile {
+  display: none;
+  align-items: center;
+}
+
+.topbar-brand-logo {
+  height: 24px;
+  width: auto;
+  max-width: 110px;
+  object-fit: contain;
+  display: block;
 }
 
 .breadcrumb-mini .crumbs {
@@ -3707,6 +3714,10 @@ table.st-table tbody tr:last-child td {
 
   .breadcrumb-mini {
     display: none;
+  }
+
+  .topbar-brand-mobile {
+    display: flex;
   }
 
   .quick-add-dropdown {
