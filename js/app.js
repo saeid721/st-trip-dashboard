@@ -1,0 +1,320 @@
+/* =========================================================
+   ST TRIP ADMIN — APP LOGIC
+   ========================================================= */
+(() => {
+  'use strict';
+
+  const $ = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
+
+  /* ---------- Sidebar toggle ---------- */
+  const shell = $('#appShell');
+  const sidebar = $('#sidebar');
+  const overlay = $('#sidebarOverlay');
+  const toggleBtn = $('#toggleSidebar');
+  const isMobile = () => window.innerWidth <= 768;
+
+  toggleBtn.addEventListener('click', () => {
+    if (isMobile()) {
+      sidebar.classList.toggle('mobile-open');
+      overlay.classList.toggle('show');
+    } else {
+      shell.classList.toggle('sidebar-collapsed');
+    }
+  });
+  overlay.addEventListener('click', () => {
+    sidebar.classList.remove('mobile-open');
+    overlay.classList.remove('show');
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && sidebar.classList.contains('mobile-open')) {
+      sidebar.classList.remove('mobile-open');
+      overlay.classList.remove('show');
+    }
+  });
+
+  /* ---------- Submenu toggle ---------- */
+  $$('.nav-item.has-sub').forEach(item => {
+    item.addEventListener('click', () => {
+      const sub = item.nextElementSibling;
+      const isOpen = sub.classList.contains('open');
+      $$('.submenu.open').forEach(s => {
+        if (s !== sub) {
+          s.classList.remove('open');
+          const sib = s.previousElementSibling;
+          if (sib && sib.classList.contains('has-sub')) sib.setAttribute('aria-expanded', 'false');
+        }
+      });
+      sub.classList.toggle('open', !isOpen);
+      item.setAttribute('aria-expanded', String(!isOpen));
+    });
+  });
+
+  /* ---------- Active nav ---------- */
+  $$('.nav-item:not(.has-sub)').forEach(item => {
+    item.addEventListener('click', () => {
+      $$('.nav-item.active').forEach(a => a.classList.remove('active'));
+      item.classList.add('active');
+      if (isMobile()) {
+        sidebar.classList.remove('mobile-open');
+        overlay.classList.remove('show');
+      }
+    });
+  });
+
+  /* ---------- Notifications panel ---------- */
+  const notifBtn = $('#notifBtn');
+  const notifPanel = $('#notifPanel');
+  notifBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    notifPanel.classList.toggle('open');
+  });
+  document.addEventListener('click', e => {
+    if (!notifPanel.contains(e.target) && !notifBtn.contains(e.target)) {
+      notifPanel.classList.remove('open');
+    }
+  });
+
+  /* ---------- Chips toggle ---------- */
+  $$('.chips-group').forEach(group => {
+    group.addEventListener('click', e => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      $$('.chip', group).forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+    });
+  });
+
+  /* ---------- Toast system ---------- */
+  function showToast(type, title, message) {
+    const icons = {
+      success: 'bi-check-circle-fill',
+      info: 'bi-info-circle-fill',
+      warn: 'bi-exclamation-triangle-fill',
+      error: 'bi-x-circle-fill'
+    };
+    const toast = document.createElement('div');
+    toast.className = `toast-st ${type}`;
+    toast.innerHTML = `
+      <div class="ic"><i class="bi ${icons[type]}"></i></div>
+      <div style="flex: 1;">
+        <div class="t">${title}</div>
+        <div class="m">${message}</div>
+      </div>
+      <button style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 0; font-size: 14px;" aria-label="Close"><i class="bi bi-x"></i></button>
+    `;
+    $('#toastContainer').appendChild(toast);
+    requestAnimationFrame(() => toast.classList.add('show'));
+    const close = () => {
+      toast.classList.remove('show');
+      setTimeout(() => toast.remove(), 280);
+    };
+    toast.querySelector('button').addEventListener('click', close);
+    setTimeout(close, 4000);
+  }
+
+  setTimeout(() => showToast('info', 'Welcome back, Admin', 'You have 32 pending actions today.'), 600);
+
+  $('#quickAddBtn').addEventListener('click', () => {
+    showToast('success', 'Quick Add', 'Opening quick create menu...');
+  });
+
+  /* ---------- Row actions ---------- */
+  $$('.row-actions button').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const t = btn.getAttribute('title');
+      showToast('info', t, 'Action triggered for this booking.');
+    });
+  });
+
+  /* =========================================================
+     SVG CHARTS — lightweight, theme-aware
+     ========================================================= */
+  function cssVar(name) {
+    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  }
+
+  function renderRevenueChart() {
+    const wrap = $('#revenueChart');
+    if (!wrap) return;
+    const w = wrap.clientWidth || 600;
+    const h = 260;
+    const pad = { l: 40, r: 12, t: 16, b: 28 };
+    const cw = w - pad.l - pad.r;
+    const ch = h - pad.t - pad.b;
+
+    const labels = ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'];
+    const bookings = [420, 510, 480, 620, 580, 720, 680, 820, 780, 920, 880, 1040];
+    const packages = [180, 220, 240, 280, 310, 340, 380, 420, 460, 480, 520, 560];
+    const visa = [80, 90, 110, 120, 140, 130, 160, 170, 190, 210, 220, 240];
+
+    const max = Math.max(...bookings.map((b,i) => b + packages[i] + visa[i])) * 1.1;
+    const xStep = cw / (labels.length - 1);
+    const yOf = v => pad.t + ch - (v / max) * ch;
+
+    const baseBook = bookings.map((v, i) => [pad.l + i * xStep, yOf(v)]);
+    const basePack = bookings.map((v, i) => [pad.l + i * xStep, yOf(v + packages[i])]);
+    const baseVisa = bookings.map((v, i) => [pad.l + i * xStep, yOf(v + packages[i] + visa[i])]);
+
+    const toPath = pts => pts.map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`)).join(' ');
+    const toArea = (top, bottom) => {
+      const down = [...bottom].reverse();
+      return `${toPath(top)} L${down[0][0]},${down[0][1]} ` + down.slice(1).map(p => `L${p[0]},${p[1]}`).join(' ') + ' Z';
+    };
+    const bottomLine = [[pad.l, pad.t + ch], [w - pad.r, pad.t + ch]];
+
+    let yAxis = '';
+    for (let i = 0; i <= 4; i++) {
+      const v = (max / 4) * i;
+      const y = yOf(v);
+      yAxis += `<line x1="${pad.l}" y1="${y}" x2="${w - pad.r}" y2="${y}" stroke="${cssVar('--divider')}" stroke-dasharray="3,3"/>`;
+      yAxis += `<text x="${pad.l - 6}" y="${y + 4}" text-anchor="end" font-size="10" fill="${cssVar('--text-muted')}">${(v/1000).toFixed(1)}k</text>`;
+    }
+    let xLabels = '';
+    labels.forEach((l, i) => {
+      const x = pad.l + i * xStep;
+      xLabels += `<text x="${x}" y="${h - 8}" text-anchor="middle" font-size="10" fill="${cssVar('--text-muted')}">${l}</text>`;
+    });
+
+    const svg = `
+      <svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" preserveAspectRatio="none" role="img" aria-label="Revenue chart">
+        <defs>
+          <linearGradient id="revBook" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="${cssVar('--st-blue')}" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="${cssVar('--st-blue')}" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="revPack" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="${cssVar('--st-cyan')}" stop-opacity="0.3"/>
+            <stop offset="100%" stop-color="${cssVar('--st-cyan')}" stop-opacity="0"/>
+          </linearGradient>
+          <linearGradient id="revVisa" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="${cssVar('--st-green')}" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="${cssVar('--st-green')}" stop-opacity="0"/>
+          </linearGradient>
+        </defs>
+        ${yAxis}
+        ${xLabels}
+        <path d="${toArea(baseBook, bottomLine)}" fill="url(#revBook)"/>
+        <path d="${toPath(baseBook)}" stroke="${cssVar('--st-blue')}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="${toArea(basePack, baseBook)}" fill="url(#revPack)"/>
+        <path d="${toPath(basePack)}" stroke="${cssVar('--st-cyan')}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="${toArea(baseVisa, basePack)}" fill="url(#revVisa)"/>
+        <path d="${toPath(baseVisa)}" stroke="${cssVar('--st-green')}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        ${baseVisa.map((p, i) => `<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${cssVar('--bg-surface')}" stroke="${cssVar('--st-green')}" stroke-width="2"/>`).join('')}
+      </svg>
+    `;
+    wrap.innerHTML = svg;
+  }
+
+  function renderBookingDonut() {
+    const wrap = $('#bookingDonut');
+    if (!wrap) return;
+    const size = 180;
+    const data = [
+      { v: 42, c: cssVar('--st-blue') },
+      { v: 21, c: cssVar('--st-cyan') },
+      { v: 16, c: cssVar('--st-green') },
+      { v: 13, c: '#8B5CF6' },
+      { v: 8,  c: '#CBD5E1' },
+    ];
+    const total = data.reduce((s, d) => s + d.v, 0);
+    const cx = size / 2, cy = size / 2, r = 72, ir = 48;
+    let acc = -Math.PI / 2;
+    let paths = '';
+    data.forEach(d => {
+      const a = (d.v / total) * Math.PI * 2;
+      const x1 = cx + r * Math.cos(acc), y1 = cy + r * Math.sin(acc);
+      const x2 = cx + r * Math.cos(acc + a), y2 = cy + r * Math.sin(acc + a);
+      const x3 = cx + ir * Math.cos(acc + a), y3 = cy + ir * Math.sin(acc + a);
+      const x4 = cx + ir * Math.cos(acc), y4 = cy + ir * Math.sin(acc);
+      const large = a > Math.PI ? 1 : 0;
+      paths += `<path d="M${x1},${y1} A${r},${r} 0 ${large} 1 ${x2},${y2} L${x3},${y3} A${ir},${ir} 0 ${large} 0 ${x4},${y4} Z" fill="${d.c}" stroke="${cssVar('--bg-surface')}" stroke-width="2.5"/>`;
+      acc += a;
+    });
+
+    wrap.innerHTML = `
+      <svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Booking distribution">
+        ${paths}
+        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="10" fill="${cssVar('--text-muted')}" font-weight="500">Total</text>
+        <text x="${cx}" y="${cy + 14}" text-anchor="middle" font-size="20" font-weight="800" fill="${cssVar('--text-primary')}" font-family="Plus Jakarta Sans">1,284</text>
+      </svg>
+    `;
+  }
+
+  function renderCustomerChart() {
+    const wrap = $('#customerChart');
+    if (!wrap) return;
+    const w = wrap.clientWidth || 400;
+    const h = 160;
+    const pad = { l: 32, r: 10, t: 10, b: 24 };
+    const cw = w - pad.l - pad.r;
+    const ch = h - pad.t - pad.b;
+
+    const labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'];
+    const newC = [120, 148, 182, 210, 248, 284, 342, 428];
+    const retC = [180, 210, 242, 268, 298, 324, 362, 398];
+    const max = Math.max(...newC.map((n,i) => n + retC[i])) * 1.1;
+    const bw = cw / labels.length * 0.55;
+    const step = cw / labels.length;
+
+    const yOf = v => pad.t + ch - (v / max) * ch;
+
+    let yAxis = '';
+    for (let i = 0; i <= 3; i++) {
+      const v = (max / 3) * i;
+      const y = yOf(v);
+      yAxis += `<line x1="${pad.l}" y1="${y}" x2="${w - pad.r}" y2="${y}" stroke="${cssVar('--divider')}" stroke-dasharray="3,3"/>`;
+      yAxis += `<text x="${pad.l - 5}" y="${y + 4}" text-anchor="end" font-size="9" fill="${cssVar('--text-muted')}">${Math.round(v)}</text>`;
+    }
+
+    let bars = '';
+    labels.forEach((l, i) => {
+      const cx = pad.l + i * step + step / 2;
+      const hNew = (newC[i] / max) * ch;
+      const hRet = (retC[i] / max) * ch;
+      const base = pad.t + ch;
+      bars += `<rect x="${cx - bw/2}" y="${base - hNew}" width="${bw}" height="${hNew}" fill="${cssVar('--st-blue')}" rx="2"/>`;
+      bars += `<rect x="${cx - bw/2}" y="${base - hNew - hRet}" width="${bw}" height="${hRet}" fill="${cssVar('--st-green')}" rx="2"/>`;
+      bars += `<text x="${cx}" y="${h - 6}" text-anchor="middle" font-size="9" fill="${cssVar('--text-muted')}">${l}</text>`;
+    });
+
+    wrap.innerHTML = `
+      <svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" role="img" aria-label="Customer growth">
+        ${yAxis}
+        ${bars}
+      </svg>
+    `;
+  }
+
+  function renderAllCharts() {
+    renderRevenueChart();
+    renderBookingDonut();
+    renderCustomerChart();
+  }
+
+  /* ---------- Scroll reveal ---------- */
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReduced && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e, idx) => {
+        if (e.isIntersecting) {
+          setTimeout(() => e.target.classList.add('in'), idx * 50);
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
+    $$('.reveal').forEach(el => io.observe(el));
+  } else {
+    $$('.reveal').forEach(el => el.classList.add('in'));
+  }
+
+  /* ---------- Resize ---------- */
+  let resizeTimer;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(renderAllCharts, 150);
+  });
+
+  requestAnimationFrame(() => renderAllCharts());
+})();

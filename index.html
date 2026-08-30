@@ -1,0 +1,1426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ST Trip — Travel Operations Dashboard</title>
+  <meta name="description" content="ST Trip Enterprise Travel Management System" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+</head>
+
+<body>
+  <div class="app-shell">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+      <div class="sidebar-brand">
+        <div class="brand-logo">
+          <svg viewBox="0 0 40 40" width="32" height="32" aria-hidden="true">
+            <defs>
+              <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#0072BC" />
+                <stop offset="100%" stop-color="#06B0EF" />
+              </linearGradient>
+            </defs>
+            <path d="M8 20 Q12 10 20 12 T32 14 Q28 22 20 22 T8 20 Z" fill="url(#logoGrad)" />
+            <path d="M10 24 Q14 18 22 20 T30 22" stroke="#0072BC" stroke-width="2" fill="none" stroke-linecap="round" />
+            <circle cx="20" cy="20" r="3" fill="#06B0EF" />
+          </svg>
+          <div class="brand-text">
+            <span class="name">ST Trip</span>
+            <span class="sub">TRAVEL OPERATIONS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="workspace-selector">
+        <button class="ws-btn" aria-label="Operations workspace">
+          <span class="ws-dot" style="background: var(--st-green);"></span>
+          <span class="ws-label">OPERATIONS WORKSPACE</span>
+          <i class="bi bi-chevron-down"></i>
+        </button>
+      </div>
+
+      <nav class="sidebar-nav" id="sidebarNav">
+        <div class="nav-section">
+          <div class="nav-label">DASHBOARD</div>
+          <div class="nav-item active" data-tip="Dashboard">
+            <i class="bi bi-grid-1x2"></i>
+            <span class="label">Dashboard</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">COMMERCE</div>
+          <div class="nav-item has-sub" data-tip="Bookings" aria-expanded="false">
+            <i class="bi bi-calendar-check"></i>
+            <span class="label">Bookings</span>
+            <span class="badge-count">12</span>
+            <i class="bi bi-chevron-right chev"></i>
+          </div>
+          <div class="submenu">
+            <div class="nav-item">All Bookings</div>
+            <div class="nav-item">Flight Bookings</div>
+            <div class="nav-item">Hotel Bookings</div>
+            <div class="nav-item">Tour Bookings</div>
+            <div class="nav-item">Umrah Bookings</div>
+            <div class="nav-item">Hajj Bookings</div>
+            <div class="nav-item">Visa Applications</div>
+          </div>
+          <div class="nav-item has-sub" data-tip="Travel Products" aria-expanded="false">
+            <i class="bi bi-box-seam"></i>
+            <span class="label">Travel Products</span>
+            <i class="bi bi-chevron-right chev"></i>
+          </div>
+          <div class="submenu">
+            <div class="nav-item">Flights</div>
+            <div class="nav-item">Hotels</div>
+            <div class="nav-item">Tour Packages</div>
+            <div class="nav-item">Umrah Packages</div>
+            <div class="nav-item">Hajj Packages</div>
+            <div class="nav-item">Visa Services</div>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">PEOPLE</div>
+          <div class="nav-item has-sub" data-tip="Customers" aria-expanded="false">
+            <i class="bi bi-people"></i>
+            <span class="label">Customers</span>
+            <i class="bi bi-chevron-right chev"></i>
+          </div>
+          <div class="submenu">
+            <div class="nav-item">All Customers</div>
+            <div class="nav-item">Customer Groups</div>
+            <div class="nav-item">Reviews</div>
+          </div>
+          <div class="nav-item has-sub" data-tip="Suppliers" aria-expanded="false">
+            <i class="bi bi-building"></i>
+            <span class="label">Suppliers & Partners</span>
+            <i class="bi bi-chevron-right chev"></i>
+          </div>
+          <div class="submenu">
+            <div class="nav-item">Airlines</div>
+            <div class="nav-item">Hotels</div>
+            <div class="nav-item">Tour Operators</div>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">FINANCE</div>
+          <div class="nav-item has-sub" data-tip="Finance" aria-expanded="false">
+            <i class="bi bi-wallet2"></i>
+            <span class="label">Finance</span>
+            <span class="badge-count">8</span>
+            <i class="bi bi-chevron-right chev"></i>
+          </div>
+          <div class="submenu">
+            <div class="nav-item">Payments</div>
+            <div class="nav-item">Transactions</div>
+            <div class="nav-item">Invoices</div>
+            <div class="nav-item">Refunds</div>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">OPERATIONS</div>
+          <div class="nav-item" data-tip="Airport Transfers">
+            <i class="bi bi-airplane-engines"></i>
+            <span class="label">Airport Transfers</span>
+          </div>
+          <div class="nav-item" data-tip="Tour Ops">
+            <i class="bi bi-compass"></i>
+            <span class="label">Tour Operations</span>
+          </div>
+          <div class="nav-item" data-tip="Umrah Ops">
+            <i class="bi bi-moon-stars"></i>
+            <span class="label">Umrah Operations</span>
+          </div>
+          <div class="nav-item" data-tip="Hajj Ops">
+            <i class="bi bi-star"></i>
+            <span class="label">Hajj Operations</span>
+          </div>
+          <div class="nav-item" data-tip="Visa">
+            <i class="bi bi-stamp"></i>
+            <span class="label">Visa Processing</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">MARKETING</div>
+          <div class="nav-item" data-tip="Promotions">
+            <i class="bi bi-megaphone"></i>
+            <span class="label">Promotions</span>
+          </div>
+          <div class="nav-item" data-tip="Coupons">
+            <i class="bi bi-ticket-perforated"></i>
+            <span class="label">Coupons</span>
+          </div>
+          <div class="nav-item" data-tip="Campaigns">
+            <i class="bi bi-bullseye"></i>
+            <span class="label">Campaigns</span>
+          </div>
+          <div class="nav-item" data-tip="Newsletter">
+            <i class="bi bi-envelope-paper"></i>
+            <span class="label">Newsletter</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">CONTENT</div>
+          <div class="nav-item" data-tip="Destinations">
+            <i class="bi bi-geo-alt"></i>
+            <span class="label">Destinations</span>
+          </div>
+          <div class="nav-item" data-tip="Travel Guides">
+            <i class="bi bi-book"></i>
+            <span class="label">Travel Guides</span>
+          </div>
+          <div class="nav-item" data-tip="Blog">
+            <i class="bi bi-journal-text"></i>
+            <span class="label">Blog</span>
+          </div>
+          <div class="nav-item" data-tip="FAQ">
+            <i class="bi bi-question-circle"></i>
+            <span class="label">FAQ</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">INSIGHTS</div>
+          <div class="nav-item has-sub" data-tip="Reports" aria-expanded="false">
+            <i class="bi bi-bar-chart-line"></i>
+            <span class="label">Reports & Analytics</span>
+            <i class="bi bi-chevron-right chev"></i>
+          </div>
+          <div class="submenu">
+            <div class="nav-item">Sales Report</div>
+            <div class="nav-item">Booking Report</div>
+            <div class="nav-item">Revenue Report</div>
+            <div class="nav-item">Customer Report</div>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">SUPPORT</div>
+          <div class="nav-item" data-tip="Tickets">
+            <i class="bi bi-life-preserver"></i>
+            <span class="label">Support Tickets</span>
+            <span class="badge-count">4</span>
+          </div>
+          <div class="nav-item" data-tip="Messages">
+            <i class="bi bi-chat-dots"></i>
+            <span class="label">Customer Messages</span>
+          </div>
+          <div class="nav-item" data-tip="WhatsApp">
+            <i class="bi bi-whatsapp"></i>
+            <span class="label">WhatsApp Leads</span>
+          </div>
+        </div>
+
+        <div class="nav-section">
+          <div class="nav-label">SYSTEM</div>
+          <div class="nav-item has-sub" data-tip="Users" aria-expanded="false">
+            <i class="bi bi-shield-lock"></i>
+            <span class="label">Users & Security</span>
+            <i class="bi bi-chevron-right chev"></i>
+          </div>
+          <div class="submenu">
+            <div class="nav-item">Admin Users</div>
+            <div class="nav-item">Staff</div>
+            <div class="nav-item">Roles & Permissions</div>
+            <div class="nav-item">Activity Logs</div>
+          </div>
+          <div class="nav-item has-sub" data-tip="Settings" aria-expanded="false">
+            <i class="bi bi-gear"></i>
+            <span class="label">Settings</span>
+            <i class="bi bi-chevron-right chev"></i>
+          </div>
+          <div class="submenu">
+            <div class="nav-item">General Settings</div>
+            <div class="nav-item">Company Profile</div>
+            <div class="nav-item">Payment Methods</div>
+            <div class="nav-item">Email Settings</div>
+          </div>
+          <div class="nav-item logout-item" data-tip="Logout">
+            <i class="bi bi-box-arrow-right"></i>
+            <span class="label">Logout</span>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="avatar-sm">AR</div>
+        <div class="meta">
+          <div class="n">Admin Rahman</div>
+          <div class="r">Super Admin</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ============ MAIN ============ -->
+    <div class="main-wrap">
+
+      <!-- ============ TOPBAR ============ -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="toggle-btn" id="toggleSidebar" aria-label="Toggle sidebar">
+            <i class="bi bi-list"></i>
+          </button>
+          <div class="breadcrumb-mini">
+            <div class="crumbs">
+              <span>ST Trip</span>
+              <span class="sep">/</span>
+              <span>Admin</span>
+              <span class="sep">/</span>
+              <span class="current">Dashboard</span>
+            </div>
+            <div class="page-title">Dashboard Overview <i class="bi bi-chevron-down"
+                style="font-size: 11px; color: var(--text-muted);"></i></div>
+          </div>
+        </div>
+
+        <div class="topbar-search">
+          <i class="bi bi-search s-icon"></i>
+          <input type="text" placeholder="Search bookings, customers, packages..." aria-label="Global search" />
+          <span class="kbd"> K</span>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="btn-quick-add" id="quickAddBtn">
+            <i class="bi bi-plus-lg"></i>
+            <span>Quick add</span>
+          </button>
+
+          <div style="position: relative;">
+            <button class="icon-btn" id="notifBtn" aria-label="Notifications">
+              <i class="bi bi-bell"></i>
+              <span class="dot"></span>
+            </button>
+            <div class="notif-panel" id="notifPanel">
+              <div class="notif-head">
+                <h4>Notifications</h4>
+                <a href="#">Mark all read</a>
+              </div>
+              <div class="notif-list">
+                <div class="notif-item">
+                  <div class="ic" style="background: var(--st-green-50); color: var(--st-green);"><i
+                      class="bi bi-check-circle"></i></div>
+                  <div>
+                    <div class="t"><b>Visa Approved</b> — UK visa for Rafiq Ahmed</div>
+                    <div class="tm">2 minutes ago</div>
+                  </div>
+                </div>
+                <div class="notif-item">
+                  <div class="ic" style="background: var(--st-blue-50); color: var(--st-blue);"><i
+                      class="bi bi-credit-card"></i></div>
+                  <div>
+                    <div class="t"><b>Payment Received</b> — ৳48,500 from #ST-8842</div>
+                    <div class="tm">18 minutes ago</div>
+                  </div>
+                </div>
+                <div class="notif-item">
+                  <div class="ic" style="background: var(--st-amber-50); color: var(--st-amber);"><i
+                      class="bi bi-exclamation-triangle"></i></div>
+                  <div>
+                    <div class="t"><b>Low Stock Alert</b> — Dubai package slots filling fast</div>
+                    <div class="tm">1 hour ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button class="icon-btn" aria-label="Messages">
+            <i class="bi bi-chat-dots"></i>
+          </button>
+          <button class="icon-btn" aria-label="Help">
+            <i class="bi bi-question-circle"></i>
+          </button>
+
+          <div class="dropdown">
+            <button class="profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
+              <div class="av">SA</div>
+              <div class="meta">
+                <div class="n">Super Admin</div>
+                <div class="r">Administrator</div>
+              </div>
+              <i class="bi bi-chevron-down" style="font-size: 11px; color: var(--text-muted);"></i>
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> My Profile</a></li>
+              <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Account Settings</a></li>
+              <li><a class="dropdown-item" href="#"><i class="bi bi-clock-history"></i> Activity Log</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#" style="color: var(--st-red);"><i class="bi bi-box-arrow-right"
+                    style="color: var(--st-red);"></i> Logout</a></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+      <!-- ============ CONTENT ============ -->
+      <main class="content">
+
+        <!-- Page Head -->
+        <div class="page-head reveal">
+          <div class="greet">
+            <h1>Good Morning, Admin <span class="wave">👋</span></h1>
+            <p>Here's what's happening with your travel business today — Sunday, August 30, 2026</p>
+          </div>
+          <div class="head-controls">
+            <div class="date-pill"><i class="bi bi-calendar3"></i> This month <i class="bi bi-chevron-down"
+                style="font-size: 11px;"></i></div>
+            <button class="qa-btn"><i class="bi bi-download"></i> Export report</button>
+          </div>
+        </div>
+
+        <!-- Jump To -->
+        <div class="jump-bar reveal">
+          <span class="jump-label">JUMP TO</span>
+          <button class="jump-btn"><i class="bi bi-plus-lg"></i> New booking</button>
+          <button class="jump-btn"><i class="bi bi-person-plus"></i> Add customer</button>
+          <button class="jump-btn"><i class="bi bi-box-seam"></i> Add package</button>
+          <div class="jump-tip"><i class="bi bi-lightbulb"></i> Keep every departure in view.</div>
+        </div>
+
+        <!-- KPI Cards -->
+        <section class="grid-kpi reveal" aria-label="Key metrics">
+          <div class="card kpi hoverable">
+            <div class="kpi-top">
+              <div class="kpi-icon blue"><i class="bi bi-calendar-check"></i></div>
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 12.5%</span>
+            </div>
+            <div class="kpi-label">Total bookings</div>
+            <div class="kpi-value">1,284</div>
+            <div class="kpi-meta"><span>↗ 12.5%</span><span>vs last month</span></div>
+            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,30 L15,24 L30,28 L45,18 L60,22 L75,12 L90,16 L110,6" stroke="#0072BC" stroke-width="2"
+                fill="none" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <div class="card kpi hoverable">
+            <div class="kpi-top">
+              <div class="kpi-icon green"><i class="bi bi-cash-stack"></i></div>
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 18.2%</span>
+            </div>
+            <div class="kpi-label">Total revenue</div>
+            <div class="kpi-value">৳42,85,600</div>
+            <div class="kpi-meta"><span>↗ 18.2%</span><span>vs last month</span></div>
+            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,32 L15,26 L30,22 L45,24 L60,16 L75,18 L90,10 L110,6" stroke="#00A651" stroke-width="2"
+                fill="none" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <div class="card kpi hoverable">
+            <div class="kpi-top">
+              <div class="kpi-icon cyan"><i class="bi bi-calendar-plus"></i></div>
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 8.4%</span>
+            </div>
+            <div class="kpi-label">Today's bookings</div>
+            <div class="kpi-value">48</div>
+            <div class="kpi-meta"><span> 8.4%</span><span>vs yesterday</span></div>
+            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,28 L15,22 L30,26 L45,16 L60,20 L75,14 L90,18 L110,8" stroke="#06B0EF" stroke-width="2"
+                fill="none" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <div class="card kpi hoverable">
+            <div class="kpi-top">
+              <div class="kpi-icon blue"><i class="bi bi-people"></i></div>
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 14.7%</span>
+            </div>
+            <div class="kpi-label">Total customers</div>
+            <div class="kpi-value">8,642</div>
+            <div class="kpi-meta"><span>↗ 14.7%</span><span>vs last month</span></div>
+            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,30 L15,26 L30,22 L45,24 L60,18 L75,16 L90,12 L110,8" stroke="#0072BC" stroke-width="2"
+                fill="none" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <div class="card kpi hoverable">
+            <div class="kpi-top">
+              <div class="kpi-icon amber"><i class="bi bi-hourglass-split"></i></div>
+            </div>
+            <div class="kpi-label">Pending payments</div>
+            <div class="kpi-value">৳6,84,200</div>
+            <div class="kpi-meta"><span style="color: var(--st-amber);">Need review</span><span>18 invoices</span></div>
+          </div>
+
+          <div class="card kpi hoverable">
+            <div class="kpi-top">
+              <div class="kpi-icon cyan"><i class="bi bi-stamp"></i></div>
+            </div>
+            <div class="kpi-label">Pending visa applications</div>
+            <div class="kpi-value">126</div>
+            <div class="kpi-meta"><span style="color: var(--st-amber);">12 urgent</span><span>8 countries</span></div>
+          </div>
+
+          <div class="card kpi hoverable">
+            <div class="kpi-top">
+              <div class="kpi-icon blue"><i class="bi bi-airplane"></i></div>
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 11.3%</span>
+            </div>
+            <div class="kpi-label">Upcoming trips</div>
+            <div class="kpi-value">84</div>
+            <div class="kpi-meta"><span>↗ Next 30 days</span><span>1,248 pax</span></div>
+            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,26 L15,22 L30,24 L45,18 L60,20 L75,14 L90,16 L110,10" stroke="#0072BC" stroke-width="2"
+                fill="none" stroke-linecap="round" />
+            </svg>
+          </div>
+
+          <div class="card kpi hoverable">
+            <div class="kpi-top">
+              <div class="kpi-icon red"><i class="bi bi-x-octagon"></i></div>
+              <span class="kpi-trend down"><i class="bi bi-arrow-down-right"></i> 2.1%</span>
+            </div>
+            <div class="kpi-label">Cancelled bookings</div>
+            <div class="kpi-value">23</div>
+            <div class="kpi-meta"><span style="color: var(--st-red);">↘ 2.1%</span><span>vs last month</span></div>
+            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
+              <path d="M0,10 L15,14 L30,12 L45,18 L60,16 L75,22 L90,20 L110,28" stroke="#ED1C24" stroke-width="2"
+                fill="none" stroke-linecap="round" />
+            </svg>
+          </div>
+        </section>
+
+        <!-- Revenue + Booking Analytics -->
+        <section class="grid-main reveal">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">REVENUE OVERVIEW</div>
+                <h3>Total revenue breakdown by category</h3>
+              </div>
+              <div class="chips-group">
+                <span class="chip">7D</span>
+                <span class="chip active">30D</span>
+                <span class="chip">3M</span>
+                <span class="chip">6M</span>
+                <span class="chip">1Y</span>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="rev-summary">
+                <div>
+                  <div class="rev-lbl">Total Revenue</div>
+                  <div class="rev-val">৳42,85,600</div>
+                </div>
+                <div>
+                  <div class="rev-lbl" style="color: var(--st-blue);">Booking Revenue</div>
+                  <div class="rev-val" style="color: var(--st-blue);">28,42,300</div>
+                </div>
+                <div>
+                  <div class="rev-lbl" style="color: var(--st-cyan);">Package Revenue</div>
+                  <div class="rev-val" style="color: var(--st-cyan);">৳11,28,400</div>
+                </div>
+                <div>
+                  <div class="rev-lbl" style="color: var(--st-green);">Visa Revenue</div>
+                  <div class="rev-val" style="color: var(--st-green);">৳3,14,900</div>
+                </div>
+              </div>
+              <div class="chart-wrap" id="revenueChart" style="height: 260px;"></div>
+              <div class="chart-legend mt-3">
+                <span><span class="dot" style="background: var(--st-blue);"></span>Bookings</span>
+                <span><span class="dot" style="background: var(--st-cyan);"></span>Packages</span>
+                <span><span class="dot" style="background: var(--st-green);"></span>Visa</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">SERVICE MIX</div>
+                <h3>Booking analytics</h3>
+                <div class="sub">Confirmed bookings by product type</div>
+              </div>
+              <button class="icon-btn-sm" aria-label="More"><i class="bi bi-three-dots"></i></button>
+            </div>
+            <div class="card-body">
+              <div class="chart-wrap" id="bookingDonut" style="height: 200px; display: flex; justify-content: center;">
+              </div>
+              <div class="donut-legend">
+                <div class="dl-item"><span class="dl-dot"
+                    style="background: var(--st-blue);"></span><span>Flights</span><b>42%</b></div>
+                <div class="dl-item"><span class="dl-dot"
+                    style="background: var(--st-cyan);"></span><span>Hotels</span><b>21%</b></div>
+                <div class="dl-item"><span class="dl-dot"
+                    style="background: var(--st-green);"></span><span>Tours</span><b>16%</b></div>
+                <div class="dl-item"><span class="dl-dot" style="background: #8B5CF6;"></span><span>Umrah /
+                    Hajj</span><b>13%</b></div>
+                <div class="dl-item"><span class="dl-dot" style="background: #CBD5E1;"></span><span>Visa</span><b>8%</b>
+                </div>
+              </div>
+              <div class="status-legend mt-3">
+                <span class="sl-item"><span class="sl-dot" style="background: var(--st-green);"></span>Confirmed
+                  <b>742</b></span>
+                <span class="sl-item"><span class="sl-dot" style="background: var(--st-amber);"></span>Pending
+                  <b>318</b></span>
+                <span class="sl-item"><span class="sl-dot" style="background: var(--st-red);"></span>Cancelled
+                  <b>23</b></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Recent Bookings -->
+        <section class="card reveal" style="margin-bottom: 16px;">
+          <div class="card-head">
+            <div>
+              <div class="section-label">LIVE OPERATIONS</div>
+              <h3>Recent bookings</h3>
+              <div class="sub">Monitor the latest customer and payment activity.</div>
+            </div>
+            <div class="d-flex gap-2 flex-wrap">
+              <div class="topbar-search" style="max-width: 220px; margin: 0;">
+                <i class="bi bi-search s-icon"></i>
+                <input type="text" placeholder="Search bookings..." />
+              </div>
+              <select class="filter-select">
+                <option>All bookings</option>
+                <option>Flights</option>
+                <option>Hotels</option>
+                <option>Tours</option>
+              </select>
+              <button class="icon-btn-sm"><i class="bi bi-funnel"></i></button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="st-table">
+              <thead>
+                <tr>
+                  <th>BOOKING ID</th>
+                  <th>CUSTOMER</th>
+                  <th>SERVICE</th>
+                  <th>DESTINATION</th>
+                  <th>TRAVEL DATE</th>
+                  <th>AMOUNT</th>
+                  <th>PAYMENT</th>
+                  <th>STATUS</th>
+                  <th style="text-align: right;">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><b class="bid">ST-98421</b></td>
+                  <td>
+                    <div class="avatar-row">
+                      <div class="avatar" style="background: #0072BC;">NI</div>
+                      <div class="n">Nusrat Jahan</div>
+                    </div>
+                  </td>
+                  <td><span class="service-tag flight"><i class="bi bi-airplane"></i> Flight</span></td>
+                  <td>Dubai</td>
+                  <td>18 Sep 2026</td>
+                  <td><b>৳84,500</b></td>
+                  <td><span class="pay-status paid">Paid</span></td>
+                  <td><span class="status-badge confirmed"><span class="pip"></span>Confirmed</span></td>
+                  <td style="text-align: right;">
+                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
+                          class="bi bi-eye"></i></button><button title="Edit"><i
+                          class="bi bi-pencil"></i></button><button title="More"><i
+                          class="bi bi-three-dots"></i></button></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b class="bid">ST-98420</b></td>
+                  <td>
+                    <div class="avatar-row">
+                      <div class="avatar" style="background: #00A651;">AR</div>
+                      <div class="n">Arif Rahman</div>
+                    </div>
+                  </td>
+                  <td><span class="service-tag umrah"><i class="bi bi-moon-stars"></i> Umrah</span></td>
+                  <td>Jeddah</td>
+                  <td>22 Sep 2026</td>
+                  <td><b>৳1,42,000</b></td>
+                  <td><span class="pay-status partial">Partial</span></td>
+                  <td><span class="status-badge processing"><span class="pip"></span>Processing</span></td>
+                  <td style="text-align: right;">
+                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
+                          class="bi bi-eye"></i></button><button title="Edit"><i
+                          class="bi bi-pencil"></i></button><button title="More"><i
+                          class="bi bi-three-dots"></i></button></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b class="bid">ST-98419</b></td>
+                  <td>
+                    <div class="avatar-row">
+                      <div class="avatar" style="background: #F59E0B;">MH</div>
+                      <div class="n">Mehedi Hasan</div>
+                    </div>
+                  </td>
+                  <td><span class="service-tag hotel"><i class="bi bi-building"></i> Hotel</span></td>
+                  <td>Kuala Lumpur</td>
+                  <td>24 Sep 2026</td>
+                  <td><b>৳62,800</b></td>
+                  <td><span class="pay-status paid">Paid</span></td>
+                  <td><span class="status-badge confirmed"><span class="pip"></span>Confirmed</span></td>
+                  <td style="text-align: right;">
+                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
+                          class="bi bi-eye"></i></button><button title="Edit"><i
+                          class="bi bi-pencil"></i></button><button title="More"><i
+                          class="bi bi-three-dots"></i></button></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b class="bid">ST-98418</b></td>
+                  <td>
+                    <div class="avatar-row">
+                      <div class="avatar" style="background: #8B5CF6;">SK</div>
+                      <div class="n">Sadia Karim</div>
+                    </div>
+                  </td>
+                  <td><span class="service-tag tour"><i class="bi bi-compass"></i> Tour</span></td>
+                  <td>Bangkok</td>
+                  <td>27 Sep 2026</td>
+                  <td><b>৳46,200</b></td>
+                  <td><span class="pay-status pending">Pending</span></td>
+                  <td><span class="status-badge pending"><span class="pip"></span>Pending</span></td>
+                  <td style="text-align: right;">
+                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
+                          class="bi bi-eye"></i></button><button title="Edit"><i
+                          class="bi bi-pencil"></i></button><button title="More"><i
+                          class="bi bi-three-dots"></i></button></div>
+                  </td>
+                </tr>
+                <tr>
+                  <td><b class="bid">ST-98417</b></td>
+                  <td>
+                    <div class="avatar-row">
+                      <div class="avatar" style="background: #ED1C24;">TA</div>
+                      <div class="n">Tariq Ahmed</div>
+                    </div>
+                  </td>
+                  <td><span class="service-tag visa"><i class="bi bi-stamp"></i> Visa</span></td>
+                  <td>United Kingdom</td>
+                  <td>30 Sep 2026</td>
+                  <td><b>৳18,500</b></td>
+                  <td><span class="pay-status paid">Paid</span></td>
+                  <td><span class="status-badge completed"><span class="pip"></span>Completed</span></td>
+                  <td style="text-align: right;">
+                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
+                          class="bi bi-eye"></i></button><button title="Edit"><i
+                          class="bi bi-pencil"></i></button><button title="More"><i
+                          class="bi bi-three-dots"></i></button></div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="card-foot d-flex justify-content-between align-items-center flex-wrap gap-2">
+            <div style="font-size: 12.5px; color: var(--text-muted);">Showing <b
+                style="color: var(--text-primary);">5</b> of <b style="color: var(--text-primary);">1,284</b> bookings
+            </div>
+            <div class="d-flex gap-1">
+              <button class="icon-btn-sm"><i class="bi bi-chevron-left"></i></button>
+              <button class="icon-btn-sm active">1</button>
+              <button class="icon-btn-sm">2</button>
+              <button class="icon-btn-sm">3</button>
+              <button class="icon-btn-sm">…</button>
+              <button class="icon-btn-sm">64</button>
+              <button class="icon-btn-sm"><i class="bi bi-chevron-right"></i></button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Upcoming Departures + Popular Destinations -->
+        <section class="grid-main reveal">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">NEXT ON THE BOARD</div>
+                <h3>Upcoming departures</h3>
+              </div>
+              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
+            </div>
+            <div class="card-body">
+              <div class="dep-item">
+                <div class="dep-icon"><i class="bi bi-airplane"></i></div>
+                <div class="dep-info">
+                  <div class="dep-route">Dhaka → Dubai</div>
+                  <div class="dep-meta">18 Sep 2026 · 42 passengers</div>
+                </div>
+                <div class="dep-service">Flight<br><span class="dep-count">18 bookings</span></div>
+                <div class="dep-status"><span class="status-badge confirmed"><span class="pip"></span>Confirmed</span>
+                </div>
+                <div class="dep-days">
+                  <div class="num">19</div>
+                  <div class="lbl">days to<br>departure</div>
+                </div>
+              </div>
+              <div class="dep-item">
+                <div class="dep-icon"><i class="bi bi-compass"></i></div>
+                <div class="dep-info">
+                  <div class="dep-route">Dhaka → Kuala Lumpur</div>
+                  <div class="dep-meta">24 Sep 2026 · 26 passengers</div>
+                </div>
+                <div class="dep-service">Tour<br><span class="dep-count">8 bookings</span></div>
+                <div class="dep-status"><span class="status-badge processing"><span class="pip"></span>Processing</span>
+                </div>
+                <div class="dep-days">
+                  <div class="num">25</div>
+                  <div class="lbl">days to<br>departure</div>
+                </div>
+              </div>
+              <div class="dep-item">
+                <div class="dep-icon"><i class="bi bi-suitcase-lg"></i></div>
+                <div class="dep-info">
+                  <div class="dep-route">Dhaka → Bangkok</div>
+                  <div class="dep-meta">27 Sep 2026 · 18 passengers</div>
+                </div>
+                <div class="dep-service">Holiday<br><span class="dep-count">8 bookings</span></div>
+                <div class="dep-status"><span class="status-badge confirmed"><span class="pip"></span>Confirmed</span>
+                </div>
+                <div class="dep-days">
+                  <div class="num">28</div>
+                  <div class="lbl">days to<br>departure</div>
+                </div>
+              </div>
+              <div class="dep-item">
+                <div class="dep-icon"><i class="bi bi-moon-stars"></i></div>
+                <div class="dep-info">
+                  <div class="dep-route">Dhaka → Jeddah</div>
+                  <div class="dep-meta">02 Oct 2026 · 48 pilgrims</div>
+                </div>
+                <div class="dep-service">Umrah<br><span class="dep-count">21 bookings</span></div>
+                <div class="dep-status"><span class="status-badge documents"><span class="pip"></span>Documents</span>
+                </div>
+                <div class="dep-days">
+                  <div class="num">33</div>
+                  <div class="lbl">days to<br>departure</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">POPULAR DESTINATIONS</div>
+                <h3>Top performing this month</h3>
+              </div>
+              <a href="#" class="view-all">See all <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="card-body">
+              <div class="dest-grid">
+                <div class="dest-card">
+                  <div class="dest-img"
+                    style="background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=400&q=70');">
+                    <span class="dest-flag">🇹 TH</span>
+                  </div>
+                  <div class="dest-body">
+                    <h4>Bangkok</h4>
+                    <div class="dest-stats">
+                      <div><span class="v">248</span><span class="l">Bookings</span></div>
+                      <div><span class="v">৳5.4M</span><span class="l">Revenue</span></div>
+                      <div><span class="v growth">+22%</span><span class="l">Growth</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dest-card">
+                  <div class="dest-img"
+                    style="background-image: url('https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&q=70');">
+                    <span class="dest-flag">🇦 KSA</span>
+                  </div>
+                  <div class="dest-body">
+                    <h4>Jeddah</h4>
+                    <div class="dest-stats">
+                      <div><span class="v">198</span><span class="l">Bookings</span></div>
+                      <div><span class="v">৳12.8M</span><span class="l">Revenue</span></div>
+                      <div><span class="v growth">+9%</span><span class="l">Growth</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dest-card">
+                  <div class="dest-img"
+                    style="background-image: url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400&q=70');">
+                    <span class="dest-flag">🇹 TR</span>
+                  </div>
+                  <div class="dest-body">
+                    <h4>Istanbul</h4>
+                    <div class="dest-stats">
+                      <div><span class="v">174</span><span class="l">Bookings</span></div>
+                      <div><span class="v">৳4.8M</span><span class="l">Revenue</span></div>
+                      <div><span class="v growth">+16%</span><span class="l">Growth</span></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dest-card">
+                  <div class="dest-img"
+                    style="background-image: url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=400&q=70');">
+                    <span class="dest-flag">🇸🇬 SG</span>
+                  </div>
+                  <div class="dest-body">
+                    <h4>Singapore</h4>
+                    <div class="dest-stats">
+                      <div><span class="v">152</span><span class="l">Bookings</span></div>
+                      <div><span class="v">৳4.2M</span><span class="l">Revenue</span></div>
+                      <div><span class="v growth">+12%</span><span class="l">Growth</span></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Top Packages + Customer + Payment -->
+        <section class="grid-3 reveal">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">PRODUCT PERFORMANCE</div>
+                <h3>Top-selling packages</h3>
+                <div class="sub">Packages converting best this month.</div>
+              </div>
+              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
+            </div>
+            <div class="card-body">
+              <div class="pkg-list">
+                <div class="pkg-row">
+                  <div class="pkg-rank" style="background: var(--st-blue);">B</div>
+                  <div class="pkg-info">
+                    <div class="pkg-name">Breathtaking Singapore</div>
+                    <div class="pkg-dur">6 days · 5 nights</div>
+                  </div>
+                  <div class="pkg-stats">
+                    <div><b>126</b><span>bookings</span></div>
+                    <div><b>৳15,80,000</b><span>revenue</span></div>
+                  </div>
+                  <div class="pkg-growth up">↗ 92%</div>
+                  <div class="pkg-status active">Active</div>
+                </div>
+                <div class="pkg-row">
+                  <div class="pkg-rank" style="background: #8B5CF6;">H</div>
+                  <div class="pkg-info">
+                    <div class="pkg-name">Hajj Package 2026</div>
+                    <div class="pkg-dur">14 days · 13 nights</div>
+                  </div>
+                  <div class="pkg-stats">
+                    <div><b>84</b><span>bookings</span></div>
+                    <div><b>৳18,90,000</b><span>revenue</span></div>
+                  </div>
+                  <div class="pkg-growth up">↗ 88%</div>
+                  <div class="pkg-status selling">Selling fast</div>
+                </div>
+                <div class="pkg-row">
+                  <div class="pkg-rank" style="background: var(--st-cyan);">D</div>
+                  <div class="pkg-info">
+                    <div class="pkg-name">Dubai Explorer</div>
+                    <div class="pkg-dur">5 days · 4 nights</div>
+                  </div>
+                  <div class="pkg-stats">
+                    <div><b>71</b><span>bookings</span></div>
+                    <div><b>৳9,25,000</b><span>revenue</span></div>
+                  </div>
+                  <div class="pkg-growth up">↗ 81%</div>
+                  <div class="pkg-status confirmed">Confirmed</div>
+                </div>
+                <div class="pkg-row">
+                  <div class="pkg-rank" style="background: var(--st-green);">B</div>
+                  <div class="pkg-info">
+                    <div class="pkg-name">Bangkok Discovery</div>
+                    <div class="pkg-dur">3 days · 2 nights</div>
+                  </div>
+                  <div class="pkg-stats">
+                    <div><b>58</b><span>bookings</span></div>
+                    <div><b>৳5,60,000</b><span>revenue</span></div>
+                  </div>
+                  <div class="pkg-growth up">↗ 76%</div>
+                  <div class="pkg-status active">Active</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">RELATIONSHIP HEALTH</div>
+                <h3>Customer analytics</h3>
+                <div class="sub">Growth and retention at a glance.</div>
+              </div>
+              <button class="icon-btn-sm"><i class="bi bi-three-dots"></i></button>
+            </div>
+            <div class="card-body">
+              <div class="cust-summary">
+                <div>
+                  <div class="cs-lbl">Total customers</div>
+                  <div class="cs-val">1,844</div>
+                  <div class="cs-chg up">↗ 14.7%</div>
+                </div>
+                <div>
+                  <div class="cs-lbl">New customers</div>
+                  <div class="cs-val">226</div>
+                  <div class="cs-chg up">↗ 12.5%</div>
+                </div>
+                <div>
+                  <div class="cs-lbl">Returning</div>
+                  <div class="cs-val">864</div>
+                  <div class="cs-chg up">↗ 6.4%</div>
+                </div>
+              </div>
+              <div class="chart-wrap" id="customerChart" style="height: 160px; margin-top: 16px;"></div>
+              <div class="chart-legend mt-2">
+                <span><span class="dot" style="background: var(--st-blue);"></span>New customers</span>
+                <span><span class="dot" style="background: var(--st-green);"></span>Returning customers</span>
+                <span><span class="dot" style="background: var(--st-cyan);"></span>VIP 8.7%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">CASH POSITION</div>
+                <h3>Payment overview</h3>
+                <div class="sub">Receipts, risk, and method mix.</div>
+              </div>
+              <button class="icon-btn-sm"><i class="bi bi-three-dots"></i></button>
+            </div>
+            <div class="card-body">
+              <div class="pay-grid">
+                <div class="pay-box received">
+                  <div class="pay-lbl">TOTAL RECEIVED</div>
+                  <div class="pay-val">৳38.2L</div>
+                </div>
+                <div class="pay-box pending">
+                  <div class="pay-lbl">PENDING</div>
+                  <div class="pay-val">6.8L</div>
+                </div>
+                <div class="pay-box refunded">
+                  <div class="pay-lbl">REFUNDED</div>
+                  <div class="pay-val">৳1.4L</div>
+                </div>
+                <div class="pay-box today">
+                  <div class="pay-lbl">TODAY'S COLLECTION</div>
+                  <div class="pay-val">৳2.4L</div>
+                </div>
+              </div>
+              <div class="pay-methods-list">
+                <div class="pm-row"><span class="pm-name"><span class="pm-dot"
+                      style="background: #E11D74;"></span>bKash</span><b>38%</b></div>
+                <div class="pm-row"><span class="pm-name"><span class="pm-dot"
+                      style="background: #E74F2C;"></span>Nagad</span><b>24%</b></div>
+                <div class="pm-row"><span class="pm-name"><span class="pm-dot"
+                      style="background: var(--st-blue);"></span>Bank Transfer</span><b>22%</b></div>
+                <div class="pm-row"><span class="pm-name"><span class="pm-dot" style="background: #1A1F71;"></span>Visa
+                    / Mastercard</span><b>11%</b></div>
+                <div class="pm-row"><span class="pm-name"><span class="pm-dot"
+                      style="background: var(--st-green);"></span>Cash</span><b>5%</b></div>
+              </div>
+              <div class="pay-bar">
+                <span style="width: 38%; background: #E11D74;"></span>
+                <span style="width: 24%; background: #E74F2C;"></span>
+                <span style="width: 22%; background: var(--st-blue);"></span>
+                <span style="width: 11%; background: #1A1F71;"></span>
+                <span style="width: 5%; background: var(--st-green);"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Pending Actions + Visa Tracker -->
+        <section class="grid-main reveal">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">ACTION CENTER</div>
+                <h3>Pending actions</h3>
+                <div class="sub">Priority items that need a decision.</div>
+              </div>
+              <button class="icon-btn-sm"><i class="bi bi-three-dots"></i></button>
+            </div>
+            <div class="card-body">
+              <div class="action-item high">
+                <div class="ac-icon"><i class="bi bi-stamp"></i></div>
+                <div class="ac-info">
+                  <div class="ac-title">13 applications under review</div>
+                  <div class="ac-sub">Visa application tracker</div>
+                </div>
+                <div class="ac-priority high">High · 8 hrs <i class="bi bi-chevron-right"></i></div>
+              </div>
+              <div class="action-item medium">
+                <div class="ac-icon"><i class="bi bi-credit-card"></i></div>
+                <div class="ac-info">
+                  <div class="ac-title">8 payments pending verification</div>
+                  <div class="ac-sub">Finance operations</div>
+                </div>
+                <div class="ac-priority medium">Med · 1 day <i class="bi bi-chevron-right"></i></div>
+              </div>
+              <div class="action-item low">
+                <div class="ac-icon"><i class="bi bi-calendar-check"></i></div>
+                <div class="ac-info">
+                  <div class="ac-title">5 bookings awaiting confirmation</div>
+                  <div class="ac-sub">Booking operations</div>
+                </div>
+                <div class="ac-priority low">Low · 3 hrs <i class="bi bi-chevron-right"></i></div>
+              </div>
+              <div class="action-item low">
+                <div class="ac-icon"><i class="bi bi-arrow-return-left"></i></div>
+                <div class="ac-info">
+                  <div class="ac-title">3 refund requests</div>
+                  <div class="ac-sub">Customer support</div>
+                </div>
+                <div class="ac-priority low">Low · 3 hrs <i class="bi bi-chevron-right"></i></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">PROCESSING PIPELINE</div>
+                <h3>Visa application tracker</h3>
+                <div class="sub">Applications across your active corridors.</div>
+              </div>
+              <a href="#" class="view-all">Open tracker <i class="bi bi-chevron-right"></i></a>
+            </div>
+            <div class="card-body">
+              <div class="visa-row">
+                <div class="visa-code">GB</div>
+                <div class="visa-country">UK</div>
+                <div class="visa-count">13</div>
+                <div class="visa-bar-wrap">
+                  <div class="visa-bar"><span style="width: 75%; background: var(--st-green);"></span></div>
+                </div>
+                <div class="visa-stage">Document Review</div>
+                <div class="visa-days">8 days</div>
+              </div>
+              <div class="visa-row">
+                <div class="visa-code">US</div>
+                <div class="visa-country">USA</div>
+                <div class="visa-count">9</div>
+                <div class="visa-bar-wrap">
+                  <div class="visa-bar"><span style="width: 60%; background: var(--st-green);"></span></div>
+                </div>
+                <div class="visa-stage">Processing</div>
+                <div class="visa-days">9 days</div>
+              </div>
+              <div class="visa-row">
+                <div class="visa-code">CA</div>
+                <div class="visa-country">Canada</div>
+                <div class="visa-count">14</div>
+                <div class="visa-bar-wrap">
+                  <div class="visa-bar"><span style="width: 80%; background: var(--st-green);"></span></div>
+                </div>
+                <div class="visa-stage">Document Review</div>
+                <div class="visa-days">12 days</div>
+              </div>
+              <div class="visa-row">
+                <div class="visa-code">MY</div>
+                <div class="visa-country">Malaysia</div>
+                <div class="visa-count">11</div>
+                <div class="visa-bar-wrap">
+                  <div class="visa-bar"><span style="width: 90%; background: var(--st-green);"></span></div>
+                </div>
+                <div class="visa-stage">Approved</div>
+                <div class="visa-days">14 days</div>
+              </div>
+              <div class="visa-row">
+                <div class="visa-code">AE</div>
+                <div class="visa-country">UAE</div>
+                <div class="visa-count">8</div>
+                <div class="visa-bar-wrap">
+                  <div class="visa-bar"><span style="width: 55%; background: var(--st-green);"></span></div>
+                </div>
+                <div class="visa-stage">Processing</div>
+                <div class="visa-days">12 days</div>
+              </div>
+              <div class="visa-row">
+                <div class="visa-code">SA</div>
+                <div class="visa-country">Saudi Arabia</div>
+                <div class="visa-count">12</div>
+                <div class="visa-bar-wrap">
+                  <div class="visa-bar"><span style="width: 85%; background: var(--st-green);"></span></div>
+                </div>
+                <div class="visa-stage">Approved</div>
+                <div class="visa-days">12 days</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Umrah/Hajj + Staff -->
+        <section class="grid-main reveal">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">JOURNEY READINESS</div>
+                <h3>Umrah & Hajj operations</h3>
+                <div class="sub">Respectful oversight for every pilgrim journey.</div>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="ops-block umrah">
+                <div class="ops-head">
+                  <i class="bi bi-moon-stars"></i>
+                  <h4>Umrah Operations</h4>
+                </div>
+                <div class="ops-grid">
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Total pilgrims</div>
+                    <div class="ops-val">1,248</div>
+                    <div class="ops-chg up">↗ 12.4%</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Upcoming Departures</div>
+                    <div class="ops-val">18</div>
+                    <div class="ops-chg">Next 30 days</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Confirmed</div>
+                    <div class="ops-val">984</div>
+                    <div class="ops-chg up">78.8%</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Pending Documents</div>
+                    <div class="ops-val">126</div>
+                    <div class="ops-chg warn">Action needed</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ops-block hajj">
+                <div class="ops-head">
+                  <i class="bi bi-star-fill"></i>
+                  <h4>Hajj Operations</h4>
+                </div>
+                <div class="ops-grid">
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Registered</div>
+                    <div class="ops-val">648</div>
+                    <div class="ops-chg up">↗ 8.2%</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Pre-Registered</div>
+                    <div class="ops-val">284</div>
+                    <div class="ops-chg">For 2027</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Confirmed</div>
+                    <div class="ops-val">482</div>
+                    <div class="ops-chg up">74.4%</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Documents Pending</div>
+                    <div class="ops-val">84</div>
+                    <div class="ops-chg warn">13% pending</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">TEAM PRODUCTIVITY</div>
+                <h3>Staff performance</h3>
+                <div class="sub">Top contributors by conversion and revenue.</div>
+              </div>
+              <a href="#" class="view-all">View report <i class="bi bi-chevron-right"></i></a>
+            </div>
+            <div class="card-body">
+              <div class="staff-table">
+                <div class="staff-head">
+                  <div>STAFF</div>
+                  <div>BOOKINGS</div>
+                  <div>REVENUE</div>
+                  <div>CONVERSION</div>
+                </div>
+                <div class="staff-row">
+                  <div class="staff-info">
+                    <div class="avatar"
+                      style="background: linear-gradient(135deg,#0072BC,#06B0EF); width: 32px; height: 32px; font-size: 11px;">
+                      MS</div>
+                    <div>
+                      <div class="n">Md. Shifat Ahmed</div>
+                      <div class="m">Top performer</div>
+                    </div>
+                  </div>
+                  <div><b>156</b> bookings</div>
+                  <div><b>৳14,220,000</b></div>
+                  <div><b style="color: var(--st-green);">92%</b></div>
+                </div>
+                <div class="staff-row">
+                  <div class="staff-info">
+                    <div class="avatar"
+                      style="background: linear-gradient(135deg,#00A651,#06B0EF); width: 32px; height: 32px; font-size: 11px;">
+                      FK</div>
+                    <div>
+                      <div class="n">Fatima Khan</div>
+                      <div class="m">Strong</div>
+                    </div>
+                  </div>
+                  <div><b>132</b> bookings</div>
+                  <div><b>11,550,000</b></div>
+                  <div><b style="color: var(--st-green);">88%</b></div>
+                </div>
+                <div class="staff-row">
+                  <div class="staff-info">
+                    <div class="avatar"
+                      style="background: linear-gradient(135deg,#F59E0B,#ED1C24); width: 32px; height: 32px; font-size: 11px;">
+                      KR</div>
+                    <div>
+                      <div class="n">Karim Rahman</div>
+                      <div class="m">Strong</div>
+                    </div>
+                  </div>
+                  <div><b>121</b> bookings</div>
+                  <div><b>10,360,000</b></div>
+                  <div><b style="color: var(--st-green);">84%</b></div>
+                </div>
+                <div class="staff-row">
+                  <div class="staff-info">
+                    <div class="avatar"
+                      style="background: linear-gradient(135deg,#8B5CF6,#06B0EF); width: 32px; height: 32px; font-size: 11px;">
+                      FA</div>
+                    <div>
+                      <div class="n">Fatima Asma</div>
+                      <div class="m">On track</div>
+                    </div>
+                  </div>
+                  <div><b>105</b> bookings</div>
+                  <div><b>৳9,150,000</b></div>
+                  <div><b style="color: var(--st-green);">79%</b></div>
+                </div>
+                <div class="staff-row">
+                  <div class="staff-info">
+                    <div class="avatar"
+                      style="background: linear-gradient(135deg,#94A3B8,#64748B); width: 32px; height: 32px; font-size: 11px;">
+                      RU</div>
+                    <div>
+                      <div class="n">Rahim Uddin</div>
+                      <div class="m">On track</div>
+                    </div>
+                  </div>
+                  <div><b>98</b> bookings</div>
+                  <div><b>৳8,630,000</b></div>
+                  <div><b style="color: var(--st-blue);">76%</b></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Work Queue + Recent Activity -->
+        <section class="grid-main reveal">
+          <div class="card work-queue">
+            <div class="wq-content">
+              <div class="section-label" style="color: rgba(255,255,255,0.7);">WORK QUEUE</div>
+              <h3 style="color: #fff;">Review what needs your attention.</h3>
+              <p style="color: rgba(255,255,255,0.8); font-size: 13px; margin: 6px 0 16px;">Clear the highest-priority
+                items before the next departure window.</p>
+              <div class="wq-items">
+                <div class="wq-item">
+                  <div class="wq-count">12</div>
+                  <div class="wq-info">
+                    <div class="wq-title">Visa applications</div>
+                    <div class="wq-sub">needs review</div>
+                  </div>
+                  <i class="bi bi-chevron-right"></i>
+                </div>
+                <div class="wq-item">
+                  <div class="wq-count">8</div>
+                  <div class="wq-info">
+                    <div class="wq-title">Payments</div>
+                    <div class="wq-sub">pending verification</div>
+                  </div>
+                  <i class="bi bi-chevron-right"></i>
+                </div>
+                <div class="wq-item">
+                  <div class="wq-count">4</div>
+                  <div class="wq-info">
+                    <div class="wq-title">Support tickets</div>
+                    <div class="wq-sub">awaiting response</div>
+                  </div>
+                  <i class="bi bi-chevron-right"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">AUDIT TRAIL</div>
+                <h3>Recent activity</h3>
+              </div>
+              <a href="#" class="view-all">View log <i class="bi bi-chevron-right"></i></a>
+            </div>
+            <div class="card-body">
+              <div class="timeline">
+                <div class="tl-item">
+                  <div class="tl-dot green"><i class="bi bi-check"></i></div>
+                  <div class="tl-text"><b>Payment received</b>
+                    <div class="tl-sub">৳84,500 from Nusrat Jahan</div>
+                  </div>
+                  <div class="tl-time">08 min ago</div>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-dot"><i class="bi bi-plus"></i></div>
+                  <div class="tl-text"><b>New booking created</b>
+                    <div class="tl-sub">ST-98421 · Dubai flight</div>
+                  </div>
+                  <div class="tl-time">24 min ago</div>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-dot green"><i class="bi bi-stamp"></i></div>
+                  <div class="tl-text"><b>Visa application approved</b>
+                    <div class="tl-sub">United Kingdom · ST-98388</div>
+                  </div>
+                  <div class="tl-time">1 hr ago</div>
+                </div>
+                <div class="tl-item">
+                  <div class="tl-dot cyan"><i class="bi bi-pencil"></i></div>
+                  <div class="tl-text"><b>Package updated</b>
+                    <div class="tl-sub">Premium Umrah package</div>
+                  </div>
+                  <div class="tl-time">2 hrs ago</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+          <div class="footer-left">
+            <div class="avatar-sm" style="background: linear-gradient(135deg, var(--st-blue), var(--st-cyan));">AR</div>
+            <div>
+              <div class="n">Admin Rahman</div>
+              <div class="r">Super Admin</div>
+            </div>
+          </div>
+          <div class="footer-center">ST Trip Operations · v2.4.1</div>
+          <div class="footer-right"><span class="status-dot"></span> All systems operational</div>
+        </footer>
+
+      </main>
+    </div>
+  </div>
+
+  <div class="toast-container" id="toastContainer"></div>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
