@@ -1462,14 +1462,17 @@
           </div>
         </section>
 
-        <!-- Work Queue + Recent Activity -->
-        <section class="grid-main reveal">
+        <!-- Work Queue + Recent Activity + System Health -->
+        <section class="grid-main-3 reveal">
+          <!-- Work Queue -->
           <div class="card work-queue">
             <div class="wq-content">
-              <div class="section-label" style="color: rgba(255,255,255,0.7);">WORK QUEUE</div>
-              <h3 style="color: #fff;">Review what needs your attention.</h3>
-              <p style="color: rgba(255,255,255,0.8); font-size: 13px; margin: 6px 0 16px;">Clear the highest-priority
-                items before the next departure window.</p>
+              <div class="wq-header">
+                <div class="section-label" style="color: rgba(255,255,255,0.7);">WORK QUEUE</div>
+                <h3 style="color: #fff; margin: 6px 0 4px;">Review what needs your attention.</h3>
+                <p style="color: rgba(255,255,255,0.8); font-size: 13px; margin: 0 0 18px;">Clear the highest-priority
+                  items before the next departure window.</p>
+              </div>
               <div class="wq-items">
                 <div class="wq-item">
                   <div class="wq-count">12</div>
@@ -1477,7 +1480,7 @@
                     <div class="wq-title">Visa applications</div>
                     <div class="wq-sub">needs review</div>
                   </div>
-                  <i class="bi bi-chevron-right"></i>
+                  <i class="bi bi-chevron-right wq-arrow"></i>
                 </div>
                 <div class="wq-item">
                   <div class="wq-count">8</div>
@@ -1485,7 +1488,7 @@
                     <div class="wq-title">Payments</div>
                     <div class="wq-sub">pending verification</div>
                   </div>
-                  <i class="bi bi-chevron-right"></i>
+                  <i class="bi bi-chevron-right wq-arrow"></i>
                 </div>
                 <div class="wq-item">
                   <div class="wq-count">4</div>
@@ -1493,12 +1496,13 @@
                     <div class="wq-title">Support tickets</div>
                     <div class="wq-sub">awaiting response</div>
                   </div>
-                  <i class="bi bi-chevron-right"></i>
+                  <i class="bi bi-chevron-right wq-arrow"></i>
                 </div>
               </div>
             </div>
           </div>
 
+          <!-- Recent Activity -->
           <div class="card">
             <div class="card-head">
               <div>
@@ -1508,34 +1512,178 @@
               <a href="#" class="view-all">View log <i class="bi bi-chevron-right"></i></a>
             </div>
             <div class="card-body">
-              <div class="timeline">
-                <div class="tl-item">
-                  <div class="tl-dot green"><i class="bi bi-check"></i></div>
-                  <div class="tl-text"><b>Payment received</b>
-                    <div class="tl-sub">৳84,500 from Nusrat Jahan</div>
+              <div class="activity-timeline">
+                <div class="activity-item">
+                  <div class="activity-icon success">
+                    <i class="bi bi-check-circle-fill"></i>
                   </div>
-                  <div class="tl-time">08 min ago</div>
+                  <div class="activity-content">
+                    <div class="activity-text">
+                      <span class="activity-highlight">Payment received</span>
+                      <span class="activity-detail">৳84,500 from Nusrat Jahan</span>
+                    </div>
+                    <div class="activity-time">08 min ago</div>
+                  </div>
                 </div>
-                <div class="tl-item">
-                  <div class="tl-dot"><i class="bi bi-plus"></i></div>
-                  <div class="tl-text"><b>New booking created</b>
-                    <div class="tl-sub">ST-98421 · Dubai flight</div>
+                <div class="activity-item">
+                  <div class="activity-icon primary">
+                    <i class="bi bi-plus-circle-fill"></i>
                   </div>
-                  <div class="tl-time">24 min ago</div>
+                  <div class="activity-content">
+                    <div class="activity-text">
+                      <span class="activity-highlight">New booking created</span>
+                      <span class="activity-detail">ST-98421 · Dubai flight</span>
+                    </div>
+                    <div class="activity-time">24 min ago</div>
+                  </div>
                 </div>
-                <div class="tl-item">
-                  <div class="tl-dot green"><i class="bi bi-stamp"></i></div>
-                  <div class="tl-text"><b>Visa application approved</b>
-                    <div class="tl-sub">United Kingdom · ST-98388</div>
+                <div class="activity-item">
+                  <div class="activity-icon success">
+                    <i class="bi bi-stamp"></i>
                   </div>
-                  <div class="tl-time">1 hr ago</div>
+                  <div class="activity-content">
+                    <div class="activity-text">
+                      <span class="activity-highlight">Visa application approved</span>
+                      <span class="activity-detail">United Kingdom · ST-98388</span>
+                    </div>
+                    <div class="activity-time">1 hr ago</div>
+                  </div>
                 </div>
-                <div class="tl-item">
-                  <div class="tl-dot cyan"><i class="bi bi-pencil"></i></div>
-                  <div class="tl-text"><b>Package updated</b>
-                    <div class="tl-sub">Premium Umrah package</div>
+                <div class="activity-item">
+                  <div class="activity-icon info">
+                    <i class="bi bi-pencil-square"></i>
                   </div>
-                  <div class="tl-time">2 hrs ago</div>
+                  <div class="activity-content">
+                    <div class="activity-text">
+                      <span class="activity-highlight">Package updated</span>
+                      <span class="activity-detail">Premium Kuala Lumpur Escape</span>
+                    </div>
+                    <div class="activity-time">2 hrs ago</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- System Health -->
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">SYSTEM HEALTH</div>
+                <h3>Service status monitoring</h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="system-health-grid">
+                <div class="health-item">
+                  <div class="health-info">
+                    <i class="bi bi-globe2"></i>
+                    <span class="health-name">Website</span>
+                  </div>
+                  <span class="health-status operational">Operational</span>
+                </div>
+                <div class="health-item">
+                  <div class="health-info">
+                    <i class="bi bi-credit-card"></i>
+                    <span class="health-name">Payment Gateway</span>
+                  </div>
+                  <span class="health-status operational">Operational</span>
+                </div>
+                <div class="health-item">
+                  <div class="health-info">
+                    <i class="bi bi-calendar-check"></i>
+                    <span class="health-name">Booking System</span>
+                  </div>
+                  <span class="health-status operational">Operational</span>
+                </div>
+                <div class="health-item">
+                  <div class="health-info">
+                    <i class="bi bi-envelope"></i>
+                    <span class="health-name">Email Service</span>
+                  </div>
+                  <span class="health-status degraded">Degraded</span>
+                </div>
+                <div class="health-item">
+                  <div class="health-info">
+                    <i class="bi bi-phone"></i>
+                    <span class="health-name">SMS Service</span>
+                  </div>
+                  <span class="health-status operational">Operational</span>
+                </div>
+                <div class="health-item">
+                  <div class="health-info">
+                    <i class="bi bi-database"></i>
+                    <span class="health-name">Database</span>
+                  </div>
+                  <span class="health-status operational">Operational</span>
+                </div>
+              </div>
+              <div class="health-footer">
+                <div class="health-status-badge all-operational">
+                  <i class="bi bi-check-circle-fill"></i>
+                  All Systems Operational
+                </div>
+                <div class="health-server">
+                  <i class="bi bi-server"></i>
+                  Server: BD-DH-01
+                  <span class="online-dot"></span>
+                  Online
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Quick Actions - Full Width -->
+        <section class="grid-full reveal">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">QUICK ACTIONS</div>
+                <h3>Frequently used shortcuts</h3>
+              </div>
+            </div>
+            <div class="card-body">
+              <div class="quick-actions-grid">
+                <div class="quick-action-item">
+                  <i class="bi bi-plus-circle"></i>
+                  <span>New Booking</span>
+                </div>
+                <div class="quick-action-item">
+                  <i class="bi bi-person-plus"></i>
+                  <span>Add Customer</span>
+                </div>
+                <div class="quick-action-item">
+                  <i class="bi bi-airplane"></i>
+                  <span>Add Flight</span>
+                </div>
+                <div class="quick-action-item">
+                  <i class="bi bi-building"></i>
+                  <span>Add Hotel</span>
+                </div>
+                <div class="quick-action-item">
+                  <i class="bi bi-compass"></i>
+                  <span>Tour Package</span>
+                </div>
+                <div class="quick-action-item">
+                  <i class="bi bi-moon-stars"></i>
+                  <span>Umrah Package</span>
+                </div>
+                <div class="quick-action-item">
+                  <i class="bi bi-star"></i>
+                  <span>Hajj Package</span>
+                </div>
+                <div class="quick-action-item">
+                  <i class="bi bi-stamp"></i>
+                  <span>Visa Application</span>
+                </div>
+                <div class="quick-action-item">
+                  <i class="bi bi-file-earmark-text"></i>
+                  <span>Create Invoice</span>
+                </div>
+                <div class="quick-action-item">
+                  <i class="bi bi-megaphone"></i>
+                  <span>Add Promotion</span>
                 </div>
               </div>
             </div>
@@ -1544,15 +1692,19 @@
 
         <!-- Footer -->
         <footer class="app-footer">
-          <div class="footer-left">
-            <div class="avatar-sm" style="background: linear-gradient(135deg, var(--st-blue), var(--st-cyan));">AR</div>
-            <div>
-              <div class="n">Admin Rahman</div>
-              <div class="r">Super Admin</div>
-            </div>
+          <div class="footer-copyright">
+            © 2026 STIT BD | All Rights Reserved.
           </div>
-          <div class="footer-center">ST Trip Operations · v2.4.1</div>
-          <div class="footer-right"><span class="status-dot"></span> All systems operational</div>
+          <div class="footer-links">
+            <a href="#">Privacy</a>
+            <span class="footer-divider">•</span>
+            <a href="#">Terms</a>
+            <span class="footer-divider">•</span>
+            <a href="#">Support</a>
+          </div>
+          <div class="footer-server">
+            ST Trip Travel Management Portal
+          </div>
         </footer>
 
       </main>
