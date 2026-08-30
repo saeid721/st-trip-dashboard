@@ -160,8 +160,33 @@
 
   setTimeout(() => showToast('info', 'Welcome back, Admin', 'You have 32 pending actions today.'), 600);
 
-  $('#quickAddBtn').addEventListener('click', () => {
-    showToast('success', 'Quick Add', 'Opening quick create menu...');
+  /* ---------- Quick add dropdown ---------- */
+  const quickAddBtn = $('#quickAddBtn');
+  const quickAddMenu = $('#quickAddMenu');
+
+  quickAddBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const isOpen = quickAddMenu.classList.toggle('show');
+    quickAddBtn.setAttribute('aria-expanded', String(isOpen));
+    profileMenu.classList.remove('show');
+    notifPanel.classList.remove('open');
+  });
+
+  $$('.quick-add-menu .dropdown-item').forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const action = item.dataset.action || item.textContent.trim();
+      quickAddMenu.classList.remove('show');
+      quickAddBtn.setAttribute('aria-expanded', 'false');
+      showToast('success', action, `Opening ${action.toLowerCase()} form...`);
+    });
+  });
+
+  document.addEventListener('click', e => {
+    if (!quickAddMenu.contains(e.target) && !quickAddBtn.contains(e.target)) {
+      quickAddMenu.classList.remove('show');
+      quickAddBtn.setAttribute('aria-expanded', 'false');
+    }
   });
 
   /* ---------- Row actions ---------- */

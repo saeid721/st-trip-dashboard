@@ -628,11 +628,33 @@ button {
   box-shadow: 0 2px 6px rgba(0, 114, 188, 0.25);
 }
 
-.btn-quick-add:hover {
-  background: #005fa3;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 114, 188, 0.35);
-  color: #fff;
+.quick-add-dropdown {
+  position: relative;
+}
+
+.btn-quick-add .qa-chevron {
+  font-size: 9px;
+  margin-left: 2px;
+  transition: transform var(--dur-fast) var(--ease);
+  opacity: 0.85;
+}
+
+.btn-quick-add[aria-expanded="true"] .qa-chevron {
+  transform: rotate(180deg);
+}
+
+.quick-add-menu {
+  left: 0;
+  right: auto;
+  min-width: 220px;
+}
+
+.quick-add-menu .dropdown-item {
+  font-weight: 500;
+}
+
+.quick-add-menu .dropdown-item:hover i {
+  color: var(--st-blue);
 }
 
 .icon-btn {

@@ -291,10 +291,26 @@
         </div>
 
         <div class="topbar-actions">
-          <button class="btn-quick-add" id="quickAddBtn">
-            <i class="bi bi-plus-lg"></i>
-            <span>Quick add</span>
-          </button>
+          <div class="dropdown quick-add-dropdown">
+            <button class="btn-quick-add" id="quickAddBtn" aria-haspopup="true" aria-expanded="false">
+              <i class="bi bi-plus-lg"></i>
+              <span>Quick add</span>
+              <i class="bi bi-chevron-down qa-chevron"></i>
+            </button>
+            <ul class="dropdown-menu quick-add-menu" id="quickAddMenu">
+              <li><a class="dropdown-item" href="#" data-action="New booking"><i class="bi bi-calendar-plus"></i> New
+                  booking</a></li>
+              <li><a class="dropdown-item" href="#" data-action="Add customer"><i class="bi bi-person-plus"></i> Add
+                  customer</a></li>
+              <li><a class="dropdown-item" href="#" data-action="Add package"><i class="bi bi-box-seam"></i> Add
+                  package</a></li>
+              <li>
+                <hr class="dropdown-divider">
+              </li>
+              <li><a class="dropdown-item" href="#" data-action="Create invoice"><i class="bi bi-file-earmark-text"></i>
+                  Create invoice</a></li>
+            </ul>
+          </div>
 
           <div style="position: relative;">
             <button class="icon-btn" id="notifBtn" aria-label="Notifications">
