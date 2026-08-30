@@ -107,6 +107,19 @@
     }
   });
 
+  /* ---------- Profile dropdown ---------- */
+  const profileBtn = $('#profileBtn');
+  const profileMenu = $('#profileMenu');
+  profileBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    profileMenu.classList.toggle('show');
+  });
+  document.addEventListener('click', e => {
+    if (!profileMenu.contains(e.target) && !profileBtn.contains(e.target)) {
+      profileMenu.classList.remove('show');
+    }
+  });
+
   /* ---------- Chips toggle ---------- */
   $$('.chips-group').forEach(group => {
     group.addEventListener('click', e => {

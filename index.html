@@ -23,21 +23,10 @@
     <!-- ============ SIDEBAR ============ -->
     <aside class="sidebar" id="sidebar" aria-label="Main navigation">
       <div class="sidebar-brand">
-        <div class="brand-logo">
-          <svg viewBox="0 0 40 40" width="32" height="32" aria-hidden="true">
-            <defs>
-              <linearGradient id="logoGrad" x1="0" y1="0" x2="1" y2="1">
-                <stop offset="0%" stop-color="#0072BC" />
-                <stop offset="100%" stop-color="#06B0EF" />
-              </linearGradient>
-            </defs>
-            <path d="M8 20 Q12 10 20 12 T32 14 Q28 22 20 22 T8 20 Z" fill="url(#logoGrad)" />
-            <path d="M10 24 Q14 18 22 20 T30 22" stroke="#0072BC" stroke-width="2" fill="none" stroke-linecap="round" />
-            <circle cx="20" cy="20" r="3" fill="#06B0EF" />
-          </svg>
-          <div class="brand-text">
-            <span class="name">ST Trip</span>
-            <span class="sub">TRAVEL OPERATIONS</span>
+        <div class="brand d-flex align-items-center gap-2">
+          <div class="brand-logo">
+            <img src="images/logo.png" alt="STP Logo" class="brand-logo-full" />
+            <img src="images/favicon.png" alt="STP" class="brand-logo-mini" />
           </div>
         </div>
       </div>
@@ -259,7 +248,11 @@
       </nav>
 
       <div class="sidebar-footer">
-        <div class="avatar-sm">AR</div>
+        <span class="avatar-wrap">
+          <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Admin Rahman"
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+          <div class="avatar-sm" style="display: none;">AR</div>
+        </span>
         <div class="meta">
           <div class="n">Admin Rahman</div>
           <div class="r">Super Admin</div>
@@ -350,15 +343,19 @@
           </button>
 
           <div class="dropdown">
-            <button class="profile-btn" data-bs-toggle="dropdown" aria-expanded="false">
-              <div class="av">SA</div>
+            <button class="profile-btn" id="profileBtn" aria-expanded="false">
+              <span class="avatar-wrap">
+                <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Super Admin"
+                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                <div class="av" style="display: none;">SA</div>
+              </span>
               <div class="meta">
                 <div class="n">Super Admin</div>
                 <div class="r">Administrator</div>
               </div>
               <i class="bi bi-chevron-down" style="font-size: 11px; color: var(--text-muted);"></i>
             </button>
-            <ul class="dropdown-menu dropdown-menu-end">
+            <ul class="dropdown-menu dropdown-menu-end" id="profileMenu">
               <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> My Profile</a></li>
               <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Account Settings</a></li>
               <li><a class="dropdown-item" href="#"><i class="bi bi-clock-history"></i> Activity Log</a></li>

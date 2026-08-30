@@ -158,46 +158,55 @@ button {
   flex-shrink: 0;
 }
 
+/* ✅ UPDATED: brand-logo container */
 .brand-logo {
+  width: 100%;
+  height: 40px;
+  /* Fixed height for expanded state */
+  border-radius: 10px;
+  background: transparent;
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.brand-logo svg {
-  transition: width var(--dur) var(--ease), height var(--dur) var(--ease);
-}
-
-.sidebar-collapsed .sidebar-brand {
   justify-content: center;
-  padding: 0 8px;
+  flex-shrink: 0;
+  transition: width var(--t), height var(--t);
+  overflow: hidden;
 }
 
-.sidebar-collapsed .brand-logo svg {
-  width: 24px;
-  height: 24px;
+/* ✅ NEW: Full logo - shown when expanded */
+.brand-logo-full {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  /* Visible by default */
 }
 
-.brand-text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.1;
+/* ✅ NEW: Mini favicon - hidden when expanded */
+.brand-logo-mini {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  display: none;
 }
 
-.brand-text .name {
-  font-family: 'Plus Jakarta Sans';
-  font-weight: 800;
-  font-size: 16px;
-  color: var(--st-blue);
-  letter-spacing: -0.3px;
+/* ✅ UPDATED: When sidebar is collapsed */
+.sidebar.collapsed .brand-logo {
+  width: 45px;
+  height: 45px;
+  background: transparent;
 }
 
-.brand-text .sub {
-  font-size: 9.5px;
-  color: var(--text-muted);
-  font-weight: 600;
-  letter-spacing: 1px;
+/* ✅ NEW: Hide full logo when collapsed */
+.sidebar.collapsed .brand-logo-full {
+  display: none;
 }
+
+/* ✅ NEW: Show favicon when collapsed */
+.sidebar.collapsed .brand-logo-mini {
+  display: block;
+}
+
 
 .workspace-selector {
   padding: 10px 12px;
@@ -413,6 +422,20 @@ button {
   display: flex;
   align-items: center;
   gap: 10px;
+}
+
+.sidebar-footer .avatar-wrap {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.sidebar-footer .avatar-img {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
 }
 
 .sidebar-footer .avatar-sm {
@@ -683,6 +706,20 @@ button {
   background: var(--st-blue-50);
 }
 
+.profile-btn .avatar-wrap {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+}
+
+.profile-btn .avatar-img {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+}
+
 .profile-btn .av {
   width: 28px;
   height: 28px;
@@ -711,13 +748,31 @@ button {
 }
 
 /* Dropdown */
+.dropdown {
+  position: relative;
+}
+
 .dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
   border: 1px solid var(--border-soft);
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
   padding: 6px;
   min-width: 200px;
   background: var(--bg-surface);
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+  transition: all var(--dur) var(--ease);
+  z-index: 1060;
+}
+
+.dropdown-menu.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .dropdown-menu .dropdown-item {
@@ -1649,6 +1704,13 @@ table.st-table tbody tr:last-child td {
 }
 
 .avatar-wrap .avatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.avatar-wrap .avatar-sm,
+.avatar-wrap .av {
   position: absolute;
   top: 0;
   left: 0;
