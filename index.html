@@ -5,6 +5,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ST Trip — Travel Operations Dashboard</title>
+
+  <link rel="icon" href="images/favicon.png" type="image/png" />
   <meta name="description" content="ST Trip Enterprise Travel Management System" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -398,105 +400,127 @@
         <!-- KPI Cards -->
         <section class="grid-kpi reveal" aria-label="Key metrics">
           <div class="card kpi hoverable">
-            <div class="kpi-top">
-              <div class="kpi-icon blue"><i class="bi bi-calendar-check"></i></div>
-              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 12.5%</span>
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap"><i class="bi bi-calendar-check" style="color: var(--st-blue);"></i></div>
+              <div class="kpi-title">Total bookings</div>
+              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
-            <div class="kpi-label">Total bookings</div>
-            <div class="kpi-value">1,284</div>
-            <div class="kpi-meta"><span>↗ 12.5%</span><span>vs last month</span></div>
-            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0,30 L15,24 L30,28 L45,18 L60,22 L75,12 L90,16 L110,6" stroke="#0072BC" stroke-width="2"
-                fill="none" stroke-linecap="round" />
-            </svg>
+            <div class="kpi-number">1,284</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 12.5% <span class="kpi-trend-sub">vs last
+                  month</span></span>
+              <span class="kpi-spark"><svg viewBox="0 0 60 20" preserveAspectRatio="none">
+                  <path d="M0,16 Q10,13 20,14 T40,9 T60,4" stroke="#0072BC" stroke-width="1.6" fill="none"
+                    stroke-linecap="round" />
+                </svg></span>
+            </div>
           </div>
 
           <div class="card kpi hoverable">
-            <div class="kpi-top">
-              <div class="kpi-icon green"><i class="bi bi-cash-stack"></i></div>
-              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 18.2%</span>
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap"><i class="bi bi-cash-stack" style="color: var(--st-green);"></i></div>
+              <div class="kpi-title">Total revenue</div>
+              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
-            <div class="kpi-label">Total revenue</div>
-            <div class="kpi-value">৳42,85,600</div>
-            <div class="kpi-meta"><span>↗ 18.2%</span><span>vs last month</span></div>
-            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0,32 L15,26 L30,22 L45,24 L60,16 L75,18 L90,10 L110,6" stroke="#00A651" stroke-width="2"
-                fill="none" stroke-linecap="round" />
-            </svg>
+            <div class="kpi-number">৳42,85,600</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 18.2% <span class="kpi-trend-sub">vs last
+                  month</span></span>
+              <span class="kpi-spark"><svg viewBox="0 0 60 20" preserveAspectRatio="none">
+                  <path d="M0,17 Q12,12 24,10 T60,3" stroke="#00A651" stroke-width="1.6" fill="none"
+                    stroke-linecap="round" />
+                </svg></span>
+            </div>
           </div>
 
           <div class="card kpi hoverable">
-            <div class="kpi-top">
-              <div class="kpi-icon cyan"><i class="bi bi-calendar-plus"></i></div>
-              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 8.4%</span>
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap"><i class="bi bi-calendar-plus" style="color: var(--st-green);"></i></div>
+              <div class="kpi-title">Today's bookings</div>
+              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
-            <div class="kpi-label">Today's bookings</div>
-            <div class="kpi-value">48</div>
-            <div class="kpi-meta"><span> 8.4%</span><span>vs yesterday</span></div>
-            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0,28 L15,22 L30,26 L45,16 L60,20 L75,14 L90,18 L110,8" stroke="#06B0EF" stroke-width="2"
-                fill="none" stroke-linecap="round" />
-            </svg>
+            <div class="kpi-number">48</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 8.4% <span class="kpi-trend-sub">vs
+                  yesterday</span></span>
+              <span class="kpi-spark"><svg viewBox="0 0 60 20" preserveAspectRatio="none">
+                  <path d="M0,14 Q15,11 30,12 T60,6" stroke="#00A651" stroke-width="1.6" fill="none"
+                    stroke-linecap="round" />
+                </svg></span>
+            </div>
           </div>
 
           <div class="card kpi hoverable">
-            <div class="kpi-top">
-              <div class="kpi-icon blue"><i class="bi bi-people"></i></div>
-              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 14.7%</span>
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap"><i class="bi bi-people" style="color: var(--st-blue);"></i></div>
+              <div class="kpi-title">Total customers</div>
+              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
-            <div class="kpi-label">Total customers</div>
-            <div class="kpi-value">8,642</div>
-            <div class="kpi-meta"><span>↗ 14.7%</span><span>vs last month</span></div>
-            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0,30 L15,26 L30,22 L45,24 L60,18 L75,16 L90,12 L110,8" stroke="#0072BC" stroke-width="2"
-                fill="none" stroke-linecap="round" />
-            </svg>
+            <div class="kpi-number">8,642</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 14.7% <span class="kpi-trend-sub">vs last
+                  month</span></span>
+              <span class="kpi-spark"><svg viewBox="0 0 60 20" preserveAspectRatio="none">
+                  <path d="M0,16 Q12,15 24,11 T60,4" stroke="#0072BC" stroke-width="1.6" fill="none"
+                    stroke-linecap="round" />
+                </svg></span>
+            </div>
           </div>
 
           <div class="card kpi hoverable">
-            <div class="kpi-top">
-              <div class="kpi-icon amber"><i class="bi bi-hourglass-split"></i></div>
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap"><i class="bi bi-hourglass-split" style="color: var(--st-amber);"></i></div>
+              <div class="kpi-title">Pending payments</div>
+              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
-            <div class="kpi-label">Pending payments</div>
-            <div class="kpi-value">৳6,84,200</div>
-            <div class="kpi-meta"><span style="color: var(--st-amber);">Need review</span><span>18 invoices</span></div>
+            <div class="kpi-number">৳6,84,200</div>
+            <div class="kpi-footer">
+              <span class="kpi-meta" style="color: var(--st-amber);"><i class="bi bi-exclamation-circle"></i> Needs
+                review</span>
+            </div>
           </div>
 
           <div class="card kpi hoverable">
-            <div class="kpi-top">
-              <div class="kpi-icon cyan"><i class="bi bi-stamp"></i></div>
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap"><i class="bi bi-stamp" style="color: var(--st-cyan);"></i></div>
+              <div class="kpi-title">Pending visa applications</div>
+              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
-            <div class="kpi-label">Pending visa applications</div>
-            <div class="kpi-value">126</div>
-            <div class="kpi-meta"><span style="color: var(--st-amber);">12 urgent</span><span>8 countries</span></div>
+            <div class="kpi-number">126</div>
+            <div class="kpi-footer">
+              <span class="kpi-meta" style="color: var(--st-amber);"><i class="bi bi-exclamation-circle"></i> 12
+                urgent</span>
+            </div>
           </div>
 
           <div class="card kpi hoverable">
-            <div class="kpi-top">
-              <div class="kpi-icon blue"><i class="bi bi-airplane"></i></div>
-              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 11.3%</span>
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap"><i class="bi bi-airplane" style="color: var(--st-blue);"></i></div>
+              <div class="kpi-title">Upcoming trips</div>
+              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
-            <div class="kpi-label">Upcoming trips</div>
-            <div class="kpi-value">84</div>
-            <div class="kpi-meta"><span>↗ Next 30 days</span><span>1,248 pax</span></div>
-            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0,26 L15,22 L30,24 L45,18 L60,20 L75,14 L90,16 L110,10" stroke="#0072BC" stroke-width="2"
-                fill="none" stroke-linecap="round" />
-            </svg>
+            <div class="kpi-number">84</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend up"><i class="bi bi-arrow-up-right"></i> 11.3% <span class="kpi-trend-sub">Next 30
+                  days</span></span>
+            </div>
           </div>
 
           <div class="card kpi hoverable">
-            <div class="kpi-top">
-              <div class="kpi-icon red"><i class="bi bi-x-octagon"></i></div>
-              <span class="kpi-trend down"><i class="bi bi-arrow-down-right"></i> 2.1%</span>
+            <div class="kpi-header">
+              <div class="kpi-icon-wrap"><i class="bi bi-x-octagon" style="color: var(--st-red);"></i></div>
+              <div class="kpi-title">Cancelled bookings</div>
+              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
-            <div class="kpi-label">Cancelled bookings</div>
-            <div class="kpi-value">23</div>
-            <div class="kpi-meta"><span style="color: var(--st-red);">↘ 2.1%</span><span>vs last month</span></div>
-            <svg class="kpi-spark" viewBox="0 0 110 40" preserveAspectRatio="none" aria-hidden="true">
-              <path d="M0,10 L15,14 L30,12 L45,18 L60,16 L75,22 L90,20 L110,28" stroke="#ED1C24" stroke-width="2"
-                fill="none" stroke-linecap="round" />
-            </svg>
+            <div class="kpi-number">23</div>
+            <div class="kpi-footer">
+              <span class="kpi-trend down"><i class="bi bi-arrow-down-right"></i> 2.1% <span class="kpi-trend-sub">vs
+                  last month</span></span>
+              <span class="kpi-spark"><svg viewBox="0 0 60 20" preserveAspectRatio="none">
+                  <path d="M0,5 Q12,8 24,7 T60,15" stroke="#ED1C24" stroke-width="1.6" fill="none"
+                    stroke-linecap="round" />
+                </svg></span>
+            </div>
           </div>
         </section>
 
@@ -554,27 +578,58 @@
               <button class="icon-btn-sm" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
             <div class="card-body">
-              <div class="chart-wrap" id="bookingDonut" style="height: 200px; display: flex; justify-content: center;">
-              </div>
-              <div class="donut-legend">
-                <div class="dl-item"><span class="dl-dot"
-                    style="background: var(--st-blue);"></span><span>Flights</span><b>42%</b></div>
-                <div class="dl-item"><span class="dl-dot"
-                    style="background: var(--st-cyan);"></span><span>Hotels</span><b>21%</b></div>
-                <div class="dl-item"><span class="dl-dot"
-                    style="background: var(--st-green);"></span><span>Tours</span><b>16%</b></div>
-                <div class="dl-item"><span class="dl-dot" style="background: #8B5CF6;"></span><span>Umrah /
-                    Hajj</span><b>13%</b></div>
-                <div class="dl-item"><span class="dl-dot" style="background: #CBD5E1;"></span><span>Visa</span><b>8%</b>
+              <div class="booking-analytics-wrap">
+                <div class="donut-chart-container">
+                  <div class="donut-chart" id="bookingDonut"></div>
+                  <div class="donut-center">
+                    <div class="donut-total">1,284</div>
+                    <div class="donut-label">Total</div>
+                  </div>
+                </div>
+                <div class="donut-legend-right">
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background: var(--st-blue);"></span>
+                    <span class="legend-label">Flights</span>
+                    <span class="legend-value">42%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background: var(--st-cyan);"></span>
+                    <span class="legend-label">Hotels</span>
+                    <span class="legend-value">21%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background: var(--st-green);"></span>
+                    <span class="legend-label">Tours</span>
+                    <span class="legend-value">16%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background: #1e3a5f;"></span>
+                    <span class="legend-label">Umrah / Hajj</span>
+                    <span class="legend-value">13%</span>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background: #cbd5e1;"></span>
+                    <span class="legend-label">Visa</span>
+                    <span class="legend-value">8%</span>
+                  </div>
                 </div>
               </div>
-              <div class="status-legend mt-3">
-                <span class="sl-item"><span class="sl-dot" style="background: var(--st-green);"></span>Confirmed
-                  <b>742</b></span>
-                <span class="sl-item"><span class="sl-dot" style="background: var(--st-amber);"></span>Pending
-                  <b>318</b></span>
-                <span class="sl-item"><span class="sl-dot" style="background: var(--st-red);"></span>Cancelled
-                  <b>23</b></span>
+              <div class="booking-status-bottom">
+                <div class="status-item">
+                  <span class="status-dot" style="background: var(--st-green);"></span>
+                  <span class="status-label">Confirmed</span>
+                  <span class="status-value">742</span>
+                </div>
+                <div class="status-item">
+                  <span class="status-dot" style="background: var(--st-amber);"></span>
+                  <span class="status-label">Pending</span>
+                  <span class="status-value">318</span>
+                </div>
+                <div class="status-item">
+                  <span class="status-dot" style="background: var(--st-red);"></span>
+                  <span class="status-label">Cancelled</span>
+                  <span class="status-value">23</span>
+                </div>
               </div>
             </div>
           </div>

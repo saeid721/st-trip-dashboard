@@ -144,12 +144,12 @@
     const cw = w - pad.l - pad.r;
     const ch = h - pad.t - pad.b;
 
-    const labels = ['W1','W2','W3','W4','W5','W6','W7','W8','W9','W10','W11','W12'];
+    const labels = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12'];
     const bookings = [420, 510, 480, 620, 580, 720, 680, 820, 780, 920, 880, 1040];
     const packages = [180, 220, 240, 280, 310, 340, 380, 420, 460, 480, 520, 560];
     const visa = [80, 90, 110, 120, 140, 130, 160, 170, 190, 210, 220, 240];
 
-    const max = Math.max(...bookings.map((b,i) => b + packages[i] + visa[i])) * 1.1;
+    const max = Math.max(...bookings.map((b, i) => b + packages[i] + visa[i])) * 1.1;
     const xStep = cw / (labels.length - 1);
     const yOf = v => pad.t + ch - (v / max) * ch;
 
@@ -169,7 +169,7 @@
       const v = (max / 4) * i;
       const y = yOf(v);
       yAxis += `<line x1="${pad.l}" y1="${y}" x2="${w - pad.r}" y2="${y}" stroke="${cssVar('--divider')}" stroke-dasharray="3,3"/>`;
-      yAxis += `<text x="${pad.l - 6}" y="${y + 4}" text-anchor="end" font-size="10" fill="${cssVar('--text-muted')}">${(v/1000).toFixed(1)}k</text>`;
+      yAxis += `<text x="${pad.l - 6}" y="${y + 4}" text-anchor="end" font-size="10" fill="${cssVar('--text-muted')}">${(v / 1000).toFixed(1)}k</text>`;
     }
     let xLabels = '';
     labels.forEach((l, i) => {
@@ -210,36 +210,58 @@
   function renderBookingDonut() {
     const wrap = $('#bookingDonut');
     if (!wrap) return;
-    const size = 180;
+
+    const size = 160;
+    const strokeWidth = 16;
+    const radius = (size - strokeWidth) / 2;
+    const center = size / 2;
+    const circumference = 2 * Math.PI * radius;
+
     const data = [
-      { v: 42, c: cssVar('--st-blue') },
-      { v: 21, c: cssVar('--st-cyan') },
-      { v: 16, c: cssVar('--st-green') },
-      { v: 13, c: '#8B5CF6' },
-      { v: 8,  c: '#CBD5E1' },
+      { v: 42, c: '#0072BC', label: 'Flights' },
+      { v: 21, c: '#06B0EF', label: 'Hotels' },
+      { v: 16, c: '#00A651', label: 'Tours' },
+      { v: 13, c: '#1e3a5f', label: 'Umrah/Hajj' },
+      { v: 8, c: '#cbd5e1', label: 'Visa' },
     ];
-    const total = data.reduce((s, d) => s + d.v, 0);
-    const cx = size / 2, cy = size / 2, r = 72, ir = 48;
-    let acc = -Math.PI / 2;
-    let paths = '';
-    data.forEach(d => {
-      const a = (d.v / total) * Math.PI * 2;
-      const x1 = cx + r * Math.cos(acc), y1 = cy + r * Math.sin(acc);
-      const x2 = cx + r * Math.cos(acc + a), y2 = cy + r * Math.sin(acc + a);
-      const x3 = cx + ir * Math.cos(acc + a), y3 = cy + ir * Math.sin(acc + a);
-      const x4 = cx + ir * Math.cos(acc), y4 = cy + ir * Math.sin(acc);
-      const large = a > Math.PI ? 1 : 0;
-      paths += `<path d="M${x1},${y1} A${r},${r} 0 ${large} 1 ${x2},${y2} L${x3},${y3} A${ir},${ir} 0 ${large} 0 ${x4},${y4} Z" fill="${d.c}" stroke="${cssVar('--bg-surface')}" stroke-width="2.5"/>`;
-      acc += a;
+
+    let offset = 0;
+    let segments = '';
+
+    data.forEach((d, i) => {
+      const dashArray = (d.v / 100) * circumference;
+      const dashOffset = -offset;
+
+      segments += `
+      <circle 
+        cx="${center}" 
+        cy="${center}" 
+        r="${radius}" 
+        fill="none" 
+        stroke="${d.c}" 
+        stroke-width="${strokeWidth}"
+        stroke-dasharray="${dashArray} ${circumference}"
+        stroke-dashoffset="${dashOffset}"
+        transform="rotate(-90 ${center} ${center})"
+      />
+    `;
+
+      offset += dashArray;
     });
 
     wrap.innerHTML = `
-      <svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="Booking distribution">
-        ${paths}
-        <text x="${cx}" y="${cy - 4}" text-anchor="middle" font-size="10" fill="${cssVar('--text-muted')}" font-weight="500">Total</text>
-        <text x="${cx}" y="${cy + 14}" text-anchor="middle" font-size="20" font-weight="800" fill="${cssVar('--text-primary')}" font-family="Plus Jakarta Sans">1,284</text>
-      </svg>
-    `;
+    <svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
+      <circle 
+        cx="${center}" 
+        cy="${center}" 
+        r="${radius}" 
+        fill="none" 
+        stroke="#f1f5f9" 
+        stroke-width="${strokeWidth}"
+      />
+      ${segments}
+    </svg>
+  `;
   }
 
   function renderCustomerChart() {
@@ -251,10 +273,10 @@
     const cw = w - pad.l - pad.r;
     const ch = h - pad.t - pad.b;
 
-    const labels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug'];
+    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
     const newC = [120, 148, 182, 210, 248, 284, 342, 428];
     const retC = [180, 210, 242, 268, 298, 324, 362, 398];
-    const max = Math.max(...newC.map((n,i) => n + retC[i])) * 1.1;
+    const max = Math.max(...newC.map((n, i) => n + retC[i])) * 1.1;
     const bw = cw / labels.length * 0.55;
     const step = cw / labels.length;
 
@@ -274,8 +296,8 @@
       const hNew = (newC[i] / max) * ch;
       const hRet = (retC[i] / max) * ch;
       const base = pad.t + ch;
-      bars += `<rect x="${cx - bw/2}" y="${base - hNew}" width="${bw}" height="${hNew}" fill="${cssVar('--st-blue')}" rx="2"/>`;
-      bars += `<rect x="${cx - bw/2}" y="${base - hNew - hRet}" width="${bw}" height="${hRet}" fill="${cssVar('--st-green')}" rx="2"/>`;
+      bars += `<rect x="${cx - bw / 2}" y="${base - hNew}" width="${bw}" height="${hNew}" fill="${cssVar('--st-blue')}" rx="2"/>`;
+      bars += `<rect x="${cx - bw / 2}" y="${base - hNew - hRet}" width="${bw}" height="${hRet}" fill="${cssVar('--st-green')}" rx="2"/>`;
       bars += `<text x="${cx}" y="${h - 6}" text-anchor="middle" font-size="9" fill="${cssVar('--text-muted')}">${l}</text>`;
     });
 
