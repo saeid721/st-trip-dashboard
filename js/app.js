@@ -399,8 +399,8 @@
     const wrap = $('#paymentDonut');
     if (!wrap) return;
 
-    const size = 120;
-    const strokeWidth = 14;
+    const size = wrap.clientWidth || 120;
+    const strokeWidth = size <= 100 ? 10 : 14;
     const radius = (size - strokeWidth) / 2;
     const center = size / 2;
     const circumference = 2 * Math.PI * radius;
