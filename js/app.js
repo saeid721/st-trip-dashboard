@@ -236,6 +236,52 @@
     });
   });
 
+  /* ---------- Recent bookings: search + service filter ---------- */
+  const bookingSearchInput = $('#bookingSearchInput');
+  const bookingServiceFilter = $('#bookingServiceFilter');
+  const bookingsTableBody = $('#bookingsTableBody');
+
+  function filterBookingsTable() {
+    if (!bookingsTableBody) return;
+    const query = (bookingSearchInput?.value || '').trim().toLowerCase();
+    const service = bookingServiceFilter?.value || 'all';
+    $$('tr', bookingsTableBody).forEach(row => {
+      const matchesService = service === 'all' || row.dataset.service === service;
+      const matchesQuery = !query || row.textContent.toLowerCase().includes(query);
+      row.style.display = (matchesService && matchesQuery) ? '' : 'none';
+    });
+  }
+
+  bookingSearchInput?.addEventListener('input', filterBookingsTable);
+  bookingServiceFilter?.addEventListener('change', filterBookingsTable);
+
+  const bookingFilterBtn = $('#bookingFilterBtn');
+  bookingFilterBtn?.addEventListener('click', () => {
+    bookingFilterBtn.classList.toggle('active');
+    showToast('info', 'Filters', bookingFilterBtn.classList.contains('active') ? 'Advanced filters enabled.' : 'Advanced filters cleared.');
+  });
+
+  /* ---------- Recent bookings: pagination ---------- */
+  const bookingsPagination = $('#bookingsPagination');
+  if (bookingsPagination) {
+    bookingsPagination.addEventListener('click', e => {
+      const btn = e.target.closest('button[data-page]');
+      if (!btn || btn.disabled) return;
+
+      const pageBtns = $$('button[data-page]', bookingsPagination).filter(b => !isNaN(parseInt(b.dataset.page, 10)));
+      const activeBtn = bookingsPagination.querySelector('button.active');
+      const current = activeBtn ? parseInt(activeBtn.dataset.page, 10) : 1;
+
+      let target = btn.dataset.page;
+      if (target === 'prev') target = Math.max(1, current - 1);
+      else if (target === 'next') target = current + 1;
+      else target = parseInt(target, 10);
+
+      pageBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.page, 10) === target));
+      showToast('info', 'Page ' + target, 'Loading bookings for page ' + target + '...');
+    });
+  }
+
   /* =========================================================
      SVG CHARTS — lightweight, theme-aware
      ========================================================= */

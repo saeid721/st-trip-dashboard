@@ -645,17 +645,20 @@
               <div class="sub">Monitor the latest customer and payment activity.</div>
             </div>
             <div class="d-flex gap-2 flex-wrap">
-              <div class="topbar-search" style="max-width: 220px; margin: 0;">
+              <div class="topbar-search topbar-search-sm" style="max-width: 220px; margin: 0;">
                 <i class="bi bi-search s-icon"></i>
-                <input type="text" placeholder="Search bookings..." />
+                <input type="text" id="bookingSearchInput" placeholder="Search bookings..." />
               </div>
-              <select class="filter-select">
-                <option>All bookings</option>
-                <option>Flights</option>
-                <option>Hotels</option>
-                <option>Tours</option>
+              <select class="filter-select" id="bookingServiceFilter">
+                <option value="all">All bookings</option>
+                <option value="flight">Flights</option>
+                <option value="hotel">Hotels</option>
+                <option value="tour">Tours</option>
+                <option value="umrah">Umrah</option>
+                <option value="visa">Visa</option>
               </select>
-              <button class="icon-btn-sm"><i class="bi bi-funnel"></i></button>
+              <button class="icon-btn-sm" id="bookingFilterBtn" aria-label="Toggle filters"><i
+                  class="bi bi-funnel"></i></button>
             </div>
           </div>
           <div class="table-wrap">
@@ -673,8 +676,8 @@
                   <th style="text-align: right;">ACTION</th>
                 </tr>
               </thead>
-              <tbody>
-                <tr>
+              <tbody id="bookingsTableBody">
+                <tr data-service="flight">
                   <td><b class="bid">ST-98421</b></td>
                   <td>
                     <div class="avatar-row">
@@ -699,7 +702,7 @@
                           class="bi bi-three-dots"></i></button></div>
                   </td>
                 </tr>
-                <tr>
+                <tr data-service="umrah">
                   <td><b class="bid">ST-98420</b></td>
                   <td>
                     <div class="avatar-row">
@@ -724,7 +727,7 @@
                           class="bi bi-three-dots"></i></button></div>
                   </td>
                 </tr>
-                <tr>
+                <tr data-service="hotel">
                   <td><b class="bid">ST-98419</b></td>
                   <td>
                     <div class="avatar-row">
@@ -749,7 +752,7 @@
                           class="bi bi-three-dots"></i></button></div>
                   </td>
                 </tr>
-                <tr>
+                <tr data-service="tour">
                   <td><b class="bid">ST-98418</b></td>
                   <td>
                     <div class="avatar-row">
@@ -774,7 +777,7 @@
                           class="bi bi-three-dots"></i></button></div>
                   </td>
                 </tr>
-                <tr>
+                <tr data-service="visa">
                   <td><b class="bid">ST-98417</b></td>
                   <td>
                     <div class="avatar-row">
@@ -806,14 +809,16 @@
             <div style="font-size: 12.5px; color: var(--text-muted);">Showing <b
                 style="color: var(--text-primary);">5</b> of <b style="color: var(--text-primary);">1,284</b> bookings
             </div>
-            <div class="d-flex gap-1">
-              <button class="icon-btn-sm"><i class="bi bi-chevron-left"></i></button>
-              <button class="icon-btn-sm active">1</button>
-              <button class="icon-btn-sm">2</button>
-              <button class="icon-btn-sm">3</button>
-              <button class="icon-btn-sm">…</button>
-              <button class="icon-btn-sm">64</button>
-              <button class="icon-btn-sm"><i class="bi bi-chevron-right"></i></button>
+            <div class="d-flex gap-1" id="bookingsPagination">
+              <button class="icon-btn-sm" data-page="prev" aria-label="Previous page"><i
+                  class="bi bi-chevron-left"></i></button>
+              <button class="icon-btn-sm active" data-page="1">1</button>
+              <button class="icon-btn-sm" data-page="2">2</button>
+              <button class="icon-btn-sm" data-page="3">3</button>
+              <button class="icon-btn-sm" disabled>…</button>
+              <button class="icon-btn-sm" data-page="64">64</button>
+              <button class="icon-btn-sm" data-page="next" aria-label="Next page"><i
+                  class="bi bi-chevron-right"></i></button>
             </div>
           </div>
         </section>
