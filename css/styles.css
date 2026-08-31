@@ -1163,7 +1163,6 @@ button {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
   border-bottom: 1px solid var(--divider);
 }
 
@@ -4196,7 +4195,6 @@ table.st-table tbody tr:last-child td {
     flex-direction: row;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 8px;
   }
 
   .card-head>div:first-child {
@@ -4207,6 +4205,44 @@ table.st-table tbody tr:last-child td {
     flex-shrink: 0;
     white-space: nowrap;
     margin-top: 1px;
+  }
+
+  .revenue-head {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .revenue-head-right {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: flex-start;
+  }
+
+  .revenue-head-right .chips-group {
+    order: 2;
+    flex-basis: 100%;
+    justify-content: flex-start;
+    margin-top: 8px;
+  }
+
+  .revenue-filter-btn {
+    order: 1;
+    flex-shrink: 0;
+  }
+
+  .card-head .topbar-search-sm {
+    order: 2;
+    flex-basis: 100%;
+    margin-top: 8px;
+  }
+
+  .card-head .filter-select {
+    order: 3;
+  }
+
+  .card-head .icon-btn-sm {
+    order: 1;
+    flex-shrink: 0;
   }
 
   .card-head h3 {
@@ -4567,6 +4603,10 @@ table.st-table tbody tr:last-child td {
   .activity-time {
     font-size: 10px;
     align-self: flex-start;
+  }
+
+  .card-head .icon-btn-sm {
+    display: none;
   }
 }
 
