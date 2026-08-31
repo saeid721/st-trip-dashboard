@@ -4193,8 +4193,19 @@ table.st-table tbody tr:last-child td {
 
   .card-head {
     padding: 12px 14px;
-    flex-direction: column;
-    align-items: stretch;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .card-head>div:first-child {
+    min-width: 0;
+  }
+
+  .card-head .view-all {
+    flex-shrink: 0;
+    white-space: nowrap;
   }
 
   .card-head h3 {
