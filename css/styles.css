@@ -1245,12 +1245,12 @@ button {
 }
 
 .revenue-head-left h3 {
-  font-size: clamp(14px, 1.1vw + 11px, 17px);
+  font-size: 14px;
   margin: 4px 0 4px;
 }
 
 .revenue-head-left .sub {
-  font-size: clamp(10.5px, 0.3vw + 10px, 12px);
+  font-size: 11.5px;
   color: var(--text-muted);
 }
 
@@ -3050,14 +3050,14 @@ table.st-table tbody tr:last-child td {
 
 .wq-header h3 {
   font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 700;
   letter-spacing: -0.3px;
   line-height: 1.3;
 }
 
 .wq-header p {
-  font-size: 13px;
+  font-size: 11.5px;
   opacity: 0.85;
   line-height: 1.5;
   max-width: 90%;
