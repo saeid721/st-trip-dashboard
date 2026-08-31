@@ -249,12 +249,12 @@
 
       <div class="sidebar-footer">
         <span class="avatar-wrap">
-          <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Admin Rahman"
+          <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Asraf Mridha"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
           <div class="avatar-sm" style="display: none;">AR</div>
         </span>
         <div class="meta">
-          <div class="n">Admin Rahman</div>
+          <div class="n">Asraf Mridha</div>
           <div class="r">Super Admin</div>
         </div>
       </div>
@@ -361,12 +361,12 @@
           <div class="dropdown">
             <button class="profile-btn" id="profileBtn" aria-expanded="false">
               <span class="avatar-wrap">
-                <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Super Admin"
+                <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Asraf Mridha"
                   onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
                 <div class="av" style="display: none;">SA</div>
               </span>
               <div class="meta">
-                <div class="n">Super Admin</div>
+                <div class="n">Asraf Mridha</div>
                 <div class="r">Administrator</div>
               </div>
               <i class="bi bi-chevron-down" style="font-size: 11px; color: var(--text-muted);"></i>
@@ -529,34 +529,43 @@
         <section class="grid-main reveal">
           <div class="card">
             <div class="card-head revenue-head">
-              <div class="revenue-head-top">
-                <div class="section-label">REVENUE OVERVIEW</div>
-                <div class="chips-group" id="revenueChipGroup">
-                  <span class="chip" data-range="7d">7D</span>
-                  <span class="chip active" data-range="30d">30D</span>
-                  <span class="chip" data-range="3m">3M</span>
-                  <span class="chip" data-range="6m">6M</span>
-                </div>
+              <div class="revenue-head-left">
+                <div class="section-label">FINANCIAL PULSE</div>
+                <h3>Revenue overview</h3>
+                <div class="sub">Tracked revenue across all active travel products.</div>
               </div>
-              <h3>Total revenue breakdown by category</h3>
+              <div class="revenue-head-right">
+                <div class="chips-group" id="revenueChipGroup">
+                  <span class="chip active" data-range="7d">7 days</span>
+                  <span class="chip" data-range="30d">30 days</span>
+                  <span class="chip" data-range="3m">3 months</span>
+                  <span class="chip" data-range="6m">6 months</span>
+                </div>
+                <button class="icon-btn-sm revenue-filter-btn" aria-label="More filters"><i
+                    class="bi bi-sliders"></i></button>
+              </div>
             </div>
             <div class="card-body">
               <div class="rev-summary">
                 <div>
-                  <div class="rev-lbl">Total Revenue</div>
+                  <div class="rev-lbl">Total revenue</div>
                   <div class="rev-val" id="revTotalVal">৳42,85,600</div>
+                  <div class="rev-sub up" id="revTotalSub"><i class="bi bi-arrow-up-right"></i> 18.2%</div>
                 </div>
                 <div>
-                  <div class="rev-lbl" style="color: var(--st-blue);">Booking Revenue</div>
-                  <div class="rev-val" style="color: var(--st-blue);" id="revBookingVal">28,42,300</div>
+                  <div class="rev-lbl">Booking revenue</div>
+                  <div class="rev-val" id="revBookingVal">28,42,300</div>
+                  <div class="rev-sub" id="revBookingSub">66.3% of total</div>
                 </div>
                 <div>
-                  <div class="rev-lbl" style="color: var(--st-cyan);">Package Revenue</div>
-                  <div class="rev-val" style="color: var(--st-cyan);" id="revPackageVal">৳11,28,400</div>
+                  <div class="rev-lbl">Package revenue</div>
+                  <div class="rev-val" id="revPackageVal">৳11,28,400</div>
+                  <div class="rev-sub" id="revPackageSub">26.3% of total</div>
                 </div>
                 <div>
-                  <div class="rev-lbl" style="color: var(--st-green);">Visa Revenue</div>
-                  <div class="rev-val" style="color: var(--st-green);" id="revVisaVal">৳3,14,900</div>
+                  <div class="rev-lbl">Visa revenue</div>
+                  <div class="rev-val" id="revVisaVal">৳3,14,900</div>
+                  <div class="rev-sub" id="revVisaSub">7.3% of total</div>
                 </div>
               </div>
               <div class="chart-wrap chart-wrap-revenue" id="revenueChart"></div>

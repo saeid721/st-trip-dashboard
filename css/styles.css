@@ -1192,17 +1192,67 @@ button {
   flex-wrap: wrap;
 }
 
-/* Revenue card head — chips align with section label on all screens */
+/* Revenue card head — Financial Pulse style, fully responsive */
 .revenue-head {
-  flex-direction: column;
-  align-items: stretch;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
-.revenue-head-top {
+.revenue-head-left {
+  min-width: 0;
+  flex: 1 1 220px;
+}
+
+.revenue-head-left h3 {
+  font-size: clamp(14px, 1.1vw + 11px, 17px);
+  margin: 4px 0 4px;
+}
+
+.revenue-head-left .sub {
+  font-size: clamp(10.5px, 0.3vw + 10px, 12px);
+  color: var(--text-muted);
+}
+
+.revenue-head-right {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 10px;
+  gap: 8px;
+  flex-shrink: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.revenue-head-right::-webkit-scrollbar {
+  display: none;
+}
+
+.revenue-head-right .chips-group {
+  flex-wrap: nowrap;
+}
+
+.revenue-head-right .chip {
+  white-space: nowrap;
+  font-size: clamp(10px, 0.25vw + 9.5px, 11px);
+  padding: 5px 10px;
+}
+
+.revenue-filter-btn {
+  flex-shrink: 0;
+}
+
+@media (max-width: 560px) {
+  .revenue-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .revenue-head-right {
+    justify-content: flex-start;
+  }
 }
 
 .view-all {
@@ -1768,23 +1818,58 @@ button {
 
 /* Revenue Summary */
 .rev-summary {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 20px;
   margin-bottom: 14px;
 }
 
 .rev-lbl {
-  font-size: 11px;
+  font-size: clamp(9.5px, 0.25vw + 9px, 11px);
   color: var(--text-muted);
   font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .rev-val {
   font-family: 'Plus Jakarta Sans';
-  font-size: 18px;
+  font-size: clamp(14px, 1vw + 11px, 18px);
   font-weight: 800;
   letter-spacing: -0.3px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 2px 0 3px;
+}
+
+.rev-sub {
+  font-size: clamp(9.5px, 0.25vw + 9px, 11px);
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.rev-sub.up {
+  color: var(--st-green);
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+  .rev-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .rev-summary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px 14px;
+  }
 }
 
 /* Donut Legend */
@@ -4037,24 +4122,6 @@ table.st-table tbody tr:last-child td {
 
   .jump-tip {
     display: none;
-  }
-
-  .rev-summary {
-    gap: 10px 14px;
-    margin-bottom: 10px;
-  }
-
-  .rev-summary>div {
-    flex: 1 1 45%;
-    min-width: 0;
-  }
-
-  .rev-lbl {
-    font-size: 10px;
-  }
-
-  .rev-val {
-    font-size: 15px;
   }
 
   .chart-wrap-revenue {
