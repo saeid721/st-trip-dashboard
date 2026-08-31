@@ -416,7 +416,6 @@
             <div class="kpi-header">
               <div class="kpi-icon-wrap"><i class="bi bi-calendar-check" style="color: var(--st-blue);"></i></div>
               <div class="kpi-title">Total bookings</div>
-              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
             <div class="kpi-number">1,284</div>
             <div class="kpi-footer">
@@ -430,7 +429,6 @@
             <div class="kpi-header">
               <div class="kpi-icon-wrap"><i class="bi bi-cash-stack" style="color: var(--st-green);"></i></div>
               <div class="kpi-title">Total revenue</div>
-              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
             <div class="kpi-number">৳42,85,600</div>
             <div class="kpi-footer">
@@ -444,7 +442,6 @@
             <div class="kpi-header">
               <div class="kpi-icon-wrap"><i class="bi bi-calendar-plus" style="color: var(--st-green);"></i></div>
               <div class="kpi-title">Today's bookings</div>
-              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
             <div class="kpi-number">48</div>
             <div class="kpi-footer">
@@ -458,7 +455,6 @@
             <div class="kpi-header">
               <div class="kpi-icon-wrap"><i class="bi bi-people" style="color: var(--st-blue);"></i></div>
               <div class="kpi-title">Total customers</div>
-              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
             <div class="kpi-number">8,642</div>
             <div class="kpi-footer">
@@ -472,7 +468,6 @@
             <div class="kpi-header">
               <div class="kpi-icon-wrap"><i class="bi bi-hourglass-split" style="color: var(--st-amber);"></i></div>
               <div class="kpi-title">Pending payments</div>
-              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
             <div class="kpi-number">৳6,84,200</div>
             <div class="kpi-footer">
@@ -486,7 +481,6 @@
             <div class="kpi-header">
               <div class="kpi-icon-wrap"><i class="bi bi-postage" style="color: var(--st-cyan);"></i></div>
               <div class="kpi-title">Pending visa applications</div>
-              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
             <div class="kpi-number">126</div>
             <div class="kpi-footer">
@@ -500,7 +494,6 @@
             <div class="kpi-header">
               <div class="kpi-icon-wrap"><i class="bi bi-airplane" style="color: var(--st-blue);"></i></div>
               <div class="kpi-title">Upcoming trips</div>
-              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
             <div class="kpi-number">84</div>
             <div class="kpi-footer">
@@ -514,7 +507,6 @@
             <div class="kpi-header">
               <div class="kpi-icon-wrap"><i class="bi bi-x-octagon" style="color: var(--st-red);"></i></div>
               <div class="kpi-title">Cancelled bookings</div>
-              <button class="kpi-more" aria-label="More"><i class="bi bi-three-dots"></i></button>
             </div>
             <div class="kpi-number">23</div>
             <div class="kpi-footer">
@@ -584,7 +576,7 @@
                 <h3>Booking analytics</h3>
                 <div class="sub">Confirmed bookings by product type</div>
               </div>
-              <button class="icon-btn-sm" aria-label="More"><i class="bi bi-three-dots"></i></button>
+              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
             </div>
             <div class="card-body">
               <div class="booking-analytics-wrap">
@@ -902,7 +894,7 @@
                 <div class="section-label">POPULAR DESTINATIONS</div>
                 <h3>Top performing this month</h3>
               </div>
-              <a href="#" class="view-all">See all <i class="bi bi-arrow-right"></i></a>
+              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
             </div>
             <div class="card-body">
               <div class="dest-grid">
@@ -1043,7 +1035,7 @@
                 <h3>Customer analytics</h3>
                 <div class="sub">Growth and retention at a glance.</div>
               </div>
-              <button class="icon-btn-sm"><i class="bi bi-three-dots"></i></button>
+              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
             </div>
             <div class="card-body">
               <div class="cust-summary">
@@ -1079,7 +1071,7 @@
                 <h3>Payment overview</h3>
                 <div class="sub">Receipts, risk, and method mix.</div>
               </div>
-              <button class="icon-btn-sm"><i class="bi bi-three-dots"></i></button>
+              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
             </div>
             <div class="card-body">
               <div class="pay-grid">
@@ -1150,7 +1142,7 @@
                 <h3>Pending actions</h3>
                 <div class="sub">Priority items that need a decision.</div>
               </div>
-              <button class="icon-btn-sm"><i class="bi bi-three-dots"></i></button>
+              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
             </div>
             <div class="card-body">
               <div class="action-item high">
@@ -1293,8 +1285,11 @@
             <div class="card-body">
               <div class="ops-block umrah">
                 <div class="ops-head">
-                  <i class="bi bi-moon-stars"></i>
-                  <h4>Umrah Operations</h4>
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-moon-stars"></i>
+                    <h4>Umrah Operations</h4>
+                  </div>
+                  <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
                 </div>
                 <div class="ops-grid">
                   <div class="ops-stat">
@@ -1321,8 +1316,11 @@
               </div>
               <div class="ops-block hajj">
                 <div class="ops-head">
-                  <i class="bi bi-star-fill"></i>
-                  <h4>Hajj Operations</h4>
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-star-fill"></i>
+                    <h4>Hajj Operations</h4>
+                  </div>
+                  <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
                 </div>
                 <div class="ops-grid">
                   <div class="ops-stat">
@@ -1518,7 +1516,7 @@
                 <div class="section-label">AUDIT TRAIL</div>
                 <h3>Recent activity</h3>
               </div>
-              <a href="#" class="view-all">View log <i class="bi bi-chevron-right"></i></a>
+              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
             </div>
             <div class="card-body">
               <div class="activity-timeline">

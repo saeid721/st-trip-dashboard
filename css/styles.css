@@ -2807,6 +2807,7 @@ table.st-table tbody tr:last-child td {
 .ops-head {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 8px;
   margin-bottom: 10px;
 }
