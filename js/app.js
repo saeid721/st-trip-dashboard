@@ -130,6 +130,24 @@
     });
   });
 
+  /* ---------- Revenue chip filter (functional) ---------- */
+  const revenueChipGroup = $('#revenueChipGroup');
+  if (revenueChipGroup) {
+    revenueChipGroup.addEventListener('click', e => {
+      const chip = e.target.closest('.chip');
+      if (!chip) return;
+      const range = chip.dataset.range;
+      if (!range || !revenueDataSets[range]) return;
+      currentRevenueRange = range;
+      renderRevenueChart(range);
+      const s = revenueDataSets[range].summary;
+      $('#revTotalVal').textContent = s.total;
+      $('#revBookingVal').textContent = s.booking;
+      $('#revPackageVal').textContent = s.package;
+      $('#revVisaVal').textContent = s.visa;
+    });
+  }
+
   /* ---------- Toast system ---------- */
   function showToast(type, title, message) {
     const icons = {
@@ -221,19 +239,54 @@
     return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   }
 
-  function renderRevenueChart() {
+  /* ---------- Revenue chart dummy datasets ---------- */
+  const revenueDataSets = {
+    '7d': {
+      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+      bookings: [320, 360, 300, 410, 380, 440, 420],
+      packages: [120, 140, 110, 160, 150, 170, 165],
+      visa: [40, 45, 38, 50, 48, 55, 52],
+      summary: { total: '৳9,85,000', booking: '৳6,20,000', package: '৳2,85,000', visa: '৳80,000' }
+    },
+    '30d': {
+      labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12'],
+      bookings: [420, 510, 480, 620, 580, 720, 680, 820, 780, 920, 880, 1040],
+      packages: [180, 220, 240, 280, 310, 340, 380, 420, 460, 480, 520, 560],
+      visa: [80, 90, 110, 120, 140, 130, 160, 170, 190, 210, 220, 240],
+      summary: { total: '৳42,85,600', booking: '৳28,42,300', package: '৳11,28,400', visa: '৳3,14,900' }
+    },
+    '3m': {
+      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      bookings: [980, 1040, 1120, 1180, 1260, 1320, 1380, 1460, 1520, 1600, 1660, 1740],
+      packages: [420, 460, 480, 520, 560, 600, 640, 680, 720, 760, 800, 840],
+      visa: [160, 170, 180, 190, 210, 220, 230, 250, 260, 280, 290, 310],
+      summary: { total: '৳1,18,40,000', booking: '৳78,60,000', package: '৳30,20,000', visa: '৳9,60,000' }
+    },
+    '6m': {
+      labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q1', 'Q2', 'Q3', 'Q4', 'Q1', 'Q2', 'Q3', 'Q4'],
+      bookings: [2800, 3100, 3400, 3700, 4000, 4300, 4600, 4900, 5200, 5500, 5800, 6100],
+      packages: [1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200],
+      visa: [420, 450, 480, 510, 540, 570, 600, 630, 660, 690, 720, 750],
+      summary: { total: '৳3,84,20,000', booking: '৳2,52,00,000', package: '৳98,40,000', visa: '৳33,80,000' }
+    }
+  };
+
+  let currentRevenueRange = '30d';
+
+  function renderRevenueChart(range) {
     const wrap = $('#revenueChart');
     if (!wrap) return;
+    const set = revenueDataSets[range || currentRevenueRange];
     const w = wrap.clientWidth || 600;
     const h = wrap.clientHeight || 260;
     const pad = { l: 40, r: 12, t: 16, b: 28 };
     const cw = w - pad.l - pad.r;
     const ch = h - pad.t - pad.b;
 
-    const labels = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12'];
-    const bookings = [420, 510, 480, 620, 580, 720, 680, 820, 780, 920, 880, 1040];
-    const packages = [180, 220, 240, 280, 310, 340, 380, 420, 460, 480, 520, 560];
-    const visa = [80, 90, 110, 120, 140, 130, 160, 170, 190, 210, 220, 240];
+    const labels = set.labels;
+    const bookings = set.bookings;
+    const packages = set.packages;
+    const visa = set.visa;
 
     const max = Math.max(...bookings.map((b, i) => b + packages[i] + visa[i])) * 1.1;
     const xStep = cw / (labels.length - 1);
@@ -453,7 +506,7 @@
   }
 
   function renderAllCharts() {
-    renderRevenueChart();
+    renderRevenueChart(currentRevenueRange);
     renderBookingDonut();
     renderCustomerChart();
     renderPaymentDonut();

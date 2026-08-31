@@ -1192,6 +1192,19 @@ button {
   flex-wrap: wrap;
 }
 
+/* Revenue card head — chips align with section label on all screens */
+.revenue-head {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.revenue-head-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
 .view-all {
   font-size: 12px;
   font-weight: 600;

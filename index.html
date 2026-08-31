@@ -528,36 +528,35 @@
         <!-- Revenue + Booking Analytics -->
         <section class="grid-main reveal">
           <div class="card">
-            <div class="card-head">
-              <div>
+            <div class="card-head revenue-head">
+              <div class="revenue-head-top">
                 <div class="section-label">REVENUE OVERVIEW</div>
-                <h3>Total revenue breakdown by category</h3>
+                <div class="chips-group" id="revenueChipGroup">
+                  <span class="chip" data-range="7d">7D</span>
+                  <span class="chip active" data-range="30d">30D</span>
+                  <span class="chip" data-range="3m">3M</span>
+                  <span class="chip" data-range="6m">6M</span>
+                </div>
               </div>
-              <div class="chips-group">
-                <span class="chip">7D</span>
-                <span class="chip active">30D</span>
-                <span class="chip">3M</span>
-                <span class="chip">6M</span>
-                <span class="chip">1Y</span>
-              </div>
+              <h3>Total revenue breakdown by category</h3>
             </div>
             <div class="card-body">
               <div class="rev-summary">
                 <div>
                   <div class="rev-lbl">Total Revenue</div>
-                  <div class="rev-val">৳42,85,600</div>
+                  <div class="rev-val" id="revTotalVal">৳42,85,600</div>
                 </div>
                 <div>
                   <div class="rev-lbl" style="color: var(--st-blue);">Booking Revenue</div>
-                  <div class="rev-val" style="color: var(--st-blue);">28,42,300</div>
+                  <div class="rev-val" style="color: var(--st-blue);" id="revBookingVal">28,42,300</div>
                 </div>
                 <div>
                   <div class="rev-lbl" style="color: var(--st-cyan);">Package Revenue</div>
-                  <div class="rev-val" style="color: var(--st-cyan);">৳11,28,400</div>
+                  <div class="rev-val" style="color: var(--st-cyan);" id="revPackageVal">৳11,28,400</div>
                 </div>
                 <div>
                   <div class="rev-lbl" style="color: var(--st-green);">Visa Revenue</div>
-                  <div class="rev-val" style="color: var(--st-green);">৳3,14,900</div>
+                  <div class="rev-val" style="color: var(--st-green);" id="revVisaVal">৳3,14,900</div>
                 </div>
               </div>
               <div class="chart-wrap chart-wrap-revenue" id="revenueChart"></div>
