@@ -4194,7 +4194,7 @@ table.st-table tbody tr:last-child td {
   .card-head {
     padding: 12px 14px;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 8px;
   }
@@ -4206,6 +4206,7 @@ table.st-table tbody tr:last-child td {
   .card-head .view-all {
     flex-shrink: 0;
     white-space: nowrap;
+    margin-top: 1px;
   }
 
   .card-head h3 {
