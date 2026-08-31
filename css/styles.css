@@ -1303,6 +1303,109 @@ button {
   font-size: 13px;
 }
 
+/* KPI color variants */
+.kpi-blue {
+  background: var(--st-blue-50);
+  border-left: 4px solid var(--st-blue);
+}
+
+.kpi-blue .kpi-icon-wrap {
+  background: var(--st-blue);
+}
+
+.kpi-blue .kpi-icon-wrap i {
+  color: #fff !important;
+}
+
+.kpi-blue .kpi-bg-icon {
+  color: var(--st-blue);
+}
+
+.kpi-green {
+  background: var(--st-green-50);
+  border-left: 4px solid var(--st-green);
+}
+
+.kpi-green .kpi-icon-wrap {
+  background: var(--st-green);
+}
+
+.kpi-green .kpi-icon-wrap i {
+  color: #fff !important;
+}
+
+.kpi-green .kpi-bg-icon {
+  color: var(--st-green);
+}
+
+.kpi-cyan {
+  background: var(--st-cyan-50);
+  border-left: 4px solid var(--st-cyan);
+}
+
+.kpi-cyan .kpi-icon-wrap {
+  background: var(--st-cyan);
+}
+
+.kpi-cyan .kpi-icon-wrap i {
+  color: #fff !important;
+}
+
+.kpi-cyan .kpi-bg-icon {
+  color: var(--st-cyan);
+}
+
+.kpi-purple {
+  background: #F3E8FF;
+  border-left: 4px solid #8B5CF6;
+}
+
+.kpi-purple .kpi-icon-wrap {
+  background: #8B5CF6;
+}
+
+.kpi-purple .kpi-bg-icon {
+  color: #8B5CF6;
+}
+
+.kpi-purple .kpi-icon-wrap i {
+  color: #fff !important;
+}
+
+.kpi-amber {
+  background: var(--st-amber-50);
+  border-left: 4px solid var(--st-amber);
+}
+
+.kpi-amber .kpi-icon-wrap {
+  background: var(--st-amber);
+}
+
+.kpi-amber .kpi-bg-icon {
+  color: var(--st-amber);
+}
+
+.kpi-amber .kpi-icon-wrap i {
+  color: #fff !important;
+}
+
+.kpi-red {
+  background: var(--st-red-50);
+  border-left: 4px solid var(--st-red);
+}
+
+.kpi-red .kpi-icon-wrap {
+  background: var(--st-red);
+}
+
+.kpi-red .kpi-icon-wrap i {
+  color: #fff !important;
+}
+
+.kpi-red .kpi-bg-icon {
+  color: var(--st-red);
+}
+
 .kpi-title {
   flex: 1;
   min-width: 0;
@@ -1392,17 +1495,35 @@ button {
   text-overflow: ellipsis;
 }
 
-.kpi-spark {
-  width: 42px;
-  height: 16px;
-  flex-shrink: 0;
-  opacity: 0.9;
+
+/* KPI faded background icon (replaces kpi-spark) */
+.kpi {
+  overflow: hidden;
 }
 
-.kpi-spark svg {
-  width: 100%;
-  height: 100%;
-  display: block;
+.kpi-bg-icon {
+  position: absolute;
+  right: -6px;
+  bottom: -10px;
+  font-size: 36px;
+  line-height: 1;
+  opacity: 0.16;
+  pointer-events: none;
+  transform-origin: bottom right;
+  transition: transform var(--dur) var(--ease), opacity var(--dur) var(--ease);
+  z-index: 0;
+}
+
+.kpi.hoverable:hover .kpi-bg-icon {
+  transform: scale(1.15);
+  opacity: 0.24;
+}
+
+.kpi-header,
+.kpi-number,
+.kpi-footer {
+  position: relative;
+  z-index: 1;
 }
 
 /* Updated Booking Analytics */
