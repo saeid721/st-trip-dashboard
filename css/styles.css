@@ -2930,8 +2930,7 @@ table.st-table tbody tr:last-child td {
 
 @media (max-width: 480px) {
   .ops-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .ops-stat {
@@ -4129,7 +4128,24 @@ table.st-table tbody tr:last-child td {
   }
 
   .cust-summary {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .cust-summary>div {
+    padding: 8px;
+  }
+
+  .cs-lbl {
+    font-size: 9.5px;
+  }
+
+  .cs-val {
+    font-size: 15px;
+  }
+
+  .cs-chg {
+    font-size: 9.5px;
   }
 
   .pay-grid {
@@ -4281,7 +4297,7 @@ table.st-table tbody tr:last-child td {
   }
 
   .ops-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .head-controls {
@@ -4372,6 +4388,14 @@ table.st-table tbody tr:last-child td {
   }
 
   .sidebar-footer {
+    display: none;
+  }
+
+  .jump-bar {
+    display: none;
+  }
+
+  .page-head {
     display: none;
   }
 }
