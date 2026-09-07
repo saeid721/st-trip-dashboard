@@ -1236,17 +1236,7 @@ button {
 
 /* Revenue card head — Financial Pulse style, fully responsive */
 .revenue-head {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
-
-.revenue-head-top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
 }
 
 .revenue-head-left {
@@ -1292,13 +1282,9 @@ button {
 }
 
 @media (max-width: 560px) {
-  .revenue-head {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .revenue-head-right {
-    justify-content: flex-start;
+  .revenue-head-right .chip {
+    font-size: 8.5px;
+    padding: 2px 7px;
   }
 }
 
@@ -3885,7 +3871,7 @@ table.st-table tbody tr:last-child td {
   }
 
   .kpi-title {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .kpi-number {
@@ -4070,7 +4056,7 @@ table.st-table tbody tr:last-child td {
   }
 
   .kpi-title {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .kpi-more {
@@ -4255,25 +4241,28 @@ table.st-table tbody tr:last-child td {
   }
 
   .revenue-head {
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .revenue-head-left {
+    width: 100%;
   }
 
   .revenue-head-right {
+    width: 100%;
+    justify-content: flex-start;
     flex-wrap: wrap;
-    justify-content: flex-end;
-    align-items: flex-start;
   }
 
-  .revenue-head-right .chips-group {
-    order: 2;
-    flex-basis: 100%;
-    justify-content: flex-start;
-    margin-top: 8px;
+  .revenue-head-right .chip {
+    font-size: 9px;
+    padding: 2px 8px;
   }
 
   .revenue-filter-btn {
-    order: 1;
+    width: 26px;
+    height: 26px;
     flex-shrink: 0;
   }
 
@@ -4358,10 +4347,6 @@ table.st-table tbody tr:last-child td {
 @media (max-width: 480px) {
   .kpi {
     padding: 9px 8px;
-  }
-
-  .kpi-title {
-    font-size: 8.5px;
   }
 
   .kpi-number {
@@ -4652,7 +4637,7 @@ table.st-table tbody tr:last-child td {
     align-self: flex-start;
   }
 
-  .card-head .icon-btn-sm {
+  .card-head .icon-btn-sm:not(.revenue-filter-btn) {
     display: none;
   }
 }
