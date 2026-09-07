@@ -2008,6 +2008,13 @@ table.st-table thead th:last-child {
   text-align: right;
 }
 
+table.st-table thead th:first-child,
+table.st-table tbody td:first-child {
+  width: 36px;
+  text-align: center;
+  color: var(--text-muted);
+}
+
 table.st-table thead th:last-child span,
 table.st-table thead th:last-child {
   position: relative;
@@ -4148,7 +4155,20 @@ table.st-table tbody tr:last-child td {
 
   .staff-head,
   .staff-row {
-    grid-template-columns: 1.4fr 1fr 0.8fr;
+    grid-template-columns: 2fr 0.9fr 0.6fr;
+    gap: 6px;
+  }
+
+  .staff-info {
+    gap: 6px;
+  }
+
+  .staff-info .n {
+    font-size: 11.5px;
+  }
+
+  .staff-info .m {
+    font-size: 9.5px;
   }
 
   .staff-row>div:nth-child(3) {
@@ -4313,8 +4333,17 @@ table.st-table tbody tr:last-child td {
     gap: 7px;
   }
 
+  table.st-table tbody td:nth-child(3) {
+    min-width: 140px;
+  }
+
+  table.st-table tbody td:nth-child(5) {
+    white-space: nowrap;
+  }
+
   .avatar-row .n {
     font-size: 11.5px;
+    white-space: nowrap;
   }
 
   .service-tag {
@@ -4411,7 +4440,7 @@ table.st-table tbody tr:last-child td {
   }
 
   table.st-table tbody td {
-    padding: 8px;
+    padding: 6px;
     font-size: 11px;
   }
 
