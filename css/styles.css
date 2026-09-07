@@ -51,6 +51,11 @@
   --dur-fast: 160ms;
   --dur: 240ms;
   --dur-slow: 420ms;
+
+  --fluid-content-pad: clamp(12px, 1.4vw, 20px);
+  --fluid-card-pad: clamp(10px, 1vw, 16px);
+  --fluid-gap: clamp(8px, 0.8vw, 16px);
+
 }
 
 /* =========================================================
@@ -71,7 +76,7 @@ body {
   font-family: 'Inter', system-ui, -apple-system, sans-serif;
   background: var(--bg-app);
   color: var(--text-primary);
-  font-size: 13.5px;
+  font-size: clamp(12px, 0.55vw + 9.5px, 13.5px);
   line-height: 1.55;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
@@ -957,7 +962,7 @@ button {
    CONTENT
    ========================================================= */
 .content {
-  padding: 20px 20px 0 20px;
+  padding: var(--fluid-content-pad) var(--fluid-content-pad) 0 var(--fluid-content-pad);
   flex: 1;
 }
 
@@ -1126,23 +1131,23 @@ button {
    ========================================================= */
 .grid-kpi {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 10px;
-  margin-bottom: 16px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: var(--fluid-gap);
+  margin-bottom: var(--fluid-gap);
 }
 
 .grid-main {
   display: grid;
   grid-template-columns: 1.6fr 1fr;
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: var(--fluid-gap);
+  margin-bottom: var(--fluid-gap);
 }
 
 .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: var(--fluid-gap);
+  margin-bottom: var(--fluid-gap);
 }
 
 .card {
@@ -1159,7 +1164,7 @@ button {
 }
 
 .card-head {
-  padding: 14px 16px;
+  padding: var(--fluid-card-pad) calc(var(--fluid-card-pad) + 2px);
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -1180,7 +1185,7 @@ button {
 }
 
 .card-body {
-  padding: 16px;
+  padding: var(--fluid-card-pad);
 }
 
 .card-foot {
@@ -1200,9 +1205,9 @@ button {
 .chip {
   display: inline-flex;
   align-items: center;
-  padding: 4px 10px;
+  padding: 3px 10px;
   border-radius: 999px;
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 600;
   background: var(--bg-surface-alt);
   color: var(--text-secondary);
@@ -1232,15 +1237,20 @@ button {
 /* Revenue card head — Financial Pulse style, fully responsive */
 .revenue-head {
   display: flex;
-  align-items: flex-start;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.revenue-head-top {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: 12px;
   flex-wrap: wrap;
 }
 
 .revenue-head-left {
   min-width: 0;
-  flex: 1 1 220px;
 }
 
 .revenue-head-left h3 {
@@ -1273,8 +1283,8 @@ button {
 
 .revenue-head-right .chip {
   white-space: nowrap;
-  font-size: clamp(10px, 0.25vw + 9.5px, 11px);
-  padding: 5px 10px;
+  font-size: clamp(10px, 0.25vw + 9.5px, 10px);
+  padding: 3px 10px;
 }
 
 .revenue-filter-btn {
@@ -1311,8 +1321,8 @@ button {
 .grid-main-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 16px;
+  gap: var(--fluid-gap);
+  margin-bottom: var(--fluid-gap);
 }
 
 /* =========================================================
@@ -1377,7 +1387,7 @@ button {
    KPI CARDS
    ========================================================= */
 .kpi {
-  padding: 12px 10px;
+  padding: clamp(9px, 0.9vw, 12px) clamp(8px, 0.7vw, 10px);
   position: relative;
   min-width: 0;
 }
@@ -1538,7 +1548,7 @@ button {
 
 .kpi-number {
   font-family: 'Plus Jakarta Sans';
-  font-size: 17px;
+  font-size: clamp(14px, 0.9vw + 10px, 17px);
   font-weight: 800;
   color: var(--text-primary);
   letter-spacing: -0.3px;
@@ -3806,6 +3816,27 @@ table.st-table tbody tr:last-child td {
 
 .nav-tooltip.show {
   opacity: 1;
+}
+
+@media (max-width: 1600px) {
+  :root {
+    --fluid-content-pad: clamp(10px, 1.2vw, 18px);
+    --fluid-card-pad: clamp(9px, 0.9vw, 14px);
+    --fluid-gap: clamp(7px, 0.7vw, 14px);
+  }
+}
+
+@media (max-width: 1366px) {
+  .grid-kpi {
+    grid-template-columns: repeat(6, 1fr);
+    gap: clamp(6px, 0.6vw, 10px);
+  }
+  .kpi-number {
+    font-size: clamp(13px, 0.8vw + 9px, 16px);
+  }
+  .card-head h3 {
+    font-size: clamp(12.5px, 0.5vw + 11px, 14px);
+  }
 }
 
 /* =========================================================

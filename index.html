@@ -465,19 +465,6 @@
             </div>
           </div>
 
-          <div class="card kpi hoverable kpi-cyan">
-            <div class="kpi-header">
-              <div class="kpi-icon-wrap"><i class="bi bi-postage" style="color: var(--st-cyan);"></i></div>
-              <div class="kpi-title">Pending visa applications</div>
-            </div>
-            <div class="kpi-number">126</div>
-            <div class="kpi-footer">
-              <span class="kpi-meta" style="color: var(--st-amber);"><i class="bi bi-exclamation-circle"></i> 12
-                urgent</span>
-              <div class="kpi-bg-icon"><i class="bi bi-postage"></i></div>
-            </div>
-          </div>
-
           <div class="card kpi hoverable kpi-blue">
             <div class="kpi-header">
               <div class="kpi-icon-wrap"><i class="bi bi-airplane" style="color: var(--st-blue);"></i></div>
@@ -490,39 +477,27 @@
               <div class="kpi-bg-icon"><i class="bi bi-airplane"></i></div>
             </div>
           </div>
-
-          <div class="card kpi hoverable kpi-red">
-            <div class="kpi-header">
-              <div class="kpi-icon-wrap"><i class="bi bi-x-octagon" style="color: var(--st-red);"></i></div>
-              <div class="kpi-title">Cancelled bookings</div>
-            </div>
-            <div class="kpi-number">23</div>
-            <div class="kpi-footer">
-              <span class="kpi-trend down"><i class="bi bi-arrow-down-right"></i> 2.1% <span class="kpi-trend-sub">vs
-                  last month</span></span>
-              <div class="kpi-bg-icon"><i class="bi bi-x-octagon"></i></div>
-            </div>
-          </div>
         </section>
 
-        <!-- Revenue + Booking Analytics -->
-        <section class="grid-main reveal">
+        <!-- Revenue + Booking Analytics + Customer analytics -->
+        <section class="grid-main-3 reveal">
           <div class="card">
             <div class="card-head revenue-head">
-              <div class="revenue-head-left">
+              <div class="revenue-head-top">
                 <div class="section-label">FINANCIAL PULSE</div>
+                <div class="revenue-head-right">
+                  <div class="chips-group" id="revenueChipGroup">
+                    <span class="chip active" data-range="7d">7 days</span>
+                    <span class="chip" data-range="30d">30 days</span>
+                    <span class="chip" data-range="3m">3 months</span>
+                    <span class="chip" data-range="6m">6 months</span>
+                  </div>
+                  <button class="icon-btn-sm revenue-filter-btn" aria-label="More filters"><i class="bi bi-sliders"></i></button>
+                </div>
+              </div>
+              <div class="revenue-head-left">
                 <h3>Revenue overview</h3>
                 <div class="sub">Tracked revenue across all active travel products.</div>
-              </div>
-              <div class="revenue-head-right">
-                <div class="chips-group" id="revenueChipGroup">
-                  <span class="chip active" data-range="7d">7 days</span>
-                  <span class="chip" data-range="30d">30 days</span>
-                  <span class="chip" data-range="3m">3 months</span>
-                  <span class="chip" data-range="6m">6 months</span>
-                </div>
-                <button class="icon-btn-sm revenue-filter-btn" aria-label="More filters"><i
-                    class="bi bi-sliders"></i></button>
               </div>
             </div>
             <div class="card-body">
@@ -619,6 +594,42 @@
                   <span class="status-label">Cancelled</span>
                   <span class="status-value">23</span>
                 </div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <div class="section-label">RELATIONSHIP HEALTH</div>
+                <h3>Customer analytics</h3>
+                <div class="sub">Growth and retention at a glance.</div>
+              </div>
+              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
+            </div>
+            <div class="card-body">
+              <div class="cust-summary">
+                <div>
+                  <div class="cs-lbl">Total customers</div>
+                  <div class="cs-val">1,844</div>
+                  <div class="cs-chg up">↗ 14.7%</div>
+                </div>
+                <div>
+                  <div class="cs-lbl">New customers</div>
+                  <div class="cs-val">226</div>
+                  <div class="cs-chg up">↗ 12.5%</div>
+                </div>
+                <div>
+                  <div class="cs-lbl">Returning</div>
+                  <div class="cs-val">864</div>
+                  <div class="cs-chg up">↗ 6.4%</div>
+                </div>
+              </div>
+              <div class="chart-wrap" id="customerChart" style="height: 160px; margin-top: 16px;"></div>
+              <div class="chart-legend mt-2">
+                <span><span class="dot" style="background: var(--st-blue);"></span>New customers</span>
+                <span><span class="dot" style="background: var(--st-green);"></span>Returning customers</span>
+                <span><span class="dot" style="background: var(--st-cyan);"></span>VIP 8.7%</span>
               </div>
             </div>
           </div>
@@ -954,7 +965,7 @@
           </div>
         </section>
 
-        <!-- Top Packages + Customer + Payment -->
+        <!-- Top Packages + Pending actions + Payment -->
         <section class="grid-3 reveal">
           <div class="card">
             <div class="card-head">
@@ -1026,35 +1037,44 @@
           <div class="card">
             <div class="card-head">
               <div>
-                <div class="section-label">RELATIONSHIP HEALTH</div>
-                <h3>Customer analytics</h3>
-                <div class="sub">Growth and retention at a glance.</div>
+                <div class="section-label">ACTION CENTER</div>
+                <h3>Pending actions</h3>
+                <div class="sub">Priority items that need a decision.</div>
               </div>
               <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
             </div>
             <div class="card-body">
-              <div class="cust-summary">
-                <div>
-                  <div class="cs-lbl">Total customers</div>
-                  <div class="cs-val">1,844</div>
-                  <div class="cs-chg up">↗ 14.7%</div>
+              <div class="action-item high">
+                <div class="ac-icon"><i class="bi bi-postage"></i></div>
+                <div class="ac-info">
+                  <div class="ac-title">13 applications under review</div>
+                  <div class="ac-sub">Visa application tracker</div>
                 </div>
-                <div>
-                  <div class="cs-lbl">New customers</div>
-                  <div class="cs-val">226</div>
-                  <div class="cs-chg up">↗ 12.5%</div>
-                </div>
-                <div>
-                  <div class="cs-lbl">Returning</div>
-                  <div class="cs-val">864</div>
-                  <div class="cs-chg up">↗ 6.4%</div>
-                </div>
+                <div class="ac-priority high">High · 8 hrs <i class="bi bi-chevron-right"></i></div>
               </div>
-              <div class="chart-wrap" id="customerChart" style="height: 160px; margin-top: 16px;"></div>
-              <div class="chart-legend mt-2">
-                <span><span class="dot" style="background: var(--st-blue);"></span>New customers</span>
-                <span><span class="dot" style="background: var(--st-green);"></span>Returning customers</span>
-                <span><span class="dot" style="background: var(--st-cyan);"></span>VIP 8.7%</span>
+              <div class="action-item medium">
+                <div class="ac-icon"><i class="bi bi-credit-card"></i></div>
+                <div class="ac-info">
+                  <div class="ac-title">8 payments pending verification</div>
+                  <div class="ac-sub">Finance operations</div>
+                </div>
+                <div class="ac-priority medium">Med · 1 day <i class="bi bi-chevron-right"></i></div>
+              </div>
+              <div class="action-item low">
+                <div class="ac-icon"><i class="bi bi-calendar-check"></i></div>
+                <div class="ac-info">
+                  <div class="ac-title">5 bookings awaiting confirmation</div>
+                  <div class="ac-sub">Booking operations</div>
+                </div>
+                <div class="ac-priority low">Low · 3 hrs <i class="bi bi-chevron-right"></i></div>
+              </div>
+              <div class="action-item low">
+                <div class="ac-icon"><i class="bi bi-arrow-return-left"></i></div>
+                <div class="ac-info">
+                  <div class="ac-title">3 refund requests</div>
+                  <div class="ac-sub">Customer support</div>
+                </div>
+                <div class="ac-priority low">Low · 3 hrs <i class="bi bi-chevron-right"></i></div>
               </div>
             </div>
           </div>
@@ -1133,44 +1153,73 @@
           <div class="card">
             <div class="card-head">
               <div>
-                <div class="section-label">ACTION CENTER</div>
-                <h3>Pending actions</h3>
-                <div class="sub">Priority items that need a decision.</div>
+                <div class="section-label">JOURNEY READINESS</div>
+                <h3>Umrah & Hajj operations</h3>
+                <div class="sub">Respectful oversight for every pilgrim journey.</div>
               </div>
-              <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
             </div>
             <div class="card-body">
-              <div class="action-item high">
-                <div class="ac-icon"><i class="bi bi-postage"></i></div>
-                <div class="ac-info">
-                  <div class="ac-title">13 applications under review</div>
-                  <div class="ac-sub">Visa application tracker</div>
+              <div class="ops-block umrah">
+                <div class="ops-head">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-moon-stars"></i>
+                    <h4>Umrah Operations</h4>
+                  </div>
+                  <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
                 </div>
-                <div class="ac-priority high">High · 8 hrs <i class="bi bi-chevron-right"></i></div>
+                <div class="ops-grid">
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Total pilgrims</div>
+                    <div class="ops-val">1,248</div>
+                    <div class="ops-chg up">↗ 12.4%</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Upcoming Departures</div>
+                    <div class="ops-val">18</div>
+                    <div class="ops-chg">Next 30 days</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Confirmed</div>
+                    <div class="ops-val">984</div>
+                    <div class="ops-chg up">78.8%</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Pending Documents</div>
+                    <div class="ops-val">126</div>
+                    <div class="ops-chg warn">Action needed</div>
+                  </div>
+                </div>
               </div>
-              <div class="action-item medium">
-                <div class="ac-icon"><i class="bi bi-credit-card"></i></div>
-                <div class="ac-info">
-                  <div class="ac-title">8 payments pending verification</div>
-                  <div class="ac-sub">Finance operations</div>
+              <div class="ops-block hajj">
+                <div class="ops-head">
+                  <div class="d-flex align-items-center gap-2">
+                    <i class="bi bi-star-fill"></i>
+                    <h4>Hajj Operations</h4>
+                  </div>
+                  <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
                 </div>
-                <div class="ac-priority medium">Med · 1 day <i class="bi bi-chevron-right"></i></div>
-              </div>
-              <div class="action-item low">
-                <div class="ac-icon"><i class="bi bi-calendar-check"></i></div>
-                <div class="ac-info">
-                  <div class="ac-title">5 bookings awaiting confirmation</div>
-                  <div class="ac-sub">Booking operations</div>
+                <div class="ops-grid">
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Registered</div>
+                    <div class="ops-val">648</div>
+                    <div class="ops-chg up">↗ 8.2%</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Pre-Registered</div>
+                    <div class="ops-val">284</div>
+                    <div class="ops-chg">For 2027</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Confirmed</div>
+                    <div class="ops-val">482</div>
+                    <div class="ops-chg up">74.4%</div>
+                  </div>
+                  <div class="ops-stat">
+                    <div class="ops-lbl">Documents Pending</div>
+                    <div class="ops-val">84</div>
+                    <div class="ops-chg warn">13% pending</div>
+                  </div>
                 </div>
-                <div class="ac-priority low">Low · 3 hrs <i class="bi bi-chevron-right"></i></div>
-              </div>
-              <div class="action-item low">
-                <div class="ac-icon"><i class="bi bi-arrow-return-left"></i></div>
-                <div class="ac-info">
-                  <div class="ac-title">3 refund requests</div>
-                  <div class="ac-sub">Customer support</div>
-                </div>
-                <div class="ac-priority low">Low · 3 hrs <i class="bi bi-chevron-right"></i></div>
               </div>
             </div>
           </div>
@@ -1267,82 +1316,9 @@
           </div>
         </section>
 
-        <!-- Umrah/Hajj + Staff -->
-        <section class="grid-main reveal">
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">JOURNEY READINESS</div>
-                <h3>Umrah & Hajj operations</h3>
-                <div class="sub">Respectful oversight for every pilgrim journey.</div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="ops-block umrah">
-                <div class="ops-head">
-                  <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-moon-stars"></i>
-                    <h4>Umrah Operations</h4>
-                  </div>
-                  <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
-                </div>
-                <div class="ops-grid">
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Total pilgrims</div>
-                    <div class="ops-val">1,248</div>
-                    <div class="ops-chg up">↗ 12.4%</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Upcoming Departures</div>
-                    <div class="ops-val">18</div>
-                    <div class="ops-chg">Next 30 days</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Confirmed</div>
-                    <div class="ops-val">984</div>
-                    <div class="ops-chg up">78.8%</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Pending Documents</div>
-                    <div class="ops-val">126</div>
-                    <div class="ops-chg warn">Action needed</div>
-                  </div>
-                </div>
-              </div>
-              <div class="ops-block hajj">
-                <div class="ops-head">
-                  <div class="d-flex align-items-center gap-2">
-                    <i class="bi bi-star-fill"></i>
-                    <h4>Hajj Operations</h4>
-                  </div>
-                  <a href="#" class="view-all">View all <i class="bi bi-chevron-right"></i></a>
-                </div>
-                <div class="ops-grid">
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Registered</div>
-                    <div class="ops-val">648</div>
-                    <div class="ops-chg up">↗ 8.2%</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Pre-Registered</div>
-                    <div class="ops-val">284</div>
-                    <div class="ops-chg">For 2027</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Confirmed</div>
-                    <div class="ops-val">482</div>
-                    <div class="ops-chg up">74.4%</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Documents Pending</div>
-                    <div class="ops-val">84</div>
-                    <div class="ops-chg warn">13% pending</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
+        <!-- Staff + Recent Activity + System Health -->
+        <section class="grid-main-3 reveal">
+          <!-- Staff -->
           <div class="card">
             <div class="card-head">
               <div>
@@ -1462,47 +1438,6 @@
               </div>
             </div>
           </div>
-        </section>
-
-        <!-- Work Queue + Recent Activity + System Health -->
-        <section class="grid-main-3 reveal">
-          <!-- Work Queue -->
-          <div class="card work-queue">
-            <div class="wq-content">
-              <div class="wq-header">
-                <div class="section-label" style="color: rgba(255,255,255,0.7);">WORK QUEUE</div>
-                <h3 style="color: #fff; margin: 6px 0 4px;">Review what needs your attention.</h3>
-                <p class="sub" style="color: rgba(255,255,255,0.8); margin: 0 0 18px;">Clear the highest-priority
-                  items before the next departure window.</p>
-              </div>
-              <div class="wq-items">
-                <div class="wq-item">
-                  <div class="wq-count">12</div>
-                  <div class="wq-info">
-                    <div class="wq-title">Visa applications</div>
-                    <div class="wq-sub">needs review</div>
-                  </div>
-                  <i class="bi bi-chevron-right wq-arrow"></i>
-                </div>
-                <div class="wq-item">
-                  <div class="wq-count">8</div>
-                  <div class="wq-info">
-                    <div class="wq-title">Payments</div>
-                    <div class="wq-sub">pending verification</div>
-                  </div>
-                  <i class="bi bi-chevron-right wq-arrow"></i>
-                </div>
-                <div class="wq-item">
-                  <div class="wq-count">4</div>
-                  <div class="wq-info">
-                    <div class="wq-title">Support tickets</div>
-                    <div class="wq-sub">awaiting response</div>
-                  </div>
-                  <i class="bi bi-chevron-right wq-arrow"></i>
-                </div>
-              </div>
-            </div>
-          </div>
 
           <!-- Recent Activity -->
           <div class="card">
@@ -1568,78 +1503,7 @@
             </div>
           </div>
 
-          <!-- System Health -->
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">SYSTEM HEALTH</div>
-                <h3>Service status monitoring</h3>
-                <div class="sub">Live status for core platform services.</div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="system-health-grid">
-                <div class="health-item">
-                  <div class="health-info">
-                    <i class="bi bi-globe2"></i>
-                    <span class="health-name">Website</span>
-                  </div>
-                  <span class="health-status operational">Operational</span>
-                </div>
-                <div class="health-item">
-                  <div class="health-info">
-                    <i class="bi bi-credit-card"></i>
-                    <span class="health-name">Payment Gateway</span>
-                  </div>
-                  <span class="health-status operational">Operational</span>
-                </div>
-                <div class="health-item">
-                  <div class="health-info">
-                    <i class="bi bi-calendar-check"></i>
-                    <span class="health-name">Booking System</span>
-                  </div>
-                  <span class="health-status operational">Operational</span>
-                </div>
-                <div class="health-item">
-                  <div class="health-info">
-                    <i class="bi bi-envelope"></i>
-                    <span class="health-name">Email Service</span>
-                  </div>
-                  <span class="health-status degraded">Degraded</span>
-                </div>
-                <div class="health-item">
-                  <div class="health-info">
-                    <i class="bi bi-phone"></i>
-                    <span class="health-name">SMS Service</span>
-                  </div>
-                  <span class="health-status operational">Operational</span>
-                </div>
-                <div class="health-item">
-                  <div class="health-info">
-                    <i class="bi bi-database"></i>
-                    <span class="health-name">Database</span>
-                  </div>
-                  <span class="health-status operational">Operational</span>
-                </div>
-              </div>
-              <div class="health-footer">
-                <div class="health-status-badge all-operational">
-                  <i class="bi bi-check-circle-fill"></i>
-                  All Systems Operational
-                </div>
-                <div class="health-server">
-                  <i class="bi bi-server"></i>
-                  Server: BD-DH-01
-                  <span class="online-dot"></span>
-                  Online
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Quick Actions - Full Width -->
-        <section class="grid-full reveal">
+          <!-- Quick Actions -->
           <div class="card">
             <div class="card-head">
               <div>
