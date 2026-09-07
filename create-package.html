@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sales Invoice - ST TYRE ERP</title>
+    <link rel="icon" href="images/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/invoice-list.css" />
+    <link rel="stylesheet" href="css/invoice-preview.css" />
+    <link rel="stylesheet" href="css/create-invoice.css" />
+</head>
+
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="brand-logo">
+                <img src="images/logo.png" alt="ST TYRE" class="brand-logo-full" onerror="this.style.display='none'">
+                <img src="images/favicon.png" alt="ST TYRE" class="brand-logo-mini" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <!-- ==========================================
+     ADMIN ROLE — PREMIUM ERP SIDEBAR
+        =========================================== -->
+
+        <nav class="sidebar-nav" id="sidebarNav">
+
+            <!-- OVERVIEW -->
+            <div class="nav-section">
+                <a class="nav-section-header active" href="index.html" data-tip="Dashboard">
+                    <span class="nav-icon">
+                        <i class="bi bi-grid-1x2-fill"></i>
+                    </span>
+                    <span class="nav-section-title">Dashboard</span>
+                </a>
+            </div>
+
+
+            <!-- SALES -->
+            <div class="nav-group-label">Sales</div>
+
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="Sales">
+                    <span class="nav-icon">
+                        <i class="bi bi-graph-up-arrow"></i>
+                    </span>
+                    <span class="nav-section-title">Sales</span>
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="invoice-list.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-receipt"></i>
+                        </span>
+                        <span class="nav-label">Sales Invoice</span>
+                    </a>
+
+                    <a class="nav-item-link" href="sales-return.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-arrow-return-left"></i>
+                        </span>
+                        <span class="nav-label">Sales Return</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- PROCUREMENT -->
+            <div class="nav-group-label">Procurement</div>
+
+            <!-- Purchase -->
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="Purchase">
+                    <span class="nav-icon">
+                        <i class="bi bi-cart3"></i>
+                    </span>
+                    <span class="nav-section-title">Purchase</span>
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="purchase-invoice.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-receipt-cutoff"></i>
+                        </span>
+                        <span class="nav-label">Purchase Invoice</span>
+                    </a>
+
+                    <a class="nav-item-link" href="purchase-return.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-arrow-return-left"></i>
+                        </span>
+                        <span class="nav-label">Purchase Return</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- Requisition -->
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="Requisition">
+                    <span class="nav-icon">
+                        <i class="bi bi-file-earmark-plus"></i>
+                    </span>
+                    <span class="nav-section-title">Requisition</span>
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="requisition.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-list-check"></i>
+                        </span>
+                        <span class="nav-label">All Requisitions</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- Import & LC -->
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="Import & LC">
+                    <span class="nav-icon">
+                        <i class="bi bi-globe2"></i>
+                    </span>
+                    <span class="nav-section-title">Import &amp; LC</span>
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="lc-opening.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-bank"></i>
+                        </span>
+                        <span class="nav-label">LC Opening</span>
+                    </a>
+
+                    <a class="nav-item-link" href="shipment-tracking.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-truck"></i>
+                        </span>
+                        <span class="nav-label">Shipment Tracking</span>
+                    </a>
+
+                    <a class="nav-item-link" href="container-management.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-boxes"></i>
+                        </span>
+                        <span class="nav-label">Container Management</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- INVENTORY -->
+            <div class="nav-group-label">Inventory</div>
+
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="Inventory">
+                    <span class="nav-icon">
+                        <i class="bi bi-boxes"></i>
+                    </span>
+                    <span class="nav-section-title">Inventory</span>
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="products.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-box-seam"></i>
+                        </span>
+                        <span class="nav-label">Products</span>
+                    </a>
+
+                    <a class="nav-item-link" href="stock-management.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-bar-chart-line"></i>
+                        </span>
+                        <span class="nav-label">Stock Management</span>
+                    </a>
+
+                    <a class="nav-item-link" href="stock-transfer.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-arrow-left-right"></i>
+                        </span>
+                        <span class="nav-label">Stock Transfer</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- FINANCE -->
+            <div class="nav-group-label">Finance</div>
+
+            <!-- Expenses -->
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="Expenses">
+                    <span class="nav-icon">
+                        <i class="bi bi-wallet2"></i>
+                    </span>
+                    <span class="nav-section-title">Expenses</span>
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="expense.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-receipt"></i>
+                        </span>
+                        <span class="nav-label">Expenses</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- Accounts -->
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="Accounts">
+                    <span class="nav-icon">
+                        <i class="bi bi-calculator"></i>
+                    </span>
+                    <span class="nav-section-title">Accounts</span>
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="chart-of-accounts.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-diagram-3"></i>
+                        </span>
+                        <span class="nav-label">Chart of Accounts</span>
+                    </a>
+
+                    <a class="nav-item-link" href="journal-entry.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-journal-text"></i>
+                        </span>
+                        <span class="nav-label">Journal Entry</span>
+                    </a>
+
+                    <a class="nav-item-link" href="cash-book.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-wallet2"></i>
+                        </span>
+                        <span class="nav-label">Cash Book</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- TAX & COMPLIANCE -->
+            <div class="nav-group-label">Tax &amp; Compliance</div>
+
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="VAT & Mushak">
+                    <span class="nav-icon">
+                        <i class="bi bi-receipt-cutoff"></i>
+                    </span>
+                    <span class="nav-section-title">VAT &amp; Mushak</span>
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="vat-setup.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-percent"></i>
+                        </span>
+                        <span class="nav-label">VAT Setup</span>
+                    </a>
+
+                    <a class="nav-item-link" href="vat-return.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-file-earmark-text"></i>
+                        </span>
+                        <span class="nav-label">VAT Return</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- WORKFLOW -->
+            <div class="nav-group-label">Workflow</div>
+
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="Approvals">
+                    <span class="nav-icon">
+                        <i class="bi bi-check2-square"></i>
+                    </span>
+
+                    <span class="nav-section-title">Approvals</span>
+
+                    <span class="badge-notification">12</span>
+
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="purchase-approval.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-cart-check"></i>
+                        </span>
+                        <span class="nav-label">Purchase Approval</span>
+                    </a>
+
+                    <a class="nav-item-link" href="sales-approval.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-check-circle"></i>
+                        </span>
+                        <span class="nav-label">Sales Approval</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- ANALYTICS -->
+            <div class="nav-group-label">Analytics</div>
+
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="Reports">
+                    <span class="nav-icon">
+                        <i class="bi bi-bar-chart-line"></i>
+                    </span>
+
+                    <span class="nav-section-title">Reports</span>
+
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="sales-report.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-graph-up"></i>
+                        </span>
+                        <span class="nav-label">Sales Report</span>
+                    </a>
+
+                    <a class="nav-item-link" href="purchase-report.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-graph-down"></i>
+                        </span>
+                        <span class="nav-label">Purchase Report</span>
+                    </a>
+
+                    <a class="nav-item-link" href="inventory-report.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-box"></i>
+                        </span>
+                        <span class="nav-label">Inventory Report</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- ADMINISTRATION -->
+            <div class="nav-group-label">Administration</div>
+
+            <!-- Master Data -->
+            <div class="nav-section">
+                <a class="nav-section-header" href="master-setup.html" data-tip="Master Setup">
+                    <span class="nav-icon"><i class="bi bi-building"></i></span>
+                    <span class="nav-section-title">Master Setup</span>
+                </a>
+            </div>
+
+            <!-- User Management -->
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="User Management">
+                    <span class="nav-icon">
+                        <i class="bi bi-people-fill"></i>
+                    </span>
+
+                    <span class="nav-section-title">User Management</span>
+
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="users.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-people"></i>
+                        </span>
+                        <span class="nav-label">Users</span>
+                    </a>
+
+                    <a class="nav-item-link" href="roles-permissions.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </span>
+                        <span class="nav-label">Roles &amp; Permissions</span>
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- System Settings -->
+            <div class="nav-section">
+                <div class="nav-section-header" data-tip="System Settings">
+                    <span class="nav-icon">
+                        <i class="bi bi-gear"></i>
+                    </span>
+
+                    <span class="nav-section-title">System Settings</span>
+
+                    <i class="bi bi-chevron-down nav-chevron"></i>
+                </div>
+
+                <div class="nav-items-container" style="display:none;">
+
+                    <a class="nav-item-link" href="general-settings.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-sliders"></i>
+                        </span>
+                        <span class="nav-label">General Settings</span>
+                    </a>
+
+                    <a class="nav-item-link" href="backup-restore.html">
+                        <span class="nav-icon">
+                            <i class="bi bi-hdd"></i>
+                        </span>
+                        <span class="nav-label">Backup &amp; Restore</span>
+                    </a>
+
+                </div>
+            </div>
+
+
+            <!-- Audit Logs -->
+            <div class="nav-section">
+                <a class="nav-section-header" href="audit-logs.html" data-tip="Audit Logs">
+
+                    <span class="nav-icon">
+                        <i class="bi bi-clock-history"></i>
+                    </span>
+
+                    <span class="nav-section-title">Audit Logs</span>
+                </a>
+            </div>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-user" data-tip="MD. Shaokat Hossain" data-tip-role="Managing Director">
+                <img src="images/profile.jpg" alt="User"
+                    onerror="this.src='https://ui-avatars.com/api/?name=MD+Shaokat&background=2563eb&color=fff'">
+                <div class="sidebar-user-info">
+                    <div class="sidebar-user-name">MD. Shaokat Hossain</div>
+                    <div class="sidebar-user-role">Managing Director</div>
+                    <div class="online-status"><i class="bi bi-circle-fill"></i> Online</div>
+                </div>
+            </div>
+            <div class="sidebar-copyright">© 2026 ST TYRE ERP. All rights reserved.</div>
+        </div>
+    </aside>
+
+    <div class="mobile-overlay" id="mobileOverlay"></div>
+
+    <div class="main-wrapper">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="icon-btn topbar-sidebar-toggle" id="topbarSidebarToggle" aria-label="Toggle sidebar">
+                    <i class="bi bi-layout-sidebar-inset"></i>
+                </button>
+                <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+                    <i class="bi bi-list"></i>
+                </button>
+                <div class="breadcrumb">
+                    <span>Home</span>
+                    <span class="separator">/</span>
+                    <span>Sales</span>
+                    <span class="separator">/</span>
+                    <span class="current">Sales Invoice</span>
+                </div>
+            </div>
+
+            <div class="topbar-brand-mobile">
+                <img src="images/logo.png" alt="ST TYRE" onerror="this.style.display='none'">
+            </div>
+
+            <div class="topbar-right">
+                <button class="icon-btn" id="topbarSearchBtn" aria-label="Search">
+                    <i class="bi bi-search"></i>
+                </button>
+                <button class="icon-btn" id="fullscreenBtn" aria-label="Toggle Fullscreen">
+                    <i class="bi bi-arrows-fullscreen"></i>
+                </button>
+                <button class="icon-btn" aria-label="Notifications">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-badge">12</span>
+                </button>
+                <div class="user-profile dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="images/profile.jpg" alt="User"
+                        onerror="this.src='https://ui-avatars.com/api/?name=MD+Shaokat&background=2563eb&color=fff'">
+                    <div class="user-info">
+                        <div class="user-name">MD. Shaokat Hossain</div>
+                        <div class="user-role">Managing Director</div>
+                    </div>
+                    <i class="bi bi-chevron-down"></i>
+                </div>
+                <ul class="dropdown-menu dropdown-menu-end shadow-sm">
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                    <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item text-danger logout-btn" href="#"><i
+                                class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                </ul>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="page-header-left">
+                    <a href="invoice-list.html" class="page-back-btn" title="Back to Invoices">
+                        <i class="bi bi-arrow-left"></i>
+                    </a>
+                    <div>
+                        <h1 class="page-title">Create Sales Invoice</h1>
+                        <p class="page-subtitle">Fill in the details to generate a new customer invoice</p>
+                    </div>
+                </div>
+                <div class="page-header-actions">
+                    <a href="invoice-list.html" class="btn btn-light">Cancel</a>
+                    <button type="button" class="btn btn-outline-primary" id="btnSaveDraft">
+                        <i class="bi bi-file-earmark-text"></i> Save as Draft
+                    </button>
+                    <button type="button" class="btn btn-primary" id="btnSaveInvoice">
+                        <span class="btn-text"><i class="bi bi-check2-circle"></i> Create Invoice</span>
+                        <span class="btn-loader" style="display:none;"><span
+                                class="spinner-border spinner-border-sm"></span> Creating...</span>
+                    </button>
+                </div>
+            </div>
+
+            <form id="invoiceForm" class="page-form" novalidate>
+                <div class="page-layout">
+                    <!-- Left Column: Main Form -->
+                    <div class="page-main-col">
+
+                        <!-- 1. Invoice Information -->
+                        <div class="page-card">
+                            <div class="page-card-header">
+                                <h3 class="page-card-title"><i class="bi bi-file-earmark-text"></i> Invoice Information
+                                </h3>
+                            </div>
+                            <div class="page-card-body">
+                                <div class="page-grid-3">
+                                    <div class="page-form-group">
+                                        <label class="page-label">Invoice Number</label>
+                                        <input type="text" class="page-input" id="invNo" readonly>
+                                    </div>
+                                    <div class="page-form-group">
+                                        <label class="page-label" for="invDate">Invoice Date <span
+                                                class="req">*</span></label>
+                                        <input type="date" class="page-input" id="invDate" required>
+                                    </div>
+                                    <div class="page-form-group">
+                                        <label class="page-label">Due Date</label>
+                                        <input type="date" class="page-input" id="invDueDate">
+                                    </div>
+                                    <div class="page-form-group">
+                                        <label class="page-label" for="invBranch">Branch <span
+                                                class="req">*</span></label>
+                                        <select class="page-select" id="invBranch" required>
+                                            <option value="Dhaka Branch">Dhaka Branch</option>
+                                            <option value="Chattogram Branch">Chattogram Branch</option>
+                                            <option value="Sylhet Branch">Sylhet Branch</option>
+                                        </select>
+                                    </div>
+                                    <div class="page-form-group">
+                                        <label class="page-label">Warehouse <span class="req">*</span></label>
+                                        <select class="page-select" id="invWarehouse" required>
+                                            <option value="Main Warehouse">Main Warehouse</option>
+                                            <option value="Secondary Warehouse">Secondary Warehouse</option>
+                                        </select>
+                                    </div>
+                                    <div class="page-form-group">
+                                        <label class="page-label">Sales Type <span class="req">*</span></label>
+                                        <select class="page-select" id="invSalesType" required>
+                                            <option value="Retail">Retail</option>
+                                            <option value="Wholesale">Wholesale</option>
+                                            <option value="Corporate">Corporate</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 2. Customer Information -->
+                        <div class="page-card">
+                            <div class="page-card-header">
+                                <h3 class="page-card-title"><i class="bi bi-person-badge"></i> Customer Information</h3>
+                                <button type="button" class="btn btn-sm btn-outline-primary" id="btnAddNewCustomer">
+                                    <i class="bi bi-plus-lg"></i> Add New Customer
+                                </button>
+                            </div>
+                            <div class="page-card-body">
+                                <div class="page-form-group page-search-group">
+                                    <label class="page-label">Search Customer <span class="req">*</span></label>
+                                    <div class="page-search-wrapper">
+                                        <i class="bi bi-search page-search-icon"></i>
+                                        <input type="text" class="page-input page-search-input" id="custSearch"
+                                            placeholder="Search by name, phone, or ID..." autocomplete="off" required>
+                                        <div class="page-search-dropdown" id="custDropdown"></div>
+                                    </div>
+                                </div>
+
+                                <div id="custDetails" class="page-cust-details" style="display:none;">
+                                    <div class="page-cust-grid">
+                                        <div class="page-cust-info">
+                                            <div class="page-cust-row page-cust-row-name">
+                                                <h4 id="custName">Customer Name</h4>
+                                                <span class="page-cust-type-inline"><strong>Type:</strong> <span
+                                                        id="custType">-</span></span>
+                                            </div>
+                                            <div class="page-cust-row page-cust-row-meta">
+                                                <p class="page-cust-meta"><strong>ID:</strong> <span
+                                                        id="custId">-</span>
+                                                </p>
+                                                <p class="page-cust-meta"><strong>Phone:</strong> <span
+                                                        id="custPhone">-</span></p>
+                                            </div>
+                                        </div>
+                                        <div class="page-cust-info">
+                                            <h5>Billing Address</h5>
+                                            <p id="custAddress" class="page-text-muted">-</p>
+                                        </div>
+                                        <div class="page-cust-info">
+                                            <h5>Shipping Address</h5>
+                                            <p id="custShipAddress" class="page-text-muted">-</p>
+                                        </div>
+                                        <div class="page-cust-financials">
+                                            <div class="page-fin-item">
+                                                <span class="page-fin-label">Previous Due</span>
+                                                <span class="page-fin-value text-danger" id="custPrevDue">৳0.00</span>
+                                            </div>
+                                            <div class="page-fin-item">
+                                                <span class="page-fin-label">Credit Limit</span>
+                                                <span class="page-fin-value" id="custCreditLimit">৳0.00</span>
+                                            </div>
+                                            <div class="page-fin-item">
+                                                <span class="page-fin-label">Available Credit</span>
+                                                <span class="page-fin-value text-success"
+                                                    id="custAvailCredit">৳0.00</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="custCreditWarning" class="page-alert page-alert-warning"
+                                        style="display:none;">
+                                        <i class="bi bi-exclamation-triangle-fill"></i> Credit limit exceeded! Please
+                                        collect partial payment.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 3. Product Selection & Items -->
+                        <div class="page-card">
+                            <div class="page-card-header">
+                                <h3 class="page-card-title"><i class="bi bi-box-seam"></i> Invoice Items</h3>
+                            </div>
+                            <div class="page-card-body">
+                                <div class="page-form-group page-search-group">
+                                    <div class="page-search-wrapper">
+                                        <i class="bi bi-search page-search-icon"></i>
+                                        <input type="text" class="page-input page-search-input" id="prodSearch"
+                                            placeholder="Search product by name, SKU, or barcode..." autocomplete="off">
+                                        <div class="page-search-dropdown page-prod-dropdown" id="prodDropdown"></div>
+                                    </div>
+                                </div>
+
+                                <div class="page-table-wrapper">
+                                    <table class="page-table" id="itemsTable" style="display:none;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 25%">Product</th>
+                                                <th>Stock</th>
+                                                <th>Qty</th>
+                                                <th>Unit</th>
+                                                <th>Price</th>
+                                                <th>Discount</th>
+                                                <th>VAT</th>
+                                                <th class="text-end">Total</th>
+                                                <th style="width: 60px"></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="itemsBody"></tbody>
+                                    </table>
+                                    <div id="itemsEmptyState" class="page-empty-state">
+                                        <i class="bi bi-box-seam"></i>
+                                        <p>No products added yet</p>
+                                        <span>Search for a product above to start adding invoice items.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 4. Payment & Notes -->
+                        <div class="page-card">
+                            <div class="page-card-header">
+                                <h3 class="page-card-title"><i class="bi bi-cash-coin"></i> Payment & Notes</h3>
+                            </div>
+                            <div class="page-card-body">
+                                <div class="page-grid-2">
+                                    <div class="page-form-group">
+                                        <label class="page-label">Payment Method</label>
+                                        <select class="page-select" id="invPayMethod">
+                                            <option value="Cash">Cash</option>
+                                            <option value="Bank">Bank Transfer</option>
+                                            <option value="Card">Card</option>
+                                            <option value="bKash">bKash</option>
+                                            <option value="Nagad">Nagad</option>
+                                            <option value="Cheque">Cheque</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
+                                    <div class="page-form-group">
+                                        <label class="page-label">Paid Amount</label>
+                                        <input type="number" class="page-input" id="invPaid" value="0" step="0.01"
+                                            min="0">
+                                    </div>
+                                    <div class="page-form-group">
+                                        <label class="page-label">Payment Reference</label>
+                                        <input type="text" class="page-input" id="invPayRef"
+                                            placeholder="Trx ID / Cheque No.">
+                                    </div>
+                                    <div class="page-form-group">
+                                        <label class="page-label">Payment Date</label>
+                                        <input type="date" class="page-input" id="invPayDate">
+                                    </div>
+                                </div>
+                                <div class="page-form-group mt-3">
+                                    <label class="page-label">Customer Note</label>
+                                    <textarea class="page-input" id="invNotes" rows="3"
+                                        placeholder="Enter customer note..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Summary (Sticky) -->
+                    <div class="page-side-col">
+                        <div class="page-summary-card">
+                            <h3 class="page-summary-title">Invoice Summary</h3>
+                            <div class="page-summary-stats">
+                                <div class="page-stat">
+                                    <span>Items</span>
+                                    <strong id="sumItems">0</strong>
+                                </div>
+                                <div class="page-stat">
+                                    <span>Quantity</span>
+                                    <strong id="sumQty">0</strong>
+                                </div>
+                            </div>
+                            <div class="page-summary-divider"></div>
+                            <div class="page-summary-rows">
+                                <div class="page-sum-row">
+                                    <span>Subtotal</span>
+                                    <span id="sumSubtotal">৳0.00</span>
+                                </div>
+                                <div class="page-sum-row">
+                                    <span>Item Discount</span>
+                                    <span class="text-danger" id="sumLineDiscount">-৳0.00</span>
+                                </div>
+                                <div class="page-sum-row page-sum-editable page-sum-disc-row">
+                                    <span>Extra Discount</span>
+                                    <div class="page-disc-input-group">
+                                        <select class="page-disc-type" id="invDiscType">
+                                            <option value="amount">৳</option>
+                                            <option value="percent">%</option>
+                                        </select>
+                                        <input type="number" class="page-sum-input" id="invDiscValue" value="0" min="0"
+                                            step="0.01">
+                                    </div>
+                                </div>
+                                <div class="page-sum-row">
+                                    <span>VAT</span>
+                                    <span id="sumVat">৳0.00</span>
+                                </div>
+                                <div class="page-sum-row page-sum-editable">
+                                    <span>Shipping</span>
+                                    <input type="number" class="page-sum-input" id="invShipping" value="0" min="0"
+                                        step="0.01">
+                                </div>
+                            </div>
+                            <div class="page-summary-divider"></div>
+                            <div class="page-sum-row page-sum-grand">
+                                <span>Grand Total</span>
+                                <span id="sumGrandTotal">৳0.00</span>
+                            </div>
+                            <div class="page-summary-rows mt-2">
+                                <div class="page-sum-row">
+                                    <span>Paid</span>
+                                    <span class="text-success" id="sumPaid">৳0.00</span>
+                                </div>
+                                <div class="page-sum-row page-sum-due">
+                                    <span>Due</span>
+                                    <span id="sumDue">৳0.00</span>
+                                </div>
+                            </div>
+
+                            <div id="custOutstanding" class="page-summary-outstanding" style="display:none;">
+                                <div class="page-summary-divider"></div>
+                                <div class="page-sum-row">
+                                    <span>Previous Due</span>
+                                    <span id="sumPrevDue">৳0.00</span>
+                                </div>
+                                <div class="page-sum-row page-sum-outstanding">
+                                    <span>Total Outstanding</span>
+                                    <span id="sumTotalOutstanding">৳0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+            <!-- Delete Item Confirmation Modal -->
+            <div class="modal fade" id="deleteItemModal" tabindex="-1">
+                <div class="modal-dialog modal-sm modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body text-center p-4">
+                            <div class="mb-3 text-danger"><i class="bi bi-exclamation-triangle-fill"
+                                    style="font-size: 48px;"></i></div>
+                            <h5 class="mb-2">Remove this product?</h5>
+                            <p class="text-muted small mb-4">Are you sure you want to remove this item from the invoice?
+                            </p>
+                            <div class="d-flex gap-2 justify-content-center">
+                                <button class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                                <button class="btn btn-danger" id="confirmDeleteItemBtn">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <footer class="footer">
+                <div>© 2026 ST TYRE ERP. All rights reserved.</div>
+                <div>Version 1.0.0 · Developed by <a href="https://www.stitbd.com" target="_blank">STIT BD</a></div>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- Toast Container (Ensure this exists in your layout) -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- ==========================================
+         ADD NEW CUSTOMER MODAL
+            ========================================== -->
+    <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content page-modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCustomerModalLabel">
+                        <i class="bi bi-person-plus-fill me-2"></i>Add New Customer
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="addCustomerForm">
+                        <div class="page-grid-2">
+                            <div class="page-form-group">
+                                <label class="page-label">Customer ID</label>
+                                <input type="text" class="page-input" id="newCustId" readonly>
+                            </div>
+                            <div class="page-form-group">
+                                <label class="page-label">Customer Type</label>
+                                <select class="page-select" id="newCustType" required>
+                                    <option value="Retail">Retail</option>
+                                    <option value="Wholesale">Wholesale</option>
+                                    <option value="Corporate">Corporate</option>
+                                </select>
+                            </div>
+                            <div class="page-form-group">
+                                <label class="page-label">Customer Name <span class="req">*</span></label>
+                                <input type="text" class="page-input" id="newCustName" required
+                                    placeholder="Enter customer name">
+                            </div>
+                            <div class="page-form-group">
+                                <label class="page-label">Phone <span class="req">*</span></label>
+                                <input type="text" class="page-input" id="newCustPhone" required
+                                    placeholder="017XXXXXXXX">
+                            </div>
+                            <div class="page-form-group">
+                                <label class="page-label">Billing Address</label>
+                                <input type="text" class="page-input" id="newCustAddress"
+                                    placeholder="Enter billing address">
+                            </div>
+                            <div class="page-form-group">
+                                <label class="page-label">Shipping Address</label>
+                                <input type="text" class="page-input" id="newCustShipAddress"
+                                    placeholder="Enter shipping address">
+                            </div>
+                            <div class="page-form-group">
+                                <label class="page-label">Credit Limit (৳)</label>
+                                <input type="number" class="page-input" id="newCustCreditLimit" value="0" min="0"
+                                    step="0.01">
+                            </div>
+                            <div class="page-form-group">
+                                <label class="page-label">Previous Due (৳)</label>
+                                <input type="number" class="page-input" id="newCustPrevDue" value="0" min="0"
+                                    step="0.01">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="btnSaveNewCustomer">
+                        <i class="bi bi-check2-circle"></i> Save Customer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="bottom-nav d-lg-none" id="bottomNav">
+        <a href="#" class="bottom-nav-item active">
+            <i class="bi bi-house-door-fill"></i>
+            <span>Home</span>
+        </a>
+        <a href="purchase-add.html" class="bottom-nav-item">
+            <i class="bi bi-cart3"></i>
+            <span>Purchase</span>
+        </a>
+        <a href="invoice-add.html" class="bottom-nav-fab" aria-label="New Sales Invoice">
+            <i class="bi bi-plus-lg"></i>
+        </a>
+        <a href="stock-management.html" class="bottom-nav-item">
+            <i class="bi bi-box-seam"></i>
+            <span>Inventory</span>
+        </a>
+        <div class="dropup">
+            <a href="#" class="bottom-nav-item dropdown-toggle no-caret" id="bottomNavProfileBtn"
+                data-bs-toggle="dropdown" aria-expanded="false">
+                <img class="bottom-nav-avatar" src="images/profile.jpg" alt="Profile"
+                    onerror="this.src='https://ui-avatars.com/api/?name=MD+Shaokat&background=2563eb&color=fff'">
+                <span>Profile</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="bottomNavProfileBtn">
+                <li><a class="dropdown-item" href="#"><i class="bi bi-person me-2"></i>Profile</a></li>
+                <li><a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a></li>
+                <li>
+                    <hr class="dropdown-divider">
+                </li>
+                <li><a class="dropdown-item text-danger logout-btn" href="#"><i
+                            class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Logout Confirmation Modal -->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content logout-modal-content">
+                <div class="modal-body text-center pt-4">
+                    <div class="logout-modal-icon">
+                        <i class="bi bi-box-arrow-right"></i>
+                    </div>
+                    <h5 class="mt-3 mb-2">Log out of your account?</h5>
+                    <p class="text-muted mb-0">You'll need to sign in again to access the dashboard.</p>
+                </div>
+                <div class="modal-footer border-0 justify-content-center pb-4">
+                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger px-4" id="confirmLogoutBtn">
+                        <i class="bi bi-box-arrow-right me-1"></i> Logout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/invoice-data.js"></script>
+    <script src="js/create-invoice.js"></script>
+</body>
+
+</html>
