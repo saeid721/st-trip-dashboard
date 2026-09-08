@@ -1338,13 +1338,29 @@ button {
 }
 
 /* Responsive */
-@media (max-width: 1024px) {
+@media (max-width: 1366px) {
   .grid-main-3 {
     grid-template-columns: 1fr 1fr;
   }
 
   .grid-main-3 .card:last-child {
     grid-column: span 2;
+  }
+
+  .metrics-row .card:first-child {
+    grid-column: span 2;
+  }
+
+  .metrics-row .card:last-child {
+    grid-column: span 1;
+  }
+
+  .grid-main-3.staff-row .card:first-child {
+    grid-column: span 2;
+  }
+
+  .grid-main-3.staff-row .card:last-child {
+    grid-column: span 1;
   }
 }
 
@@ -1354,6 +1370,14 @@ button {
   }
 
   .grid-main-3 .card:last-child {
+    grid-column: span 1;
+  }
+
+  .grid-main-3.staff-row .card:first-child {
+    grid-column: span 1;
+  }
+
+  .grid-main-3.metrics-row .card:first-child {
     grid-column: span 1;
   }
 }
@@ -1868,7 +1892,7 @@ button {
 /* Revenue Summary */
 .rev-summary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px 20px;
   margin-bottom: 14px;
 }
@@ -1884,7 +1908,7 @@ button {
 
 .rev-val {
   font-family: 'Plus Jakarta Sans';
-  font-size: clamp(14px, 1vw + 11px, 18px);
+  font-size: clamp(14px, 1vw + 11px, 16px);
   font-weight: 800;
   letter-spacing: -0.3px;
   color: var(--text-primary);
@@ -1908,7 +1932,7 @@ button {
   font-weight: 700;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 640px) {
   .rev-summary {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -2888,7 +2912,7 @@ table.st-table tbody tr:last-child td {
 
 .ops-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 8px;
 }
 
@@ -3940,11 +3964,15 @@ table.st-table tbody tr:last-child td {
   }
 
   .grid-main {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
   }
 
   .grid-3 {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 .card:first-child {
+    grid-column: span 2;
   }
 
   .topbar-search {
@@ -4044,6 +4072,10 @@ table.st-table tbody tr:last-child td {
   .grid-kpi {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
+  }
+
+  .grid-main {
+    grid-template-columns: 1fr;
   }
 
   .kpi {
@@ -4231,6 +4263,14 @@ table.st-table tbody tr:last-child td {
 
   .dest-grid {
     grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-3 .card:first-child {
+    grid-column: span 1;
   }
 
   .jump-tip {
