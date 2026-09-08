@@ -257,12 +257,12 @@ Shares component patterns with add-package.js
                 if (badge) badge.remove();
                 it.querySelector('.edit-pkg-gallery-actions button:first-child').classList.remove('active');
                 const starIcon = it.querySelector('.edit-pkg-gallery-actions button:first-child i');
-                if (starIcon) { starIcon.className = 'bi bi-star'; }
+                if (starIcon) { starIcon.className = 'fa-solid fa-star'; }
             });
             const item = btn.closest('.edit-pkg-gallery-item');
             item.classList.add('primary');
             btn.classList.add('active');
-            btn.querySelector('i').className = 'bi bi-star-fill';
+            btn.querySelector('i').className = 'fa-solid fa-star-fill';
             const b = document.createElement('span');
             b.className = 'edit-pkg-gallery-badge';
             b.textContent = 'Primary';

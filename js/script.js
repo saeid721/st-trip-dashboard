@@ -145,7 +145,7 @@
       $('#revBookingVal').textContent = s.booking;
       $('#revPackageVal').textContent = s.package;
       $('#revVisaVal').textContent = s.visa;
-      $('#revTotalSub').innerHTML = `<i class="bi bi-arrow-up-right"></i> ${s.totalTrend}`;
+      $('#revTotalSub').innerHTML = `<i class="fa-solid fa-arrow-up"></i> ${s.totalTrend}`;
       $('#revBookingSub').textContent = s.bookingPct;
       $('#revPackageSub').textContent = s.packagePct;
       $('#revVisaSub').textContent = s.visaPct;

@@ -111,7 +111,7 @@ ST TRIP ADMIN — PACKAGES MODULE
         <div class="pkg-cell">
           <div class="pkg-thumb ${p.type}">
             ${initial}
-            ${p.featured ? '<div class="pkg-thumb-featured"><i class="bi bi-star-fill"></i></div>' : ''}
+            ${p.featured ? '<div class="pkg-thumb-featured"><i class="fa-solid fa-star-fill"></i></div>' : ''}
           </div>
           <div class="pkg-cell-info">
             <div class="pkg-cell-name">${p.name}</div>
@@ -135,14 +135,14 @@ ST TRIP ADMIN — PACKAGES MODULE
       <td><div class="pkg-updated">${p.updated}<small>${p.updatedDate}</small></div></td>
       <td>
         <div class="pkg-actions">
-          <button class="pkg-action-btn" title="View"><i class="bi bi-eye"></i></button>
-          <button class="pkg-action-btn" title="Edit"><i class="bi bi-pencil"></i></button>
+          <button class="pkg-action-btn" title="View"><i class="fa-solid fa-eye"></i></button>
+          <button class="pkg-action-btn" title="Edit"><i class="fa-solid fa-pencil"></i></button>
           <button class="pkg-action-btn" title="Duplicate"><i class="bi bi-copy"></i></button>
           <div class="pkg-more-wrap">
-            <button class="pkg-action-btn pkg-more-trigger" title="More"><i class="bi bi-three-dots-vertical"></i></button>
+            <button class="pkg-action-btn pkg-more-trigger" title="More"><i class="fa-solid fa-ellipsis-vertical"></i></button>
             <div class="pkg-more-menu">
-              <a href="#"><i class="bi bi-eye"></i>View Details</a>
-              <a href="#"><i class="bi bi-pencil"></i>Edit Package</a>
+              <a href="#"><i class="fa-solid fa-eye"></i>View Details</a>
+              <a href="#"><i class="fa-solid fa-pencil"></i>Edit Package</a>
               <a href="#"><i class="bi bi-copy"></i>Duplicate</a>
               <div class="divider"></div>
               <button data-action="toggle-status"><i class="bi bi-${p.status === 'published' ? 'slash-circle' : 'check-circle'}"></i>${p.status === 'published' ? 'Unpublish' : 'Publish'}</button>
@@ -182,7 +182,7 @@ ST TRIP ADMIN — PACKAGES MODULE
         <input type="checkbox" class="pkg-check pkg-row-check pkg-mobile-card-check" />
         <div class="pkg-thumb ${p.type}">
           ${initial}
-          ${p.featured ? '<div class="pkg-thumb-featured"><i class="bi bi-star-fill"></i></div>' : ''}
+          ${p.featured ? '<div class="pkg-thumb-featured"><i class="fa-solid fa-star-fill"></i></div>' : ''}
         </div>
         <div class="pkg-mobile-card-info">
           <div class="pkg-mobile-card-name">${p.name}</div>
@@ -217,13 +217,13 @@ ST TRIP ADMIN — PACKAGES MODULE
       <div class="pkg-mobile-card-foot">
         <div class="pkg-mobile-card-price">${formatPrice(p.price)}<small>Starts from</small></div>
         <div class="pkg-mobile-card-actions">
-          <button class="pkg-action-btn" title="View"><i class="bi bi-eye"></i></button>
-          <button class="pkg-action-btn" title="Edit"><i class="bi bi-pencil"></i></button>
+          <button class="pkg-action-btn" title="View"><i class="fa-solid fa-eye"></i></button>
+          <button class="pkg-action-btn" title="Edit"><i class="fa-solid fa-pencil"></i></button>
           <div class="pkg-more-wrap">
-            <button class="pkg-action-btn pkg-more-trigger" title="More"><i class="bi bi-three-dots-vertical"></i></button>
+            <button class="pkg-action-btn pkg-more-trigger" title="More"><i class="fa-solid fa-ellipsis-vertical"></i></button>
             <div class="pkg-more-menu">
-              <a href="#"><i class="bi bi-eye"></i>View Details</a>
-              <a href="#"><i class="bi bi-pencil"></i>Edit</a>
+              <a href="#"><i class="fa-solid fa-eye"></i>View Details</a>
+              <a href="#"><i class="fa-solid fa-pencil"></i>Edit</a>
               <a href="#"><i class="bi bi-copy"></i>Duplicate</a>
               <div class="divider"></div>
               <button class="danger" data-action="delete"><i class="bi bi-trash"></i>Delete</button>
