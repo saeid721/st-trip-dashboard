@@ -155,15 +155,15 @@
   /* ---------- Toast system ---------- */
   function showToast(type, title, message) {
     const icons = {
-      success: 'bi-check-circle-fill',
-      info: 'bi-info-circle-fill',
-      warn: 'bi-exclamation-triangle-fill',
-      error: 'bi-x-circle-fill'
+      success: 'fa-solid fa-circle-check',
+      info: 'fa-solid fa-circle-info',
+      warn: 'fa-solid fa-triangle-exclamation',
+      error: 'fa-solid fa-circle-xmark'
     };
     const toast = document.createElement('div');
     toast.className = `toast-st ${type}`;
     toast.innerHTML = `
-      <div class="ic"><i class="bi ${icons[type]}"></i></div>
+      <button class="ic"><i class="bi bi-x"></i></button>
       <div style="flex: 1;">
         <div class="t">${title}</div>
         <div class="m">${message}</div>
