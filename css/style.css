@@ -1364,6 +1364,21 @@ button {
   }
 }
 
+@media (min-width: 769px) and (max-width: 1400px) {
+  .grid-main-3.staff-row {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .grid-main-3.staff-row .card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .grid-main-3.staff-row .card:nth-child(2),
+  .grid-main-3.staff-row .card:last-child {
+    grid-column: span 1;
+  }
+}
+
 @media (max-width: 768px) {
   .grid-main-3 {
     grid-template-columns: 1fr;
@@ -2365,6 +2380,19 @@ table.st-table tbody tr:last-child td {
   position: absolute;
   top: 6px;
   right: 6px;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 2px 7px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-primary);
+  z-index: 2;
+}
+
+.dest-name-tag {
+  position: absolute;
+  top: 6px;
+  left: 6px;
   background: rgba(255, 255, 255, 0.95);
   padding: 2px 7px;
   border-radius: 999px;
@@ -4022,6 +4050,20 @@ table.st-table tbody tr:last-child td {
 
   .visa-code {
     font-size: 9px;
+  }
+
+  .dep-item {
+    grid-template-columns: 32px 1fr auto;
+    row-gap: 4px;
+  }
+
+  .dep-service,
+  .dep-status {
+    display: none;
+  }
+
+  .dep-days {
+    min-width: 44px;
   }
 }
 
