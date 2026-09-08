@@ -132,6 +132,7 @@ button {
   display: grid;
   grid-template-columns: var(--sidebar-w) 1fr;
   min-height: 100vh;
+  min-height: 100dvh;
   transition: grid-template-columns var(--dur) var(--ease);
 }
 
@@ -146,6 +147,7 @@ button {
   position: sticky;
   top: 0;
   height: 100vh;
+  height: 100dvh;
   background: var(--bg-sidebar);
   border-right: 1px solid var(--border-soft);
   display: flex;
@@ -1325,6 +1327,10 @@ button {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.staff-row {
+  grid-template-columns: 1.3fr 1fr 0.9fr;
 }
 
 /* =========================================================
