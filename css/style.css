@@ -1443,7 +1443,6 @@ button {
   display: flex;
   align-items: center;
   gap: 6px;
-  margin-bottom: 8px;
 }
 
 .kpi-icon-wrap {
@@ -4128,10 +4127,6 @@ table.st-table tbody tr:last-child td {
 
   .kpi {
     padding: 10px 10px;
-  }
-
-  .kpi-header {
-    margin-bottom: 4px;
   }
 
   .kpi-icon-wrap {
