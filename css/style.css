@@ -1868,7 +1868,7 @@ button {
 /* Revenue Summary */
 .rev-summary {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px 20px;
   margin-bottom: 14px;
 }
@@ -2888,7 +2888,7 @@ table.st-table tbody tr:last-child td {
 
 .ops-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 8px;
 }
 
@@ -3582,7 +3582,7 @@ table.st-table tbody tr:last-child td {
 /* Responsive for Quick Actions & System Health */
 @media (max-width: 1024px) {
   .quick-actions-grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
   }
 }
 
@@ -3840,9 +3840,11 @@ table.st-table tbody tr:last-child td {
     grid-template-columns: repeat(6, 1fr);
     gap: clamp(6px, 0.6vw, 10px);
   }
+
   .kpi-number {
     font-size: clamp(13px, 0.8vw + 9px, 16px);
   }
+
   .card-head h3 {
     font-size: clamp(12.5px, 0.5vw + 11px, 14px);
   }
@@ -3859,7 +3861,7 @@ table.st-table tbody tr:last-child td {
 
 @media (max-width: 1024px) {
   .grid-kpi {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
 
@@ -4235,9 +4237,9 @@ table.st-table tbody tr:last-child td {
     display: none;
   }
 
-.chart-wrap-revenue {
-  height: 150px;
-}
+  .chart-wrap-revenue {
+    height: 150px;
+  }
 
   .card-body {
     padding: 12px;
@@ -4426,9 +4428,9 @@ table.st-table tbody tr:last-child td {
     gap: 8px 12px;
   }
 
-.chart-wrap-revenue {
-  height: 130px;
-}
+  .chart-wrap-revenue {
+    height: 130px;
+  }
 
   .wq-items {
     flex-direction: column;

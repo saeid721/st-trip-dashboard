@@ -1,0 +1,704 @@
+/* =========================================================
+EDIT PACKAGE — EXTENSIONS (reuses add-package.css)
+========================================================= */
+
+/* ---------- Header ---------- */
+.edit-pkg-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.edit-pkg-header-left {
+    flex: 1;
+    min-width: 0;
+}
+
+.edit-pkg-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 4px;
+}
+
+.edit-pkg-subtitle {
+    margin: 0 0 6px;
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.edit-pkg-meta-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.edit-pkg-meta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11.5px;
+    color: var(--text-muted);
+}
+
+.edit-pkg-meta i {
+    font-size: 12px;
+}
+
+.edit-pkg-meta span {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.edit-pkg-status-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    padding: 4px 10px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.edit-pkg-status-badge .pip {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: currentColor;
+}
+
+.edit-pkg-status-badge.published {
+    background: var(--st-green-50);
+    color: var(--st-green);
+}
+
+.edit-pkg-status-badge.draft {
+    background: var(--st-amber-50);
+    color: #B45309;
+}
+
+.edit-pkg-status-badge.archived {
+    background: var(--bg-surface-alt);
+    color: var(--text-muted);
+    border: 1px solid var(--border-soft);
+}
+
+.edit-pkg-status-badge.expired {
+    background: var(--st-red-50);
+    color: var(--st-red);
+}
+
+.edit-pkg-header-right {
+    display: flex;
+    gap: 8px;
+    flex-shrink: 0;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ---------- Autosave Indicator ---------- */
+.edit-pkg-autosave {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    background: var(--st-green-50);
+    color: var(--st-green);
+    border-radius: 999px;
+    font-size: 11.5px;
+    font-weight: 600;
+    transition: all var(--dur) var(--ease);
+    white-space: nowrap;
+}
+
+.edit-pkg-autosave.saving {
+    background: var(--st-amber-50);
+    color: var(--st-amber);
+}
+
+.edit-pkg-autosave.unsaved {
+    background: var(--st-amber-50);
+    color: #B45309;
+}
+
+.edit-pkg-autosave.error {
+    background: var(--st-red-50);
+    color: var(--st-red);
+}
+
+/* ---------- Status Dropdown ---------- */
+.edit-pkg-status-dropdown {
+    position: relative;
+}
+
+.edit-pkg-status-btn {
+    position: relative;
+}
+
+.edit-pkg-status-menu {
+    position: absolute;
+    top: calc(100% + 6px);
+    right: 0;
+    min-width: 190px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-soft);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    padding: 6px;
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+    pointer-events: none;
+    transition: all var(--dur) var(--ease);
+    z-index: 200;
+}
+
+.edit-pkg-status-menu.show {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.edit-pkg-status-menu button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 10px;
+    border-radius: 6px;
+    font-size: 12.5px;
+    color: var(--text-primary);
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    font-family: inherit;
+    transition: background var(--dur-fast);
+}
+
+.edit-pkg-status-menu button:hover {
+    background: var(--st-blue-50);
+    color: var(--st-blue);
+}
+
+.edit-pkg-status-menu button i {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+.edit-pkg-status-menu button:hover i {
+    color: var(--st-blue);
+}
+
+.edit-pkg-status-menu .divider {
+    height: 1px;
+    background: var(--divider);
+    margin: 4px 0;
+}
+
+.edit-pkg-status-menu button.danger {
+    color: var(--st-red);
+}
+
+.edit-pkg-status-menu button.danger i {
+    color: var(--st-red);
+}
+
+.edit-pkg-status-menu button.danger:hover {
+    background: var(--st-red-50);
+}
+
+/* ---------- Unsaved Changes Bar ---------- */
+.edit-pkg-unsaved-bar {
+    display: none;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 10px 16px;
+    background: var(--st-amber-50);
+    border: 1px solid #FDE68A;
+    border-radius: var(--radius-md);
+    margin-bottom: 16px;
+    animation: slideDown 0.2s var(--ease);
+}
+
+.edit-pkg-unsaved-bar.show {
+    display: flex;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.edit-pkg-unsaved-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12.5px;
+    color: #92400E;
+}
+
+.edit-pkg-unsaved-left i {
+    font-size: 16px;
+    color: var(--st-amber);
+}
+
+.edit-pkg-unsaved-left b {
+    font-weight: 700;
+}
+
+.edit-pkg-unsaved-right {
+    display: flex;
+    gap: 8px;
+}
+
+/* ---------- Section "Last saved" line ---------- */
+.edit-pkg-saved-ago {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--divider);
+}
+
+.edit-pkg-saved-ago i {
+    font-size: 12px;
+}
+
+/* ---------- Price Change History ---------- */
+.edit-pkg-price-history {
+    margin-top: 20px;
+    border-top: 1px solid var(--divider);
+    padding-top: 14px;
+}
+
+.edit-pkg-history-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: none;
+    border: none;
+    color: var(--st-blue);
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 4px 0;
+    font-family: inherit;
+    transition: color var(--dur-fast);
+}
+
+.edit-pkg-history-toggle:hover {
+    color: #005fa3;
+}
+
+.edit-pkg-history-toggle .chev {
+    font-size: 10px;
+    transition: transform var(--dur-fast) var(--ease);
+}
+
+.edit-pkg-history-toggle.open .chev {
+    transform: rotate(180deg);
+}
+
+.edit-pkg-history-panel {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height var(--dur) var(--ease), opacity var(--dur) var(--ease), padding var(--dur) var(--ease);
+    opacity: 0;
+    padding: 0;
+}
+
+.edit-pkg-history-panel.open {
+    max-height: 300px;
+    opacity: 1;
+    padding-top: 12px;
+}
+
+.edit-pkg-history-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--divider);
+    font-size: 12px;
+}
+
+.edit-pkg-history-item:last-child {
+    border-bottom: none;
+}
+
+.h-date {
+    color: var(--text-muted);
+    min-width: 90px;
+    font-weight: 500;
+}
+
+.h-user {
+    color: var(--text-secondary);
+    min-width: 70px;
+    font-weight: 500;
+}
+
+.h-change {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text-primary);
+}
+
+.h-old {
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.h-new {
+    color: var(--st-green);
+    font-weight: 700;
+}
+
+.h-change i {
+    font-size: 10px;
+    color: var(--text-muted);
+}
+
+.h-change.created .h-new {
+    color: var(--st-blue);
+}
+
+/* ---------- Media: Current Image ---------- */
+.edit-pkg-media-current {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 12px;
+    background: var(--bg-surface-alt);
+    border: 1px solid var(--border-soft);
+    border-radius: 10px;
+}
+
+.edit-pkg-media-thumb {
+    position: relative;
+    width: 140px;
+    height: 90px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid var(--border-soft);
+}
+
+.edit-pkg-media-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.edit-pkg-media-primary {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    padding: 2px 7px;
+    background: var(--st-blue);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.edit-pkg-media-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding-top: 4px;
+}
+
+.danger-text {
+    color: var(--st-red) !important;
+}
+
+.danger-text:hover {
+    background: var(--st-red-50) !important;
+    border-color: var(--st-red-50) !important;
+}
+
+/* ---------- Gallery Items ---------- */
+.edit-pkg-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+.edit-pkg-gallery-item {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 2px solid var(--border-soft);
+    aspect-ratio: 1;
+    cursor: grab;
+    transition: border-color var(--dur-fast);
+}
+
+.edit-pkg-gallery-item:active {
+    cursor: grabbing;
+}
+
+.edit-pkg-gallery-item:hover {
+    border-color: var(--st-blue-100);
+}
+
+.edit-pkg-gallery-item.primary {
+    border-color: var(--st-blue);
+}
+
+.edit-pkg-gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.edit-pkg-gallery-badge {
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    padding: 2px 7px;
+    background: var(--st-blue);
+    color: #fff;
+    font-size: 9px;
+    font-weight: 700;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.edit-pkg-gallery-actions {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 4px;
+    padding: 6px;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.55));
+    opacity: 0;
+    transition: opacity var(--dur-fast);
+}
+
+.edit-pkg-gallery-item:hover .edit-pkg-gallery-actions {
+    opacity: 1;
+}
+
+.edit-pkg-gallery-actions button {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    border: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-secondary);
+    display: grid;
+    place-items: center;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all var(--dur-fast);
+}
+
+.edit-pkg-gallery-actions button:hover {
+    background: #fff;
+    color: var(--st-blue);
+}
+
+.edit-pkg-gallery-actions button.active {
+    color: var(--st-amber);
+}
+
+.edit-pkg-gallery-add {
+    border: 2px dashed var(--border-strong);
+    border-radius: 8px;
+    aspect-ratio: 1;
+    display: grid;
+    place-items: center;
+    cursor: pointer;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 600;
+    transition: all var(--dur-fast);
+    gap: 4px;
+}
+
+.edit-pkg-gallery-add i {
+    font-size: 22px;
+}
+
+.edit-pkg-gallery-add:hover {
+    border-color: var(--st-blue);
+    color: var(--st-blue);
+    background: var(--st-blue-50);
+}
+
+/* ---------- Drag Handle ---------- */
+.drag-handle {
+    cursor: grab;
+    color: var(--text-muted);
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.drag-handle:active {
+    cursor: grabbing;
+}
+
+.highlight-item.dragging,
+.include-item.dragging,
+.exclude-item.dragging,
+.itinerary-day.dragging,
+.faq-item.dragging {
+    opacity: 0.5;
+    border-color: var(--st-blue);
+    background: var(--st-blue-50);
+}
+
+/* ---------- Package History (Sidebar) ---------- */
+.edit-pkg-pkg-history {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px solid var(--divider);
+}
+
+.edit-pkg-pkg-history-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+}
+
+.edit-pkg-pkg-history-title i {
+    color: var(--text-muted);
+}
+
+.edit-pkg-pkg-history-list {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+}
+
+.edit-pkg-history-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11.5px;
+}
+
+.edit-pkg-history-row span:first-child {
+    color: var(--text-muted);
+}
+
+.edit-pkg-history-row span:last-child {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.edit-pkg-view-history-btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    color: var(--st-blue);
+    font-size: 11.5px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    font-family: inherit;
+}
+
+.edit-pkg-view-history-btn:hover {
+    text-decoration: underline;
+}
+
+/* =========================================================
+RESPONSIVE — EDIT SPECIFIC
+========================================================= */
+@media (max-width: 1024px) {
+    .edit-pkg-media-current {
+        flex-direction: column;
+    }
+
+    .edit-pkg-media-thumb {
+        width: 100%;
+        height: 160px;
+    }
+
+    .edit-pkg-media-actions {
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 768px) {
+    .edit-pkg-header {
+        flex-direction: column;
+    }
+
+    .edit-pkg-header-right {
+        display: none;
+    }
+
+    .edit-pkg-unsaved-bar {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+    }
+
+    .edit-pkg-unsaved-right {
+        justify-content: center;
+    }
+
+    .edit-pkg-gallery {
+        grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    }
+
+    .edit-pkg-meta-row {
+        gap: 10px;
+    }
+
+    .edit-pkg-title-row {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 480px) {
+    .edit-pkg-gallery {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+
+    .edit-pkg-media-thumb {
+        height: 120px;
+    }
+
+    .edit-pkg-unsaved-left {
+        font-size: 11.5px;
+    }
+}

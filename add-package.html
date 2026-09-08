@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Package — ST Trip Admin</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/add-package.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" />
+</head>
+
+<body>
+    <div class="app-shell" id="appShell">
+
+        <!-- ============ SIDEBAR ============ -->
+        <aside class="sidebar" id="sidebar" aria-label="Main navigation">
+            <div class="sidebar-brand">
+                <div class="brand d-flex align-items-center gap-2">
+                    <div class="brand-logo">
+                        <img src="images/logo.png" alt="STP Logo" class="brand-logo-full" />
+                        <img src="images/favicon.png" alt="STP" class="brand-logo-mini" />
+                    </div>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav" id="sidebarNav">
+                <div class="nav-section">
+                    <!-- <div class="nav-label">DASHBOARD</div> -->
+                    <div class="nav-item active" data-tip="Dashboard">
+                        <i class="bi bi-grid-1x2"></i>
+                        <span class="label">Dashboard</span>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">COMMERCE</div>
+                    <div class="nav-item has-sub" data-tip="Bookings" aria-expanded="false">
+                        <i class="bi bi-calendar-check"></i>
+                        <span class="label">Bookings</span>
+                        <span class="badge-count">12</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">All Bookings</div>
+                        <div class="nav-item">Flight Bookings</div>
+                        <div class="nav-item">Hotel Bookings</div>
+                        <div class="nav-item">Tour Bookings</div>
+                        <div class="nav-item">Umrah Bookings</div>
+                        <div class="nav-item">Hajj Bookings</div>
+                        <div class="nav-item">Visa Applications</div>
+                    </div>
+                    <div class="nav-item has-sub" data-tip="Travel Products" aria-expanded="false">
+                        <i class="bi bi-box-seam"></i>
+                        <span class="label">Travel Products</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">Flights</div>
+                        <div class="nav-item">Hotels</div>
+                        <div class="nav-item">Tour Packages</div>
+                        <div class="nav-item">Umrah Packages</div>
+                        <div class="nav-item">Hajj Packages</div>
+                        <div class="nav-item">Visa Services</div>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">PEOPLE</div>
+                    <div class="nav-item has-sub" data-tip="Customers" aria-expanded="false">
+                        <i class="bi bi-people"></i>
+                        <span class="label">Customers</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">All Customers</div>
+                        <div class="nav-item">Customer Groups</div>
+                        <div class="nav-item">Reviews</div>
+                    </div>
+                    <div class="nav-item has-sub" data-tip="Suppliers" aria-expanded="false">
+                        <i class="bi bi-building"></i>
+                        <span class="label">Suppliers & Partners</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">Airlines</div>
+                        <div class="nav-item">Hotels</div>
+                        <div class="nav-item">Tour Operators</div>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">FINANCE</div>
+                    <div class="nav-item has-sub" data-tip="Finance" aria-expanded="false">
+                        <i class="bi bi-wallet2"></i>
+                        <span class="label">Finance</span>
+                        <span class="badge-count">8</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">Payments</div>
+                        <div class="nav-item">Transactions</div>
+                        <div class="nav-item">Invoices</div>
+                        <div class="nav-item">Refunds</div>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">OPERATIONS</div>
+                    <div class="nav-item" data-tip="Airport Transfers">
+                        <i class="bi bi-airplane-engines"></i>
+                        <span class="label">Airport Transfers</span>
+                    </div>
+                    <div class="nav-item" data-tip="Tour Ops">
+                        <i class="bi bi-compass"></i>
+                        <span class="label">Tour Operations</span>
+                    </div>
+                    <div class="nav-item" data-tip="Umrah Ops">
+                        <i class="bi bi-moon-stars"></i>
+                        <span class="label">Umrah Operations</span>
+                    </div>
+                    <div class="nav-item" data-tip="Hajj Ops">
+                        <i class="bi bi-star"></i>
+                        <span class="label">Hajj Operations</span>
+                    </div>
+                    <div class="nav-item" data-tip="Visa">
+                        <i class="bi bi-postage"></i>
+                        <span class="label">Visa Processing</span>
+                    </div>
+                </div>
+
+
+                <div class="nav-section">
+                    <div class="nav-label">Growth</div>
+                    <div class="nav-item has-sub" data-tip="Customers" aria-expanded="false">
+                        <i class="bi bi-megaphone"></i>
+                        <span class="label">Marketing</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">Promotions</div>
+                        <div class="nav-item">Coupons</div>
+                        <div class="nav-item">Campaigns</div>
+                        <div class="nav-item">Newsletter</div>
+                        <div class="nav-item">SEO</div>
+                        <div class="nav-item">Reviews</div>
+                    </div>
+                    <div class="nav-item has-sub" data-tip="Suppliers" aria-expanded="false">
+                        <i class="bi bi-file-earmark-text"></i>
+                        <span class="label">Content Management</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">Destinations</div>
+                        <div class="nav-item">Blog</div>
+                        <div class="nav-item">FAQ</div>
+                        <div class="nav-item">About Us</div>
+                        <div class="nav-item">Why Us</div>
+                        <div class="nav-item">Contact Us</div>
+                        <div class="nav-item">Destinations</div>
+                        <div class="nav-item">Travel Guides</div>
+                        <div class="nav-item">Popular Routes</div>
+                        <div class="nav-item">News & Announcements</div>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">INSIGHTS</div>
+                    <div class="nav-item has-sub" data-tip="Reports" aria-expanded="false">
+                        <i class="bi bi-bar-chart-line"></i>
+                        <span class="label">Reports & Analytics</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">Sales Report</div>
+                        <div class="nav-item">Booking Report</div>
+                        <div class="nav-item">Revenue Report</div>
+                        <div class="nav-item">Customer Report</div>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">SUPPORT</div>
+                    <div class="nav-item" data-tip="Tickets">
+                        <i class="bi bi-life-preserver"></i>
+                        <span class="label">Support Tickets</span>
+                        <span class="badge-count">4</span>
+                    </div>
+                    <div class="nav-item" data-tip="Messages">
+                        <i class="bi bi-chat-dots"></i>
+                        <span class="label">Customer Messages</span>
+                    </div>
+                    <div class="nav-item" data-tip="WhatsApp">
+                        <i class="bi bi-whatsapp"></i>
+                        <span class="label">WhatsApp Leads</span>
+                    </div>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-label">SYSTEM</div>
+                    <div class="nav-item has-sub" data-tip="Users" aria-expanded="false">
+                        <i class="bi bi-shield-lock"></i>
+                        <span class="label">Users & Security</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">Admin Users</div>
+                        <div class="nav-item">Staff</div>
+                        <div class="nav-item">Roles & Permissions</div>
+                        <div class="nav-item">Activity Logs</div>
+                    </div>
+                    <div class="nav-item has-sub" data-tip="Settings" aria-expanded="false">
+                        <i class="bi bi-gear"></i>
+                        <span class="label">Settings</span>
+                        <i class="bi bi-chevron-right chev"></i>
+                    </div>
+                    <div class="submenu">
+                        <div class="nav-item">General Settings</div>
+                        <div class="nav-item">Company Profile</div>
+                        <div class="nav-item">Payment Methods</div>
+                        <div class="nav-item">Email Settings</div>
+                    </div>
+                    <div class="nav-item logout-item" data-tip="Logout">
+                        <i class="bi bi-box-arrow-right"></i>
+                        <span class="label">Logout</span>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <span class="avatar-wrap">
+                    <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Asraf Mridha"
+                        onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                    <div class="avatar-sm" style="display: none;">AR</div>
+                </span>
+                <div class="meta">
+                    <div class="n">Asraf Mridha</div>
+                    <div class="r">Super Admin</div>
+                </div>
+            </div>
+            <div class="sidebar-copyright">© 2026 STIT BD</div>
+        </aside>
+
+        <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+        <!-- ============ MAIN ============ -->
+        <div class="main-wrap">
+
+            <!-- ============ TOPBAR ============ -->
+            <header class="topbar">
+                <div class="topbar-left">
+                    <button class="toggle-btn" id="toggleSidebar" aria-label="Toggle sidebar">
+                        <i class="bi bi-list"></i>
+                    </button>
+                    <div class="topbar-brand-mobile">
+                        <img src="images/logo.png" alt="STP Logo" class="topbar-brand-logo" />
+                    </div>
+                    <div class="breadcrumb-mini">
+                        <div class="crumbs">
+                            <span>ST Trip</span>
+                            <span class="sep">/</span>
+                            <span>Admin</span>
+                            <span class="sep">/</span>
+                            <span class="current">Dashboard</span>
+                        </div>
+                        <div class="page-title">Dashboard Overview <i class="bi bi-chevron-down"
+                                style="font-size: 11px; color: var(--text-muted);"></i></div>
+                    </div>
+                </div>
+
+                <div class="topbar-search">
+                    <i class="bi bi-search s-icon"></i>
+                    <input type="text" placeholder="Search bookings, customers, packages..."
+                        aria-label="Global search" />
+                    <span class="kbd"> K</span>
+                </div>
+
+                <div class="topbar-actions">
+                    <div class="dropdown quick-add-dropdown">
+                        <button class="btn-quick-add" id="quickAddBtn" aria-haspopup="true" aria-expanded="false">
+                            <i class="bi bi-plus-lg"></i>
+                            <span>Quick add</span>
+                            <i class="bi bi-chevron-down qa-chevron"></i>
+                        </button>
+                        <ul class="dropdown-menu quick-add-menu" id="quickAddMenu">
+                            <li><a class="dropdown-item" href="#" data-action="New booking"><i
+                                        class="bi bi-calendar-plus"></i> New
+                                    booking</a></li>
+                            <li><a class="dropdown-item" href="#" data-action="Add customer"><i
+                                        class="bi bi-person-plus"></i> Add
+                                    customer</a></li>
+                            <li><a class="dropdown-item" href="#" data-action="Add package"><i
+                                        class="bi bi-box-seam"></i> Add
+                                    package</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" data-action="Create invoice"><i
+                                        class="bi bi-file-earmark-text"></i>
+                                    Create invoice</a></li>
+                        </ul>
+                    </div>
+
+                    <div style="position: relative;">
+                        <button class="icon-btn" id="notifBtn" aria-label="Notifications">
+                            <i class="bi bi-bell"></i>
+                            <span class="dot"></span>
+                        </button>
+                        <div class="notif-panel" id="notifPanel">
+                            <div class="notif-head">
+                                <h4>Notifications</h4>
+                                <a href="#">Mark all read</a>
+                            </div>
+                            <div class="notif-list">
+                                <div class="notif-item">
+                                    <div class="ic" style="background: var(--st-green-50); color: var(--st-green);"><i
+                                            class="bi bi-check-circle"></i></div>
+                                    <div>
+                                        <div class="t"><b>Visa Approved</b> — UK visa for Rafiq Ahmed</div>
+                                        <div class="tm">2 minutes ago</div>
+                                    </div>
+                                </div>
+                                <div class="notif-item">
+                                    <div class="ic" style="background: var(--st-blue-50); color: var(--st-blue);"><i
+                                            class="bi bi-credit-card"></i></div>
+                                    <div>
+                                        <div class="t"><b>Payment Received</b> — ৳48,500 from #ST-8842</div>
+                                        <div class="tm">18 minutes ago</div>
+                                    </div>
+                                </div>
+                                <div class="notif-item">
+                                    <div class="ic" style="background: var(--st-amber-50); color: var(--st-amber);"><i
+                                            class="bi bi-exclamation-triangle"></i></div>
+                                    <div>
+                                        <div class="t"><b>Low Stock Alert</b> — Dubai package slots filling fast</div>
+                                        <div class="tm">1 hour ago</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="icon-btn" aria-label="Messages">
+                        <i class="bi bi-chat-dots"></i>
+                    </button>
+
+                    <div class="dropdown">
+                        <button class="profile-btn" id="profileBtn" aria-expanded="false">
+                            <span class="avatar-wrap">
+                                <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Asraf Mridha"
+                                    onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
+                                <div class="av" style="display: none;">SA</div>
+                            </span>
+                            <div class="meta">
+                                <div class="n">Asraf Mridha</div>
+                                <div class="r">Administrator</div>
+                            </div>
+                            <i class="bi bi-chevron-down" style="font-size: 11px; color: var(--text-muted);"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" id="profileMenu">
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-person"></i> My Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-gear"></i> Account Settings</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="bi bi-clock-history"></i> Activity Log</a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#" style="color: var(--st-red);"><i
+                                        class="bi bi-box-arrow-right" style="color: var(--st-red);"></i> Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </header>
+
+            <!-- ============ CONTENT ============ -->
+            <main class="content add-pkg-content">
+
+                <!-- PAGE HEADER -->
+                <div class="add-pkg-header reveal">
+                    <div class="add-pkg-header-left">
+                        <nav class="add-pkg-breadcrumb" aria-label="Breadcrumb">
+                            <a href="#"><i class="bi bi-house-door"></i>Dashboard</a>
+                            <i class="bi bi-chevron-right"></i>
+                            <a href="#">Travel Products</a>
+                            <i class="bi bi-chevron-right"></i>
+                            <a href="#">Packages</a>
+                            <i class="bi bi-chevron-right"></i>
+                            <span>Add Package</span>
+                        </nav>
+                        <h1 class="add-pkg-title">Add New Package</h1>
+                        <p class="add-pkg-desc">Create and publish a new travel package.</p>
+                    </div>
+                    <div class="add-pkg-header-right">
+                        <div class="autosave-indicator" id="autosaveIndicator">
+                            <i class="bi bi-cloud-check"></i>
+                            <span>All changes saved</span>
+                        </div>
+                        <button class="add-pkg-btn-secondary" id="saveDraftBtn">
+                            <i class="bi bi-file-earmark"></i><span>Save Draft</span>
+                        </button>
+                        <button class="add-pkg-btn-secondary" id="previewBtn">
+                            <i class="bi bi-eye"></i><span>Preview</span>
+                        </button>
+                        <button class="add-pkg-btn-primary" id="publishBtn">
+                            <i class="bi bi-check-circle"></i><span>Publish Package</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- FORM GRID -->
+                <div class="add-pkg-grid">
+
+                    <!-- LEFT: FORM SECTIONS -->
+                    <div class="add-pkg-form-col">
+
+                        <!-- SECTION 01: BASIC INFORMATION -->
+                        <section class="add-pkg-section card reveal" id="section-basic">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">01</span>
+                                    <div>
+                                        <h2>Basic Information</h2>
+                                        <p>Core details about your package</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="form-row">
+                                    <div class="form-group required">
+                                        <label for="packageName">Package Name</label>
+                                        <input type="text" id="packageName" class="form-input"
+                                            placeholder="e.g., Exclusive Umrah Package — 14 Days" maxlength="120" />
+                                        <div class="form-counter"><span id="nameCounter">0</span>/120</div>
+                                        <div class="form-error" id="packageNameError"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group required">
+                                        <label for="packageType">Package Type</label>
+                                        <select id="packageType" class="form-select">
+                                            <option value="">Select type...</option>
+                                            <option value="umrah">Umrah</option>
+                                            <option value="hajj">Hajj</option>
+                                            <option value="tour">Tour</option>
+                                            <option value="holiday">Holiday</option>
+                                            <option value="visa">Visa</option>
+                                            <option value="custom">Custom</option>
+                                        </select>
+                                        <div class="form-error" id="packageTypeError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="packageId">Package ID / SKU</label>
+                                        <input type="text" id="packageId" class="form-input"
+                                            placeholder="Auto-generated or custom" />
+                                        <div class="form-error" id="packageIdError"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="shortDesc">Short Description</label>
+                                        <textarea id="shortDesc" class="form-textarea" rows="2"
+                                            placeholder="Brief summary (max 200 characters)" maxlength="200"></textarea>
+                                        <div class="form-counter"><span id="shortDescCounter">0</span>/200</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="fullDesc">Full Description</label>
+                                        <textarea id="fullDesc" class="form-textarea" rows="5"
+                                            placeholder="Detailed package description..."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label>Featured Package</label>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="featuredToggle" />
+                                            <label for="featuredToggle">
+                                                <span class="toggle-slider"></span>
+                                                <span class="toggle-label">Highlight on homepage</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="status">Status</label>
+                                        <select id="status" class="form-select">
+                                            <option value="draft">Draft</option>
+                                            <option value="published">Published</option>
+                                            <option value="archived">Archived</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 02: DESTINATION & TRAVEL DETAILS -->
+                        <section class="add-pkg-section card reveal" id="section-destination">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">02</span>
+                                    <div>
+                                        <h2>Destination & Travel Details</h2>
+                                        <p>Where and when travelers will go</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="form-row form-row-2">
+                                    <div class="form-group required">
+                                        <label for="country">Country</label>
+                                        <select id="country" class="form-select">
+                                            <option value="">Select country...</option>
+                                            <option value="saudi-arabia">Saudi Arabia</option>
+                                            <option value="uae">United Arab Emirates</option>
+                                            <option value="thailand">Thailand</option>
+                                            <option value="singapore">Singapore</option>
+                                            <option value="malaysia">Malaysia</option>
+                                            <option value="turkey">Turkey</option>
+                                            <option value="maldives">Maldives</option>
+                                        </select>
+                                        <div class="form-error" id="countryError"></div>
+                                    </div>
+                                    <div class="form-group required">
+                                        <label for="city">City / Destination</label>
+                                        <input type="text" id="city" class="form-input"
+                                            placeholder="e.g., Makkah, Dubai, Bangkok" />
+                                        <div class="form-error" id="cityError"></div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group required">
+                                        <label for="departureCity">Departure City</label>
+                                        <input type="text" id="departureCity" class="form-input"
+                                            placeholder="e.g., Dhaka" />
+                                        <div class="form-error" id="departureCityError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="departureAirport">Departure Airport</label>
+                                        <input type="text" id="departureAirport" class="form-input"
+                                            placeholder="e.g., Hazrat Shahjalal International" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label for="arrivalAirport">Arrival Airport</label>
+                                        <input type="text" id="arrivalAirport" class="form-input"
+                                            placeholder="e.g., King Abdulaziz International" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="duration">Duration</label>
+                                        <div class="form-input-group">
+                                            <input type="number" id="duration" class="form-input" placeholder="14"
+                                                min="1" />
+                                            <span class="form-input-suffix">days</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label for="nights">Number of Nights</label>
+                                        <div class="form-input-group">
+                                            <input type="number" id="nights" class="form-input" placeholder="13"
+                                                min="0" />
+                                            <span class="form-input-suffix">nights</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="travelDate">Travel Date</label>
+                                        <input type="date" id="travelDate" class="form-input" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label for="returnDate">Return Date</label>
+                                        <input type="date" id="returnDate" class="form-input" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>&nbsp;</label>
+                                        <button class="add-pkg-btn-secondary" id="addDestinationBtn" type="button">
+                                            <i class="bi bi-plus-circle"></i><span>Add Destination</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- Destination chips -->
+                                <div class="destination-chips" id="destinationChips">
+                                    <!-- Dynamically added -->
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 03: PRICING -->
+                        <section class="add-pkg-section card reveal" id="section-pricing">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">03</span>
+                                    <div>
+                                        <h2>Pricing</h2>
+                                        <p>Set package pricing and discounts</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="form-row form-row-2">
+                                    <div class="form-group required">
+                                        <label for="startingPrice">Starting Price</label>
+                                        <div class="form-input-group">
+                                            <span class="form-input-prefix">BDT</span>
+                                            <input type="number" id="startingPrice" class="form-input"
+                                                placeholder="140000" min="0" />
+                                        </div>
+                                        <div class="form-error" id="startingPriceError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="currency">Currency</label>
+                                        <select id="currency" class="form-select">
+                                            <option value="BDT">BDT — Bangladeshi Taka</option>
+                                            <option value="USD">USD — US Dollar</option>
+                                            <option value="EUR">EUR — Euro</option>
+                                            <option value="SAR">SAR — Saudi Riyal</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-3">
+                                    <div class="form-group">
+                                        <label for="adultPrice">Adult Price</label>
+                                        <div class="form-input-group">
+                                            <span class="form-input-prefix">BDT</span>
+                                            <input type="number" id="adultPrice" class="form-input" placeholder="140000"
+                                                min="0" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="childPrice">Child Price</label>
+                                        <div class="form-input-group">
+                                            <span class="form-input-prefix">BDT</span>
+                                            <input type="number" id="childPrice" class="form-input" placeholder="98000"
+                                                min="0" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="infantPrice">Infant Price</label>
+                                        <div class="form-input-group">
+                                            <span class="form-input-prefix">BDT</span>
+                                            <input type="number" id="infantPrice" class="form-input" placeholder="0"
+                                                min="0" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label for="singleSupplement">Single Supplement</label>
+                                        <div class="form-input-group">
+                                            <span class="form-input-prefix">BDT</span>
+                                            <input type="number" id="singleSupplement" class="form-input"
+                                                placeholder="25000" min="0" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="discount">Discount</label>
+                                        <div class="form-input-group">
+                                            <input type="number" id="discount" class="form-input" placeholder="0"
+                                                min="0" />
+                                            <select id="discountType" class="form-input-suffix-select">
+                                                <option value="fixed">BDT</option>
+                                                <option value="percent">%</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label for="tax">Tax / Service Charge</label>
+                                        <div class="form-input-group">
+                                            <span class="form-input-prefix">BDT</span>
+                                            <input type="number" id="tax" class="form-input" placeholder="0" min="0" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Final Display Price</label>
+                                        <div class="price-preview" id="finalPricePreview">
+                                            <span class="price-preview-label">Calculated</span>
+                                            <span class="price-preview-value" id="finalPriceValue">BDT 140,000</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Customer Price Preview -->
+                                <div class="customer-price-preview">
+                                    <div class="cpp-label">Customer Price Preview</div>
+                                    <div class="cpp-price" id="customerPricePreview">
+                                        <span class="cpp-from">Starts from</span>
+                                        <span class="cpp-amount" id="cppAmount">BDT 140,000</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 04: ACCOMMODATION -->
+                        <section class="add-pkg-section card reveal" id="section-accommodation">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">04</span>
+                                    <div>
+                                        <h2>Accommodation</h2>
+                                        <p>Hotel and room details</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label for="hotel">Hotel / Property</label>
+                                        <input type="text" id="hotel" class="form-input"
+                                            placeholder="e.g., Hilton Makkah" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="hotelRating">Hotel Rating</label>
+                                        <select id="hotelRating" class="form-select">
+                                            <option value="">Select rating...</option>
+                                            <option value="3">3 Stars</option>
+                                            <option value="4">4 Stars</option>
+                                            <option value="5">5 Stars</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label for="roomType">Room Type</label>
+                                        <select id="roomType" class="form-select">
+                                            <option value="">Select room type...</option>
+                                            <option value="single">Single</option>
+                                            <option value="double">Double</option>
+                                            <option value="twin">Twin</option>
+                                            <option value="family">Family</option>
+                                            <option value="suite">Suite</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="mealPlan">Meal Plan</label>
+                                        <select id="mealPlan" class="form-select">
+                                            <option value="">Select meal plan...</option>
+                                            <option value="none">No Meals</option>
+                                            <option value="breakfast">Breakfast Only</option>
+                                            <option value="half">Half Board</option>
+                                            <option value="full">Full Board</option>
+                                            <option value="all">All Inclusive</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Umrah/Hajj specific -->
+                                <div class="accommodation-blocks" id="accommodationBlocks">
+                                    <div class="accom-block">
+                                        <div class="accom-block-head">
+                                            <i class="bi bi-kaaba"></i>
+                                            <span>Makkah Accommodation</span>
+                                        </div>
+                                        <div class="form-row form-row-2">
+                                            <div class="form-group">
+                                                <label for="makkahHotel">Hotel Name</label>
+                                                <input type="text" id="makkahHotel" class="form-input"
+                                                    placeholder="e.g., Pullman Zamzam" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="makkahNights">Nights</label>
+                                                <input type="number" id="makkahNights" class="form-input"
+                                                    placeholder="5" min="0" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="makkahDistance">Distance from Haram</label>
+                                            <input type="text" id="makkahDistance" class="form-input"
+                                                placeholder="e.g., 200m walking distance" />
+                                        </div>
+                                    </div>
+
+                                    <div class="accom-block">
+                                        <div class="accom-block-head">
+                                            <i class="bi bi-moon-stars"></i>
+                                            <span>Madinah Accommodation</span>
+                                        </div>
+                                        <div class="form-row form-row-2">
+                                            <div class="form-group">
+                                                <label for="madinahHotel">Hotel Name</label>
+                                                <input type="text" id="madinahHotel" class="form-input"
+                                                    placeholder="e.g., Oberoi Madinah" />
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="madinahNights">Nights</label>
+                                                <input type="number" id="madinahNights" class="form-input"
+                                                    placeholder="4" min="0" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="madinahDistance">Distance from Masjid</label>
+                                            <input type="text" id="madinahDistance" class="form-input"
+                                                placeholder="e.g., 350m walking distance" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 05: TRANSPORTATION -->
+                        <section class="add-pkg-section card reveal" id="section-transport">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">05</span>
+                                    <div>
+                                        <h2>Transportation</h2>
+                                        <p>Flight and transfer details</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label>Flight Included</label>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="flightIncluded" />
+                                            <label for="flightIncluded">
+                                                <span class="toggle-slider"></span>
+                                                <span class="toggle-label">Include flights in package</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="airline">Airline</label>
+                                        <input type="text" id="airline" class="form-input"
+                                            placeholder="e.g., Biman Bangladesh, Emirates" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label for="departureFlight">Departure Flight</label>
+                                        <input type="text" id="departureFlight" class="form-input"
+                                            placeholder="e.g., BG-101" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="returnFlight">Return Flight</label>
+                                        <input type="text" id="returnFlight" class="form-input"
+                                            placeholder="e.g., BG-102" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label>Airport Transfer</label>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="airportTransfer" />
+                                            <label for="airportTransfer">
+                                                <span class="toggle-slider"></span>
+                                                <span class="toggle-label">Include airport transfers</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="transportType">Transport Type</label>
+                                        <select id="transportType" class="form-select">
+                                            <option value="">Select type...</option>
+                                            <option value="private">Private Vehicle</option>
+                                            <option value="shared">Shared Shuttle</option>
+                                            <option value="bus">Coach/Bus</option>
+                                            <option value="train">Train</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label>Inter-city Transport</label>
+                                        <div class="toggle-switch">
+                                            <input type="checkbox" id="intercityTransport" />
+                                            <label for="intercityTransport">
+                                                <span class="toggle-slider"></span>
+                                                <span class="toggle-label">Include inter-city transport</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="vehicleType">Vehicle Type</label>
+                                        <select id="vehicleType" class="form-select">
+                                            <option value="">Select vehicle...</option>
+                                            <option value="sedan">Sedan</option>
+                                            <option value="suv">SUV</option>
+                                            <option value="van">Van</option>
+                                            <option value="minibus">Minibus</option>
+                                            <option value="coach">Coach</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 06: PACKAGE MEDIA -->
+                        <section class="add-pkg-section card reveal" id="section-media">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">06</span>
+                                    <div>
+                                        <h2>Package Media</h2>
+                                        <p>Images and videos for your package</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <!-- Cover Image -->
+                                <div class="form-group">
+                                    <label>Main Cover Image</label>
+                                    <div class="media-upload" id="coverUpload">
+                                        <div class="media-upload-placeholder" id="coverPlaceholder">
+                                            <i class="bi bi-image"></i>
+                                            <span>Drag & drop or click to upload</span>
+                                            <small>JPG, PNG, WEBP • Max 5MB • 16:9 ratio recommended</small>
+                                        </div>
+                                        <div class="media-upload-preview" id="coverPreview" style="display:none;">
+                                            <img src="" alt="Cover preview" />
+                                            <button class="media-upload-remove" type="button"><i
+                                                    class="bi bi-x"></i></button>
+                                        </div>
+                                        <input type="file" id="coverInput" accept="image/*" style="display:none;" />
+                                    </div>
+                                </div>
+
+                                <!-- Gallery -->
+                                <div class="form-group">
+                                    <label>Gallery Images</label>
+                                    <div class="media-upload" id="galleryUpload">
+                                        <div class="media-upload-placeholder" id="galleryPlaceholder">
+                                            <i class="bi bi-images"></i>
+                                            <span>Drag & drop or click to upload multiple images</span>
+                                            <small>JPG, PNG, WEBP • Max 5MB each • Up to 10 images</small>
+                                        </div>
+                                        <div class="media-gallery" id="galleryPreview" style="display:none;"></div>
+                                        <input type="file" id="galleryInput" accept="image/*" multiple
+                                            style="display:none;" />
+                                    </div>
+                                </div>
+
+                                <!-- Video URL -->
+                                <div class="form-group">
+                                    <label for="videoUrl">Video URL (Optional)</label>
+                                    <input type="url" id="videoUrl" class="form-input"
+                                        placeholder="https://youtube.com/watch?v=..." />
+                                    <div class="form-hint">YouTube or Vimeo URL</div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 07: PACKAGE HIGHLIGHTS -->
+                        <section class="add-pkg-section card reveal" id="section-highlights">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">07</span>
+                                    <div>
+                                        <h2>Package Highlights</h2>
+                                        <p>Key features and selling points</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="highlights-list" id="highlightsList">
+                                    <!-- Dynamically added -->
+                                </div>
+                                <button class="add-pkg-btn-secondary" id="addHighlightBtn" type="button">
+                                    <i class="bi bi-plus-circle"></i><span>Add Highlight</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 08: INCLUDES / EXCLUDES -->
+                        <section class="add-pkg-section card reveal" id="section-includes">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">08</span>
+                                    <div>
+                                        <h2>Package Includes / Excludes</h2>
+                                        <p>What's included and not included</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="includes-excludes-grid">
+                                    <!-- Includes -->
+                                    <div class="includes-card">
+                                        <div class="includes-card-head">
+                                            <i class="bi bi-check-circle-fill"></i>
+                                            <span>Package Includes</span>
+                                        </div>
+                                        <div class="includes-list" id="includesList">
+                                            <!-- Dynamically added -->
+                                        </div>
+                                        <button class="add-pkg-btn-secondary" id="addIncludeBtn" type="button">
+                                            <i class="bi bi-plus-circle"></i><span>Add Item</span>
+                                        </button>
+                                    </div>
+
+                                    <!-- Excludes -->
+                                    <div class="excludes-card">
+                                        <div class="excludes-card-head">
+                                            <i class="bi bi-x-circle-fill"></i>
+                                            <span>Not Included</span>
+                                        </div>
+                                        <div class="excludes-list" id="excludesList">
+                                            <!-- Dynamically added -->
+                                        </div>
+                                        <button class="add-pkg-btn-secondary" id="addExcludeBtn" type="button">
+                                            <i class="bi bi-plus-circle"></i><span>Add Item</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 09: ITINERARY -->
+                        <section class="add-pkg-section card reveal" id="section-itinerary">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">09</span>
+                                    <div>
+                                        <h2>Itinerary</h2>
+                                        <p>Day-by-day travel plan</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="itinerary-list" id="itineraryList">
+                                    <!-- Dynamically added -->
+                                </div>
+                                <button class="add-pkg-btn-secondary" id="addDayBtn" type="button">
+                                    <i class="bi bi-plus-circle"></i><span>Add Day</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 10: FAQ -->
+                        <section class="add-pkg-section card reveal" id="section-faq">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">10</span>
+                                    <div>
+                                        <h2>Frequently Asked Questions</h2>
+                                        <p>Common questions and answers</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="faq-list" id="faqList">
+                                    <!-- Dynamically added -->
+                                </div>
+                                <button class="add-pkg-btn-secondary" id="addFaqBtn" type="button">
+                                    <i class="bi bi-plus-circle"></i><span>Add FAQ</span>
+                                </button>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 11: TERMS & CONDITIONS -->
+                        <section class="add-pkg-section card reveal" id="section-terms">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">11</span>
+                                    <div>
+                                        <h2>Terms & Booking Conditions</h2>
+                                        <p>Policies and requirements</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="cancellationPolicy">Cancellation Policy</label>
+                                        <textarea id="cancellationPolicy" class="form-textarea" rows="3"
+                                            placeholder="Describe your cancellation policy..."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="refundPolicy">Refund Policy</label>
+                                        <textarea id="refundPolicy" class="form-textarea" rows="3"
+                                            placeholder="Describe your refund policy..."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="bookingTerms">Booking Terms</label>
+                                        <textarea id="bookingTerms" class="form-textarea" rows="3"
+                                            placeholder="Important booking terms..."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="importantNotes">Important Notes</label>
+                                        <textarea id="importantNotes" class="form-textarea" rows="3"
+                                            placeholder="Any important notes for travelers..."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="visaRequirements">Visa Requirements</label>
+                                        <textarea id="visaRequirements" class="form-textarea" rows="3"
+                                            placeholder="Visa requirements for this destination..."></textarea>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="customerRequirements">Customer Requirements</label>
+                                        <textarea id="customerRequirements" class="form-textarea" rows="3"
+                                            placeholder="Any specific customer requirements..."></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- SECTION 12: SEO SETTINGS -->
+                        <section class="add-pkg-section card reveal" id="section-seo">
+                            <div class="add-pkg-section-head">
+                                <div class="add-pkg-section-title">
+                                    <span class="add-pkg-section-num">12</span>
+                                    <div>
+                                        <h2>SEO Settings</h2>
+                                        <p>Optimize for search engines</p>
+                                    </div>
+                                </div>
+                                <button class="add-pkg-section-toggle" type="button"><i
+                                        class="bi bi-chevron-up"></i></button>
+                            </div>
+                            <div class="add-pkg-section-body">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="seoTitle">SEO Title</label>
+                                        <input type="text" id="seoTitle" class="form-input"
+                                            placeholder="SEO-optimized title" maxlength="70" />
+                                        <div class="form-counter"><span id="seoTitleCounter">0</span>/70</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="metaDescription">Meta Description</label>
+                                        <textarea id="metaDescription" class="form-textarea" rows="3"
+                                            placeholder="Meta description for search engines"
+                                            maxlength="160"></textarea>
+                                        <div class="form-counter"><span id="metaDescCounter">0</span>/160</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-row form-row-2">
+                                    <div class="form-group">
+                                        <label for="urlSlug">URL Slug</label>
+                                        <div class="form-input-group">
+                                            <span class="form-input-prefix">sttrip.com/packages/</span>
+                                            <input type="text" id="urlSlug" class="form-input"
+                                                placeholder="exclusive-umrah-package-14-days" />
+                                        </div>
+                                        <div class="form-error" id="urlSlugError"></div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="focusKeyword">Focus Keyword</label>
+                                        <input type="text" id="focusKeyword" class="form-input"
+                                            placeholder="umrah package" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label>Social Share Image</label>
+                                    <div class="media-upload" id="socialUpload">
+                                        <div class="media-upload-placeholder" id="socialPlaceholder">
+                                            <i class="bi bi-share"></i>
+                                            <span>Upload social share image</span>
+                                            <small>1200x630px recommended</small>
+                                        </div>
+                                        <div class="media-upload-preview" id="socialPreview" style="display:none;">
+                                            <img src="" alt="Social preview" />
+                                            <button class="media-upload-remove" type="button"><i
+                                                    class="bi bi-x"></i></button>
+                                        </div>
+                                        <input type="file" id="socialInput" accept="image/*" style="display:none;" />
+                                    </div>
+                                </div>
+
+                                <!-- SEO Preview -->
+                                <div class="seo-preview">
+                                    <div class="seo-preview-label">Search Engine Preview</div>
+                                    <div class="seo-preview-content">
+                                        <div class="seo-preview-title" id="seoPreviewTitle">Package Title</div>
+                                        <div class="seo-preview-url">sttrip.com/packages/<span
+                                                id="seoPreviewSlug">package-slug</span></div>
+                                        <div class="seo-preview-desc" id="seoPreviewDesc">Package description will
+                                            appear here...</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+
+                    </div>
+
+                    <!-- RIGHT: STICKY SUMMARY -->
+                    <div class="add-pkg-summary-col">
+                        <div class="add-pkg-summary card">
+                            <div class="add-pkg-summary-cover" id="summaryCover">
+                                <i class="bi bi-image"></i>
+                                <span>No cover image</span>
+                            </div>
+                            <div class="add-pkg-summary-body">
+                                <h3 id="summaryName">Package Name</h3>
+                                <div class="summary-meta">
+                                    <div class="summary-meta-item">
+                                        <i class="bi bi-tag"></i>
+                                        <span id="summaryType">Type</span>
+                                    </div>
+                                    <div class="summary-meta-item">
+                                        <i class="bi bi-geo-alt"></i>
+                                        <span id="summaryDest">Destination</span>
+                                    </div>
+                                    <div class="summary-meta-item">
+                                        <i class="bi bi-calendar"></i>
+                                        <span id="summaryDuration">Duration</span>
+                                    </div>
+                                    <div class="summary-meta-item">
+                                        <i class="bi bi-cash"></i>
+                                        <span id="summaryPrice">BDT 0</span>
+                                    </div>
+                                    <div class="summary-meta-item">
+                                        <i class="bi bi-circle-fill"></i>
+                                        <span id="summaryStatus" class="status-draft">Draft</span>
+                                    </div>
+                                </div>
+                                <div class="summary-completion">
+                                    <div class="completion-label">
+                                        <span>Package Completion</span>
+                                        <span id="completionPercent">0%</span>
+                                    </div>
+                                    <div class="completion-bar">
+                                        <div class="completion-fill" id="completionFill" style="width:0%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </main>
+
+            <!-- FOOTER -->
+            <footer class="app-footer">
+                <div class="footer-copyright">© 2026 STIT BD | All Rights Reserved.</div>
+                <div class="footer-links">
+                    <a href="#">Privacy</a><span class="footer-divider">•</span>
+                    <a href="#">Terms</a><span class="footer-divider">•</span>
+                    <a href="#">Support</a>
+                </div>
+                <div class="footer-server"><i class="bi bi-hdd-network"></i>ST Trip Travel Management Portal</div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- BOTTOM ACTION BAR (Mobile) -->
+    <div class="add-pkg-bottom-bar" id="bottomBar">
+        <button class="add-pkg-btn-secondary" id="bottomSaveDraft">
+            <i class="bi bi-file-earmark"></i><span>Save Draft</span>
+        </button>
+        <button class="add-pkg-btn-secondary" id="bottomPreview">
+            <i class="bi bi-eye"></i><span>Preview</span>
+        </button>
+        <button class="add-pkg-btn-primary" id="bottomPublish">
+            <i class="bi bi-check-circle"></i><span>Publish</span>
+        </button>
+    </div>
+
+    <!-- PUBLISH CONFIRMATION MODAL -->
+    <div class="add-pkg-modal" id="publishModal">
+        <div class="add-pkg-modal-overlay"></div>
+        <div class="add-pkg-modal-panel">
+            <div class="add-pkg-modal-icon success">
+                <i class="bi bi-check-circle-fill"></i>
+            </div>
+            <h3>Ready to Publish?</h3>
+            <p>This package will be visible to customers immediately. Make sure all details are correct.</p>
+            <div class="add-pkg-modal-actions">
+                <button class="add-pkg-btn-secondary" id="publishCancel">Cancel</button>
+                <button class="add-pkg-btn-primary" id="publishConfirm">
+                    <i class="bi bi-check-circle"></i><span>Publish Now</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST CONTAINER -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/script.js"></script>
+    <script src="js/add-package.js"></script>
+</body>
+
+</html>
