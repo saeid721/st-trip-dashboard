@@ -163,12 +163,12 @@
     const toast = document.createElement('div');
     toast.className = `toast-st ${type}`;
     toast.innerHTML = `
-      <button class="ic"><i class="bi bi-x"></i></button>
+      <div class="ic"><i class="${icons[type]}"></i></div>
       <div style="flex: 1;">
         <div class="t">${title}</div>
         <div class="m">${message}</div>
       </div>
-      <button style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 0; font-size: 14px;" aria-label="Close"><i class="bi bi-x"></i></button>
+      <button style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 0; font-size: 14px;" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
     `;
     $('#toastContainer').appendChild(toast);
     requestAnimationFrame(() => toast.classList.add('show'));
