@@ -4008,9 +4008,6 @@ table.st-table tbody tr:last-child td {
     grid-column: span 2;
   }
 
-  .topbar-search {
-    display: none;
-  }
 
   table.st-table thead th {
     font-size: 10px;
@@ -4069,6 +4066,12 @@ table.st-table tbody tr:last-child td {
 
   .dep-days {
     min-width: 44px;
+  }
+}
+
+@media (max-width: 900px) {
+  .topbar-search .kbd {
+    display: none;
   }
 }
 
