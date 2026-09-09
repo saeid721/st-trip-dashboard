@@ -2,1597 +2,1549 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ST Trip — Travel Operations Dashboard</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="icon" href="images/favicon.png" type="image/png" />
+  <title>ST Trip - Dashboard Overview</title>
+
   <meta name="description" content="ST Trip Enterprise Travel Management System" />
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap"
-    rel="stylesheet" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
 </head>
 
 <body>
-  <div class="app-shell" id="appShell">
 
-    <!-- ============ SIDEBAR ============ -->
-    <aside class="sidebar" id="sidebar" aria-label="Main navigation">
-      <div class="sidebar-brand">
-        <div class="brand d-flex align-items-center gap-2">
-          <div class="brand-logo">
-            <img src="images/logo.png" alt="STP Logo" class="brand-logo-full" />
-            <img src="images/favicon.png" alt="STP" class="brand-logo-mini" />
-          </div>
-        </div>
-      </div>
-
-      <nav class="sidebar-nav" id="sidebarNav">
-        <div class="nav-section">
-          <!-- <div class="nav-label">DASHBOARD</div> -->
-          <div class="nav-item active" data-tip="Dashboard">
-            <i class="fa-solid fa-table-cells-large"></i>
-            <span class="label">Dashboard</span>
-          </div>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-label">COMMERCE</div>
-          <div class="nav-item has-sub" data-tip="Bookings" aria-expanded="false">
-            <i class="fa-solid fa-calendar-check"></i>
-            <span class="label">Bookings</span>
-            <span class="badge-count">12</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">All Bookings</div>
-            <div class="nav-item">Flight Bookings</div>
-            <div class="nav-item">Hotel Bookings</div>
-            <div class="nav-item">Tour Bookings</div>
-            <div class="nav-item">Umrah Bookings</div>
-            <div class="nav-item">Hajj Bookings</div>
-            <div class="nav-item">Visa Applications</div>
-          </div>
-          <div class="nav-item has-sub" data-tip="Travel Products" aria-expanded="false">
-            <i class="fa-solid fa-box"></i>
-            <span class="label">Travel Products</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">Flights</div>
-            <div class="nav-item">Hotels</div>
-            <div class="nav-item">Tour Packages</div>
-            <div class="nav-item">Umrah Packages</div>
-            <div class="nav-item">Hajj Packages</div>
-            <div class="nav-item">Visa Services</div>
-          </div>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-label">PEOPLE</div>
-          <div class="nav-item has-sub" data-tip="Customers" aria-expanded="false">
-            <i class="fa-solid fa-users"></i>
-            <span class="label">Customers</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">All Customers</div>
-            <div class="nav-item">Customer Groups</div>
-            <div class="nav-item">Reviews</div>
-          </div>
-          <div class="nav-item has-sub" data-tip="Suppliers" aria-expanded="false">
-            <i class="fa-solid fa-building"></i>
-            <span class="label">Suppliers & Partners</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">Airlines</div>
-            <div class="nav-item">Hotels</div>
-            <div class="nav-item">Tour Operators</div>
-          </div>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-label">FINANCE</div>
-          <div class="nav-item has-sub" data-tip="Finance" aria-expanded="false">
-            <i class="fa-solid fa-wallet"></i>
-            <span class="label">Finance</span>
-            <span class="badge-count">8</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">Payments</div>
-            <div class="nav-item">Transactions</div>
-            <div class="nav-item">Invoices</div>
-            <div class="nav-item">Refunds</div>
-          </div>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-label">OPERATIONS</div>
-          <div class="nav-item" data-tip="Airport Transfers">
-            <i class="fa-solid fa-plane-departure"></i>
-            <span class="label">Airport Transfers</span>
-          </div>
-          <div class="nav-item" data-tip="Tour Ops">
-            <i class="fa-solid fa-compass"></i>
-            <span class="label">Tour Operations</span>
-          </div>
-          <div class="nav-item" data-tip="Umrah Ops">
-            <i class="fa-solid fa-moon"></i>
-            <span class="label">Umrah Operations</span>
-          </div>
-          <div class="nav-item" data-tip="Hajj Ops">
-            <i class="fa-solid fa-star"></i>
-            <span class="label">Hajj Operations</span>
-          </div>
-          <div class="nav-item" data-tip="Visa">
-            <i class="fa-solid fa-stamp"></i>
-            <span class="label">Visa Processing</span>
-          </div>
-        </div>
-
-
-        <div class="nav-section">
-          <div class="nav-label">Growth</div>
-          <div class="nav-item has-sub" data-tip="Customers" aria-expanded="false">
-            <i class="fa-solid fa-bullhorn"></i>
-            <span class="label">Marketing</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">Promotions</div>
-            <div class="nav-item">Coupons</div>
-            <div class="nav-item">Campaigns</div>
-            <div class="nav-item">Newsletter</div>
-            <div class="nav-item">SEO</div>
-            <div class="nav-item">Reviews</div>
-          </div>
-          <div class="nav-item has-sub" data-tip="Suppliers" aria-expanded="false">
-            <i class="fa-solid fa-file-lines"></i>
-            <span class="label">Content Management</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">Destinations</div>
-            <div class="nav-item">Blog</div>
-            <div class="nav-item">FAQ</div>
-            <div class="nav-item">About Us</div>
-            <div class="nav-item">Why Us</div>
-            <div class="nav-item">Contact Us</div>
-            <div class="nav-item">Destinations</div>
-            <div class="nav-item">Travel Guides</div>
-            <div class="nav-item">Popular Routes</div>
-            <div class="nav-item">News & Announcements</div>
-          </div>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-label">INSIGHTS</div>
-          <div class="nav-item has-sub" data-tip="Reports" aria-expanded="false">
-            <i class="fa-solid fa-chart-line"></i>
-            <span class="label">Reports & Analytics</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">Sales Report</div>
-            <div class="nav-item">Booking Report</div>
-            <div class="nav-item">Revenue Report</div>
-            <div class="nav-item">Customer Report</div>
-          </div>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-label">SUPPORT</div>
-          <div class="nav-item" data-tip="Tickets">
-            <i class="fa-solid fa-life-ring"></i>
-            <span class="label">Support Tickets</span>
-            <span class="badge-count">4</span>
-          </div>
-          <div class="nav-item" data-tip="Messages">
-            <i class="fa-solid fa-comment-dots"></i>
-            <span class="label">Customer Messages</span>
-          </div>
-          <div class="nav-item" data-tip="WhatsApp">
-            <i class="fa-brands fa-whatsapp"></i>
-            <span class="label">WhatsApp Leads</span>
-          </div>
-        </div>
-
-        <div class="nav-section">
-          <div class="nav-label">SYSTEM</div>
-          <div class="nav-item has-sub" data-tip="Users" aria-expanded="false">
-            <i class="fa-solid fa-shield-halved"></i>
-            <span class="label">Users & Security</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">Admin Users</div>
-            <div class="nav-item">Staff</div>
-            <div class="nav-item">Roles & Permissions</div>
-            <div class="nav-item">Activity Logs</div>
-          </div>
-          <div class="nav-item has-sub" data-tip="Settings" aria-expanded="false">
-            <i class="fa-solid fa-gear"></i>
-            <span class="label">Settings</span>
-            <i class="fa-solid fa-chevron-right chev"></i>
-          </div>
-          <div class="submenu">
-            <div class="nav-item">General Settings</div>
-            <div class="nav-item">Company Profile</div>
-            <div class="nav-item">Payment Methods</div>
-            <div class="nav-item">Email Settings</div>
-          </div>
-          <div class="nav-item logout-item" data-tip="Logout">
-            <i class="fa-solid fa-right-from-bracket"></i>
-            <span class="label">Logout</span>
-          </div>
-        </div>
-      </nav>
-
-      <div class="sidebar-footer">
-        <span class="avatar-wrap">
-          <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Asraf Mridha"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-          <div class="avatar-sm" style="display: none;">AR</div>
-        </span>
-        <div class="meta">
-          <div class="n">Asraf Mridha</div>
-          <div class="r">Super Admin</div>
-        </div>
-      </div>
-      <div class="sidebar-copyright">© 2026 STIT BD</div>
-    </aside>
-
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-
-    <!-- ============ MAIN ============ -->
-    <div class="main-wrap">
-
-      <!-- ============ TOPBAR ============ -->
-      <header class="topbar">
-        <div class="topbar-left">
-          <button class="toggle-btn" id="toggleSidebar" aria-label="Toggle sidebar">
-            <i class="fa-solid fa-bars"></i>
-          </button>
-          <div class="topbar-brand-mobile">
-            <img src="images/logo.png" alt="STP Logo" class="topbar-brand-logo" />
-          </div>
-          <div class="breadcrumb-mini">
-            <div class="crumbs">
-              <span>ST Trip</span>
-              <span class="sep">/</span>
-              <span>Admin</span>
-              <span class="sep">/</span>
-              <span class="current">Dashboard</span>
-            </div>
-            <div class="page-title">Dashboard Overview <i class="fa-solid fa-chevron-down"
-                style="font-size: 11px; color: var(--text-muted);"></i></div>
-          </div>
-        </div>
-
-        <div class="topbar-search">
-          <i class="fa-solid fa-magnifying-glass s-icon"></i>
-          <input type="text" placeholder="Search bookings, customers, packages..." aria-label="Global search" />
-          <span class="kbd"> K</span>
-        </div>
-
-        <div class="topbar-actions">
-          <div class="dropdown quick-add-dropdown">
-            <button class="btn-quick-add" id="quickAddBtn" aria-haspopup="true" aria-expanded="false">
-              <i class="fa-solid fa-plus"></i>
-              <span>Quick add</span>
-              <i class="fa-solid fa-chevron-down qa-chevron"></i>
-            </button>
-            <ul class="dropdown-menu quick-add-menu" id="quickAddMenu">
-              <li><a class="dropdown-item" href="#" data-action="New booking"><i class="fa-solid fa-calendar-plus"></i>
-                  New
-                  booking</a></li>
-              <li><a class="dropdown-item" href="#" data-action="Add customer"><i class="fa-solid fa-user-plus"></i> Add
-                  customer</a></li>
-              <li><a class="dropdown-item" href="#" data-action="Add package"><i class="fa-solid fa-box"></i> Add
-                  package</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#" data-action="Create invoice"><i class="fa-solid fa-file-lines"></i>
-                  Create invoice</a></li>
-            </ul>
-          </div>
-
-          <div style="position: relative;">
-            <button class="icon-btn" id="notifBtn" aria-label="Notifications">
-              <i class="fa-solid fa-bell"></i>
-              <span class="dot"></span>
-            </button>
-            <div class="notif-panel" id="notifPanel">
-              <div class="notif-head">
-                <h4>Notifications</h4>
-                <a href="#">Mark all read</a>
-              </div>
-              <div class="notif-list">
-                <div class="notif-item">
-                  <div class="ic" style="background: var(--st-green-50); color: var(--st-green);"><i
-                      class="fa-solid fa-circle-check"></i></div>
-                  <div>
-                    <div class="t"><b>Visa Approved</b> — UK visa for Rafiq Ahmed</div>
-                    <div class="tm">2 minutes ago</div>
-                  </div>
-                </div>
-                <div class="notif-item">
-                  <div class="ic" style="background: var(--st-blue-50); color: var(--st-blue);"><i
-                      class="fa-solid fa-credit-card"></i></div>
-                  <div>
-                    <div class="t"><b>Payment Received</b> — ৳48,500 from #ST-8842</div>
-                    <div class="tm">18 minutes ago</div>
-                  </div>
-                </div>
-                <div class="notif-item">
-                  <div class="ic" style="background: var(--st-amber-50); color: var(--st-amber);"><i
-                      class="fa-solid fa-triangle-exclamation"></i></div>
-                  <div>
-                    <div class="t"><b>Low Stock Alert</b> — Dubai package slots filling fast</div>
-                    <div class="tm">1 hour ago</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <button class="icon-btn" aria-label="Messages">
-            <i class="fa-solid fa-comment-dots"></i>
-          </button>
-
-          <div class="dropdown">
-            <button class="profile-btn" id="profileBtn" aria-expanded="false">
-              <span class="avatar-wrap">
-                <img class="avatar-img" src="images/Asraf-Mridha.jpg" alt="Asraf Mridha"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                <div class="av" style="display: none;">SA</div>
-              </span>
-              <div class="meta">
-                <div class="n">Asraf Mridha</div>
-                <div class="r">Administrator</div>
-              </div>
-              <i class="fa-solid fa-chevron-down" style="font-size: 11px; color: var(--text-muted);"></i>
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end" id="profileMenu">
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-user"></i> My Profile</a></li>
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-gear"></i> Account Settings</a></li>
-              <li><a class="dropdown-item" href="#"><i class="fa-solid fa-clock-rotate-left"></i> Activity Log</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#" style="color: var(--st-red);"><i
-                    class="fa-solid fa-right-from-bracket" style="color: var(--st-red);"></i> Logout</a></li>
-            </ul>
-          </div>
-        </div>
-      </header>
-
-      <!-- ============ CONTENT ============ -->
-      <main class="content">
-
-        <!-- Page Head -->
-        <div class="page-head reveal">
-          <div class="greet">
-            <h1>Good Morning, Admin <span class="wave">👋</span></h1>
-            <p>Here's what's happening with your travel business today — Sunday, August 30, 2026</p>
-          </div>
-          <div class="head-controls">
-            <div class="date-pill"><i class="fa-solid fa-calendar"></i> This month <i class="fa-solid fa-chevron-down"
-                style="font-size: 11px;"></i></div>
-            <button class="qa-btn"><i class="fa-solid fa-download"></i> Export report</button>
-          </div>
-        </div>
-
-        <!-- Jump To -->
-        <div class="jump-bar reveal">
-          <span class="jump-label">JUMP TO</span>
-          <button class="jump-btn"><i class="fa-solid fa-plus"></i> New booking</button>
-          <button class="jump-btn"><i class="fa-solid fa-user-plus"></i> Add customer</button>
-          <button class="jump-btn"><i class="fa-solid fa-box"></i> Add package</button>
-          <div class="jump-tip"><i class="fa-solid fa-lightbulb"></i> Keep every departure in view.</div>
-        </div>
-
-        <!-- KPI Cards -->
-        <section class="grid-kpi reveal" aria-label="Key metrics">
-          <div class="card kpi hoverable kpi-blue">
-            <div class="kpi-header">
-              <div class="kpi-icon-wrap"><i class="fa-solid fa-calendar-check" style="color: var(--st-blue);"></i></div>
-              <div class="kpi-title">Total bookings</div>
-            </div>
-            <div class="kpi-number">1,284</div>
-            <div class="kpi-footer">
-              <span class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i> 12.5% <span class="kpi-trend-sub">vs last
-                  month</span></span>
-              <div class="kpi-bg-icon"><i class="fa-solid fa-calendar-check"></i></div>
-            </div>
-          </div>
-
-          <div class="card kpi hoverable kpi-green">
-            <div class="kpi-header">
-              <div class="kpi-icon-wrap"><i class="fa-solid fa-sack-dollar" style="color: var(--st-green);"></i></div>
-              <div class="kpi-title">Total revenue</div>
-            </div>
-            <div class="kpi-number">৳42,85,600</div>
-            <div class="kpi-footer">
-              <span class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i> 18.2% <span class="kpi-trend-sub">vs last
-                  month</span></span>
-              <div class="kpi-bg-icon"><i class="fa-solid fa-sack-dollar"></i></div>
-            </div>
-          </div>
-
-          <div class="card kpi hoverable kpi-cyan">
-            <div class="kpi-header">
-              <div class="kpi-icon-wrap"><i class="fa-solid fa-calendar-plus" style="color: var(--st-green);"></i></div>
-              <div class="kpi-title">Today's bookings</div>
-            </div>
-            <div class="kpi-number">48</div>
-            <div class="kpi-footer">
-              <span class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i> 8.4% <span class="kpi-trend-sub">vs
-                  yesterday</span></span>
-              <div class="kpi-bg-icon"><i class="fa-solid fa-calendar-plus"></i></div>
-            </div>
-          </div>
-
-          <div class="card kpi hoverable kpi-purple">
-            <div class="kpi-header">
-              <div class="kpi-icon-wrap"><i class="fa-solid fa-users" style="color: var(--st-blue);"></i></div>
-              <div class="kpi-title">Total customers</div>
-            </div>
-            <div class="kpi-number">8,642</div>
-            <div class="kpi-footer">
-              <span class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i> 14.7% <span class="kpi-trend-sub">vs last
-                  month</span></span>
-              <div class="kpi-bg-icon"><i class="fa-solid fa-users"></i></div>
-            </div>
-          </div>
-
-          <div class="card kpi hoverable kpi-amber">
-            <div class="kpi-header">
-              <div class="kpi-icon-wrap"><i class="fa-solid fa-hourglass-half" style="color: var(--st-amber);"></i>
-              </div>
-              <div class="kpi-title">Pending payments</div>
-            </div>
-            <div class="kpi-number">৳6,84,200</div>
-            <div class="kpi-footer">
-              <span class="kpi-meta" style="color: var(--st-amber);"><i class="bi bi-exclamation-circle"></i> Needs
-                review</span>
-              <div class="kpi-bg-icon"><i class="fa-solid fa-hourglass-half"></i></div>
-            </div>
-          </div>
-
-          <div class="card kpi hoverable kpi-blue">
-            <div class="kpi-header">
-              <div class="kpi-icon-wrap"><i class="fa-solid fa-plane" style="color: var(--st-blue);"></i></div>
-              <div class="kpi-title">Upcoming trips</div>
-            </div>
-            <div class="kpi-number">84</div>
-            <div class="kpi-footer">
-              <span class="kpi-trend up"><i class="fa-solid fa-arrow-up"></i> 11.3% <span class="kpi-trend-sub">Next 30
-                  days</span></span>
-              <div class="kpi-bg-icon"><i class="fa-solid fa-plane"></i></div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Revenue + Booking Analytics + Customer analytics -->
-        <section class="grid-main-3 metrics-row reveal">
-          <div class="card">
-            <div class="card-head revenue-head">
-              <div class="revenue-head-left">
-                <div class="section-label">FINANCIAL PULSE</div>
-                <h3>Revenue overview</h3>
-                <div class="sub">Tracked revenue across all active travel products.</div>
-              </div>
-              <div class="revenue-head-right">
-                <div class="chips-group" id="revenueChipGroup">
-                  <span class="chip active" data-range="1m">1 month</span>
-                  <span class="chip" data-range="3m">3 months</span>
-                  <span class="chip" data-range="6m">6 months</span>
-                  <span class="chip" data-range="1y">1 year</span>
-                </div>
-                <button class="icon-btn-sm revenue-filter-btn" aria-label="More filters"><i
-                    class="fa-solid fa-sliders"></i></button>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="rev-summary">
-                <div>
-                  <div class="rev-lbl">Total revenue</div>
-                  <div class="rev-val" id="revTotalVal">৳42,85,600</div>
-                  <div class="rev-sub up" id="revTotalSub"><i class="fa-solid fa-arrow-up"></i> 18.2%</div>
-                </div>
-                <div>
-                  <div class="rev-lbl" style="color: var(--st-blue);">Booking revenue</div>
-                  <div class="rev-val" id="revBookingVal" style="color: var(--st-blue);">28,42,300</div>
-                  <div class="rev-sub" id="revBookingSub">66.3% of total</div>
-                </div>
-                <div>
-                  <div class="rev-lbl" style="color: var(--st-cyan);">Package revenue</div>
-                  <div class="rev-val" id="revPackageVal" style="color: var(--st-cyan);">৳11,28,400</div>
-                  <div class="rev-sub" id="revPackageSub">26.3% of total</div>
-                </div>
-                <div>
-                  <div class="rev-lbl" style="color: var(--st-green);">Visa revenue</div>
-                  <div class="rev-val" id="revVisaVal" style="color: var(--st-green);">৳3,14,900</div>
-                  <div class="rev-sub" id="revVisaSub">7.3% of total</div>
-                </div>
-              </div>
-              <div class="chart-wrap chart-wrap-revenue" id="revenueChart"></div>
-              <div class="chart-legend mt-3">
-                <span><span class="dot" style="background: var(--st-blue);"></span>Bookings</span>
-                <span><span class="dot" style="background: var(--st-cyan);"></span>Packages</span>
-                <span><span class="dot" style="background: var(--st-green);"></span>Visa</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">SERVICE MIX</div>
-                <h3>Booking analytics</h3>
-                <div class="sub">Confirmed bookings by product type</div>
-              </div>
-              <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="booking-analytics-wrap">
-                <div class="donut-chart-container">
-                  <div class="donut-chart" id="bookingDonut"></div>
-                  <div class="donut-center">
-                    <div class="donut-total">1,284</div>
-                    <div class="donut-label">Total</div>
-                  </div>
-                </div>
-                <div class="donut-legend-right">
-                  <div class="legend-item">
-                    <span class="legend-dot" style="background: var(--st-blue);"></span>
-                    <span class="legend-label">Flights</span>
-                    <span class="legend-value">42%</span>
-                  </div>
-                  <div class="legend-item">
-                    <span class="legend-dot" style="background: var(--st-cyan);"></span>
-                    <span class="legend-label">Hotels</span>
-                    <span class="legend-value">21%</span>
-                  </div>
-                  <div class="legend-item">
-                    <span class="legend-dot" style="background: var(--st-green);"></span>
-                    <span class="legend-label">Tours</span>
-                    <span class="legend-value">16%</span>
-                  </div>
-                  <div class="legend-item">
-                    <span class="legend-dot" style="background: #1e3a5f;"></span>
-                    <span class="legend-label">Umrah / Hajj</span>
-                    <span class="legend-value">13%</span>
-                  </div>
-                  <div class="legend-item">
-                    <span class="legend-dot" style="background: #cbd5e1;"></span>
-                    <span class="legend-label">Visa</span>
-                    <span class="legend-value">8%</span>
-                  </div>
-                </div>
-              </div>
-              <div class="booking-status-bottom">
-                <div class="status-item">
-                  <span class="status-dot" style="background: var(--st-green);"></span>
-                  <span class="status-label">Confirmed</span>
-                  <span class="status-value">742</span>
-                </div>
-                <div class="status-item">
-                  <span class="status-dot" style="background: var(--st-amber);"></span>
-                  <span class="status-label">Pending</span>
-                  <span class="status-value">318</span>
-                </div>
-                <div class="status-item">
-                  <span class="status-dot" style="background: var(--st-red);"></span>
-                  <span class="status-label">Cancelled</span>
-                  <span class="status-value">23</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">RELATIONSHIP HEALTH</div>
-                <h3>Customer analytics</h3>
-                <div class="sub">Growth and retention at a glance.</div>
-              </div>
-              <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="cust-summary">
-                <div>
-                  <div class="cs-lbl">Total customers</div>
-                  <div class="cs-val">1,844</div>
-                  <div class="cs-chg up">↗ 14.7%</div>
-                </div>
-                <div>
-                  <div class="cs-lbl">New customers</div>
-                  <div class="cs-val">226</div>
-                  <div class="cs-chg up">↗ 12.5%</div>
-                </div>
-                <div>
-                  <div class="cs-lbl">Returning</div>
-                  <div class="cs-val">864</div>
-                  <div class="cs-chg up">↗ 6.4%</div>
-                </div>
-              </div>
-              <div class="chart-wrap" id="customerChart" style="height: 160px; margin-top: 16px;"></div>
-              <div class="chart-legend mt-2">
-                <span><span class="dot" style="background: var(--st-blue);"></span>New customers</span>
-                <span><span class="dot" style="background: var(--st-green);"></span>Returning customers</span>
-                <span><span class="dot" style="background: var(--st-cyan);"></span>VIP 8.7%</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Recent Bookings -->
-        <section class="card reveal" style="margin-bottom: 16px;">
-          <div class="card-head">
-            <div>
-              <div class="section-label">LIVE OPERATIONS</div>
-              <h3>Recent bookings</h3>
-              <div class="sub">Monitor the latest customer and payment activity.</div>
-            </div>
-            <div class="d-flex gap-2 flex-wrap">
-              <div class="topbar-search topbar-search-sm" style="max-width: 220px; margin: 0;">
-                <i class="fa-solid fa-magnifying-glass s-icon"></i>
-                <input type="text" id="bookingSearchInput" placeholder="Search bookings..." />
-              </div>
-              <select class="filter-select" id="bookingServiceFilter">
-                <option value="all">All bookings</option>
-                <option value="flight">Flights</option>
-                <option value="hotel">Hotels</option>
-                <option value="tour">Tours</option>
-                <option value="umrah">Umrah</option>
-                <option value="visa">Visa</option>
-              </select>
-              <button class="icon-btn-sm" id="bookingFilterBtn" aria-label="Toggle filters"><i
-                  class="fa-solid fa-filter"></i></button>
-            </div>
-          </div>
-          <div class="table-wrap">
-            <table class="st-table">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>BOOKING ID</th>
-                  <th>CUSTOMER</th>
-                  <th>SERVICE</th>
-                  <th>DESTINATION</th>
-                  <th>TRAVEL DATE</th>
-                  <th>AMOUNT</th>
-                  <th>PAYMENT</th>
-                  <th>STATUS</th>
-                  <th style="text-align: right;">ACTION</th>
-                </tr>
-              </thead>
-              <tbody id="bookingsTableBody">
-                <tr data-service="flight">
-                  <td>1</td>
-                  <td><b class="bid">ST-98421</b></td>
-                  <td>
-                    <div class="avatar-row">
-                      <span class="avatar-wrap">
-                        <img class="avatar-img" src="images/customer/01.jpg" alt="Nusrat Jahan"
-                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                        <div class="avatar" style="background: #0072BC; display: none;">NI</div>
-                      </span>
-                      <div class="n">Nusrat Jahan</div>
-                    </div>
-                  </td>
-                  <td><span class="service-tag flight"><i class="fa-solid fa-plane"></i> Flight</span></td>
-                  <td>Dubai</td>
-                  <td>18 Sep 2026</td>
-                  <td><b>৳84,500</b></td>
-                  <td><span class="pay-status paid">Paid</span></td>
-                  <td><span class="status-badge confirmed"><span class="pip"></span>Confirmed</span></td>
-                  <td style="text-align: right;">
-                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
-                          class="fa-solid fa-eye"></i></button><button title="Edit"><i
-                          class="fa-solid fa-pencil"></i></button><button title="More"><i
-                          class="fa-solid fa-ellipsis"></i></button></div>
-                  </td>
-                </tr>
-                <tr data-service="umrah">
-                  <td>2</td>
-                  <td><b class="bid">ST-98420</b></td>
-                  <td>
-                    <div class="avatar-row">
-                      <span class="avatar-wrap">
-                        <img class="avatar-img" src="images/customer/02.jpg" alt="Arif Rahman"
-                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                        <div class="avatar" style="background: #00A651; display: none;">AR</div>
-                      </span>
-                      <div class="n">Arif Rahman</div>
-                    </div>
-                  </td>
-                  <td><span class="service-tag umrah"><i class="fa-solid fa-moon"></i> Umrah</span></td>
-                  <td>Jeddah</td>
-                  <td>22 Sep 2026</td>
-                  <td><b>৳1,42,000</b></td>
-                  <td><span class="pay-status partial">Partial</span></td>
-                  <td><span class="status-badge processing"><span class="pip"></span>Processing</span></td>
-                  <td style="text-align: right;">
-                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
-                          class="fa-solid fa-eye"></i></button><button title="Edit"><i
-                          class="fa-solid fa-pencil"></i></button><button title="More"><i
-                          class="fa-solid fa-ellipsis"></i></button></div>
-                  </td>
-                </tr>
-                <tr data-service="hotel">
-                  <td>3</td>
-                  <td><b class="bid">ST-98419</b></td>
-                  <td>
-                    <div class="avatar-row">
-                      <span class="avatar-wrap">
-                        <img class="avatar-img" src="images/customer/03.jpg" alt="Mehedi Hasan"
-                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                        <div class="avatar" style="background: #F59E0B; display: none;">MH</div>
-                      </span>
-                      <div class="n">Mehedi Hasan</div>
-                    </div>
-                  </td>
-                  <td><span class="service-tag hotel"><i class="fa-solid fa-building"></i> Hotel</span></td>
-                  <td>Kuala Lumpur</td>
-                  <td>24 Sep 2026</td>
-                  <td><b>৳62,800</b></td>
-                  <td><span class="pay-status paid">Paid</span></td>
-                  <td><span class="status-badge confirmed"><span class="pip"></span>Confirmed</span></td>
-                  <td style="text-align: right;">
-                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
-                          class="fa-solid fa-eye"></i></button><button title="Edit"><i
-                          class="fa-solid fa-pencil"></i></button><button title="More"><i
-                          class="fa-solid fa-ellipsis"></i></button></div>
-                  </td>
-                </tr>
-                <tr data-service="tour">
-                  <td>4</td>
-                  <td><b class="bid">ST-98418</b></td>
-                  <td>
-                    <div class="avatar-row">
-                      <span class="avatar-wrap">
-                        <img class="avatar-img" src="images/customer/04.jpg" alt="Sadia Karim"
-                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                        <div class="avatar" style="background: #8B5CF6; display: none;">SK</div>
-                      </span>
-                      <div class="n">Sadia Karim</div>
-                    </div>
-                  </td>
-                  <td><span class="service-tag tour"><i class="fa-solid fa-compass"></i> Tour</span></td>
-                  <td>Bangkok</td>
-                  <td>27 Sep 2026</td>
-                  <td><b>৳46,200</b></td>
-                  <td><span class="pay-status pending">Pending</span></td>
-                  <td><span class="status-badge pending"><span class="pip"></span>Pending</span></td>
-                  <td style="text-align: right;">
-                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
-                          class="fa-solid fa-eye"></i></button><button title="Edit"><i
-                          class="fa-solid fa-pencil"></i></button><button title="More"><i
-                          class="fa-solid fa-ellipsis"></i></button></div>
-                  </td>
-                </tr>
-                <tr data-service="visa">
-                  <td>5</td>
-                  <td><b class="bid">ST-98417</b></td>
-                  <td>
-                    <div class="avatar-row">
-                      <span class="avatar-wrap">
-                        <img class="avatar-img" src="images/customer/05.jpg" alt="Tariq Ahmed"
-                          onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                        <div class="avatar" style="background: #ED1C24; display: none;">TA</div>
-                      </span>
-                      <div class="n">Tariq Ahmed</div>
-                    </div>
-                  </td>
-                  <td><span class="service-tag visa"><i class="fa-solid fa-stamp"></i> Visa</span></td>
-                  <td>United Kingdom</td>
-                  <td>30 Sep 2026</td>
-                  <td><b>৳18,500</b></td>
-                  <td><span class="pay-status paid">Paid</span></td>
-                  <td><span class="status-badge completed"><span class="pip"></span>Completed</span></td>
-                  <td style="text-align: right;">
-                    <div class="row-actions" style="justify-content: flex-end;"><button title="View"><i
-                          class="fa-solid fa-eye"></i></button><button title="Edit"><i
-                          class="fa-solid fa-pencil"></i></button><button title="More"><i
-                          class="fa-solid fa-ellipsis"></i></button></div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="card-foot d-flex justify-content-between align-items-center flex-wrap gap-2">
-            <div style="font-size: 12.5px; color: var(--text-muted);">Showing <b
-                style="color: var(--text-primary);">5</b> of <b style="color: var(--text-primary);">1,284</b> bookings
-            </div>
-            <div class="d-flex gap-1" id="bookingsPagination">
-              <button class="icon-btn-sm" data-page="prev" aria-label="Previous page"><i
-                  class="fa-solid fa-chevron-left"></i></button>
-              <button class="icon-btn-sm active" data-page="1">1</button>
-              <button class="icon-btn-sm" data-page="2">2</button>
-              <button class="icon-btn-sm" data-page="3">3</button>
-              <button class="icon-btn-sm" disabled>…</button>
-              <button class="icon-btn-sm" data-page="64">64</button>
-              <button class="icon-btn-sm" data-page="next" aria-label="Next page"><i
-                  class="fa-solid fa-chevron-right"></i></button>
-            </div>
-          </div>
-        </section>
-
-        <!-- Upcoming Departures + Popular Destinations -->
-        <section class="grid-main reveal">
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">NEXT ON THE BOARD</div>
-                <h3>Upcoming departures</h3>
-                <div class="sub">Flights, tours and pilgrim groups leaving soon.</div>
-              </div>
-              <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="dep-item">
-                <div class="dep-icon"><i class="fa-solid fa-plane"></i></div>
-                <div class="dep-info">
-                  <div class="dep-route">Dhaka → Dubai</div>
-                  <div class="dep-meta">18 Sep 2026 · 42 passengers</div>
-                </div>
-                <div class="dep-service">Flight<br><span class="dep-count">18 bookings</span></div>
-                <div class="dep-status"><span class="status-badge confirmed"><span class="pip"></span>Confirmed</span>
-                </div>
-                <div class="dep-days">
-                  <div class="num">19</div>
-                  <div class="lbl">days to<br>departure</div>
-                </div>
-              </div>
-              <div class="dep-item">
-                <div class="dep-icon"><i class="fa-solid fa-compass"></i></div>
-                <div class="dep-info">
-                  <div class="dep-route">Dhaka → Kuala Lumpur</div>
-                  <div class="dep-meta">24 Sep 2026 · 26 passengers</div>
-                </div>
-                <div class="dep-service">Tour<br><span class="dep-count">8 bookings</span></div>
-                <div class="dep-status"><span class="status-badge processing"><span class="pip"></span>Processing</span>
-                </div>
-                <div class="dep-days">
-                  <div class="num">25</div>
-                  <div class="lbl">days to<br>departure</div>
-                </div>
-              </div>
-              <div class="dep-item">
-                <div class="dep-icon"><i class="fa-solid fa-suitcase"></i></div>
-                <div class="dep-info">
-                  <div class="dep-route">Dhaka → Bangkok</div>
-                  <div class="dep-meta">27 Sep 2026 · 18 passengers</div>
-                </div>
-                <div class="dep-service">Holiday<br><span class="dep-count">8 bookings</span></div>
-                <div class="dep-status"><span class="status-badge confirmed"><span class="pip"></span>Confirmed</span>
-                </div>
-                <div class="dep-days">
-                  <div class="num">28</div>
-                  <div class="lbl">days to<br>departure</div>
-                </div>
-              </div>
-              <div class="dep-item">
-                <div class="dep-icon"><i class="fa-solid fa-moon"></i></div>
-                <div class="dep-info">
-                  <div class="dep-route">Dhaka → Jeddah</div>
-                  <div class="dep-meta">02 Oct 2026 · 48 pilgrims</div>
-                </div>
-                <div class="dep-service">Umrah<br><span class="dep-count">21 bookings</span></div>
-                <div class="dep-status"><span class="status-badge documents"><span class="pip"></span>Documents</span>
-                </div>
-                <div class="dep-days">
-                  <div class="num">33</div>
-                  <div class="lbl">days to<br>departure</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">POPULAR DESTINATIONS</div>
-                <h3>Top performing this month</h3>
-                <div class="sub">Highest booking volume and revenue by city.</div>
-              </div>
-              <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="dest-grid">
-                <div class="dest-card">
-                  <div class="dest-img"
-                    style="background-image: url('https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=400&q=70');">
-                    <span class="dest-name-tag">Bangkok</span>
-                    <span class="dest-flag">🇹 TH</span>
-                  </div>
-                  <div class="dest-body">
-                    <div class="dest-stats">
-                      <div><span class="v">248</span><span class="l">Bookings</span></div>
-                      <div><span class="v">৳5.4M</span><span class="l">Revenue</span></div>
-                      <div><span class="v growth">+22%</span><span class="l">Growth</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="dest-card">
-                  <div class="dest-img"
-                    style="background-image: url('https://images.unsplash.com/photo-1591604466107-ec97de577aff?w=400&q=70');">
-                    <span class="dest-name-tag">Jeddah</span>
-                    <span class="dest-flag">🇦 KSA</span>
-                  </div>
-                  <div class="dest-body">
-                    <div class="dest-stats">
-                      <div><span class="v">198</span><span class="l">Bookings</span></div>
-                      <div><span class="v">৳12.8M</span><span class="l">Revenue</span></div>
-                      <div><span class="v growth">+9%</span><span class="l">Growth</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="dest-card">
-                  <div class="dest-img"
-                    style="background-image: url('https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400&q=70');">
-                    <span class="dest-name-tag">Istanbul</span>
-                    <span class="dest-flag">🇹 TR</span>
-                  </div>
-                  <div class="dest-body">
-                    <div class="dest-stats">
-                      <div><span class="v">174</span><span class="l">Bookings</span></div>
-                      <div><span class="v">৳4.8M</span><span class="l">Revenue</span></div>
-                      <div><span class="v growth">+16%</span><span class="l">Growth</span></div>
-                    </div>
-                  </div>
-                </div>
-                <div class="dest-card">
-                  <div class="dest-img"
-                    style="background-image: url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=400&q=70');">
-                    <span class="dest-name-tag">Singapore</span>
-                    <span class="dest-flag">🇸🇬 SG</span>
-                  </div>
-                  <div class="dest-body">
-                    <div class="dest-stats">
-                      <div><span class="v">152</span><span class="l">Bookings</span></div>
-                      <div><span class="v">৳4.2M</span><span class="l">Revenue</span></div>
-                      <div><span class="v growth">+12%</span><span class="l">Growth</span></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Top Packages + Pending actions + Payment -->
-        <section class="grid-3 reveal">
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">PRODUCT PERFORMANCE</div>
-                <h3>Top-selling packages</h3>
-                <div class="sub">Packages converting best this month.</div>
-              </div>
-              <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="pkg-list">
-                <div class="pkg-row">
-                  <div class="pkg-rank" style="background: var(--st-blue);">B</div>
-                  <div class="pkg-info">
-                    <div class="pkg-name">Breathtaking Singapore</div>
-                    <div class="pkg-dur">6 days · 5 nights</div>
-                  </div>
-                  <div class="pkg-stats">
-                    <div><b>126</b><span>bookings</span></div>
-                    <div><b>৳15,80,000</b><span>revenue</span></div>
-                  </div>
-                  <div class="pkg-growth up">↗ 92%</div>
-                  <div class="pkg-status active">Active</div>
-                </div>
-                <div class="pkg-row">
-                  <div class="pkg-rank" style="background: #8B5CF6;">H</div>
-                  <div class="pkg-info">
-                    <div class="pkg-name">Hajj Package 2026</div>
-                    <div class="pkg-dur">14 days · 13 nights</div>
-                  </div>
-                  <div class="pkg-stats">
-                    <div><b>84</b><span>bookings</span></div>
-                    <div><b>৳18,90,000</b><span>revenue</span></div>
-                  </div>
-                  <div class="pkg-growth up">↗ 88%</div>
-                  <div class="pkg-status selling">Selling fast</div>
-                </div>
-                <div class="pkg-row">
-                  <div class="pkg-rank" style="background: var(--st-cyan);">D</div>
-                  <div class="pkg-info">
-                    <div class="pkg-name">Dubai Explorer</div>
-                    <div class="pkg-dur">5 days · 4 nights</div>
-                  </div>
-                  <div class="pkg-stats">
-                    <div><b>71</b><span>bookings</span></div>
-                    <div><b>৳9,25,000</b><span>revenue</span></div>
-                  </div>
-                  <div class="pkg-growth up">↗ 81%</div>
-                  <div class="pkg-status confirmed">Confirmed</div>
-                </div>
-                <div class="pkg-row">
-                  <div class="pkg-rank" style="background: var(--st-green);">B</div>
-                  <div class="pkg-info">
-                    <div class="pkg-name">Bangkok Discovery</div>
-                    <div class="pkg-dur">3 days · 2 nights</div>
-                  </div>
-                  <div class="pkg-stats">
-                    <div><b>58</b><span>bookings</span></div>
-                    <div><b>৳5,60,000</b><span>revenue</span></div>
-                  </div>
-                  <div class="pkg-growth up">↗ 76%</div>
-                  <div class="pkg-status active">Active</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">ACTION CENTER</div>
-                <h3>Pending actions</h3>
-                <div class="sub">Priority items that need a decision.</div>
-              </div>
-              <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="action-item high">
-                <div class="ac-icon"><i class="fa-solid fa-stamp"></i></div>
-                <div class="ac-info">
-                  <div class="ac-title">13 applications under review</div>
-                  <div class="ac-sub">Visa application tracker</div>
-                </div>
-                <div class="ac-priority high">High · 8 hrs <i class="fa-solid fa-chevron-right"></i></div>
-              </div>
-              <div class="action-item medium">
-                <div class="ac-icon"><i class="fa-solid fa-credit-card"></i></div>
-                <div class="ac-info">
-                  <div class="ac-title">8 payments pending verification</div>
-                  <div class="ac-sub">Finance operations</div>
-                </div>
-                <div class="ac-priority medium">Med · 1 day <i class="fa-solid fa-chevron-right"></i></div>
-              </div>
-              <div class="action-item low">
-                <div class="ac-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                <div class="ac-info">
-                  <div class="ac-title">5 bookings awaiting confirmation</div>
-                  <div class="ac-sub">Booking operations</div>
-                </div>
-                <div class="ac-priority low">Low · 3 hrs <i class="fa-solid fa-chevron-right"></i></div>
-              </div>
-              <div class="action-item low">
-                <div class="ac-icon"><i class="fa-solid fa-rotate-left"></i></div>
-                <div class="ac-info">
-                  <div class="ac-title">3 refund requests</div>
-                  <div class="ac-sub">Customer support</div>
-                </div>
-                <div class="ac-priority low">Low · 3 hrs <i class="fa-solid fa-chevron-right"></i></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">CASH POSITION</div>
-                <h3>Payment overview</h3>
-                <div class="sub">Receipts, risk, and method mix.</div>
-              </div>
-              <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="pay-grid">
-                <div class="pay-box received">
-                  <div class="pay-lbl">TOTAL RECEIVED</div>
-                  <div class="pay-val"><i class="fa-solid fa-arrow-up"></i> ৳38.2L</div>
-                </div>
-                <div class="pay-box pending">
-                  <div class="pay-lbl">PENDING</div>
-                  <div class="pay-val"><i class="fa-solid fa-arrow-up"></i> ৳6.8L</div>
-                </div>
-                <div class="pay-box refunded">
-                  <div class="pay-lbl">REFUNDED</div>
-                  <div class="pay-val"><i class="fa-solid fa-arrow-down"></i> ৳1.4L</div>
-                </div>
-                <div class="pay-box today">
-                  <div class="pay-lbl">TODAY'S COLLECTION</div>
-                  <div class="pay-val"><i class="fa-solid fa-arrow-up"></i> ৳2.4L</div>
-                </div>
-              </div>
-              <div class="pay-donut-wrap">
-                <div class="pay-donut-container">
-                  <div class="pay-donut-chart" id="paymentDonut"></div>
-                  <div class="pay-donut-center">
-                    <div class="pay-donut-total">1,284</div>
-                    <div class="pay-donut-label">Total</div>
-                  </div>
-                </div>
-                <div class="pay-legend">
-                  <div class="pay-legend-title">Payment Methods</div>
-                  <div class="pay-legend-item">
-                    <span class="pay-legend-dot" style="background: #E11D74;"></span>
-                    <span class="pay-legend-name">bKash</span>
-                    <span class="pay-legend-value">38%</span>
-                  </div>
-                  <div class="pay-legend-item">
-                    <span class="pay-legend-dot" style="background: #E74F2C;"></span>
-                    <span class="pay-legend-name">Nagad</span>
-                    <span class="pay-legend-value">24%</span>
-                  </div>
-                  <div class="pay-legend-item">
-                    <span class="pay-legend-dot" style="background: var(--st-blue);"></span>
-                    <span class="pay-legend-name">Bank Transfer</span>
-                    <span class="pay-legend-value">22%</span>
-                  </div>
-                  <div class="pay-legend-item">
-                    <span class="pay-legend-dot" style="background: #1A1F71;"></span>
-                    <span class="pay-legend-name">Visa / Mastercard</span>
-                    <span class="pay-legend-value">11%</span>
-                  </div>
-                  <div class="pay-legend-item">
-                    <span class="pay-legend-dot" style="background: var(--st-green);"></span>
-                    <span class="pay-legend-name">Cash</span>
-                    <span class="pay-legend-value">5%</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Pending Actions + Visa Tracker -->
-        <section class="grid-main reveal">
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">JOURNEY READINESS</div>
-                <h3>Umrah & Hajj operations</h3>
-                <div class="sub">Respectful oversight for every pilgrim journey.</div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="ops-block umrah">
-                <div class="ops-head">
-                  <div class="d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-moon"></i>
-                    <h4>Umrah Operations</h4>
-                  </div>
-                  <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-                </div>
-                <div class="ops-grid">
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Total pilgrims</div>
-                    <div class="ops-val">1,248</div>
-                    <div class="ops-chg up">↗ 12.4%</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Upcoming Departures</div>
-                    <div class="ops-val">18</div>
-                    <div class="ops-chg">Next 30 days</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Confirmed</div>
-                    <div class="ops-val">984</div>
-                    <div class="ops-chg up">78.8%</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Pending Documents</div>
-                    <div class="ops-val">126</div>
-                    <div class="ops-chg warn">Action needed</div>
-                  </div>
-                </div>
-              </div>
-              <div class="ops-block hajj">
-                <div class="ops-head">
-                  <div class="d-flex align-items-center gap-2">
-                    <i class="fa-solid fa-star-fill"></i>
-                    <h4>Hajj Operations</h4>
-                  </div>
-                  <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-                </div>
-                <div class="ops-grid">
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Registered</div>
-                    <div class="ops-val">648</div>
-                    <div class="ops-chg up">↗ 8.2%</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Pre-Registered</div>
-                    <div class="ops-val">284</div>
-                    <div class="ops-chg">For 2027</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Confirmed</div>
-                    <div class="ops-val">482</div>
-                    <div class="ops-chg up">74.4%</div>
-                  </div>
-                  <div class="ops-stat">
-                    <div class="ops-lbl">Documents Pending</div>
-                    <div class="ops-val">84</div>
-                    <div class="ops-chg warn">13% pending</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">PROCESSING PIPELINE</div>
-                <h3>Visa application tracker</h3>
-                <div class="sub">Applications across your active corridors.</div>
-              </div>
-              <a href="#" class="view-all">Open tracker <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="visa-row">
-                <div class="visa-flag-code">
-                  <span class="visa-flag">🇬🇧</span>
-                  <span class="visa-code">GB</span>
-                </div>
-                <div class="visa-country">UK</div>
-                <div class="visa-count">13</div>
-                <div class="visa-bar-wrap">
-                  <div class="visa-bar"><span style="width: 75%; background: var(--st-green);"></span></div>
-                </div>
-                <div class="visa-stage">Document Review</div>
-                <div class="visa-days">8 days</div>
-              </div>
-              <div class="visa-row">
-                <div class="visa-flag-code">
-                  <span class="visa-flag">🇺🇸</span>
-                  <span class="visa-code">US</span>
-                </div>
-                <div class="visa-country">USA</div>
-                <div class="visa-count">9</div>
-                <div class="visa-bar-wrap">
-                  <div class="visa-bar"><span style="width: 60%; background: var(--st-green);"></span></div>
-                </div>
-                <div class="visa-stage">Processing</div>
-                <div class="visa-days">9 days</div>
-              </div>
-              <div class="visa-row">
-                <div class="visa-flag-code">
-                  <span class="visa-flag">🇨🇦</span>
-                  <span class="visa-code">CA</span>
-                </div>
-                <div class="visa-country">Canada</div>
-                <div class="visa-count">14</div>
-                <div class="visa-bar-wrap">
-                  <div class="visa-bar"><span style="width: 80%; background: var(--st-green);"></span></div>
-                </div>
-                <div class="visa-stage">Document Review</div>
-                <div class="visa-days">12 days</div>
-              </div>
-              <div class="visa-row">
-                <div class="visa-flag-code">
-                  <span class="visa-flag">🇲🇾</span>
-                  <span class="visa-code">MY</span>
-                </div>
-                <div class="visa-country">Malaysia</div>
-                <div class="visa-count">11</div>
-                <div class="visa-bar-wrap">
-                  <div class="visa-bar"><span style="width: 90%; background: var(--st-green);"></span></div>
-                </div>
-                <div class="visa-stage">Approved</div>
-                <div class="visa-days">14 days</div>
-              </div>
-              <div class="visa-row">
-                <div class="visa-flag-code">
-                  <span class="visa-flag">🇦🇪</span>
-                  <span class="visa-code">AE</span>
-                </div>
-                <div class="visa-country">UAE</div>
-                <div class="visa-count">8</div>
-                <div class="visa-bar-wrap">
-                  <div class="visa-bar"><span style="width: 55%; background: var(--st-green);"></span></div>
-                </div>
-                <div class="visa-stage">Processing</div>
-                <div class="visa-days">12 days</div>
-              </div>
-              <div class="visa-row">
-                <div class="visa-flag-code">
-                  <span class="visa-flag">🇸🇦</span>
-                  <span class="visa-code">SA</span>
-                </div>
-                <div class="visa-country">Saudi Arabia</div>
-                <div class="visa-count">12</div>
-                <div class="visa-bar-wrap">
-                  <div class="visa-bar"><span style="width: 85%; background: var(--st-green);"></span></div>
-                </div>
-                <div class="visa-stage">Approved</div>
-                <div class="visa-days">12 days</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Staff + Recent Activity + System Health -->
-        <section class="grid-3 reveal">
-          <!-- Staff -->
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">TEAM PRODUCTIVITY</div>
-                <h3>Staff performance</h3>
-                <div class="sub">Top contributors by conversion and revenue.</div>
-              </div>
-              <a href="#" class="view-all">View report <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="staff-table">
-                <div class="staff-head">
-                  <div>STAFF</div>
-                  <div>BOOKINGS</div>
-                  <div>REVENUE</div>
-                  <div>CONVERSION</div>
-                </div>
-                <div class="staff-row">
-                  <div class="staff-info">
-                    <span class="avatar-wrap" style="width: 32px; height: 32px;">
-                      <img class="avatar-img" src="images/staff/01.jpg" alt="Md. Shifat Ahmed"
-                        style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block;"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                      <div class="avatar"
-                        style="background: linear-gradient(135deg,#0072BC,#06B0EF); width: 32px; height: 32px; font-size: 11px; display: none; position: absolute; top: 0; left: 0;">
-                        MS</div>
-                    </span>
-                    <div>
-                      <div class="n">Md. Shifat Ahmed</div>
-                      <div class="m">Top performer</div>
-                    </div>
-                  </div>
-                  <div><b>156</b> bookings</div>
-                  <div><b>৳14,220,000</b></div>
-                  <div><b style="color: var(--st-green);">92%</b></div>
-                </div>
-                <div class="staff-row">
-                  <div class="staff-info">
-                    <span class="avatar-wrap"
-                      style="width: 32px; height: 32px; position: relative; display: inline-block;">
-                      <img class="avatar-img" src="images/staff/02.jpg" alt="Fatima Khan"
-                        style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block;"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                      <div class="avatar"
-                        style="background: linear-gradient(135deg,#00A651,#06B0EF); width: 32px; height: 32px; font-size: 11px; display: none; position: absolute; top: 0; left: 0;">
-                        FK</div>
-                    </span>
-                    <div>
-                      <div class="n">Fatima Khan</div>
-                      <div class="m">Strong</div>
-                    </div>
-                  </div>
-                  <div><b>132</b> bookings</div>
-                  <div><b>11,550,000</b></div>
-                  <div><b style="color: var(--st-green);">88%</b></div>
-                </div>
-                <div class="staff-row">
-                  <div class="staff-info">
-                    <span class="avatar-wrap"
-                      style="width: 32px; height: 32px; position: relative; display: inline-block;">
-                      <img class="avatar-img" src="images/staff/03.jpg" alt="Karim Rahman"
-                        style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block;"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                      <div class="avatar"
-                        style="background: linear-gradient(135deg,#F59E0B,#ED1C24); width: 32px; height: 32px; font-size: 11px; display: none; position: absolute; top: 0; left: 0;">
-                        KR</div>
-                    </span>
-                    <div>
-                      <div class="n">Karim Rahman</div>
-                      <div class="m">Strong</div>
-                    </div>
-                  </div>
-                  <div><b>121</b> bookings</div>
-                  <div><b>10,360,000</b></div>
-                  <div><b style="color: var(--st-green);">84%</b></div>
-                </div>
-                <div class="staff-row">
-                  <div class="staff-info">
-                    <span class="avatar-wrap"
-                      style="width: 32px; height: 32px; position: relative; display: inline-block;">
-                      <img class="avatar-img" src="images/staff/04.jpg" alt="Fatima Asma"
-                        style="width: 32px; height: 32px; border-radius: 50%; object-fit: cover; display: block;"
-                        onerror="this.style.display='none'; this.nextElementSibling.style.display='grid';">
-                      <div class="avatar"
-                        style="background: linear-gradient(135deg,#8B5CF6,#06B0EF); width: 32px; height: 32px; font-size: 11px; display: none; position: absolute; top: 0; left: 0;">
-                        FA</div>
-                    </span>
-                    <div>
-                      <div class="n">Fatima Asma</div>
-                      <div class="m">On track</div>
-                    </div>
-                  </div>
-                  <div><b>105</b> bookings</div>
-                  <div><b>৳9,150,000</b></div>
-                  <div><b style="color: var(--st-green);">79%</b></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Recent Activity -->
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">AUDIT TRAIL</div>
-                <h3>Recent activity</h3>
-                <div class="sub">Latest actions across bookings and payments.</div>
-              </div>
-              <a href="#" class="view-all">View all <i class="fa-solid fa-chevron-right"></i></a>
-            </div>
-            <div class="card-body">
-              <div class="activity-timeline">
-                <div class="activity-item">
-                  <div class="activity-icon success">
-                    <i class="fa-solid fa-circle-check-fill"></i>
-                  </div>
-                  <div class="activity-content">
-                    <div class="activity-text">
-                      <span class="activity-highlight">Payment received</span>
-                      <span class="activity-detail">৳84,500 from Nusrat Jahan</span>
-                    </div>
-                    <div class="activity-time">08 min ago</div>
-                  </div>
-                </div>
-                <div class="activity-item">
-                  <div class="activity-icon primary">
-                    <i class="fa-solid fa-circle-plus"></i>
-                  </div>
-                  <div class="activity-content">
-                    <div class="activity-text">
-                      <span class="activity-highlight">New booking created</span>
-                      <span class="activity-detail">ST-98421 · Dubai flight</span>
-                    </div>
-                    <div class="activity-time">24 min ago</div>
-                  </div>
-                </div>
-                <div class="activity-item">
-                  <div class="activity-icon success">
-                    <i class="fa-solid fa-stamp"></i>
-                  </div>
-                  <div class="activity-content">
-                    <div class="activity-text">
-                      <span class="activity-highlight">Visa application approved</span>
-                      <span class="activity-detail">United Kingdom · ST-98388</span>
-                    </div>
-                    <div class="activity-time">1 hr ago</div>
-                  </div>
-                </div>
-                <div class="activity-item">
-                  <div class="activity-icon info">
-                    <i class="fa-solid fa-pencil-square"></i>
-                  </div>
-                  <div class="activity-content">
-                    <div class="activity-text">
-                      <span class="activity-highlight">Package updated</span>
-                      <span class="activity-detail">Premium Kuala Lumpur Escape</span>
-                    </div>
-                    <div class="activity-time">2 hrs ago</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Quick Actions -->
-          <div class="card">
-            <div class="card-head">
-              <div>
-                <div class="section-label">QUICK ACTIONS</div>
-                <h3>Frequently used shortcuts</h3>
-                <div class="sub">Jump straight into common tasks.</div>
-              </div>
-            </div>
-            <div class="card-body">
-              <div class="quick-actions-grid">
-                <div class="quick-action-item">
-                  <i class="fa-solid fa-circle-plus"></i>
-                  <span>New Booking</span>
-                </div>
-                <div class="quick-action-item">
-                  <i class="fa-solid fa-user-plus"></i>
-                  <span>Add Customer</span>
-                </div>
-                <div class="quick-action-item">
-                  <i class="fa-solid fa-plane"></i>
-                  <span>Add Flight</span>
-                </div>
-                <div class="quick-action-item">
-                  <i class="fa-solid fa-building"></i>
-                  <span>Add Hotel</span>
-                </div>
-                <div class="quick-action-item">
-                  <i class="fa-solid fa-compass"></i>
-                  <span>Tour Package</span>
-                </div>
-                <div class="quick-action-item">
-                  <i class="fa-solid fa-moon"></i>
-                  <span>Umrah Package</span>
-                </div>
-                <div class="quick-action-item">
-                  <i class="fa-solid fa-star"></i>
-                  <span>Hajj Package</span>
-                </div>
-                <div class="quick-action-item">
-                  <i class="fa-solid fa-stamp"></i>
-                  <span>Visa Application</span>
-                </div>
-                <div class="quick-action-item">
-                  <i class="fa-solid fa-file-lines"></i>
-                  <span>Create Invoice</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- Footer -->
-        <footer class="app-footer">
-          <div class="footer-copyright">
-            © 2026 STIT BD | All Rights Reserved.
-          </div>
-          <div class="footer-links">
-            <a href="#">Privacy</a>
-            <span class="footer-divider">•</span>
-            <a href="#">Terms</a>
-            <span class="footer-divider">•</span>
-            <a href="#">Support</a>
-          </div>
-          <div class="footer-server">
-            ST Trip Travel Management Portal
-          </div>
-        </footer>
-
-      </main>
-    </div>
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">Loading Dashboard...</div>
   </div>
 
-  <div class="toast-container" id="toastContainer"></div>
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-logo">
+        <img src="images/logo.png" alt="ST TYRE" class="brand-logo-full" onerror="this.style.display='none'">
+        <img src="images/favicon.png" alt="ST TYRE" class="brand-logo-mini" onerror="this.style.display='none'">
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a class="nav-item-custom active" href="#">
+        <i class="fas fa-th-large"></i>
+        <span>Dashboard</span>
+      </a>
+
+      <div class="nav-section-title">Commerce</div>
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#bookingsSubmenu"
+        aria-expanded="false">
+        <i class="fas fa-calendar-check"></i>
+        <span>Bookings</span>
+        <span class="badge-count">12</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+      <div class="collapse" id="bookingsSubmenu">
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="#"><i class="fas fa-list"></i> All Bookings</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-plane"></i> Flight Bookings</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Hotel Bookings</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> Tour Bookings</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-moon"></i> Umrah Bookings</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-kaaba"></i> Hajj Bookings</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-passport"></i> Visa Applications</a>
+        </div>
+      </div>
+      <a class="nav-item-custom" href="#">
+        <i class="fas fa-box-open"></i>
+        <span>Travel Products</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+
+      <div class="nav-section-title">People</div>
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#customersSubmenu"
+        aria-expanded="false">
+        <i class="fas fa-users"></i>
+        <span>Customers</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+      <div class="collapse" id="customersSubmenu">
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="#"><i class="fas fa-user"></i> All Customers</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-users"></i> Customer Groups</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-star"></i> Reviews</a>
+        </div>
+      </div>
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#suppliersSubmenu"
+        aria-expanded="false">
+        <i class="fas fa-handshake"></i>
+        <span>Suppliers & Partners</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+      <div class="collapse" id="suppliersSubmenu">
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="#"><i class="fas fa-users"></i> All Suppliers & Partners</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-plane"></i> Airlines</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Hotels</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Tour Operators</a>
+        </div>
+      </div>
+
+      <div class="nav-section-title">Finance</div>
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#FinanceSubmenu"
+        aria-expanded="false">
+        <i class="fas fa-wallet"></i>
+        <span>Finance</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+      <div class="collapse" id="FinanceSubmenu">
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="#"><i class="fas fa-book"></i> Chart of Accounts</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-hand-holding-usd"></i> Payments</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-money-bill-wave"></i> Transactions</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-receipt"></i> Invoices</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-exchange-alt"></i> Refunds</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-wallet"></i> Expenses</a>
+        </div>
+      </div>
+
+      <div class="nav-section-title">Operations</div>
+      <a class="nav-item-custom" href="#">
+        <i class="fas fa-shuttle-van"></i>
+        <span>Airport Transfers</span>
+      </a>
+      <a class="nav-item-custom" href="#">
+        <i class="fas fa-map-marked-alt"></i>
+        <span>Tour Operations</span>
+      </a>
+      <a class="nav-item-custom" href="#">
+        <i class="fas fa-moon"></i>
+        <span>Umrah Operations</span>
+      </a>
+      <a class="nav-item-custom" href="#">
+        <i class="fas fa-kaaba"></i>
+        <span>Hajj Operations</span>
+      </a>
+      <a class="nav-item-custom" href="#">
+        <i class="fas fa-passport"></i>
+        <span>Visa Processing</span>
+      </a>
+
+      <div class="nav-section-title">Growth</div>
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#MarketingSubmenu"
+        aria-expanded="false">
+        <i class="fas fa-bullhorn"></i>
+        <span>Marketing</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+      <div class="collapse" id="MarketingSubmenu">
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="#"><i class="fas fa-gift"></i> Promotions</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-ticket-alt"></i> Coupons</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-ad"></i> Campaigns</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-envelope"></i> Newsletter</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-search"></i> SEO</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-star"></i> Reviews</a>
+        </div>
+      </div>
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse"
+        data-bs-target="#ContentManagementSubmenu" aria-expanded="false">
+        <i class="fas fa-keyboard"></i>
+        <span>Content Management</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+      <div class="collapse" id="ContentManagementSubmenu">
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> Destinations</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-book-open"></i> Blog</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-question-circle"></i> FAQ</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-info-circle"></i> About Us</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-info-circle"></i> Why Us</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-info-circle"></i> Contact Us</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> Travel Guides</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> Popular Routes</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> News & Announcements</a>
+        </div>
+      </div>
+
+      <div class="nav-section-title">Insights</div>
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#reportsSubmenu"
+        aria-expanded="false">
+        <i class="fas fa-chart-bar"></i>
+        <span>Reports & Analytics</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+      <div class="collapse" id="reportsSubmenu">
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="#"><i class="fas fa-chart-line"></i> Sales Report</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-calendar-check"></i> Booking Report</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-money-bill-wave"></i> Revenue Report</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-users"></i> Customer Report</a>
+        </div>
+      </div>
+
+
+      <div class="nav-section-title">Support</div>
+      <a class="nav-item-custom" href="#">
+        <i class="fas fa-headset"></i>
+        <span>Support Tickets</span>
+        <span class="badge-count">4</span>
+      </a>
+      <a class="nav-item-custom" href="#">
+        <i class="fas fa-message"></i>
+        <span>Customer Messages</span>
+        <span class="badge-count">4</span>
+      </a>
+      <a class="nav-item-custom" href="#">
+        <i class="fab fa-whatsapp"></i>
+        <span>WhatsApp Leadss</span>
+        <span class="badge-count">4</span>
+      </a>
+
+      <div class="nav-section-title">System</div>
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#usersSubmenu"
+        aria-expanded="false">
+        <i class="fas fa-shield-halved"></i>
+        <span>Users & Security</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+      <div class="collapse" id="usersSubmenu">
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="#"><i class="fas fa-passport"></i> Admin Users</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-list"></i> Staff</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-plane"></i> Roles & Permissions</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Activity Logs</a>
+        </div>
+      </div>
+
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#settingsSubmenu"
+        aria-expanded="false">
+        <i class="fas fa-solid fa-gear"></i>
+        <span>Settings</span>
+        <i class="fas fa-chevron-right nav-chevron"></i>
+      </a>
+      <div class="collapse" id="settingsSubmenu">
+        <div class="nav-submenu">
+          <a class="nav-subitem" href="#"><i class="fas fa-passport"></i> General Settings</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-list"></i> Company Profile</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-plane"></i> Payment Methods</a>
+          <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Email Settings</a>
+        </div>
+      </div>
+      <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#logoutSubmenu"
+        aria-expanded="false">
+        <i class="fas fa-right-from-bracket"></i>
+        <span>Logout</span>
+      </a>
+
+    </nav>
+
+    <div class="sidebar-user">
+      <div class="sidebar-user-avatar">AM</div>
+      <div class="sidebar-user-info">
+        <div class="sidebar-user-name">Asraf Mridha</div>
+        <div class="sidebar-user-role">Super Admin</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="main-content">
+    <!-- Header -->
+    <header class="top-header">
+      <div class="header-left">
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle sidebar">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="header-breadcrumb">
+          <a href="#">ST Trip</a>
+          <span class="sep">/</span>
+          <a href="#">Admin</a>
+          <span class="sep">/</span>
+          <span class="current">Dashboard</span>
+        </div>
+      </div>
+
+      <div class="header-mobile-logo">
+        <img src="images/logo.png" alt="ST TRIP">
+      </div>
+
+      <div class="header-search">
+        <i class="fas fa-search"></i>
+        <input type="text" placeholder="Search bookings, customers, packages...">
+      </div>
+
+      <div class="header-right">
+        <button class="header-icon-btn mobile-search-btn" data-tooltip="Search">
+          <i class="fas fa-search"></i>
+        </button>
+        <div class="dropdown quick-add-dropdown">
+          <button class="btn-quick-add dropdown-toggle" id="quickAddBtn" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <i class="fas fa-plus"></i>
+            <span>Quick add</span>
+          </button>
+          <ul class="dropdown-menu quick-add-menu" aria-labelledby="quickAddBtn">
+            <li><a class="dropdown-item quick-add-item" href="#"><i class="fas fa-calendar-check"></i> New
+                booking</a></li>
+            <li><a class="dropdown-item quick-add-item" href="#"><i class="fas fa-user-plus"></i> Add customer</a></li>
+            <li><a class="dropdown-item quick-add-item" href="#"><i class="fas fa-box"></i> Add package</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item quick-add-item" href="#"><i class="fas fa-file-invoice-dollar"></i> Create
+                invoice</a></li>
+          </ul>
+        </div>
+        <button class="header-icon-btn" data-tooltip="Notifications">
+          <i class="fas fa-bell"></i>
+          <span class="notif-dot"></span>
+        </button>
+        <button class="header-icon-btn" data-tooltip="Messages">
+          <i class="fas fa-comment-dots"></i>
+        </button>
+        <div class="dropdown header-profile-dropdown">
+          <div class="header-profile dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            <div class="header-profile-image">
+              <img src="images/profile.jpg" alt="User">
+            </div>
+            <div>
+              <div class="header-profile-name">MD. Shaokat Hossain</div>
+              <div class="header-profile-role">Managing Director</div>
+            </div>
+            <i class="fas fa-chevron-down header-profile-chevron"></i>
+          </div>
+          <ul class="dropdown-menu dropdown-menu-end profile-menu" aria-labelledby="profileDropdown">
+            <li><a class="dropdown-item profile-item" href="#"><i class="fas fa-user"></i> My Profile</a></li>
+            <li><a class="dropdown-item profile-item" href="#"><i class="fas fa-cog"></i> Account Settings</a></li>
+            <li><a class="dropdown-item profile-item" href="#"><i class="fas fa-history"></i> Activity Log</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item profile-item danger" href="#"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- Dashboard Content -->
+    <div class="dashboard-content">
+      <!-- Greeting -->
+      <div class="greeting-area fade-up">
+        <div class="greeting-left">
+          <h1>Good Morning, Admin 👋</h1>
+          <p>Here's what's happening with your travel business today — Sunday, August 30, 2026</p>
+        </div>
+        <div class="greeting-right">
+          <button class="btn-filter"><i class="fas fa-calendar-alt"></i> This month <i class="fas fa-chevron-down"
+              style="font-size:10px;"></i></button>
+          <button class="btn-export"><i class="fas fa-download"></i> Export report</button>
+        </div>
+      </div>
+
+      <!-- Quick Actions Bar -->
+      <div class="quick-actions-bar fade-up">
+        <span class="qa-label">Jump to</span>
+        <button class="qa-btn"><i class="fas fa-plus"></i> New booking</button>
+        <button class="qa-btn"><i class="fas fa-user-plus"></i> Add customer</button>
+        <button class="qa-btn"><i class="fas fa-box"></i> Add package</button>
+        <span class="qa-keep"><i class="fas fa-lightbulb"></i> Keep every departure in view.</span>
+      </div>
+
+      <!-- KPI Cards -->
+      <div class="kpi-row">
+        <div class="kpi-card fade-up">
+          <div class="kpi-card-header">
+            <div class="kpi-icon blue"><i class="fas fa-calendar-check"></i></div>
+            <span class="kpi-title">Total bookings</span>
+          </div>
+          <div class="kpi-value">1,284</div>
+          <div class="kpi-change up"><i class="fas fa-arrow-up"></i> 12.5% <span class="change-label">vs last
+              month</span></div>
+          <div class="kpi-deco"><i class="fas fa-calendar-check"></i></div>
+        </div>
+        <div class="kpi-card fade-up">
+          <div class="kpi-card-header">
+            <div class="kpi-icon green"><i class="fas fa-coins"></i></div>
+            <span class="kpi-title">Total revenue</span>
+          </div>
+          <div class="kpi-value">৳42,85,600</div>
+          <div class="kpi-change up"><i class="fas fa-arrow-up"></i> 18.2% <span class="change-label">vs last
+              month</span></div>
+          <div class="kpi-deco"><i class="fas fa-sack-dollar"></i></div>
+        </div>
+        <div class="kpi-card fade-up">
+          <div class="kpi-card-header">
+            <div class="kpi-icon purple"><i class="fas fa-calendar-day"></i></div>
+            <span class="kpi-title">Today's bookings</span>
+          </div>
+          <div class="kpi-value">48</div>
+          <div class="kpi-change up"><i class="fas fa-arrow-up"></i> 8.4% <span class="change-label">vs yesterday</span>
+          </div>
+          <div class="kpi-deco"><i class="fas fa-calendar-day"></i></div>
+        </div>
+        <div class="kpi-card fade-up">
+          <div class="kpi-card-header">
+            <div class="kpi-icon cyan"><i class="fas fa-users"></i></div>
+            <span class="kpi-title">Total customers</span>
+          </div>
+          <div class="kpi-value">8,642</div>
+          <div class="kpi-change up"><i class="fas fa-arrow-up"></i> 14.7% <span class="change-label">vs last
+              month</span></div>
+          <div class="kpi-deco"><i class="fas fa-users"></i></div>
+        </div>
+        <div class="kpi-card fade-up">
+          <div class="kpi-card-header">
+            <div class="kpi-icon orange"><i class="fas fa-hourglass-half"></i></div>
+            <span class="kpi-title">Pending payments</span>
+          </div>
+          <div class="kpi-value">৳6,84,200</div>
+          <div class="kpi-change" style="color:var(--warning);"><i class="fas fa-clock"></i> Needs review</div>
+          <div class="kpi-deco"><i class="fas fa-hourglass-half"></i></div>
+        </div>
+        <div class="kpi-card fade-up">
+          <div class="kpi-card-header">
+            <div class="kpi-icon blue"><i class="fas fa-plane-departure"></i></div>
+            <span class="kpi-title">Upcoming trips</span>
+          </div>
+          <div class="kpi-value">84</div>
+          <div class="kpi-change up"><i class="fas fa-arrow-up"></i> 11.3% <span class="change-label">Next 30
+              days</span></div>
+          <div class="kpi-deco"><i class="fas fa-plane"></i></div>
+        </div>
+      </div>
+
+      <!-- Analytics Row -->
+      <div class="row g-3 mb-3">
+        <!-- Revenue Overview -->
+        <div class="col-lg-5 col-xl-6 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Financial Pulse</div>
+                <div class="dash-card-subtitle">Revenue overview</div>
+                <div class="dash-card-desc">Tracked revenue across all active travel products.</div>
+              </div>
+              <div class="tab-pills">
+                <button class="tab-pill active">1 month</button>
+                <button class="tab-pill">3 months</button>
+                <button class="tab-pill">6 months</button>
+                <button class="tab-pill">1 year</button>
+              </div>
+            </div>
+            <div class="revenue-stats">
+              <div class="revenue-stat-item">
+                <div class="rs-label">Total revenue</div>
+                <div class="rs-value">৳42,85,600</div>
+                <div class="rs-change">↑ 18.2%</div>
+              </div>
+              <div class="revenue-stat-item">
+                <div class="rs-label">Booking revenue</div>
+                <div class="rs-value" style="color:#4f6bff;">28,42,300</div>
+                <div class="rs-pct">66.3% of total</div>
+              </div>
+              <div class="revenue-stat-item">
+                <div class="rs-label">Package revenue</div>
+                <div class="rs-value" style="color:#22c55e;">৳11,28,400</div>
+                <div class="rs-pct">26.3% of total</div>
+              </div>
+              <div class="revenue-stat-item">
+                <div class="rs-label">Visa revenue</div>
+                <div class="rs-value" style="color:#06b6d4;">৳3,14,900</div>
+                <div class="rs-pct">7.3% of total</div>
+              </div>
+            </div>
+            <div class="chart-container" style="height:180px;">
+              <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="chart-legend">
+              <div class="legend-item">
+                <div class="legend-dot" style="background:#4f6bff;"></div> Bookings
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background:#22c55e;"></div> Packages
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background:#06b6d4;"></div> Visa
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Booking Analytics -->
+        <div class="col-lg-4 col-md-6 col-xl-3 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Service Mix</div>
+                <div class="dash-card-subtitle">Booking analytics</div>
+                <div class="dash-card-desc">Confirmed bookings by product type</div>
+              </div>
+              <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+            </div>
+            <div class="booking-chart-row">
+              <div class="chart-container booking-donut" style="height:170px; position:relative;">
+                <canvas id="bookingChart"></canvas>
+                <div class="donut-center">
+                  <div class="donut-center-value">1,284</div>
+                  <div class="donut-center-label">Total</div>
+                </div>
+              </div>
+              <div class="booking-legend">
+                <div class="booking-legend-item">
+                  <div class="booking-legend-left">
+                    <div class="booking-legend-dot" style="background:#4f6bff;"></div><span
+                      class="booking-legend-name">Flights</span>
+                  </div>
+                  <span class="booking-legend-value">42%</span>
+                </div>
+                <div class="booking-legend-item">
+                  <div class="booking-legend-left">
+                    <div class="booking-legend-dot" style="background:#22c55e;"></div><span
+                      class="booking-legend-name">Hotels</span>
+                  </div>
+                  <span class="booking-legend-value">21%</span>
+                </div>
+                <div class="booking-legend-item">
+                  <div class="booking-legend-left">
+                    <div class="booking-legend-dot" style="background:#06b6d4;"></div><span
+                      class="booking-legend-name">Tours</span>
+                  </div>
+                  <span class="booking-legend-value">16%</span>
+                </div>
+                <div class="booking-legend-item">
+                  <div class="booking-legend-left">
+                    <div class="booking-legend-dot" style="background:#8b5cf6;"></div><span
+                      class="booking-legend-name">Umrah / Hajj</span>
+                  </div>
+                  <span class="booking-legend-value">13%</span>
+                </div>
+                <div class="booking-legend-item">
+                  <div class="booking-legend-left">
+                    <div class="booking-legend-dot" style="background:#cbd5e1;"></div><span
+                      class="booking-legend-name">Visa</span>
+                  </div>
+                  <span class="booking-legend-value">8%</span>
+                </div>
+              </div>
+            </div>
+            <div class="status-legend-row">
+              <div class="status-legend-item">
+                <div class="status-legend-dot" style="background:#22c55e;"></div> Confirmed 742
+              </div>
+              <div class="status-legend-item">
+                <div class="status-legend-dot" style="background:#f59e0b;"></div> Pending 318
+              </div>
+              <div class="status-legend-item">
+                <div class="status-legend-dot" style="background:#ef4444;"></div> Cancelled 23
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Analytics -->
+        <div class="col-lg-3 col-md-6 col-xl-3 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Relationship Health</div>
+                <div class="dash-card-subtitle">Customer analytics</div>
+                <div class="dash-card-desc">Growth and retention at a glance.</div>
+              </div>
+              <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+            </div>
+            <div class="ca-stats">
+              <div class="ca-stat-box">
+                <div class="ca-stat-label">Total customers</div>
+                <div class="ca-stat-value">1,844</div>
+                <div class="ca-stat-change"><i class="fas fa-arrow-up"></i> 14.7%</div>
+              </div>
+              <div class="ca-stat-box">
+                <div class="ca-stat-label">New customers</div>
+                <div class="ca-stat-value">226</div>
+                <div class="ca-stat-change"><i class="fas fa-arrow-up"></i> 12.5%</div>
+              </div>
+              <div class="ca-stat-box">
+                <div class="ca-stat-label">Returning</div>
+                <div class="ca-stat-value">864</div>
+                <div class="ca-stat-change"><i class="fas fa-arrow-up"></i> 6.4%</div>
+              </div>
+            </div>
+            <div class="chart-container" style="height:160px;">
+              <canvas id="customerChart"></canvas>
+            </div>
+            <div class="chart-legend" style="margin-top:8px;">
+              <div class="legend-item">
+                <div class="legend-dot" style="background:#4f6bff;"></div> New customers
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background:#22c55e;"></div> Returning customers
+              </div>
+              <div class="legend-item">
+                <div class="legend-dot" style="background:#8b5cf6;"></div> VIP 8.7%
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent Bookings Table -->
+      <div class="dash-card table-card fade-up">
+        <div class="dash-card-header">
+          <div>
+            <div class="dash-card-title">Live Operations</div>
+            <div class="dash-card-subtitle">Recent bookings</div>
+            <div class="dash-card-desc">Monitor the latest customer and payment activity.</div>
+          </div>
+          <div class="table-search-row">
+            <div class="table-search-input">
+              <i class="fas fa-search"></i>
+              <input type="text" placeholder="Search bookings...">
+            </div>
+            <select class="table-filter-select">
+              <option>All bookings</option>
+              <option>Confirmed</option>
+              <option>Processing</option>
+              <option>Pending</option>
+            </select>
+          </div>
+        </div>
+        <div class="table-responsive-custom">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Booking ID</th>
+                <th>Customer</th>
+                <th>Service</th>
+                <th>Destination</th>
+                <th>Travel Date</th>
+                <th>Amount</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><span class="booking-id">ST-98421</span></td>
+                <td>
+                  <div class="customer-cell">
+                    <div class="customer-avatar"><img src="images/customer/01.jpg" alt="Nusrat Jahan"></div>
+                    <span class="customer-name">Nusrat Jahan</span>
+                  </div>
+                </td>
+                <td><span class="service-badge flight"><i class="fas fa-plane" style="font-size:9px;"></i>
+                    Flight</span>
+                </td>
+                <td>Dubai</td>
+                <td>18 Sep 2026</td>
+                <td>৳84,500</td>
+                <td><span class="status-badge paid">Paid</span></td>
+                <td><span class="status-badge confirmed">● Confirmed</span></td>
+                <td>
+                  <div class="action-btns"><button class="action-btn"><i class="fas fa-eye"></i></button><button
+                      class="action-btn"><i class="fas fa-pen"></i></button><button class="action-btn"><i
+                        class="fas fa-ellipsis-h"></i></button></div>
+                </td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td><span class="booking-id">ST-98420</span></td>
+                <td>
+                  <div class="customer-cell">
+                    <div class="customer-avatar"><img src="images/customer/02.jpg" alt="Arif Rahman"></div>
+                    <span class="customer-name">Arif Rahman</span>
+                  </div>
+                </td>
+                <td><span class="service-badge umrah"><i class="fas fa-moon" style="font-size:9px;"></i> Umrah</span>
+                </td>
+                <td>Jeddah</td>
+                <td>22 Sep 2026</td>
+                <td>৳1,42,000</td>
+                <td><span class="status-badge partial">Partial</span></td>
+                <td><span class="status-badge processing">● Processing</span></td>
+                <td>
+                  <div class="action-btns"><button class="action-btn"><i class="fas fa-eye"></i></button><button
+                      class="action-btn"><i class="fas fa-pen"></i></button><button class="action-btn"><i
+                        class="fas fa-ellipsis-h"></i></button></div>
+                </td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td><span class="booking-id">ST-98419</span></td>
+                <td>
+                  <div class="customer-cell">
+                    <div class="customer-avatar"><img src="images/customer/03.jpg" alt="Mehedi Hasan"></div>
+                    <span class="customer-name">Mehedi Hasan</span>
+                  </div>
+                </td>
+                <td><span class="service-badge hotel"><i class="fas fa-hotel" style="font-size:9px;"></i> Hotel</span>
+                </td>
+                <td>Kuala Lumpur</td>
+                <td>24 Sep 2026</td>
+                <td>৳62,800</td>
+                <td><span class="status-badge paid">Paid</span></td>
+                <td><span class="status-badge confirmed">● Confirmed</span></td>
+                <td>
+                  <div class="action-btns"><button class="action-btn"><i class="fas fa-eye"></i></button><button
+                      class="action-btn"><i class="fas fa-pen"></i></button><button class="action-btn"><i
+                        class="fas fa-ellipsis-h"></i></button></div>
+                </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td><span class="booking-id">ST-98418</span></td>
+                <td>
+                  <div class="customer-cell">
+                    <div class="customer-avatar"><img src="images/customer/04.jpg" alt="Sadia Karim"></div>
+                    <span class="customer-name">Sadia Karim</span>
+                  </div>
+                </td>
+                <td><span class="service-badge tour"><i class="fas fa-map-marker-alt" style="font-size:9px;"></i>
+                    Tour</span></td>
+                <td>Bangkok</td>
+                <td>27 Sep 2026</td>
+                <td>46,200</td>
+                <td><span class="status-badge pending-text">Pending</span></td>
+                <td><span class="status-badge pending">● Pending</span></td>
+                <td>
+                  <div class="action-btns"><button class="action-btn"><i class="fas fa-eye"></i></button><button
+                      class="action-btn"><i class="fas fa-pen"></i></button><button class="action-btn"><i
+                        class="fas fa-ellipsis-h"></i></button></div>
+                </td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td><span class="booking-id">ST-98417</span></td>
+                <td>
+                  <div class="customer-cell">
+                    <div class="customer-avatar"><img src="images/customer/05.jpg" alt="Tariq Ahmed"></div>
+                    <span class="customer-name">Tariq Ahmed</span>
+                  </div>
+                </td>
+                <td><span class="service-badge visa"><i class="fas fa-passport" style="font-size:9px;"></i>
+                    Visa</span>
+                </td>
+                <td>United Kingdom</td>
+                <td>30 Sep 2026</td>
+                <td>৳18,500</td>
+                <td><span class="status-badge paid">Paid</span></td>
+                <td><span class="status-badge completed">● Completed</span></td>
+                <td>
+                  <div class="action-btns"><button class="action-btn"><i class="fas fa-eye"></i></button><button
+                      class="action-btn"><i class="fas fa-pen"></i></button><button class="action-btn"><i
+                        class="fas fa-ellipsis-h"></i></button></div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-footer">
+          <div class="table-footer-info">Showing <strong>5</strong> of <strong>1,284</strong> bookings</div>
+          <div class="pagination-custom">
+            <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">...</button>
+            <button class="page-btn">64</button>
+            <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Upcoming Departures & Popular Destinations -->
+      <div class="row g-3 mb-3">
+        <div class="col-lg-5 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Next on the Board</div>
+                <div class="dash-card-subtitle">Upcoming departures</div>
+                <div class="dash-card-desc">Flights, tours and pilgrim groups leaving soon.</div>
+              </div>
+              <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+            </div>
+            <div class="departure-item">
+              <div class="departure-icon flight"><i class="fas fa-plane"></i></div>
+              <div class="departure-info">
+                <div class="departure-route">Dhaka → Dubai</div>
+                <div class="departure-meta">18 Sep 2026 · 42 passengers</div>
+              </div>
+              <div class="departure-details">
+                <div class="departure-type">Flight · 18 bookings</div>
+                <div class="departure-status confirmed">● Confirmed</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="departure-days">19</div>
+                <div class="departure-days-label">Days to<br>Departure</div>
+              </div>
+            </div>
+            <div class="departure-item">
+              <div class="departure-icon tour"><i class="fas fa-compass"></i></div>
+              <div class="departure-info">
+                <div class="departure-route">Dhaka → Kuala Lumpur</div>
+                <div class="departure-meta">24 Sep 2026 · 26 passengers</div>
+              </div>
+              <div class="departure-details">
+                <div class="departure-type">Tour · 8 bookings</div>
+                <div class="departure-status processing">● Processing</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="departure-days">25</div>
+                <div class="departure-days-label">Days to<br>Departure</div>
+              </div>
+            </div>
+            <div class="departure-item">
+              <div class="departure-icon holiday"><i class="fas fa-suitcase-rolling"></i></div>
+              <div class="departure-info">
+                <div class="departure-route">Dhaka → Bangkok</div>
+                <div class="departure-meta">27 Sep 2026 · 18 passengers</div>
+              </div>
+              <div class="departure-details">
+                <div class="departure-type">Holiday · 8 bookings</div>
+                <div class="departure-status confirmed">● Confirmed</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="departure-days">28</div>
+                <div class="departure-days-label">Days to<br>Departure</div>
+              </div>
+            </div>
+            <div class="departure-item">
+              <div class="departure-icon umrah"><i class="fas fa-moon"></i></div>
+              <div class="departure-info">
+                <div class="departure-route">Dhaka → Jeddah</div>
+                <div class="departure-meta">02 Oct 2026 · 48 pilgrims</div>
+              </div>
+              <div class="departure-details">
+                <div class="departure-type">Umrah · 21 bookings</div>
+                <div class="departure-status documents">● Documents</div>
+              </div>
+              <div style="text-align:right;">
+                <div class="departure-days">33</div>
+                <div class="departure-days-label">Days to<br>Departure</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-7 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Popular Destinations</div>
+                <div class="dash-card-subtitle">Top performing this month</div>
+                <div class="dash-card-desc">Highest booking volume and revenue by city.</div>
+              </div>
+              <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+            </div>
+            <div class="row g-2">
+              <div class="col-3">
+                <div class="dest-card">
+                  <div class="dest-card-img" style="background-image:url('images/destination/Bangkok.jpg');">
+                    <span class="dest-card-country">🇹🇭 TH</span>
+                    <div class="dest-card-city">Bangkok</div>
+                  </div>
+                  <div class="dest-card-body">
+                    <div class="dest-card-stats">
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">248</div>
+                        <div class="dest-stat-label">Bookings</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">৳5.4M</div>
+                        <div class="dest-stat-label">Revenue</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-growth">+22%</div>
+                        <div class="dest-stat-label">Growth</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="dest-card">
+                  <div class="dest-card-img" style="background-image:url('images/destination/Jeddah.jpg');">
+                    <span class="dest-card-country">🇸🇦 KSA</span>
+                    <div class="dest-card-city">Jeddah</div>
+                  </div>
+                  <div class="dest-card-body">
+                    <div class="dest-card-stats">
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">198</div>
+                        <div class="dest-stat-label">Bookings</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">৳12.8M</div>
+                        <div class="dest-stat-label">Revenue</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-growth">+9%</div>
+                        <div class="dest-stat-label">Growth</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="dest-card">
+                  <div class="dest-card-img" style="background-image:url('images/destination/Istanbul.jpg');">
+                    <span class="dest-card-country">🇹🇷 TR</span>
+                    <div class="dest-card-city">Istanbul</div>
+                  </div>
+                  <div class="dest-card-body">
+                    <div class="dest-card-stats">
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">174</div>
+                        <div class="dest-stat-label">Bookings</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">৳4.8M</div>
+                        <div class="dest-stat-label">Revenue</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-growth">+16%</div>
+                        <div class="dest-stat-label">Growth</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="dest-card">
+                  <div class="dest-card-img" style="background-image:url('images/destination/Singapore.jpg');">
+                    <span class="dest-card-country">🇸🇬 SG</span>
+                    <div class="dest-card-city">Singapore</div>
+                  </div>
+                  <div class="dest-card-body">
+                    <div class="dest-card-stats">
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">152</div>
+                        <div class="dest-stat-label">Bookings</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">৳4.2M</div>
+                        <div class="dest-stat-label">Revenue</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-growth">+12%</div>
+                        <div class="dest-stat-label">Growth</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="dest-card">
+                  <div class="dest-card-img" style="background-image:url('images/destination/Bangkok.jpg');">
+                    <span class="dest-card-country">🇹🇭 TH</span>
+                    <div class="dest-card-city">Bangkok</div>
+                  </div>
+                  <div class="dest-card-body">
+                    <div class="dest-card-stats">
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">248</div>
+                        <div class="dest-stat-label">Bookings</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">৳5.4M</div>
+                        <div class="dest-stat-label">Revenue</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-growth">+22%</div>
+                        <div class="dest-stat-label">Growth</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="dest-card">
+                  <div class="dest-card-img" style="background-image:url('images/destination/Jeddah.jpg');">
+                    <span class="dest-card-country">🇸🇦 KSA</span>
+                    <div class="dest-card-city">Jeddah</div>
+                  </div>
+                  <div class="dest-card-body">
+                    <div class="dest-card-stats">
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">198</div>
+                        <div class="dest-stat-label">Bookings</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">৳12.8M</div>
+                        <div class="dest-stat-label">Revenue</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-growth">+9%</div>
+                        <div class="dest-stat-label">Growth</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="dest-card">
+                  <div class="dest-card-img" style="background-image:url('images/destination/Istanbul.jpg');">
+                    <span class="dest-card-country">🇹🇷 TR</span>
+                    <div class="dest-card-city">Istanbul</div>
+                  </div>
+                  <div class="dest-card-body">
+                    <div class="dest-card-stats">
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">174</div>
+                        <div class="dest-stat-label">Bookings</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">৳4.8M</div>
+                        <div class="dest-stat-label">Revenue</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-growth">+16%</div>
+                        <div class="dest-stat-label">Growth</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-3">
+                <div class="dest-card">
+                  <div class="dest-card-img" style="background-image:url('images/destination/Singapore.jpg');">
+                    <span class="dest-card-country">🇸🇬 SG</span>
+                    <div class="dest-card-city">Singapore</div>
+                  </div>
+                  <div class="dest-card-body">
+                    <div class="dest-card-stats">
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">152</div>
+                        <div class="dest-stat-label">Bookings</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-value">৳4.2M</div>
+                        <div class="dest-stat-label">Revenue</div>
+                      </div>
+                      <div class="dest-stat">
+                        <div class="dest-stat-growth">+12%</div>
+                        <div class="dest-stat-label">Growth</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Product Performance, Pending Actions, Payment Overview -->
+      <div class="row g-3 mb-3">
+        <div class="col-lg-4 col-md-12 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Product Performance</div>
+                <div class="dash-card-subtitle">Top-selling packages</div>
+                <div class="dash-card-desc">Packages converting best this month.</div>
+              </div>
+              <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+            </div>
+            <div class="product-item">
+              <div class="product-icon" style="background:#4f6bff;">B</div>
+              <div class="product-info">
+                <div class="product-name">Breathtaking Singapore</div>
+                <div class="product-duration">6 days · 5 nights</div>
+              </div>
+              <div class="product-stats">
+                <div class="product-bookings">126 bookings</div>
+                <div class="product-revenue">৳15,80,000 revenue</div>
+              </div>
+            </div>
+            <div class="product-item">
+              <div class="product-icon" style="background:#8b5cf6;">H</div>
+              <div class="product-info">
+                <div class="product-name">Hajj Package 2026</div>
+                <div class="product-duration">14 days · 13 nights</div>
+              </div>
+              <div class="product-stats">
+                <div class="product-bookings">84 bookings</div>
+                <div class="product-revenue">৳18,90,000 revenue</div>
+              </div>
+            </div>
+            <div class="product-item">
+              <div class="product-icon" style="background:#06b6d4;">D</div>
+              <div class="product-info">
+                <div class="product-name">Dubai Explorer</div>
+                <div class="product-duration">5 days · 4 nights</div>
+              </div>
+              <div class="product-stats">
+                <div class="product-bookings">71 bookings</div>
+                <div class="product-revenue">৳9,25,000 revenue</div>
+              </div>
+            </div>
+            <div class="product-item">
+              <div class="product-icon" style="background:#22c55e;">B</div>
+              <div class="product-info">
+                <div class="product-name">Bangkok Discovery</div>
+                <div class="product-duration">3 days · 2 nights</div>
+              </div>
+              <div class="product-stats">
+                <div class="product-bookings">58 bookings</div>
+                <div class="product-revenue">৳5,60,000 revenue</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Action Center</div>
+                <div class="dash-card-subtitle">Pending actions</div>
+                <div class="dash-card-desc">Priority items that need a decision.</div>
+              </div>
+              <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+            </div>
+            <div class="action-item">
+              <div class="action-item-icon red"><i class="fas fa-passport"></i></div>
+              <div class="action-item-info">
+                <div class="action-item-title">13 applications under review</div>
+                <div class="action-item-desc">Visa application tracker</div>
+              </div>
+              <div class="action-item-priority high">High · 8 hrs <i class="fas fa-chevron-right"
+                  style="font-size:9px;"></i></div>
+            </div>
+            <div class="action-item">
+              <div class="action-item-icon orange"><i class="fas fa-credit-card"></i></div>
+              <div class="action-item-info">
+                <div class="action-item-title">8 payments pending verification</div>
+                <div class="action-item-desc">Finance operations</div>
+              </div>
+              <div class="action-item-priority med">Med · 1 day <i class="fas fa-chevron-right"
+                  style="font-size:9px;"></i></div>
+            </div>
+            <div class="action-item">
+              <div class="action-item-icon blue"><i class="fas fa-calendar-check"></i></div>
+              <div class="action-item-info">
+                <div class="action-item-title">5 bookings awaiting confirmation</div>
+                <div class="action-item-desc">Booking operations</div>
+              </div>
+              <div class="action-item-priority low">Low · 3 hrs <i class="fas fa-chevron-right"
+                  style="font-size:9px;"></i></div>
+            </div>
+            <div class="action-item">
+              <div class="action-item-icon gray"><i class="fas fa-undo"></i></div>
+              <div class="action-item-info">
+                <div class="action-item-title">3 refund requests</div>
+                <div class="action-item-desc">Customer support</div>
+              </div>
+              <div class="action-item-priority low">Low · 3 hrs <i class="fas fa-chevron-right"
+                  style="font-size:9px;"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Cash Position</div>
+                <div class="dash-card-subtitle">Payment overview</div>
+                <div class="dash-card-desc">Receipts, risk, and method mix.</div>
+              </div>
+              <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+            </div>
+            <div class="payment-stats">
+              <div class="payment-stat-box received">
+                <div class="payment-stat-label received-l">Total Received</div>
+                <div class="payment-stat-value"><span class="arrow-up">↑</span> ৳38.2L</div>
+              </div>
+              <div class="payment-stat-box pending-box">
+                <div class="payment-stat-label pending-l">Pending</div>
+                <div class="payment-stat-value"><span class="arrow-up" style="color:var(--warning);">↑</span> ৳6.8L
+                </div>
+              </div>
+              <div class="payment-stat-box refunded">
+                <div class="payment-stat-label refunded-l">Refunded</div>
+                <div class="payment-stat-value"><span class="arrow-down">↓</span> 1.4L</div>
+              </div>
+              <div class="payment-stat-box today">
+                <div class="payment-stat-label today-l">Today's Collection</div>
+                <div class="payment-stat-value"><span class="arrow-up">↑</span> ৳2.4L</div>
+              </div>
+            </div>
+            <div class="payment-methods-row">
+              <div class="payment-donut-wrap">
+                <canvas id="paymentChart"></canvas>
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;">
+                  <div style="font-size:18px;font-weight:700;color:var(--text-dark);">1,284</div>
+                  <div style="font-size:10px;color:var(--text-muted);">Total</div>
+                </div>
+              </div>
+              <div class="payment-methods-list">
+                <div style="font-size:11px;font-weight:600;color:var(--text-muted);margin-bottom:6px;">Payment Methods
+                </div>
+                <div class="pm-item">
+                  <div class="pm-item-left">
+                    <div class="pm-dot" style="background:#ec4899;"></div><span class="pm-name">bKash</span>
+                  </div><span class="pm-pct">38%</span>
+                </div>
+                <div class="pm-item">
+                  <div class="pm-item-left">
+                    <div class="pm-dot" style="background:#f97316;"></div><span class="pm-name">Nagad</span>
+                  </div><span class="pm-pct">24%</span>
+                </div>
+                <div class="pm-item">
+                  <div class="pm-item-left">
+                    <div class="pm-dot" style="background:#3b82f6;"></div><span class="pm-name">Bank Transfer</span>
+                  </div><span class="pm-pct">22%</span>
+                </div>
+                <div class="pm-item">
+                  <div class="pm-item-left">
+                    <div class="pm-dot" style="background:#8b5cf6;"></div><span class="pm-name">Visa /
+                      Mastercard</span>
+                  </div><span class="pm-pct">11%</span>
+                </div>
+                <div class="pm-item">
+                  <div class="pm-item-left">
+                    <div class="pm-dot" style="background:#22c55e;"></div><span class="pm-name">Cash</span>
+                  </div><span class="pm-pct">5%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Umrah/Hajj & Visa Tracker -->
+      <div class="row g-3 mb-3">
+        <div class="col-lg-7 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Journey Readiness</div>
+                <div class="dash-card-subtitle">Umrah & Hajj operations</div>
+                <div class="dash-card-desc">Respectful oversight for every pilgrim journey.</div>
+              </div>
+            </div>
+            <div class="ops-section umrah">
+              <div class="ops-header">
+                <div class="ops-title"><i class="fas fa-moon" style="color:#4f6bff;"></i> Umrah Operations</div>
+                <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right"
+                    style="font-size:9px;"></i></a>
+              </div>
+              <div class="ops-stats">
+                <div class="ops-stat">
+                  <div class="ops-stat-label">Total pilgrims</div>
+                  <div class="ops-stat-value">1,248</div>
+                  <div class="ops-stat-change up">↑ 12.4%</div>
+                </div>
+                <div class="ops-stat">
+                  <div class="ops-stat-label">Upcoming Departures</div>
+                  <div class="ops-stat-value">18</div>
+                  <div class="ops-stat-label" style="margin-top:4px;">Next 30 days</div>
+                </div>
+                <div class="ops-stat">
+                  <div class="ops-stat-label">Confirmed</div>
+                  <div class="ops-stat-value">984</div>
+                  <div class="ops-stat-change up">78.8%</div>
+                </div>
+                <div class="ops-stat">
+                  <div class="ops-stat-label">Pending Documents</div>
+                  <div class="ops-stat-value">126</div>
+                  <div class="ops-stat-change warn">Action needed</div>
+                </div>
+              </div>
+            </div>
+            <div class="ops-section hajj">
+              <div class="ops-header">
+                <div class="ops-title"><i class="fas fa-kaaba" style="color:#22c55e;"></i> Hajj Operations</div>
+                <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right"
+                    style="font-size:9px;"></i></a>
+              </div>
+              <div class="ops-stats">
+                <div class="ops-stat">
+                  <div class="ops-stat-label">Registered</div>
+                  <div class="ops-stat-value">648</div>
+                  <div class="ops-stat-change up">↑ 8.2%</div>
+                </div>
+                <div class="ops-stat">
+                  <div class="ops-stat-label">Pre-Registered</div>
+                  <div class="ops-stat-value">284</div>
+                  <div class="ops-stat-label" style="margin-top:4px;">For 2027</div>
+                </div>
+                <div class="ops-stat">
+                  <div class="ops-stat-label">Confirmed</div>
+                  <div class="ops-stat-value">482</div>
+                  <div class="ops-stat-change up">74.4%</div>
+                </div>
+                <div class="ops-stat">
+                  <div class="ops-stat-label">Documents Pending</div>
+                  <div class="ops-stat-value">84</div>
+                  <div class="ops-stat-change warn">13% pending</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-5 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Processing Pipeline</div>
+                <div class="dash-card-subtitle">Visa application tracker</div>
+                <div class="dash-card-desc">Applications across your active corridors.</div>
+              </div>
+              <a href="#" class="view-all-link">Open tracker <i class="fas fa-chevron-right"
+                  style="font-size:9px;"></i></a>
+            </div>
+            <div class="visa-row">
+              <div class="visa-country">GB</div>
+              <div class="visa-country-name">UK</div>
+              <div class="visa-count">13</div>
+              <div class="visa-progress">
+                <div class="progress">
+                  <div class="progress-bar" style="width:75%;"></div>
+                </div>
+              </div>
+              <div class="visa-stage">Document Review</div>
+              <div class="visa-days">8 days</div>
+            </div>
+            <div class="visa-row">
+              <div class="visa-country">US</div>
+              <div class="visa-country-name">USA</div>
+              <div class="visa-count">9</div>
+              <div class="visa-progress">
+                <div class="progress">
+                  <div class="progress-bar" style="width:55%;"></div>
+                </div>
+              </div>
+              <div class="visa-stage">Processing</div>
+              <div class="visa-days">9 days</div>
+            </div>
+            <div class="visa-row">
+              <div class="visa-country">CA</div>
+              <div class="visa-country-name">Canada</div>
+              <div class="visa-count">14</div>
+              <div class="visa-progress">
+                <div class="progress">
+                  <div class="progress-bar" style="width:80%;"></div>
+                </div>
+              </div>
+              <div class="visa-stage">Document Review</div>
+              <div class="visa-days">12 days</div>
+            </div>
+            <div class="visa-row">
+              <div class="visa-country">MY</div>
+              <div class="visa-country-name">Malaysia</div>
+              <div class="visa-count">11</div>
+              <div class="visa-progress">
+                <div class="progress">
+                  <div class="progress-bar" style="width:90%;"></div>
+                </div>
+              </div>
+              <div class="visa-stage">Approved</div>
+              <div class="visa-days">14 days</div>
+            </div>
+            <div class="visa-row">
+              <div class="visa-country">AE</div>
+              <div class="visa-country-name">UAE</div>
+              <div class="visa-count">8</div>
+              <div class="visa-progress">
+                <div class="progress">
+                  <div class="progress-bar" style="width:60%;"></div>
+                </div>
+              </div>
+              <div class="visa-stage">Processing</div>
+              <div class="visa-days">12 days</div>
+            </div>
+            <div class="visa-row">
+              <div class="visa-country">SA</div>
+              <div class="visa-country-name">Saudi Arabia</div>
+              <div class="visa-count">12</div>
+              <div class="visa-progress">
+                <div class="progress">
+                  <div class="progress-bar" style="width:95%;"></div>
+                </div>
+              </div>
+              <div class="visa-stage">Approved</div>
+              <div class="visa-days">12 days</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Staff Performance, Recent Activity, Quick Shortcuts -->
+      <div class="row g-3 mb-3">
+        <div class="col-lg-4 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Team Productivity</div>
+                <div class="dash-card-subtitle">Staff performance</div>
+                <div class="dash-card-desc">Top contributors by conversion and revenue.</div>
+              </div>
+              <a href="#" class="view-all-link">View report <i class="fas fa-chevron-right"
+                  style="font-size:9px;"></i></a>
+            </div>
+            <div
+              style="display:flex;gap:12px;margin-bottom:10px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-light);padding:0 0 8px;border-bottom:1px solid var(--border-color);">
+              <div style="flex:1.2;">Staff</div>
+              <div style="width:80px;text-align:right;">Bookings</div>
+              <div style="width:90px;text-align:right;">Revenue</div>
+              <div style="width:60px;text-align:right;">Conversion</div>
+            </div>
+            <div class="staff-row">
+              <div class="staff-avatar"><img src="images/staff/01.jpg" alt="Md. Shifat Ahmed"></div>
+              <div class="staff-info">
+                <div class="staff-name">Md. Shifat Ahmed</div>
+                <div class="staff-label">Top performer</div>
+              </div>
+              <div class="staff-bookings"><strong>156</strong> bookings</div>
+              <div class="staff-revenue">৳14,220,000</div>
+              <div class="staff-conv"><span class="staff-conv-val high">92%</span></div>
+            </div>
+            <div class="staff-row">
+              <div class="staff-avatar"><img src="images/staff/02.jpg" alt="Fatima Khan"></div>
+              <div class="staff-info">
+                <div class="staff-name">Fatima Khan</div>
+                <div class="staff-label">Strong</div>
+              </div>
+              <div class="staff-bookings"><strong>132</strong> bookings</div>
+              <div class="staff-revenue">11,550,000</div>
+              <div class="staff-conv"><span class="staff-conv-val high">88%</span></div>
+            </div>
+            <div class="staff-row">
+              <div class="staff-avatar"><img src="images/staff/03.jpg" alt="Karim Rahman"></div>
+              <div class="staff-info">
+                <div class="staff-name">Karim Rahman</div>
+                <div class="staff-label">Strong</div>
+              </div>
+              <div class="staff-bookings"><strong>121</strong> bookings</div>
+              <div class="staff-revenue">10,360,000</div>
+              <div class="staff-conv"><span class="staff-conv-val high">84%</span></div>
+            </div>
+            <div class="staff-row">
+              <div class="staff-avatar"><img src="images/staff/04.jpg" alt="Fatima Asma"></div>
+              <div class="staff-info">
+                <div class="staff-name">Fatima Asma</div>
+                <div class="staff-label">On track</div>
+              </div>
+              <div class="staff-bookings"><strong>105</strong> bookings</div>
+              <div class="staff-revenue">৳9,150,000</div>
+              <div class="staff-conv"><span class="staff-conv-val med">79%</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Audit Trail</div>
+                <div class="dash-card-subtitle">Recent activity</div>
+                <div class="dash-card-desc">Latest actions across bookings and payments.</div>
+              </div>
+              <a href="#" class="view-all-link">View all <i class="fas fa-chevron-right" style="font-size:9px;"></i></a>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon green"><i class="fas fa-check"></i></div>
+              <div class="activity-info">
+                <div class="activity-title">Payment received</div>
+                <div class="activity-desc">৳84,500 from Nusrat Jahan</div>
+              </div>
+              <div class="activity-time">08 min ago</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon blue"><i class="fas fa-plus"></i></div>
+              <div class="activity-info">
+                <div class="activity-title">New booking created</div>
+                <div class="activity-desc">ST-98421 · Dubai flight</div>
+              </div>
+              <div class="activity-time">24 min ago</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon green"><i class="fas fa-passport"></i></div>
+              <div class="activity-info">
+                <div class="activity-title">Visa application approved</div>
+                <div class="activity-desc">United Kingdom · ST-98388</div>
+              </div>
+              <div class="activity-time">1 hr ago</div>
+            </div>
+            <div class="activity-item">
+              <div class="activity-icon purple"><i class="fas fa-edit"></i></div>
+              <div class="activity-info">
+                <div class="activity-title">Package updated</div>
+                <div class="activity-desc">Premium Kuala Lumpur Escape</div>
+              </div>
+              <div class="activity-time">2 hrs ago</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 fade-up">
+          <div class="dash-card h-100">
+            <div class="dash-card-header">
+              <div>
+                <div class="dash-card-title">Quick Actions</div>
+                <div class="dash-card-subtitle">Frequently used shortcuts</div>
+                <div class="dash-card-desc">Jump straight into common tasks.</div>
+              </div>
+            </div>
+            <div class="shortcuts-grid">
+              <button class="shortcut-btn"><i class="fas fa-plus-circle"></i><span>New Booking</span></button>
+              <button class="shortcut-btn"><i class="fas fa-user-plus"></i><span>Add Customer</span></button>
+              <button class="shortcut-btn"><i class="fas fa-plane"></i><span>Add Flight</span></button>
+              <button class="shortcut-btn"><i class="fas fa-hotel"></i><span>Add Hotel</span></button>
+              <button class="shortcut-btn"><i class="fas fa-box-open"></i><span>Tour Package</span></button>
+              <button class="shortcut-btn"><i class="fas fa-moon"></i><span>Umrah Package</span></button>
+              <button class="shortcut-btn"><i class="fas fa-kaaba"></i><span>Hajj Package</span></button>
+              <button class="shortcut-btn"><i class="fas fa-passport"></i><span>Visa Application</span></button>
+              <button class="shortcut-btn"><i class="fas fa-file-invoice-dollar"></i><span>Create
+                  Invoice</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="dashboard-footer">
+      <div>© 2026 ST Trip Travel Management Portal | All Rights Reserved.</div>
+      <div class="footer-links">
+        Develop by<a href="https://stitbd.com/" target="_blank">STIT BD</a>
+      </div>
+    </footer>
+  </div>
+
+  <div class="sidebar-floating-tooltip" id="sidebarTooltip"></div>
+  <div class="sidebar-flyout-menu" id="sidebarFlyout"></div>
 
   <!-- Mobile Bottom Navigation -->
-
-  <nav class="bottom-nav" id="bottomNav">
-    <button class="bn-item active" data-bn="home">
-      <i class="fa-solid fa-house"></i>
-      <span>Home</span>
-    </button>
-    <button class="bn-item" data-bn="invoice">
-      <i class="fa-solid fa-receipt"></i>
-      <span>Invoice</span>
-    </button>
-    <button class="bn-fab" id="bnFabBtn" aria-label="Quick add">
-      <i class="fa-solid fa-plus"></i>
-    </button>
-    <button class="bn-item" data-bn="stock">
-      <i class="fa-solid fa-box"></i>
-      <span>Stock</span>
-    </button>
-    <button class="bn-item" data-bn="more">
-      <i class="fa-solid fa-grip"></i>
-      <span>More</span>
-    </button>
+  <nav class="mobile-bottom-nav" id="mobileBottomNav">
+    <a href="#" class="mbn-item active"><i class="fas fa-house"></i><span>Home</span></a>
+    <a href="#" class="mbn-item"><i class="fas fa-file-invoice"></i><span>Invoice</span></a>
+    <a href="#" class="mbn-fab" id="mbnAddBtn" aria-label="Quick add"><i class="fas fa-plus"></i></a>
+    <a href="#" class="mbn-item"><i class="fas fa-box"></i><span>Stock</span></a>
+    <a href="#" class="mbn-item"><i class="fas fa-grip"></i><span>More</span></a>
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="js/script.js"></script>
+
 </body>
 
 </html>

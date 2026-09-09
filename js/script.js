@@ -1,589 +1,393 @@
-/* =========================================================
-   ST TRIP ADMIN — APP LOGIC
-   ========================================================= */
-(() => {
-  'use strict';
+// Quick Add dropdown — open on hover, close on mouse leave (desktop feel)
+const quickAddDropdown = document.querySelector('.quick-add-dropdown');
+if (quickAddDropdown) {
+  const quickAddToggle = quickAddDropdown.querySelector('.dropdown-toggle');
+  const bsDropdown = bootstrap.Dropdown.getOrCreateInstance(quickAddToggle);
+  let quickAddCloseTimer;
 
-  const $ = (s, c = document) => c.querySelector(s);
-  const $$ = (s, c = document) => [...c.querySelectorAll(s)];
-
-  /* ---------- Sidebar toggle ---------- */
-  const shell = $('#appShell');
-  const sidebar = $('#sidebar');
-  const overlay = $('#sidebarOverlay');
-  const toggleBtn = $('#toggleSidebar');
-  const isMobile = () => window.innerWidth <= 768;
-
-  toggleBtn.addEventListener('click', () => {
-    if (isMobile()) {
-      sidebar.classList.toggle('mobile-open');
-      overlay.classList.toggle('show');
-    } else {
-      shell.classList.toggle('sidebar-collapsed');
-    }
+  quickAddDropdown.addEventListener('mouseenter', () => {
+    clearTimeout(quickAddCloseTimer);
+    bsDropdown.show();
   });
-  overlay.addEventListener('click', () => {
-    sidebar.classList.remove('mobile-open');
+  quickAddDropdown.addEventListener('mouseleave', () => {
+    quickAddCloseTimer = setTimeout(() => bsDropdown.hide(), 150);
+  });
+}
+
+// Profile dropdown — open on hover, close on mouse leave
+const profileDropdownWrap = document.querySelector('.header-profile-dropdown');
+if (profileDropdownWrap) {
+  const profileToggle = profileDropdownWrap.querySelector('.dropdown-toggle');
+  const bsProfileDropdown = bootstrap.Dropdown.getOrCreateInstance(profileToggle);
+  let profileCloseTimer;
+
+  profileDropdownWrap.addEventListener('mouseenter', () => {
+    clearTimeout(profileCloseTimer);
+    bsProfileDropdown.show();
+  });
+  profileDropdownWrap.addEventListener('mouseleave', () => {
+    profileCloseTimer = setTimeout(() => bsProfileDropdown.hide(), 150);
+  });
+}
+
+// Loading screen
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.getElementById('loading-screen').classList.add('hidden');
+  }, 600);
+});
+
+// Sidebar toggle
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('sidebarOverlay');
+const hamburger = document.getElementById('hamburgerBtn');
+
+const mainContent = document.querySelector('.main-content');
+const dashboardFooter = document.querySelector('.dashboard-footer');
+
+// Auto-generate tooltips from nav labels (used when collapsed)
+document.querySelectorAll('.nav-item-custom').forEach(item => {
+  const label = item.querySelector('span:not(.badge-count)');
+  if (label) item.setAttribute('data-tooltip', label.textContent.trim());
+});
+
+// Floating tooltip logic for collapsed sidebar
+const floatingTooltip = document.getElementById('sidebarTooltip');
+
+function attachSidebarTooltip(el) {
+  el.addEventListener('mouseenter', () => {
+    if (!sidebar.classList.contains('collapsed')) return;
+    const text = el.getAttribute('data-tooltip');
+    if (!text) return;
+    const rect = el.getBoundingClientRect();
+    floatingTooltip.textContent = text;
+    floatingTooltip.style.top = (rect.top + rect.height / 2) + 'px';
+    floatingTooltip.style.left = (rect.right + 10) + 'px';
+    floatingTooltip.classList.add('show');
+  });
+  el.addEventListener('mouseleave', () => {
+    floatingTooltip.classList.remove('show');
+  });
+}
+
+document.querySelectorAll('.nav-item-custom').forEach(attachSidebarTooltip);
+
+// Flyout submenu for collapsed sidebar
+const sidebarFlyout = document.getElementById('sidebarFlyout');
+
+document.querySelectorAll('.nav-item-custom.has-submenu').forEach(item => {
+  item.addEventListener('click', (e) => {
+    if (!sidebar.classList.contains('collapsed')) return; // expanded: let Bootstrap collapse handle it normally
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const targetSelector = item.getAttribute('data-bs-target');
+    const submenuWrap = document.querySelector(targetSelector);
+    const submenuInner = submenuWrap ? submenuWrap.querySelector('.nav-submenu') : null;
+    if (!submenuInner) return;
+
+    const label = item.querySelector('span:not(.badge-count)')?.textContent.trim() || '';
+    sidebarFlyout.innerHTML = `<div class="sidebar-flyout-title">${label}</div>` + submenuInner.innerHTML;
+
+    const rect = item.getBoundingClientRect();
+    sidebarFlyout.style.top = rect.top + 'px';
+    sidebarFlyout.style.left = (rect.right + 10) + 'px';
+    sidebarFlyout.classList.add('show');
+  });
+});
+
+// Close flyout when clicking a submenu link inside it, or clicking anywhere outside
+sidebarFlyout.addEventListener('click', (e) => {
+  if (e.target.closest('.nav-subitem')) sidebarFlyout.classList.remove('show');
+});
+document.addEventListener('click', (e) => {
+  if (!sidebarFlyout.contains(e.target) && !e.target.closest('.has-submenu')) {
+    sidebarFlyout.classList.remove('show');
+  }
+});
+
+// Tooltip for the user profile block at the bottom of the sidebar
+const sidebarUserBlock = document.querySelector('.sidebar-user');
+const sidebarUserName = document.querySelector('.sidebar-user-name');
+if (sidebarUserBlock && sidebarUserName) {
+  sidebarUserBlock.setAttribute('data-tooltip', sidebarUserName.textContent.trim());
+}
+if (sidebarUserBlock) attachSidebarTooltip(sidebarUserBlock);
+
+const hamburgerIcon = hamburger.querySelector('i');
+
+function setSidebarState(collapsed) {
+  sidebarFlyout.classList.remove('show');
+  sidebar.classList.toggle('collapsed', collapsed);
+  mainContent.classList.toggle('sidebar-collapsed', collapsed);
+  dashboardFooter.classList.toggle('sidebar-collapsed', collapsed);
+  hamburgerIcon.classList.toggle('fa-bars', !collapsed);
+  hamburgerIcon.classList.toggle('fa-angle-double-right', collapsed);
+  localStorage.setItem('sttrip-sidebar-collapsed', collapsed ? '1' : '0');
+}
+
+hamburger.addEventListener('click', () => {
+  if (window.innerWidth >= 992) {
+    setSidebarState(!sidebar.classList.contains('collapsed'));
+  } else {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('show');
+  }
+});
+
+// Restore saved state on load (desktop only)
+if (window.innerWidth >= 992 && localStorage.getItem('sttrip-sidebar-collapsed') === '1') {
+  setSidebarState(true);
+}
+
+// Keep state clean when resizing across the breakpoint
+window.addEventListener('resize', () => {
+  if (window.innerWidth >= 992) {
+    sidebar.classList.remove('open');
     overlay.classList.remove('show');
+    setSidebarState(localStorage.getItem('sttrip-sidebar-collapsed') === '1');
+  } else {
+    sidebar.classList.remove('collapsed');
+    mainContent.classList.remove('sidebar-collapsed');
+    dashboardFooter.classList.remove('sidebar-collapsed');
+  }
+});
+
+overlay.addEventListener('click', () => {
+  sidebar.classList.remove('open');
+  overlay.classList.remove('show');
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('show');
+  }
+});
+
+// Tab pills
+document.querySelectorAll('.tab-pills').forEach(group => {
+  group.querySelectorAll('.tab-pill').forEach(pill => {
+    pill.addEventListener('click', () => {
+      group.querySelectorAll('.tab-pill').forEach(p => p.classList.remove('active'));
+      pill.classList.add('active');
+    });
   });
-  document.addEventListener('keydown', e => {
-    if (e.key === 'Escape' && sidebar.classList.contains('mobile-open')) {
-      sidebar.classList.remove('mobile-open');
+});
+
+// Pagination
+document.querySelectorAll('.pagination-custom').forEach(pag => {
+  pag.querySelectorAll('.page-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (btn.textContent.includes('chevron') || btn.textContent === '...') return;
+      pag.querySelectorAll('.page-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+});
+
+// Charts
+const chartFont = { family: 'Inter', size: 11 };
+const gridColor = '#f1f5f9';
+
+// Revenue Chart
+const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+const revenueLabels = ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12'];
+new Chart(revenueCtx, {
+  type: 'line',
+  data: {
+    labels: revenueLabels,
+    datasets: [
+      {
+        label: 'Bookings',
+        data: [0.4, 0.5, 0.55, 0.6, 0.7, 0.75, 0.8, 0.85, 0.9, 1.0, 1.1, 1.2],
+        borderColor: '#4f6bff',
+        backgroundColor: 'rgba(79,107,255,0.08)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+        pointHoverRadius: 4,
+      },
+      {
+        label: 'Packages',
+        data: [0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.8, 0.9, 1.0],
+        borderColor: '#22c55e',
+        backgroundColor: 'rgba(34,197,94,0.05)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+        pointHoverRadius: 4,
+      },
+      {
+        label: 'Visa',
+        data: [0.15, 0.2, 0.22, 0.25, 0.28, 0.3, 0.32, 0.35, 0.38, 0.42, 0.48, 0.55],
+        borderColor: '#06b6d4',
+        backgroundColor: 'rgba(6,182,212,0.05)',
+        borderWidth: 2,
+        fill: true,
+        tension: 0.4,
+        pointRadius: 0,
+        pointHoverRadius: 4,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { font: chartFont, color: '#94a3b8' }
+      },
+      y: {
+        grid: { color: gridColor },
+        ticks: {
+          font: chartFont,
+          color: '#94a3b8',
+          callback: v => v + 'k'
+        },
+        beginAtZero: true,
+        max: 2
+      }
+    },
+    interaction: { intersect: false, mode: 'index' }
+  }
+});
+
+// Booking Donut Chart
+const bookingCtx = document.getElementById('bookingChart').getContext('2d');
+new Chart(bookingCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Flights', 'Hotels', 'Tours', 'Umrah/Hajj', 'Visa'],
+    datasets: [{
+      data: [42, 21, 16, 13, 8],
+      backgroundColor: ['#4f6bff', '#22c55e', '#06b6d4', '#8b5cf6', '#cbd5e1'],
+      borderWidth: 0,
+      hoverOffset: 4,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '68%',
+    plugins: { legend: { display: false } }
+  }
+});
+
+// Customer Bar Chart
+const customerCtx = document.getElementById('customerChart').getContext('2d');
+new Chart(customerCtx, {
+  type: 'bar',
+  data: {
+    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'],
+    datasets: [
+      {
+        label: 'New customers',
+        data: [120, 150, 180, 200, 220, 250, 280, 300],
+        backgroundColor: '#4f6bff',
+        borderRadius: 3,
+        barPercentage: 0.6,
+      },
+      {
+        label: 'Returning customers',
+        data: [200, 220, 250, 280, 310, 340, 380, 420],
+        backgroundColor: '#22c55e',
+        borderRadius: 3,
+        barPercentage: 0.6,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    plugins: { legend: { display: false } },
+    scales: {
+      x: {
+        grid: { display: false },
+        ticks: { font: { ...chartFont, size: 9 }, color: '#94a3b8' },
+        stacked: true,
+      },
+      y: {
+        grid: { color: gridColor },
+        ticks: { font: { ...chartFont, size: 9 }, color: '#94a3b8' },
+        stacked: true,
+        beginAtZero: true,
+        max: 900,
+      }
+    }
+  }
+});
+
+// Payment Donut Chart
+const paymentCtx = document.getElementById('paymentChart').getContext('2d');
+new Chart(paymentCtx, {
+  type: 'doughnut',
+  data: {
+    labels: ['bKash', 'Nagad', 'Bank Transfer', 'Visa/Mastercard', 'Cash'],
+    datasets: [{
+      data: [38, 24, 22, 11, 5],
+      backgroundColor: ['#ec4899', '#f97316', '#3b82f6', '#8b5cf6', '#22c55e'],
+      borderWidth: 0,
+      hoverOffset: 3,
+    }]
+  },
+  options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutout: '62%',
+    plugins: { legend: { display: false } }
+  }
+});
+
+// Counter animation
+function animateCounters() {
+  document.querySelectorAll('.kpi-value, .ops-stat-value, .ca-stat-value').forEach(el => {
+    const text = el.textContent;
+    if (text.includes('৳') || text.includes('%') || text.includes('L')) return;
+    const num = parseInt(text.replace(/,/g, ''));
+    if (isNaN(num) || num > 100000) return;
+    let current = 0;
+    const step = Math.ceil(num / 30);
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= num) { current = num; clearInterval(timer); }
+      el.textContent = current.toLocaleString();
+    }, 30);
+  });
+}
+setTimeout(animateCounters, 800);
+
+// Nav item click
+document.querySelectorAll('.nav-item-custom').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelectorAll('.nav-item-custom').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
+    if (window.innerWidth < 992) {
+      sidebar.classList.remove('open');
       overlay.classList.remove('show');
     }
   });
+});
 
-  /* ---------- Collapsed sidebar tooltips ---------- */
-  const navTooltip = document.createElement('div');
-  navTooltip.className = 'nav-tooltip';
-  document.body.appendChild(navTooltip);
-
-  function isSidebarIconOnly() {
-    if (sidebar.classList.contains('mobile-open')) return false;
-    return shell.classList.contains('sidebar-collapsed') || window.innerWidth <= 1024;
-  }
-
-  const sidebarNav = $('.sidebar-nav');
-
-  sidebarNav.addEventListener('mouseover', e => {
-    const item = e.target.closest('.nav-item[data-tip]');
-    if (!item || !isSidebarIconOnly()) return;
-    const r = item.getBoundingClientRect();
-    navTooltip.textContent = item.getAttribute('data-tip');
-    navTooltip.style.left = `${r.right + 10}px`;
-    navTooltip.style.top = `${r.top + r.height / 2}px`;
-    navTooltip.classList.add('show');
+// Mobile bottom nav active state
+document.querySelectorAll('.mbn-item').forEach(item => {
+  item.addEventListener('click', (e) => {
+    e.preventDefault();
+    document.querySelectorAll('.mbn-item').forEach(i => i.classList.remove('active'));
+    item.classList.add('active');
   });
+});
 
-  sidebarNav.addEventListener('mouseout', e => {
-    const item = e.target.closest('.nav-item[data-tip]');
-    const toEl = e.relatedTarget;
-    if (item && (!toEl || !item.contains(toEl))) {
-      navTooltip.classList.remove('show');
-    }
+// Mobile search icon toggles the search bar under the header
+const mobileSearchBtn = document.querySelector('.mobile-search-btn');
+const headerSearchEl = document.querySelector('.header-search');
+if (mobileSearchBtn && headerSearchEl) {
+  mobileSearchBtn.addEventListener('click', () => {
+    headerSearchEl.classList.toggle('mobile-open');
   });
-
-  window.addEventListener('scroll', () => navTooltip.classList.remove('show'), true);
-
-  /* ---------- Submenu toggle ---------- */
-  $$('.nav-item.has-sub').forEach(item => {
-    item.addEventListener('click', () => {
-      const sub = item.nextElementSibling;
-      const isOpen = sub.classList.contains('open');
-      $$('.submenu.open').forEach(s => {
-        if (s !== sub) {
-          s.classList.remove('open');
-          const sib = s.previousElementSibling;
-          if (sib && sib.classList.contains('has-sub')) sib.setAttribute('aria-expanded', 'false');
-        }
-      });
-      sub.classList.toggle('open', !isOpen);
-      item.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-
-  /* ---------- Active nav ---------- */
-  $$('.nav-item:not(.has-sub)').forEach(item => {
-    item.addEventListener('click', () => {
-      $$('.nav-item.active').forEach(a => a.classList.remove('active'));
-      item.classList.add('active');
-      if (isMobile()) {
-        sidebar.classList.remove('mobile-open');
-        overlay.classList.remove('show');
-      }
-    });
-  });
-
-  /* ---------- Notifications panel ---------- */
-  const notifBtn = $('#notifBtn');
-  const notifPanel = $('#notifPanel');
-  notifBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    notifPanel.classList.toggle('open');
-  });
-  document.addEventListener('click', e => {
-    if (!notifPanel.contains(e.target) && !notifBtn.contains(e.target)) {
-      notifPanel.classList.remove('open');
-    }
-  });
-
-  /* ---------- Profile dropdown ---------- */
-  const profileBtn = $('#profileBtn');
-  const profileMenu = $('#profileMenu');
-  profileBtn.addEventListener('click', e => {
-    e.stopPropagation();
-    profileMenu.classList.toggle('show');
-  });
-  document.addEventListener('click', e => {
-    if (!profileMenu.contains(e.target) && !profileBtn.contains(e.target)) {
-      profileMenu.classList.remove('show');
-    }
-  });
-
-  /* ---------- Chips toggle ---------- */
-  $$('.chips-group').forEach(group => {
-    group.addEventListener('click', e => {
-      const chip = e.target.closest('.chip');
-      if (!chip) return;
-      $$('.chip', group).forEach(c => c.classList.remove('active'));
-      chip.classList.add('active');
-    });
-  });
-
-  /* ---------- Revenue chip filter (functional) ---------- */
-  const revenueChipGroup = $('#revenueChipGroup');
-  if (revenueChipGroup) {
-    revenueChipGroup.addEventListener('click', e => {
-      const chip = e.target.closest('.chip');
-      if (!chip) return;
-      const range = chip.dataset.range;
-      if (!range || !revenueDataSets[range]) return;
-      currentRevenueRange = range;
-      renderRevenueChart(range);
-      const s = revenueDataSets[range].summary;
-      $('#revTotalVal').textContent = s.total;
-      $('#revBookingVal').textContent = s.booking;
-      $('#revPackageVal').textContent = s.package;
-      $('#revVisaVal').textContent = s.visa;
-      $('#revTotalSub').innerHTML = `<i class="fa-solid fa-arrow-up"></i> ${s.totalTrend}`;
-      $('#revBookingSub').textContent = s.bookingPct;
-      $('#revPackageSub').textContent = s.packagePct;
-      $('#revVisaSub').textContent = s.visaPct;
-    });
-  }
-
-  /* ---------- Toast system ---------- */
-  function showToast(type, title, message) {
-    const icons = {
-      success: 'fa-solid fa-circle-check',
-      info: 'fa-solid fa-circle-info',
-      warn: 'fa-solid fa-triangle-exclamation',
-      error: 'fa-solid fa-circle-xmark'
-    };
-    const toast = document.createElement('div');
-    toast.className = `toast-st ${type}`;
-    toast.innerHTML = `
-      <div class="ic"><i class="${icons[type]}"></i></div>
-      <div style="flex: 1;">
-        <div class="t">${title}</div>
-        <div class="m">${message}</div>
-      </div>
-      <button style="background: none; border: none; color: var(--text-muted); cursor: pointer; padding: 0; font-size: 14px;" aria-label="Close"><i class="fa-solid fa-xmark"></i></button>
-    `;
-    $('#toastContainer').appendChild(toast);
-    requestAnimationFrame(() => toast.classList.add('show'));
-    const close = () => {
-      toast.classList.remove('show');
-      setTimeout(() => toast.remove(), 280);
-    };
-    toast.querySelector('button').addEventListener('click', close);
-    setTimeout(close, 4000);
-  }
-
-  setTimeout(() => showToast('info', 'Welcome back, Admin', 'You have 32 pending actions today.'), 600);
-
-  /* ---------- Quick add dropdown ---------- */
-  const quickAddBtn = $('#quickAddBtn');
-  const quickAddMenu = $('#quickAddMenu');
-
-  quickAddBtn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const isOpen = quickAddMenu.classList.toggle('show');
-    quickAddBtn.setAttribute('aria-expanded', String(isOpen));
-    profileMenu.classList.remove('show');
-    notifPanel.classList.remove('open');
-  });
-
-  $$('.quick-add-menu .dropdown-item').forEach(item => {
-    item.addEventListener('click', (e) => {
-      e.preventDefault();
-      const action = item.dataset.action || item.textContent.trim();
-      quickAddMenu.classList.remove('show');
-      quickAddBtn.setAttribute('aria-expanded', 'false');
-      showToast('success', action, `Opening ${action.toLowerCase()} form...`);
-    });
-  });
-
-  document.addEventListener('click', e => {
-    if (!quickAddMenu.contains(e.target) && !quickAddBtn.contains(e.target)) {
-      quickAddMenu.classList.remove('show');
-      quickAddBtn.setAttribute('aria-expanded', 'false');
-    }
-  });
-
-  /* ---------- Bottom navigation (mobile) ---------- */
-  const bnItems = $$('.bn-item');
-  bnItems.forEach(item => {
-    item.addEventListener('click', () => {
-      bnItems.forEach(i => i.classList.remove('active'));
-      item.classList.add('active');
-    });
-  });
-
-  const bnFabBtn = $('#bnFabBtn');
-  if (bnFabBtn) {
-    bnFabBtn.addEventListener('click', () => {
-      showToast('success', 'Quick Add', 'Opening quick create menu...');
-    });
-  }
-
-  /* ---------- Row actions ---------- */
-  $$('.row-actions button').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const t = btn.getAttribute('title');
-      showToast('info', t, 'Action triggered for this booking.');
-    });
-  });
-
-  /* ---------- Recent bookings: search + service filter ---------- */
-  const bookingSearchInput = $('#bookingSearchInput');
-  const bookingServiceFilter = $('#bookingServiceFilter');
-  const bookingsTableBody = $('#bookingsTableBody');
-
-  function filterBookingsTable() {
-    if (!bookingsTableBody) return;
-    const query = (bookingSearchInput?.value || '').trim().toLowerCase();
-    const service = bookingServiceFilter?.value || 'all';
-    $$('tr', bookingsTableBody).forEach(row => {
-      const matchesService = service === 'all' || row.dataset.service === service;
-      const matchesQuery = !query || row.textContent.toLowerCase().includes(query);
-      row.style.display = (matchesService && matchesQuery) ? '' : 'none';
-    });
-  }
-
-  bookingSearchInput?.addEventListener('input', filterBookingsTable);
-  bookingServiceFilter?.addEventListener('change', filterBookingsTable);
-
-  const bookingFilterBtn = $('#bookingFilterBtn');
-  bookingFilterBtn?.addEventListener('click', () => {
-    bookingFilterBtn.classList.toggle('active');
-    showToast('info', 'Filters', bookingFilterBtn.classList.contains('active') ? 'Advanced filters enabled.' : 'Advanced filters cleared.');
-  });
-
-  /* ---------- Recent bookings: pagination ---------- */
-  const bookingsPagination = $('#bookingsPagination');
-  if (bookingsPagination) {
-    bookingsPagination.addEventListener('click', e => {
-      const btn = e.target.closest('button[data-page]');
-      if (!btn || btn.disabled) return;
-
-      const pageBtns = $$('button[data-page]', bookingsPagination).filter(b => !isNaN(parseInt(b.dataset.page, 10)));
-      const activeBtn = bookingsPagination.querySelector('button.active');
-      const current = activeBtn ? parseInt(activeBtn.dataset.page, 10) : 1;
-
-      let target = btn.dataset.page;
-      if (target === 'prev') target = Math.max(1, current - 1);
-      else if (target === 'next') target = current + 1;
-      else target = parseInt(target, 10);
-
-      pageBtns.forEach(b => b.classList.toggle('active', parseInt(b.dataset.page, 10) === target));
-      showToast('info', 'Page ' + target, 'Loading bookings for page ' + target + '...');
-    });
-  }
-
-  /* =========================================================
-     SVG CHARTS — lightweight, theme-aware
-     ========================================================= */
-  function cssVar(name) {
-    return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
-  }
-
-  /* ---------- Revenue chart dummy datasets ---------- */
-  const revenueDataSets = {
-    '7d': {
-      labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-      bookings: [320, 360, 300, 410, 380, 440, 420],
-      packages: [120, 140, 110, 160, 150, 170, 165],
-      visa: [40, 45, 38, 50, 48, 55, 52],
-      summary: { total: '৳9,85,000', totalTrend: '8.4%', booking: '৳6,20,000', bookingPct: '62.9% of total', package: '৳2,85,000', packagePct: '28.9% of total', visa: '৳80,000', visaPct: '8.1% of total' }
-    },
-    '30d': {
-      labels: ['W1', 'W2', 'W3', 'W4', 'W5', 'W6', 'W7', 'W8', 'W9', 'W10', 'W11', 'W12'],
-      bookings: [420, 510, 480, 620, 580, 720, 680, 820, 780, 920, 880, 1040],
-      packages: [180, 220, 240, 280, 310, 340, 380, 420, 460, 480, 520, 560],
-      visa: [80, 90, 110, 120, 140, 130, 160, 170, 190, 210, 220, 240],
-      summary: { total: '৳42,85,600', totalTrend: '18.2%', booking: '৳28,42,300', bookingPct: '66.3% of total', package: '৳11,28,400', packagePct: '26.3% of total', visa: '৳3,14,900', visaPct: '7.3% of total' }
-    },
-    '3m': {
-      labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-      bookings: [980, 1040, 1120, 1180, 1260, 1320, 1380, 1460, 1520, 1600, 1660, 1740],
-      packages: [420, 460, 480, 520, 560, 600, 640, 680, 720, 760, 800, 840],
-      visa: [160, 170, 180, 190, 210, 220, 230, 250, 260, 280, 290, 310],
-      summary: { total: '৳1,18,40,000', totalTrend: '24.6%', booking: '৳78,60,000', bookingPct: '66.4% of total', package: '৳30,20,000', packagePct: '25.5% of total', visa: '৳9,60,000', visaPct: '8.1% of total' }
-    },
-    '6m': {
-      labels: ['Q1', 'Q2', 'Q3', 'Q4', 'Q1', 'Q2', 'Q3', 'Q4', 'Q1', 'Q2', 'Q3', 'Q4'],
-      bookings: [2800, 3100, 3400, 3700, 4000, 4300, 4600, 4900, 5200, 5500, 5800, 6100],
-      packages: [1100, 1200, 1300, 1400, 1500, 1600, 1700, 1800, 1900, 2000, 2100, 2200],
-      visa: [420, 450, 480, 510, 540, 570, 600, 630, 660, 690, 720, 750],
-      summary: { total: '৳3,84,20,000', totalTrend: '32.1%', booking: '৳2,52,00,000', bookingPct: '65.6% of total', package: '৳98,40,000', packagePct: '25.6% of total', visa: '৳33,80,000', visaPct: '8.8% of total' }
-    }
-  };
-
-  let currentRevenueRange = '30d';
-
-  function renderRevenueChart(range) {
-    const wrap = $('#revenueChart');
-    if (!wrap) return;
-    const set = revenueDataSets[range || currentRevenueRange];
-    const w = wrap.clientWidth || 600;
-    const h = wrap.clientHeight || 260;
-    const pad = { l: 40, r: 12, t: 16, b: 28 };
-    const cw = w - pad.l - pad.r;
-    const ch = h - pad.t - pad.b;
-
-    const labels = set.labels;
-    const bookings = set.bookings;
-    const packages = set.packages;
-    const visa = set.visa;
-
-    const max = Math.max(...bookings.map((b, i) => b + packages[i] + visa[i])) * 1.1;
-    const xStep = cw / (labels.length - 1);
-    const yOf = v => pad.t + ch - (v / max) * ch;
-
-    const baseBook = bookings.map((v, i) => [pad.l + i * xStep, yOf(v)]);
-    const basePack = bookings.map((v, i) => [pad.l + i * xStep, yOf(v + packages[i])]);
-    const baseVisa = bookings.map((v, i) => [pad.l + i * xStep, yOf(v + packages[i] + visa[i])]);
-
-    const toPath = pts => pts.map((p, i) => (i === 0 ? `M${p[0]},${p[1]}` : `L${p[0]},${p[1]}`)).join(' ');
-    const toArea = (top, bottom) => {
-      const down = [...bottom].reverse();
-      return `${toPath(top)} L${down[0][0]},${down[0][1]} ` + down.slice(1).map(p => `L${p[0]},${p[1]}`).join(' ') + ' Z';
-    };
-    const bottomLine = [[pad.l, pad.t + ch], [w - pad.r, pad.t + ch]];
-
-    let yAxis = '';
-    for (let i = 0; i <= 4; i++) {
-      const v = (max / 4) * i;
-      const y = yOf(v);
-      yAxis += `<line x1="${pad.l}" y1="${y}" x2="${w - pad.r}" y2="${y}" stroke="${cssVar('--divider')}" stroke-dasharray="3,3"/>`;
-      yAxis += `<text x="${pad.l - 6}" y="${y + 4}" text-anchor="end" font-size="10" fill="${cssVar('--text-muted')}">${(v / 1000).toFixed(1)}k</text>`;
-    }
-    let xLabels = '';
-    labels.forEach((l, i) => {
-      const x = pad.l + i * xStep;
-      xLabels += `<text x="${x}" y="${h - 8}" text-anchor="middle" font-size="10" fill="${cssVar('--text-muted')}">${l}</text>`;
-    });
-
-    const svg = `
-      <svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" preserveAspectRatio="none" role="img" aria-label="Revenue chart">
-        <defs>
-          <linearGradient id="revBook" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stop-color="${cssVar('--st-blue')}" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="${cssVar('--st-blue')}" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="revPack" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stop-color="${cssVar('--st-cyan')}" stop-opacity="0.3"/>
-            <stop offset="100%" stop-color="${cssVar('--st-cyan')}" stop-opacity="0"/>
-          </linearGradient>
-          <linearGradient id="revVisa" x1="0" x2="0" y1="0" y2="1">
-            <stop offset="0%" stop-color="${cssVar('--st-green')}" stop-opacity="0.35"/>
-            <stop offset="100%" stop-color="${cssVar('--st-green')}" stop-opacity="0"/>
-          </linearGradient>
-        </defs>
-        ${yAxis}
-        ${xLabels}
-        <path d="${toArea(baseBook, bottomLine)}" fill="url(#revBook)"/>
-        <path d="${toPath(baseBook)}" stroke="${cssVar('--st-blue')}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="${toArea(basePack, baseBook)}" fill="url(#revPack)"/>
-        <path d="${toPath(basePack)}" stroke="${cssVar('--st-cyan')}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        <path d="${toArea(baseVisa, basePack)}" fill="url(#revVisa)"/>
-        <path d="${toPath(baseVisa)}" stroke="${cssVar('--st-green')}" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-        ${baseVisa.map((p, i) => `<circle cx="${p[0]}" cy="${p[1]}" r="3" fill="${cssVar('--bg-surface')}" stroke="${cssVar('--st-green')}" stroke-width="2"/>`).join('')}
-      </svg>
-    `;
-    wrap.innerHTML = svg;
-  }
-
-  function renderBookingDonut() {
-    const wrap = $('#bookingDonut');
-    if (!wrap) return;
-
-    const size = wrap.clientWidth || 160;
-    const strokeWidth = size <= 100 ? 11 : 16;
-    const radius = (size - strokeWidth) / 2;
-    const center = size / 2;
-    const circumference = 2 * Math.PI * radius;
-
-    const data = [
-      { v: 42, c: '#0072BC', label: 'Flights' },
-      { v: 21, c: '#06B0EF', label: 'Hotels' },
-      { v: 16, c: '#00A651', label: 'Tours' },
-      { v: 13, c: '#1e3a5f', label: 'Umrah/Hajj' },
-      { v: 8, c: '#cbd5e1', label: 'Visa' },
-    ];
-
-    let offset = 0;
-    let segments = '';
-
-    data.forEach((d, i) => {
-      const dashArray = (d.v / 100) * circumference;
-      const dashOffset = -offset;
-
-      segments += `
-      <circle 
-        cx="${center}" 
-        cy="${center}" 
-        r="${radius}" 
-        fill="none" 
-        stroke="${d.c}" 
-        stroke-width="${strokeWidth}"
-        stroke-dasharray="${dashArray} ${circumference}"
-        stroke-dashoffset="${dashOffset}"
-        transform="rotate(-90 ${center} ${center})"
-      />
-    `;
-
-      offset += dashArray;
-    });
-
-    wrap.innerHTML = `
-    <svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
-      <circle 
-        cx="${center}" 
-        cy="${center}" 
-        r="${radius}" 
-        fill="none" 
-        stroke="#f1f5f9" 
-        stroke-width="${strokeWidth}"
-      />
-      ${segments}
-    </svg>
-  `;
-  }
-
-  function renderCustomerChart() {
-    const wrap = $('#customerChart');
-    if (!wrap) return;
-    const w = wrap.clientWidth || 400;
-    const h = 160;
-    const pad = { l: 32, r: 10, t: 10, b: 24 };
-    const cw = w - pad.l - pad.r;
-    const ch = h - pad.t - pad.b;
-
-    const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug'];
-    const newC = [120, 148, 182, 210, 248, 284, 342, 428];
-    const retC = [180, 210, 242, 268, 298, 324, 362, 398];
-    const max = Math.max(...newC.map((n, i) => n + retC[i])) * 1.1;
-    const bw = cw / labels.length * 0.55;
-    const step = cw / labels.length;
-
-    const yOf = v => pad.t + ch - (v / max) * ch;
-
-    let yAxis = '';
-    for (let i = 0; i <= 3; i++) {
-      const v = (max / 3) * i;
-      const y = yOf(v);
-      yAxis += `<line x1="${pad.l}" y1="${y}" x2="${w - pad.r}" y2="${y}" stroke="${cssVar('--divider')}" stroke-dasharray="3,3"/>`;
-      yAxis += `<text x="${pad.l - 5}" y="${y + 4}" text-anchor="end" font-size="9" fill="${cssVar('--text-muted')}">${Math.round(v)}</text>`;
-    }
-
-    let bars = '';
-    labels.forEach((l, i) => {
-      const cx = pad.l + i * step + step / 2;
-      const hNew = (newC[i] / max) * ch;
-      const hRet = (retC[i] / max) * ch;
-      const base = pad.t + ch;
-      bars += `<rect x="${cx - bw / 2}" y="${base - hNew}" width="${bw}" height="${hNew}" fill="${cssVar('--st-blue')}" rx="2"/>`;
-      bars += `<rect x="${cx - bw / 2}" y="${base - hNew - hRet}" width="${bw}" height="${hRet}" fill="${cssVar('--st-green')}" rx="2"/>`;
-      bars += `<text x="${cx}" y="${h - 6}" text-anchor="middle" font-size="9" fill="${cssVar('--text-muted')}">${l}</text>`;
-    });
-
-    wrap.innerHTML = `
-      <svg viewBox="0 0 ${w} ${h}" width="100%" height="${h}" role="img" aria-label="Customer growth">
-        ${yAxis}
-        ${bars}
-      </svg>
-    `;
-  }
-
-  function renderPaymentDonut() {
-    const wrap = $('#paymentDonut');
-    if (!wrap) return;
-
-    const size = wrap.clientWidth || 120;
-    const strokeWidth = size <= 100 ? 10 : 14;
-    const radius = (size - strokeWidth) / 2;
-    const center = size / 2;
-    const circumference = 2 * Math.PI * radius;
-
-    const data = [
-      { v: 38, c: '#E11D74' },
-      { v: 24, c: '#E74F2C' },
-      { v: 22, c: cssVar('--st-blue') },
-      { v: 11, c: '#1A1F71' },
-      { v: 5, c: cssVar('--st-green') },
-    ];
-
-    let offset = 0;
-    let segments = '';
-
-    data.forEach((d) => {
-      const dashArray = (d.v / 100) * circumference;
-      const dashOffset = -offset;
-
-      segments += `
-      <circle
-        cx="${center}"
-        cy="${center}"
-        r="${radius}"
-        fill="none"
-        stroke="${d.c}"
-        stroke-width="${strokeWidth}"
-        stroke-dasharray="${dashArray} ${circumference}"
-        stroke-dashoffset="${dashOffset}"
-        transform="rotate(-90 ${center} ${center})"
-      />
-    `;
-
-      offset += dashArray;
-    });
-
-    wrap.innerHTML = `
-    <svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
-      <circle
-        cx="${center}"
-        cy="${center}"
-        r="${radius}"
-        fill="none"
-        stroke="#f1f5f9"
-        stroke-width="${strokeWidth}"
-      />
-      ${segments}
-    </svg>
-  `;
-  }
-
-  function renderAllCharts() {
-    renderRevenueChart(currentRevenueRange);
-    renderBookingDonut();
-    renderCustomerChart();
-    renderPaymentDonut();
-  }
-
-  /* ---------- Scroll reveal ---------- */
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReduced && 'IntersectionObserver' in window) {
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e, idx) => {
-        if (e.isIntersecting) {
-          setTimeout(() => e.target.classList.add('in'), idx * 50);
-          io.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
-    $$('.reveal').forEach(el => io.observe(el));
-  } else {
-    $$('.reveal').forEach(el => el.classList.add('in'));
-  }
-
-  /* ---------- Resize ---------- */
-  let resizeTimer;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(renderAllCharts, 150);
-  });
-
-  requestAnimationFrame(() => renderAllCharts());
-})();
+}
