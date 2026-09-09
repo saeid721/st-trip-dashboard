@@ -2477,10 +2477,6 @@ body {
   transition: margin-left 0.3s ease;
 }
 
-.dashboard-footer.sidebar-collapsed {
-  margin-left: var(--sidebar-collapsed-width);
-}
-
 .footer-links {
   display: flex;
   gap: 16px;
