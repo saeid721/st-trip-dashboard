@@ -100,7 +100,7 @@ body {
   height: 100vh;
   background: var(--sidebar-bg);
   color: #c0c5d6;
-  z-index: 1040;
+  z-index: 1050;
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -2538,7 +2538,7 @@ body {
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.4);
-  z-index: 1035;
+  z-index: 1049;
   opacity: 0;
   transition: opacity 0.3s;
 }
