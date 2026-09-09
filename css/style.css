@@ -166,6 +166,12 @@ body {
   padding: 8px 0;
 }
 
+.sidebar-user-img img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+}
+
 .nav-section-title {
   font-size: 10px;
   font-weight: 600;
