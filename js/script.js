@@ -30,12 +30,6 @@ if (profileDropdownWrap) {
   });
 }
 
-// Loading screen
-window.addEventListener('load', () => {
-  setTimeout(() => {
-    document.getElementById('loading-screen').classList.add('hidden');
-  }, 600);
-});
 
 // Sidebar toggle
 const sidebar = document.getElementById('sidebar');
