@@ -2,34 +2,6 @@
    PACKAGE MANAGEMENT SCREEN ADDITIONS
    ========================================== */
 
-:root {
-    --brand-success: #00A651;
-    --brand-danger: #ED1C24;
-}
-
-/* 5-Column KPI Row Override */
-.kpi-row.package-kpi {
-    grid-template-columns: repeat(5, 1fr);
-}
-
-@media (max-width: 1200px) {
-    .kpi-row.package-kpi {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .kpi-row.package-kpi {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 480px) {
-    .kpi-row.package-kpi {
-        grid-template-columns: 1fr;
-    }
-}
-
 /* Package Thumbnail */
 .package-thumb {
     width: 48px;
@@ -59,6 +31,144 @@
     }
 }
 
+/* Bulk Action Bar — responsive layout */
+.bulk-action-inner {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.bulk-count {
+    white-space: nowrap;
+}
+
+.bulk-action-buttons {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1 1 auto;
+    min-width: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 2px 0;
+}
+
+.bulk-action-buttons::-webkit-scrollbar {
+    display: none;
+}
+
+.bulk-action-buttons .btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.bulk-clear-btn {
+    margin-left: auto;
+    white-space: nowrap;
+    flex-shrink: 0;
+}
+
+/* Package table footer — mobile pagination polish */
+@media (max-width: 576px) {
+    .table-card .table-footer {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .table-card .table-footer-info {
+        text-align: center;
+    }
+
+    /* Hide the "X per page" select on mobile — pagination-select is its own div */
+    .table-card .table-footer>div:has(.pagination-custom) {
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .table-card .table-footer .table-filter-select {
+        display: none;
+    }
+
+    .table-card .pagination-custom {
+        justify-content: center;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .table-card .page-btn {
+        width: 34px;
+        height: 34px;
+        font-size: 12.5px;
+    }
+}
+
+/* Extra-small phones — trim to essential pagination controls */
+@media (max-width: 380px) {
+
+    .table-card .pagination-custom li:nth-child(4),
+    .table-card .pagination-custom li:nth-child(5) {
+        display: none;
+    }
+
+    .table-card .page-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 12px;
+    }
+}
+
+/* Tablets (iPad Air / iPad Pro / Surface Pro 7) — buttons row scrolls if tight, stays single row */
+@media (max-width: 992px) {
+    .bulk-action-inner {
+        padding: 10px 14px;
+    }
+}
+
+/* Small tablets / large phones — stack into two rows */
+@media (max-width: 768px) {
+    .bulk-divider {
+        display: none !important;
+    }
+
+    .bulk-count {
+        order: 1;
+    }
+
+    .bulk-clear-btn {
+        order: 2;
+        margin-left: auto;
+    }
+
+    .bulk-action-buttons {
+        order: 3;
+        flex-basis: 100%;
+        width: 100%;
+        margin-top: 4px;
+    }
+}
+
+/* Mobile — tighten spacing and button size */
+@media (max-width: 480px) {
+    .bulk-action-inner {
+        padding: 10px 12px;
+        gap: 8px;
+    }
+
+    .bulk-action-buttons .btn {
+        font-size: 11.5px;
+        padding: 5px 10px;
+    }
+
+    .bulk-clear-btn {
+        font-size: 11.5px;
+    }
+}
+
 /* Status Badge Overrides for Brand Colors */
 .status-badge.confirmed {
     background: rgba(0, 166, 81, 0.1);
@@ -68,84 +178,6 @@
 .status-badge.completed {
     background: rgba(237, 28, 36, 0.1);
     color: var(--brand-danger);
-}
-
-/* ==========================================
-   RESPONSIVE TABLE TO CARD VIEW (Mobile)
-   ========================================== */
-@media (max-width: 992px) {
-    .package-table thead {
-        display: none;
-    }
-
-    .package-table,
-    .package-table tbody,
-    .package-table tr,
-    .package-table td {
-        display: block;
-        width: 100%;
-    }
-
-    .package-table tr {
-        margin-bottom: 12px;
-        border: 1px solid var(--border-color);
-        border-radius: var(--radius);
-        padding: 12px;
-        background: #fff;
-        box-shadow: var(--shadow-sm);
-    }
-
-    .package-table td {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 8px 0;
-        border-bottom: 1px solid #f1f5f9;
-        text-align: right;
-    }
-
-    .package-table td:last-child {
-        border-bottom: none;
-        justify-content: flex-end;
-        padding-top: 12px;
-    }
-
-    .package-table td::before {
-        content: attr(data-label);
-        font-weight: 600;
-        color: var(--text-muted);
-        font-size: 11px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-        text-align: left;
-        margin-right: 12px;
-        flex-shrink: 0;
-    }
-
-    .package-table td:first-child {
-        justify-content: flex-start;
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-
-    .package-table td:first-child::before {
-        display: none;
-    }
-
-    /* Ensure package info stacks nicely on mobile */
-    .package-table td[data-label="Package"] {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-    }
-
-    .package-table td[data-label="Package"]::before {
-        margin-bottom: 4px;
-    }
-
-    .package-table td[data-label="Package"] .d-flex {
-        width: 100%;
-    }
 }
 
 

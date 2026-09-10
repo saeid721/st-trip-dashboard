@@ -488,22 +488,21 @@
 
             <!-- 6. Bulk Action Bar (Hidden by default) -->
             <div class="bulk-action-bar d-none fade-up mb-3" id="bulkActionBar">
-                <div
-                    class="d-flex align-items-center justify-content-between bg-white border rounded p-2 px-3 shadow-sm">
-                    <div class="d-flex align-items-center gap-3 flex-wrap">
-                        <span class="fw-semibold text-dark"><span id="selectedCount">0</span> selected</span>
-                        <div class="vr d-none d-sm-block"></div>
-                        <button class="btn btn-sm btn-outline-success"><i class="fa-solid fa-check me-1"></i>
-                            Activate</button>
-                        <button class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-pause me-1"></i>
-                            Deactivate</button>
-                        <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash me-1"></i>
-                            Delete</button>
-                        <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-file-export me-1"></i>
-                            Export</button>
+                <div class="bulk-action-inner bg-white border rounded p-2 px-3 shadow-sm">
+                    <span class="fw-semibold text-dark bulk-count"><span id="selectedCount">0</span> selected</span>
+                    <div class="vr bulk-divider d-none d-sm-block"></div>
+                    <div class="bulk-action-buttons">
+                        <button class="btn btn-sm btn-outline-success"><i
+                                class="fa-solid fa-check me-1"></i>Activate</button>
+                        <button class="btn btn-sm btn-outline-warning"><i
+                                class="fa-solid fa-pause me-1"></i>Deactivate</button>
+                        <button class="btn btn-sm btn-outline-danger"><i
+                                class="fa-solid fa-trash me-1"></i>Delete</button>
+                        <button class="btn btn-sm btn-outline-secondary"><i
+                                class="fa-solid fa-file-export me-1"></i>Export</button>
                     </div>
-                    <button class="btn btn-sm btn-link text-muted text-decoration-none" id="clearSelection">Clear
-                        Selection</button>
+                    <button class="btn btn-sm btn-link text-muted text-decoration-none bulk-clear-btn"
+                        id="clearSelection">Clear Selection</button>
                 </div>
             </div>
 
