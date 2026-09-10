@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ST Trip - Travel Packages</title>
+
+    <!-- Exact CDN Dependencies -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/packages.css" />
+
+    <!-- Chart.js (Included per requirements, instantiated only if needed) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+
+<body>
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-logo">
+                <img src="images/logo.png" alt="ST TYRE" class="brand-logo-full" onerror="this.style.display='none'">
+                <img src="images/favicon.png" alt="ST TYRE" class="brand-logo-mini" onerror="this.style.display='none'">
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a class="nav-item-custom active" href="#">
+                <i class="fas fa-th-large"></i>
+                <span>Dashboard</span>
+            </a>
+
+            <div class="nav-section-title">Commerce</div>
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#bookingsSubmenu"
+                aria-expanded="false">
+                <i class="fas fa-calendar-check"></i>
+                <span>Bookings</span>
+                <span class="badge-count">12</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+            <div class="collapse" id="bookingsSubmenu">
+                <div class="nav-submenu">
+                    <a class="nav-subitem" href="#"><i class="fas fa-list"></i> All Bookings</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-plane"></i> Flight Bookings</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Hotel Bookings</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> Tour Bookings</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-moon"></i> Umrah Bookings</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-kaaba"></i> Hajj Bookings</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-passport"></i> Visa Applications</a>
+                </div>
+            </div>
+            <a class="nav-item-custom" href="#">
+                <i class="fas fa-box-open"></i>
+                <span>Travel Products</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+
+            <div class="nav-section-title">People</div>
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#customersSubmenu"
+                aria-expanded="false">
+                <i class="fas fa-users"></i>
+                <span>Customers</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+            <div class="collapse" id="customersSubmenu">
+                <div class="nav-submenu">
+                    <a class="nav-subitem" href="#"><i class="fas fa-user"></i> All Customers</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-users"></i> Customer Groups</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-star"></i> Reviews</a>
+                </div>
+            </div>
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#suppliersSubmenu"
+                aria-expanded="false">
+                <i class="fas fa-handshake"></i>
+                <span>Suppliers & Partners</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+            <div class="collapse" id="suppliersSubmenu">
+                <div class="nav-submenu">
+                    <a class="nav-subitem" href="#"><i class="fas fa-users"></i> All Suppliers & Partners</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-plane"></i> Airlines</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Hotels</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Tour Operators</a>
+                </div>
+            </div>
+
+            <div class="nav-section-title">Finance</div>
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#FinanceSubmenu"
+                aria-expanded="false">
+                <i class="fas fa-wallet"></i>
+                <span>Finance</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+            <div class="collapse" id="FinanceSubmenu">
+                <div class="nav-submenu">
+                    <a class="nav-subitem" href="#"><i class="fas fa-book"></i> Chart of Accounts</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-hand-holding-usd"></i> Payments</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-money-bill-wave"></i> Transactions</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-receipt"></i> Invoices</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-exchange-alt"></i> Refunds</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-wallet"></i> Expenses</a>
+                </div>
+            </div>
+
+            <div class="nav-section-title">Operations</div>
+            <a class="nav-item-custom" href="#">
+                <i class="fas fa-shuttle-van"></i>
+                <span>Airport Transfers</span>
+            </a>
+            <a class="nav-item-custom" href="#">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Tour Operations</span>
+            </a>
+            <a class="nav-item-custom" href="#">
+                <i class="fas fa-moon"></i>
+                <span>Umrah Operations</span>
+            </a>
+            <a class="nav-item-custom" href="#">
+                <i class="fas fa-kaaba"></i>
+                <span>Hajj Operations</span>
+            </a>
+            <a class="nav-item-custom" href="#">
+                <i class="fas fa-passport"></i>
+                <span>Visa Processing</span>
+            </a>
+
+            <div class="nav-section-title">Growth</div>
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#MarketingSubmenu"
+                aria-expanded="false">
+                <i class="fas fa-bullhorn"></i>
+                <span>Marketing</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+            <div class="collapse" id="MarketingSubmenu">
+                <div class="nav-submenu">
+                    <a class="nav-subitem" href="#"><i class="fas fa-gift"></i> Promotions</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-ticket-alt"></i> Coupons</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-ad"></i> Campaigns</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-envelope"></i> Newsletter</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-search"></i> SEO</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-star"></i> Reviews</a>
+                </div>
+            </div>
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse"
+                data-bs-target="#ContentManagementSubmenu" aria-expanded="false">
+                <i class="fas fa-keyboard"></i>
+                <span>Content Management</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+            <div class="collapse" id="ContentManagementSubmenu">
+                <div class="nav-submenu">
+                    <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> Destinations</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-book-open"></i> Blog</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-question-circle"></i> FAQ</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-info-circle"></i> About Us</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-info-circle"></i> Why Us</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-info-circle"></i> Contact Us</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> Travel Guides</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> Popular Routes</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-map-marked-alt"></i> News & Announcements</a>
+                </div>
+            </div>
+
+            <div class="nav-section-title">Insights</div>
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#reportsSubmenu"
+                aria-expanded="false">
+                <i class="fas fa-chart-bar"></i>
+                <span>Reports & Analytics</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+            <div class="collapse" id="reportsSubmenu">
+                <div class="nav-submenu">
+                    <a class="nav-subitem" href="#"><i class="fas fa-chart-line"></i> Sales Report</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-calendar-check"></i> Booking Report</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-money-bill-wave"></i> Revenue Report</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-users"></i> Customer Report</a>
+                </div>
+            </div>
+
+
+            <div class="nav-section-title">Support</div>
+            <a class="nav-item-custom" href="#">
+                <i class="fas fa-headset"></i>
+                <span>Support Tickets</span>
+                <span class="badge-count">4</span>
+            </a>
+            <a class="nav-item-custom" href="#">
+                <i class="fas fa-message"></i>
+                <span>Customer Messages</span>
+                <span class="badge-count">4</span>
+            </a>
+            <a class="nav-item-custom" href="#">
+                <i class="fab fa-whatsapp"></i>
+                <span>WhatsApp Leadss</span>
+                <span class="badge-count">4</span>
+            </a>
+
+            <div class="nav-section-title">System</div>
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#usersSubmenu"
+                aria-expanded="false">
+                <i class="fas fa-shield-halved"></i>
+                <span>Users & Security</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+            <div class="collapse" id="usersSubmenu">
+                <div class="nav-submenu">
+                    <a class="nav-subitem" href="#"><i class="fas fa-passport"></i> Admin Users</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-list"></i> Staff</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-plane"></i> Roles & Permissions</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Activity Logs</a>
+                </div>
+            </div>
+
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#settingsSubmenu"
+                aria-expanded="false">
+                <i class="fas fa-solid fa-gear"></i>
+                <span>Settings</span>
+                <i class="fas fa-chevron-right nav-chevron"></i>
+            </a>
+            <div class="collapse" id="settingsSubmenu">
+                <div class="nav-submenu">
+                    <a class="nav-subitem" href="#"><i class="fas fa-passport"></i> General Settings</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-list"></i> Company Profile</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-plane"></i> Payment Methods</a>
+                    <a class="nav-subitem" href="#"><i class="fas fa-hotel"></i> Email Settings</a>
+                </div>
+            </div>
+            <a class="nav-item-custom has-submenu" href="#" data-bs-toggle="collapse" data-bs-target="#logoutSubmenu"
+                aria-expanded="false">
+                <i class="fas fa-right-from-bracket"></i>
+                <span>Logout</span>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-user">
+            <div class="sidebar-user-img"><img src="images/profile.jpg" alt=""></div>
+            <div class="sidebar-user-info">
+                <div class="sidebar-user-name">MD. Shaokat Hossain</div>
+                <div class="sidebar-user-role">Managing Director</div>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Header -->
+        <header class="top-header">
+            <div class="header-left">
+                <button class="hamburger-btn" id="hamburgerBtn" aria-label="Toggle sidebar">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="header-breadcrumb">
+                    <a href="#">ST Trip</a>
+                    <span class="sep">/</span>
+                    <a href="#">Travel Products</a>
+                    <span class="sep">/</span>
+                    <span class="current">Packages</span>
+                </div>
+            </div>
+
+            <div class="header-mobile-logo">
+                <img src="images/logo.png" alt="ST TRIP">
+            </div>
+
+            <div class="header-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search bookings, customers, packages...">
+            </div>
+
+            <div class="header-right">
+                <button class="header-icon-btn mobile-search-btn" data-tooltip="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <div class="dropdown quick-add-dropdown">
+                    <button class="btn-quick-add dropdown-toggle" id="quickAddBtn" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <i class="fas fa-plus"></i>
+                        <span>Quick add</span>
+                    </button>
+                    <ul class="dropdown-menu quick-add-menu" aria-labelledby="quickAddBtn">
+                        <li><a class="dropdown-item quick-add-item" href="#"><i class="fas fa-calendar-check"></i> New
+                                booking</a></li>
+                        <li><a class="dropdown-item quick-add-item" href="#"><i class="fas fa-user-plus"></i> Add
+                                customer</a></li>
+                        <li><a class="dropdown-item quick-add-item" href="package-add.html"><i class="fas fa-box"></i>
+                                Add package</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item quick-add-item" href="#"><i class="fas fa-file-invoice-dollar"></i>
+                                Create
+                                invoice</a></li>
+                    </ul>
+                </div>
+                <button class="header-icon-btn" data-tooltip="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notif-dot"></span>
+                </button>
+                <button class="header-icon-btn" data-tooltip="Messages">
+                    <i class="fas fa-comment-dots"></i>
+                </button>
+                <div class="dropdown header-profile-dropdown">
+                    <div class="header-profile dropdown-toggle" id="profileDropdown" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        <div class="header-profile-image">
+                            <img src="images/profile.jpg" alt="User">
+                        </div>
+                        <div>
+                            <div class="header-profile-name">MD. Shaokat Hossain</div>
+                            <div class="header-profile-role">Managing Director</div>
+                        </div>
+                        <i class="fas fa-chevron-down header-profile-chevron"></i>
+                    </div>
+                    <ul class="dropdown-menu dropdown-menu-end profile-menu" aria-labelledby="profileDropdown">
+                        <li><a class="dropdown-item profile-item" href="#"><i class="fas fa-user"></i> My Profile</a>
+                        </li>
+                        <li><a class="dropdown-item profile-item" href="#"><i class="fas fa-cog"></i> Account
+                                Settings</a></li>
+                        <li><a class="dropdown-item profile-item" href="#"><i class="fas fa-history"></i> Activity
+                                Log</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item profile-item danger" href="#"><i class="fas fa-sign-out-alt"></i>
+                                Logout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <!-- NEW: Package List Dashboard Content -->
+        <div class="dashboard-content">
+
+            <!-- 1. Page Header -->
+            <div class="greeting-area fade-up">
+                <div class="greeting-left">
+                    <h1 class="mb-1">Travel Packages</h1>
+                    <p class="text-muted mb-0">Manage your tour, Hajj, Umrah, and custom travel packages.</p>
+                </div>
+                <div class="greeting-right">
+                    <button class="btn-filter" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#advancedFilters">
+                        <i class="fa-solid fa-filter"></i> Filters
+                    </button>
+                    <button class="btn-export"><i class="fa-solid fa-download"></i> Export</button>
+                    <a href="package-add.html"> <button class="btn-quick-add"><i class="fa-solid fa-plus"></i> Add
+                            Package</button></a>
+                </div>
+            </div>
+
+            <!-- 2. Summary KPI Cards -->
+            <div class="kpi-row package-kpi fade-up" style="animation-delay: 0.1s;">
+                <div class="kpi-card">
+                    <div class="kpi-card-header">
+                        <div class="kpi-icon blue"><i class="fa-solid fa-suitcase-rolling"></i></div>
+                        <div class="kpi-title">Total Packages</div>
+                    </div>
+                    <div class="kpi-value">248</div>
+                    <div class="kpi-change up"><i class="fa-solid fa-arrow-trend-up"></i> 12.5% <span
+                            class="change-label">vs last month</span></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-card-header">
+                        <div class="kpi-icon green"><i class="fa-solid fa-circle-check"></i></div>
+                        <div class="kpi-title">Active Packages</div>
+                    </div>
+                    <div class="kpi-value">184</div>
+                    <div class="kpi-change up"><i class="fa-solid fa-arrow-trend-up"></i> 8.2% <span
+                            class="change-label">vs last month</span></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-card-header">
+                        <div class="kpi-icon orange"><i class="fa-solid fa-file-pen"></i></div>
+                        <div class="kpi-title">Draft Packages</div>
+                    </div>
+                    <div class="kpi-value">32</div>
+                    <div class="kpi-change down"><i class="fa-solid fa-arrow-trend-down"></i> 2.1% <span
+                            class="change-label">vs last month</span></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-card-header">
+                        <div class="kpi-icon purple"><i class="fa-solid fa-star"></i></div>
+                        <div class="kpi-title">Featured</div>
+                    </div>
+                    <div class="kpi-value">18</div>
+                    <div class="kpi-change up"><i class="fa-solid fa-arrow-trend-up"></i> 4.0% <span
+                            class="change-label">vs last month</span></div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-card-header">
+                        <div class="kpi-icon red"><i class="fa-solid fa-circle-xmark"></i></div>
+                        <div class="kpi-title">Expired / Inactive</div>
+                    </div>
+                    <div class="kpi-value">14</div>
+                    <div class="kpi-change down"><i class="fa-solid fa-arrow-trend-down"></i> 5.3% <span
+                            class="change-label">vs last month</span></div>
+                </div>
+            </div>
+
+            <!-- 3. Search & Filter Toolbar -->
+            <div class="dash-card fade-up mb-3" style="animation-delay: 0.15s;">
+                <div class="dash-card-header">
+                    <div class="table-search-row w-100">
+                        <div class="table-search-input flex-grow-1">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <input type="text" id="packageSearch"
+                                placeholder="Search packages by name, ID, or destination...">
+                        </div>
+                        <select class="table-filter-select">
+                            <option value="">All Types</option>
+                            <option value="hajj">Hajj</option>
+                            <option value="umrah">Umrah</option>
+                            <option value="tour">Tour</option>
+                            <option value="visa">Visa</option>
+                            <option value="flight-hotel">Flight + Hotel</option>
+                        </select>
+                        <select class="table-filter-select">
+                            <option value="">All Destinations</option>
+                            <option value="saudi">Saudi Arabia</option>
+                            <option value="uae">UAE</option>
+                            <option value="thailand">Thailand</option>
+                            <option value="malaysia">Malaysia</option>
+                        </select>
+                        <select class="table-filter-select">
+                            <option value="">All Status</option>
+                            <option value="active">Active</option>
+                            <option value="draft">Draft</option>
+                            <option value="inactive">Inactive</option>
+                            <option value="expired">Expired</option>
+                        </select>
+                        <button class="btn-export text-danger border-danger" type="button" id="resetFilters">
+                            <i class="fa-solid fa-rotate-left"></i> Reset
+                        </button>
+                    </div>
+                </div>
+                <!-- Advanced Filters Collapse -->
+                <div class="collapse mt-3" id="advancedFilters">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small mb-1">Price Range (৳)</label>
+                            <div class="input-group input-group-sm">
+                                <input type="number" class="form-control" placeholder="Min">
+                                <span class="input-group-text bg-light border-start-0 border-end-0">-</span>
+                                <input type="number" class="form-control" placeholder="Max">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small mb-1">Duration</label>
+                            <select class="form-select form-select-sm">
+                                <option value="">Any Duration</option>
+                                <option value="1-3">1 - 3 Days</option>
+                                <option value="4-7">4 - 7 Days</option>
+                                <option value="8-14">8 - 14 Days</option>
+                                <option value="15+">15+ Days</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small mb-1">Featured Status</label>
+                            <select class="form-select form-select-sm">
+                                <option value="">All</option>
+                                <option value="yes">Yes</option>
+                                <option value="no">No</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <label class="form-label text-muted small mb-1">Last Updated</label>
+                            <input type="date" class="form-control form-control-sm">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Bulk Action Bar (Hidden by default) -->
+            <div class="bulk-action-bar d-none fade-up mb-3" id="bulkActionBar">
+                <div
+                    class="d-flex align-items-center justify-content-between bg-white border rounded p-2 px-3 shadow-sm">
+                    <div class="d-flex align-items-center gap-3 flex-wrap">
+                        <span class="fw-semibold text-dark"><span id="selectedCount">0</span> selected</span>
+                        <div class="vr d-none d-sm-block"></div>
+                        <button class="btn btn-sm btn-outline-success"><i class="fa-solid fa-check me-1"></i>
+                            Activate</button>
+                        <button class="btn btn-sm btn-outline-warning"><i class="fa-solid fa-pause me-1"></i>
+                            Deactivate</button>
+                        <button class="btn btn-sm btn-outline-danger"><i class="fa-solid fa-trash me-1"></i>
+                            Delete</button>
+                        <button class="btn btn-sm btn-outline-secondary"><i class="fa-solid fa-file-export me-1"></i>
+                            Export</button>
+                    </div>
+                    <button class="btn btn-sm btn-link text-muted text-decoration-none" id="clearSelection">Clear
+                        Selection</button>
+                </div>
+            </div>
+
+            <!-- 4. Package Data Table -->
+            <div class="dash-card table-card fade-up" style="animation-delay: 0.2s;">
+                <div class="table-responsive-custom">
+                    <table class="data-table package-table" id="packageTable">
+                        <thead>
+                            <tr>
+                                <th style="width: 40px;"><input class="form-check-input" type="checkbox" id="selectAll">
+                                </th>
+                                <th>Package ID</th>
+                                <th>Package</th>
+                                <th>Type</th>
+                                <th>Destination</th>
+                                <th>Duration</th>
+                                <th>Price</th>
+                                <th>Capacity</th>
+                                <th>Bookings</th>
+                                <th>Status</th>
+                                <th>Featured</th>
+                                <th>Last Updated</th>
+                                <th style="width: 120px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Row 1: Active -->
+                            <tr>
+                                <td data-label="Select"><input class="form-check-input row-checkbox" type="checkbox"
+                                        value="PKG-001"></td>
+                                <td data-label="Package ID"><span class="booking-id">PKG-001</span></td>
+                                <td data-label="Package">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="package-thumb"
+                                            style="background-image: url('https://images.unsplash.com/photo-1565552629477-ff441f71c6c5?w=100&h=100&fit=crop');">
+                                        </div>
+                                        <div>
+                                            <div class="fw-semibold text-dark">Premium Umrah Package</div>
+                                            <small class="text-muted">5 Star Hotels</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="Type"><span class="service-badge umrah">Umrah</span></td>
+                                <td data-label="Destination">
+                                    <div class="d-flex align-items-center gap-1">
+                                        <img src="https://flagcdn.com/24x18/sa.png" alt="SA" width="16"> Saudi Arabia
+                                    </div>
+                                </td>
+                                <td data-label="Duration">14 Days</td>
+                                <td data-label="Price" class="fw-semibold">৳1,42,000</td>
+                                <td data-label="Capacity">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="progress flex-grow-1" style="height: 4px; width: 60px;">
+                                            <div class="progress-bar bg-success" style="width: 75%"></div>
+                                        </div>
+                                        <small class="text-muted">36/48</small>
+                                    </div>
+                                </td>
+                                <td data-label="Bookings"><span class="fw-semibold">124</span></td>
+                                <td data-label="Status"><span class="status-badge confirmed">Active</span></td>
+                                <td data-label="Featured"><i class="fa-solid fa-star text-warning"></i></td>
+                                <td data-label="Last Updated" class="text-muted">2 hrs ago</td>
+                                <td data-label="Actions">
+                                    <div class="action-btns">
+                                        <button class="action-btn" data-bs-toggle="modal"
+                                            data-bs-target="#packagePreviewModal" title="View"><i
+                                                class="fa-solid fa-eye"></i></button>
+                                        <a href="package-edit.html" <button class="action-btn" data-bs-toggle="tooltip"
+                                            title="Edit"><i class="fa-solid fa-pen"></i></button> </a>
+                                        <button class="action-btn text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deletePackageModal" title="Delete"><i
+                                                class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 2: Active -->
+                            <tr>
+                                <td data-label="Select"><input class="form-check-input row-checkbox" type="checkbox"
+                                        value="PKG-002"></td>
+                                <td data-label="Package ID"><span class="booking-id">PKG-002</span></td>
+                                <td data-label="Package">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="package-thumb"
+                                            style="background-image: url('https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=100&h=100&fit=crop');">
+                                        </div>
+                                        <div>
+                                            <div class="fw-semibold text-dark">Breathtaking Singapore</div>
+                                            <small class="text-muted">Family Special</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="Type"><span class="service-badge tour">Tour</span></td>
+                                <td data-label="Destination">
+                                    <div class="d-flex align-items-center gap-1">
+                                        <img src="https://flagcdn.com/24x18/sg.png" alt="SG" width="16"> Singapore
+                                    </div>
+                                </td>
+                                <td data-label="Duration">6 Days</td>
+                                <td data-label="Price" class="fw-semibold">৳1,58,000</td>
+                                <td data-label="Capacity">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="progress flex-grow-1" style="height: 4px; width: 60px;">
+                                            <div class="progress-bar bg-warning" style="width: 45%"></div>
+                                        </div>
+                                        <small class="text-muted">18/40</small>
+                                    </div>
+                                </td>
+                                <td data-label="Bookings"><span class="fw-semibold">86</span></td>
+                                <td data-label="Status"><span class="status-badge confirmed">Active</span></td>
+                                <td data-label="Featured"><i class="fa-solid fa-star text-warning"></i></td>
+                                <td data-label="Last Updated" class="text-muted">1 day ago</td>
+                                <td data-label="Actions">
+                                    <div class="action-btns">
+                                        <button class="action-btn" data-bs-toggle="modal"
+                                            data-bs-target="#packagePreviewModal" title="View"><i
+                                                class="fa-solid fa-eye"></i></button>
+                                        <a href="package-edit.html" <button class="action-btn" data-bs-toggle="tooltip"
+                                            title="Edit"><i class="fa-solid fa-pen"></i></button> </a>
+                                        <button class="action-btn text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deletePackageModal" title="Delete"><i
+                                                class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 3: Draft -->
+                            <tr>
+                                <td data-label="Select"><input class="form-check-input row-checkbox" type="checkbox"
+                                        value="PKG-003"></td>
+                                <td data-label="Package ID"><span class="booking-id">PKG-003</span></td>
+                                <td data-label="Package">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="package-thumb"
+                                            style="background-image: url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=100&h=100&fit=crop');">
+                                        </div>
+                                        <div>
+                                            <div class="fw-semibold text-dark">Dubai Explorer 2026</div>
+                                            <small class="text-muted">Summer Special</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="Type"><span class="service-badge tour">Tour</span></td>
+                                <td data-label="Destination">
+                                    <div class="d-flex align-items-center gap-1">
+                                        <img src="https://flagcdn.com/24x18/ae.png" alt="AE" width="16"> UAE
+                                    </div>
+                                </td>
+                                <td data-label="Duration">5 Days</td>
+                                <td data-label="Price" class="fw-semibold">৳92,500</td>
+                                <td data-label="Capacity">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="progress flex-grow-1" style="height: 4px; width: 60px;">
+                                            <div class="progress-bar bg-secondary" style="width: 0%"></div>
+                                        </div>
+                                        <small class="text-muted">0/30</small>
+                                    </div>
+                                </td>
+                                <td data-label="Bookings"><span class="fw-semibold">0</span></td>
+                                <td data-label="Status"><span class="status-badge pending">Draft</span></td>
+                                <td data-label="Featured"><i class="fa-regular fa-star text-muted"></i></td>
+                                <td data-label="Last Updated" class="text-muted">3 days ago</td>
+                                <td data-label="Actions">
+                                    <div class="action-btns">
+                                        <button class="action-btn" data-bs-toggle="modal"
+                                            data-bs-target="#packagePreviewModal" title="View"><i
+                                                class="fa-solid fa-eye"></i></button>
+                                        <a href="package-edit.html" <button class="action-btn" data-bs-toggle="tooltip"
+                                            title="Edit"><i class="fa-solid fa-pen"></i></button> </a>
+                                        <button class="action-btn text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deletePackageModal" title="Delete"><i
+                                                class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+
+                            <!-- Row 4: Expired -->
+                            <tr>
+                                <td data-label="Select"><input class="form-check-input row-checkbox" type="checkbox"
+                                        value="PKG-004"></td>
+                                <td data-label="Package ID"><span class="booking-id">PKG-004</span></td>
+                                <td data-label="Package">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="package-thumb"
+                                            style="background-image: url('https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=100&h=100&fit=crop');">
+                                        </div>
+                                        <div>
+                                            <div class="fw-semibold text-dark">Thailand Honeymoon</div>
+                                            <small class="text-muted">Couple Special</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td data-label="Type"><span class="service-badge tour">Tour</span></td>
+                                <td data-label="Destination">
+                                    <div class="d-flex align-items-center gap-1">
+                                        <img src="https://flagcdn.com/24x18/th.png" alt="TH" width="16"> Thailand
+                                    </div>
+                                </td>
+                                <td data-label="Duration">7 Days</td>
+                                <td data-label="Price" class="fw-semibold">৳65,000</td>
+                                <td data-label="Capacity">
+                                    <div class="d-flex align-items-center gap-2">
+                                        <div class="progress flex-grow-1" style="height: 4px; width: 60px;">
+                                            <div class="progress-bar bg-danger" style="width: 100%"></div>
+                                        </div>
+                                        <small class="text-muted">20/20</small>
+                                    </div>
+                                </td>
+                                <td data-label="Bookings"><span class="fw-semibold">20</span></td>
+                                <td data-label="Status"><span class="status-badge completed">Expired</span></td>
+                                <td data-label="Featured"><i class="fa-regular fa-star text-muted"></i></td>
+                                <td data-label="Last Updated" class="text-muted">1 month ago</td>
+                                <td data-label="Actions">
+                                    <div class="action-btns">
+                                        <button class="action-btn" data-bs-toggle="modal"
+                                            data-bs-target="#packagePreviewModal" title="View"><i
+                                                class="fa-solid fa-eye"></i></button>
+                                        <a href="package-edit.html" <button class="action-btn" data-bs-toggle="tooltip"
+                                            title="Edit"><i class="fa-solid fa-pen"></i></button> </a>
+                                        <button class="action-btn text-danger" data-bs-toggle="modal"
+                                            data-bs-target="#deletePackageModal" title="Delete"><i
+                                                class="fa-solid fa-trash"></i></button>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Empty State (Hidden by default, toggled via JS) -->
+                <div class="empty-state d-none text-center py-5" id="emptyState">
+                    <div class="mb-3">
+                        <i class="fa-solid fa-suitcase-rolling fa-3x text-muted opacity-25"></i>
+                    </div>
+                    <h5 class="text-dark mb-1">No packages found</h5>
+                    <p class="text-muted mb-3">Try adjusting your search or filters to find what you're looking for.</p>
+                    <button class="btn-quick-add" id="resetFromEmpty"><i class="fa-solid fa-rotate-left"></i> Reset
+                        Filters</button>
+                </div>
+
+                <!-- 7. Pagination -->
+                <div class="table-footer">
+                    <div class="table-footer-info">
+                        Showing <span class="fw-semibold">1</span> to <span class="fw-semibold">4</span> of <span
+                            class="fw-semibold">248</span> packages
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <select class="table-filter-select" style="width: auto;">
+                            <option value="10">10 per page</option>
+                            <option value="25" selected>25 per page</option>
+                            <option value="50">50 per page</option>
+                            <option value="100">100 per page</option>
+                        </select>
+                        <nav aria-label="Package pagination">
+                            <ul class="pagination-custom mb-0">
+                                <li><button class="page-btn" disabled><i class="fa-solid fa-chevron-left"></i></button>
+                                </li>
+                                <li><button class="page-btn active">1</button></li>
+                                <li><button class="page-btn">2</button></li>
+                                <li><button class="page-btn">3</button></li>
+                                <li><button class="page-btn">...</button></li>
+                                <li><button class="page-btn">10</button></li>
+                                <li><button class="page-btn"><i class="fa-solid fa-chevron-right"></i></button></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Footer -->
+        <footer class="dashboard-footer">
+            <div>© 2026 ST Trip Travel Management Portal | All Rights Reserved.</div>
+            <div class="footer-links">
+                Develop by<a href="https://stitbd.com/" target="_blank">STIT BD</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- 5. Delete Confirmation Modal -->
+    <div class="modal fade" id="deletePackageModal" tabindex="-1" aria-labelledby="deletePackageModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title fw-bold" id="deletePackageModalLabel">Delete Package?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body py-4">
+                    <div class="text-center mb-3">
+                        <div class="bg-danger bg-opacity-10 text-danger rounded-circle d-inline-flex align-items-center justify-content-center"
+                            style="width: 64px; height: 64px;">
+                            <i class="fa-solid fa-trash-can fa-2x"></i>
+                        </div>
+                    </div>
+                    <p class="text-center text-muted mb-0">Are you sure you want to delete this package? This action
+                        cannot be undone and will remove all associated booking data.</p>
+                </div>
+                <div class="modal-footer border-0 pt-0 justify-content-center gap-2 pb-4">
+                    <button type="button" class="btn btn-light px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger px-4" id="confirmDeleteBtn">Yes, Delete
+                        Package</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ==========================================
+     PACKAGE PREVIEW MODAL
+     ========================================== -->
+    <div class="modal fade modal-preview-package" id="packagePreviewModal" tabindex="-1"
+        aria-labelledby="packagePreviewModalLabel" aria-hidden="true" data-package-id="PKG-HAJ-2026-001">
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow-lg">
+
+                <!-- Admin Preview Banner -->
+                <div class="admin-preview-banner alert alert-primary bg-opacity-10 border-0 rounded-0 rounded-top d-flex align-items-center justify-content-between py-2 px-4 mb-0"
+                    role="alert">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="fa-solid fa-circle-info text-primary"></i>
+                        <span class="small fw-semibold text-primary-dark">Admin Preview</span>
+                        <span class="small text-muted">— This is how the package will appear to customers.</span>
+                    </div>
+                    <button type="button" class="btn-close btn-close-sm" aria-label="Dismiss banner"
+                        data-bs-dismiss="alert"></button>
+                </div>
+
+                <!-- Modal Header -->
+                <div class="modal-header border-bottom bg-white sticky-top z-2">
+                    <div class="d-flex align-items-center gap-3">
+                        <h5 class="modal-title fw-bold mb-0" id="packagePreviewModalLabel">Package Preview</h5>
+                        <span
+                            class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1"
+                            data-package-status>Active</span>
+                        <span
+                            class="badge bg-warning bg-opacity-10 text-warning border border-warning border-opacity-25 px-2 py-1"
+                            data-package-featured><i class="fa-solid fa-star me-1"></i>Featured</span>
+                        <span class="text-muted small font-monospace" data-package-id-display>#PKG-HAJ-2026-001</span>
+                    </div>
+                    <div class="d-flex align-items-center gap-2">
+                        <button type="button" class="btn btn-sm btn-light border" id="toggleFullscreenBtn"
+                            data-bs-toggle="tooltip" title="Toggle Fullscreen">
+                            <i class="fa-solid fa-expand"></i>
+                        </button>
+                        <button type="button" class="btn btn-sm btn-light border" data-bs-dismiss="modal"
+                            aria-label="Close" data-bs-toggle="tooltip" title="Close Preview">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body p-0">
+
+                    <!-- 2. Package Hero Section -->
+                    <div class="preview-hero position-relative">
+                        <img src="https://images.unsplash.com/photo-1565552629477-ff441f71c6c5?w=1200&h=500&fit=crop"
+                            alt="Package Cover" class="preview-hero-img w-100" id="mainPreviewImage"
+                            style="height: 350px; object-fit: cover;">
+                        <div class="preview-hero-overlay position-absolute bottom-0 start-0 end-0 p-4"
+                            style="background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);">
+                            <div class="container-fluid">
+                                <span class="badge bg-primary mb-2" data-package-type>Umrah</span>
+                                <h2 class="text-white fw-bold mb-1" data-package-name>Exclusive Premium Umrah
+                                    Package 2026</h2>
+                                <p class="text-white-50 mb-2 small" data-package-short-desc>7 Nights Makkah + 6
+                                    Nights Madinah • 5-Star Hotels near Haram</p>
+                                <div class="d-flex align-items-center gap-3 text-white small">
+                                    <span><i class="fa-solid fa-location-dot me-1"></i> <span
+                                            data-package-destination>Makkah & Madinah, Saudi
+                                            Arabia</span></span>
+                                    <span><i class="fa-solid fa-calendar-days me-1"></i> <span data-package-duration>14
+                                            Days / 13 Nights</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Image Gallery -->
+                    <div class="px-4 pt-3 pb-2 bg-white border-bottom">
+                        <div class="d-flex align-items-center gap-2 overflow-auto pb-1" id="previewGallery">
+                            <div class="gallery-thumb active"
+                                data-img="https://images.unsplash.com/photo-1565552629477-ff441f71c6c5?w=1200&h=500&fit=crop">
+                                <img src="https://images.unsplash.com/photo-1565552629477-ff441f71c6c5?w=150&h=100&fit=crop"
+                                    alt="Gallery 1">
+                            </div>
+                            <div class="gallery-thumb"
+                                data-img="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=1200&h=500&fit=crop">
+                                <img src="https://images.unsplash.com/photo-1596422846543-75c6fc197f07?w=150&h=100&fit=crop"
+                                    alt="Gallery 2">
+                            </div>
+                            <div class="gallery-thumb"
+                                data-img="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=1200&h=500&fit=crop">
+                                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=150&h=100&fit=crop"
+                                    alt="Gallery 3">
+                            </div>
+                            <div class="gallery-thumb"
+                                data-img="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=1200&h=500&fit=crop">
+                                <img src="https://images.unsplash.com/photo-1552465011-b4e21bf6e79a?w=150&h=100&fit=crop"
+                                    alt="Gallery 4">
+                            </div>
+                            <div class="d-flex align-items-center justify-content-center gallery-thumb"
+                                style="width: 80px; height: 60px; border: 1px dashed var(--border-color); background: var(--bg-light);">
+                                <span class="small text-muted fw-semibold">+2 More</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-fluid p-4">
+                        <div class="row g-4">
+
+                            <!-- Left Column: Details -->
+                            <div class="col-12 col-lg-8">
+
+                                <!-- 4. Quick Information Grid -->
+                                <div class="dash-card mb-4">
+                                    <h6 class="fw-bold mb-3 text-dark"><i
+                                            class="fa-solid fa-circle-info me-2 text-primary"></i>Quick
+                                        Information</h6>
+                                    <div class="row g-3">
+                                        <div class="col-6 col-md-3">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <i class="fa-solid fa-tag text-primary mt-1"></i>
+                                                <div>
+                                                    <div class="small text-muted">Type</div>
+                                                    <div class="fw-semibold small" data-package-type>Umrah</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <i class="fa-solid fa-map-location-dot text-primary mt-1"></i>
+                                                <div>
+                                                    <div class="small text-muted">Destination</div>
+                                                    <div class="fw-semibold small" data-package-destination>
+                                                        Makkah & Madinah</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <i class="fa-solid fa-clock text-primary mt-1"></i>
+                                                <div>
+                                                    <div class="small text-muted">Duration</div>
+                                                    <div class="fw-semibold small" data-package-duration>14 Days
+                                                        / 13 Nights</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <i class="fa-solid fa-users text-primary mt-1"></i>
+                                                <div>
+                                                    <div class="small text-muted">Available</div>
+                                                    <div class="fw-semibold small text-success" data-package-seats>24
+                                                        Seats</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <i class="fa-solid fa-calendar-xmark text-primary mt-1"></i>
+                                                <div>
+                                                    <div class="small text-muted">Deadline</div>
+                                                    <div class="fw-semibold small" data-package-deadline>20 Dec
+                                                        2026</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 col-md-3">
+                                            <div class="d-flex align-items-start gap-2">
+                                                <i class="fa-solid fa-signal text-primary mt-1"></i>
+                                                <div>
+                                                    <div class="small text-muted">Status</div>
+                                                    <div class="fw-semibold small text-success" data-package-status>
+                                                        Active</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 5. Overview -->
+                                <div class="dash-card mb-4">
+                                    <h6 class="fw-bold mb-3 text-dark"><i
+                                            class="fa-solid fa-align-left me-2 text-primary"></i>Overview</h6>
+                                    <p class="text-muted small mb-3" data-package-desc>Experience a spiritually
+                                        enriching journey with our premium 5-star Umrah package. This
+                                        comprehensive itinerary is designed for those seeking comfort,
+                                        convenience, and spiritual focus. It includes round-trip flights, 5-star
+                                        accommodation just steps away from the Haram, daily breakfast, and
+                                        experienced group leadership to guide you through every step of your
+                                        sacred journey.</p>
+                                </div>
+
+                                <!-- 6. Highlights -->
+                                <div class="dash-card mb-4">
+                                    <h6 class="fw-bold mb-3 text-dark"><i
+                                            class="fa-solid fa-star me-2 text-primary"></i>Package Highlights
+                                    </h6>
+                                    <div class="row g-2">
+                                        <div class="col-12 col-md-6">
+                                            <div class="d-flex align-items-center gap-2 small"><i
+                                                    class="fa-solid fa-check text-success"></i> <span>5-Star
+                                                    Hotels near Masjid Al-Haram</span></div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="d-flex align-items-center gap-2 small"><i
+                                                    class="fa-solid fa-check text-success"></i> <span>Guided
+                                                    Ziyarah Tours in Makkah & Madinah</span></div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="d-flex align-items-center gap-2 small"><i
+                                                    class="fa-solid fa-check text-success"></i> <span>Private AC
+                                                    Airport Transfers</span></div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="d-flex align-items-center gap-2 small"><i
+                                                    class="fa-solid fa-check text-success"></i> <span>Daily
+                                                    Breakfast Included</span></div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="d-flex align-items-center gap-2 small"><i
+                                                    class="fa-solid fa-check text-success"></i>
+                                                <span>Experienced Group Leader</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="d-flex align-items-center gap-2 small"><i
+                                                    class="fa-solid fa-check text-success"></i> <span>24/7
+                                                    On-ground Support</span></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 7. Includes / Excludes -->
+                                <div class="row g-3 mb-4">
+                                    <div class="col-12 col-md-6">
+                                        <div class="dash-card h-100 border-success border-opacity-25">
+                                            <h6 class="fw-bold mb-3 text-success"><i
+                                                    class="fa-solid fa-circle-check me-2"></i>Package Includes
+                                            </h6>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2 d-flex align-items-start gap-2"><i
+                                                        class="fa-solid fa-check text-success mt-1"></i>
+                                                    <span>Round-trip Air Ticket</span>
+                                                </li>
+                                                <li class="mb-2 d-flex align-items-start gap-2"><i
+                                                        class="fa-solid fa-check text-success mt-1"></i>
+                                                    <span>Hotel Accommodation (Quad Sharing)</span>
+                                                </li>
+                                                <li class="mb-2 d-flex align-items-start gap-2"><i
+                                                        class="fa-solid fa-check text-success mt-1"></i>
+                                                    <span>Umrah Visa Processing</span>
+                                                </li>
+                                                <li class="mb-2 d-flex align-items-start gap-2"><i
+                                                        class="fa-solid fa-check text-success mt-1"></i>
+                                                    <span>Airport Transfer & Transportation</span>
+                                                </li>
+                                                <li class="d-flex align-items-start gap-2"><i
+                                                        class="fa-solid fa-check text-success mt-1"></i>
+                                                    <span>Ziyarah Tour</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-md-6">
+                                        <div class="dash-card h-100 border-danger border-opacity-25">
+                                            <h6 class="fw-bold mb-3 text-danger"><i
+                                                    class="fa-solid fa-circle-xmark me-2"></i>Not Included</h6>
+                                            <ul class="list-unstyled mb-0 small">
+                                                <li class="mb-2 d-flex align-items-start gap-2"><i
+                                                        class="fa-solid fa-xmark text-danger mt-1"></i>
+                                                    <span>Personal Expenses & Shopping</span>
+                                                </li>
+                                                <li class="mb-2 d-flex align-items-start gap-2"><i
+                                                        class="fa-solid fa-xmark text-danger mt-1"></i>
+                                                    <span>Lunch & Dinner (unless specified)</span>
+                                                </li>
+                                                <li class="mb-2 d-flex align-items-start gap-2"><i
+                                                        class="fa-solid fa-xmark text-danger mt-1"></i>
+                                                    <span>Optional Tours</span>
+                                                </li>
+                                                <li class="d-flex align-items-start gap-2"><i
+                                                        class="fa-solid fa-xmark text-danger mt-1"></i>
+                                                    <span>Travel Insurance</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 10. Day-by-Day Itinerary -->
+                                <div class="dash-card mb-4">
+                                    <h6 class="fw-bold mb-3 text-dark"><i
+                                            class="fa-solid fa-route me-2 text-primary"></i>Day-by-Day Itinerary
+                                    </h6>
+                                    <div class="accordion accordion-flush" id="previewItineraryAccordion">
+                                        <div class="accordion-item border rounded mb-2 overflow-hidden">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button fw-semibold small" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#previewDay1"
+                                                    aria-expanded="true">
+                                                    Day 1: Departure from Dhaka to Jeddah
+                                                </button>
+                                            </h2>
+                                            <div id="previewDay1" class="accordion-collapse collapse show"
+                                                data-bs-parent="#previewItineraryAccordion">
+                                                <div class="accordion-body small text-muted">
+                                                    <p class="mb-2">Assembly at Hazrat Shahjalal International
+                                                        Airport. Flight departure to Jeddah. Upon arrival,
+                                                        proceed directly to Makkah for hotel check-in and rest.
+                                                    </p>
+                                                    <div class="d-flex flex-wrap gap-3 mt-2">
+                                                        <span class="badge bg-light text-dark border"><i
+                                                                class="fa-solid fa-utensils me-1"></i> Dinner on
+                                                            Flight</span>
+                                                        <span class="badge bg-light text-dark border"><i
+                                                                class="fa-solid fa-hotel me-1"></i> Pullman
+                                                            Zamzam</span>
+                                                        <span class="badge bg-light text-dark border"><i
+                                                                class="fa-solid fa-bus me-1"></i> Private AC
+                                                            Bus</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item border rounded mb-2 overflow-hidden">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed fw-semibold small"
+                                                    type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#previewDay2" aria-expanded="false">
+                                                    Day 2-6: Stay in Makkah & Umrah Performance
+                                                </button>
+                                            </h2>
+                                            <div id="previewDay2" class="accordion-collapse collapse"
+                                                data-bs-parent="#previewItineraryAccordion">
+                                                <div class="accordion-body small text-muted">
+                                                    <p class="mb-2">Perform Umrah with the guidance of our
+                                                        experienced group leader. Free days for personal Ibadah
+                                                        and optional Ziyarah tours.</p>
+                                                    <div class="d-flex flex-wrap gap-3 mt-2">
+                                                        <span class="badge bg-light text-dark border"><i
+                                                                class="fa-solid fa-utensils me-1"></i> Breakfast
+                                                            Included</span>
+                                                        <span class="badge bg-light text-dark border"><i
+                                                                class="fa-solid fa-hotel me-1"></i> Pullman
+                                                            Zamzam</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item border rounded overflow-hidden">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed fw-semibold small"
+                                                    type="button" data-bs-toggle="collapse"
+                                                    data-bs-target="#previewDay3" aria-expanded="false">
+                                                    Day 7-13: Transfer to Madinah & Ziyarah
+                                                </button>
+                                            </h2>
+                                            <div id="previewDay3" class="accordion-collapse collapse"
+                                                data-bs-parent="#previewItineraryAccordion">
+                                                <div class="accordion-body small text-muted">
+                                                    <p class="mb-2">High-speed train or private bus transfer to
+                                                        Madinah. Check-in and guided Ziyarah of historical
+                                                        Islamic sites.</p>
+                                                    <div class="d-flex flex-wrap gap-3 mt-2">
+                                                        <span class="badge bg-light text-dark border"><i
+                                                                class="fa-solid fa-utensils me-1"></i> Breakfast
+                                                            Included</span>
+                                                        <span class="badge bg-light text-dark border"><i
+                                                                class="fa-solid fa-hotel me-1"></i> Anwar Al
+                                                            Madinah</span>
+                                                        <span class="badge bg-light text-dark border"><i
+                                                                class="fa-solid fa-bus me-1"></i> Private AC
+                                                            Bus</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 11. Accommodation -->
+                                <div class="dash-card mb-4">
+                                    <h6 class="fw-bold mb-3 text-dark"><i
+                                            class="fa-solid fa-hotel me-2 text-primary"></i>Accommodation</h6>
+                                    <div class="row g-3">
+                                        <div class="col-12 col-md-6">
+                                            <div class="border rounded p-3 bg-light">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h6 class="fw-bold mb-0 small">Makkah Hotel</h6>
+                                                    <span class="badge bg-warning text-dark small">5 Star</span>
+                                                </div>
+                                                <div class="fw-semibold small mb-1">Pullman Zamzam Makkah</div>
+                                                <div class="small text-muted mb-2"><i class="fa-solid fa-bed me-1"></i>
+                                                    Quad Sharing Room
+                                                </div>
+                                                <div class="small text-success fw-semibold"><i
+                                                        class="fa-solid fa-location-dot me-1"></i> 100m from
+                                                    Haram Gate</div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="border rounded p-3 bg-light">
+                                                <div class="d-flex justify-content-between align-items-start mb-2">
+                                                    <h6 class="fw-bold mb-0 small">Madinah Hotel</h6>
+                                                    <span class="badge bg-warning text-dark small">5 Star</span>
+                                                </div>
+                                                <div class="fw-semibold small mb-1">Anwar Al Madinah Mövenpick
+                                                </div>
+                                                <div class="small text-muted mb-2"><i class="fa-solid fa-bed me-1"></i>
+                                                    Quad Sharing Room
+                                                </div>
+                                                <div class="small text-success fw-semibold"><i
+                                                        class="fa-solid fa-location-dot me-1"></i> 150m from
+                                                    Masjid an-Nabawi</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 12. Terms & Policies -->
+                                <div class="dash-card mb-4">
+                                    <h6 class="fw-bold mb-3 text-dark"><i
+                                            class="fa-solid fa-file-shield me-2 text-primary"></i>Terms &
+                                        Policies</h6>
+                                    <div class="accordion accordion-flush" id="previewPolicyAccordion">
+                                        <div class="accordion-item border-0">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed small fw-semibold py-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#policy1">
+                                                    Cancellation Policy
+                                                </button>
+                                            </h2>
+                                            <div id="policy1" class="accordion-collapse collapse"
+                                                data-bs-parent="#previewPolicyAccordion">
+                                                <div class="accordion-body small text-muted">
+                                                    Cancellations made 30 days prior to departure will incur a
+                                                    20% fee. Cancellations within 15 days are non-refundable.
+                                                    Visa fees are non-refundable once processed.
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="accordion-item border-0">
+                                            <h2 class="accordion-header">
+                                                <button class="accordion-button collapsed small fw-semibold py-2"
+                                                    type="button" data-bs-toggle="collapse" data-bs-target="#policy2">
+                                                    Important Travel Information
+                                                </button>
+                                            </h2>
+                                            <div id="policy2" class="accordion-collapse collapse"
+                                                data-bs-parent="#previewPolicyAccordion">
+                                                <div class="accordion-body small text-muted">
+                                                    Passport must be valid for at least 6 months. Yellow fever
+                                                    vaccination certificate is required if traveling from
+                                                    endemic countries.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- Right Column: Pricing, Booking, SEO, Metadata -->
+                            <div class="col-12 col-lg-4">
+                                <div class="sticky-sidebar-preview">
+
+                                    <!-- 8. Pricing Summary -->
+                                    <div class="dash-card mb-3 border-primary border-opacity-25">
+                                        <div class="text-center mb-3">
+                                            <div class="small text-muted mb-1">Starting From</div>
+                                            <div class="display-6 fw-bold text-primary" data-package-price>BDT
+                                                1,40,000</div>
+                                            <div class="small text-muted">Per Person</div>
+                                        </div>
+                                        <hr class="my-3">
+                                        <div class="small mb-2">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span class="text-muted">Adult</span>
+                                                <span class="fw-semibold">BDT 1,40,000</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span class="text-muted">Child (2-11 yrs)</span>
+                                                <span class="fw-semibold">BDT 1,10,000</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span class="text-muted">Infant (0-2 yrs)</span>
+                                                <span class="fw-semibold">BDT 30,000</span>
+                                            </div>
+                                        </div>
+                                        <hr class="my-2">
+                                        <div class="small mb-2">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span class="text-muted">Tax (5%)</span>
+                                                <span class="fw-semibold">BDT 7,000</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span class="text-muted">Service Charge (2%)</span>
+                                                <span class="fw-semibold">BDT 2,800</span>
+                                            </div>
+                                        </div>
+                                        <div
+                                            class="alert alert-success bg-success bg-opacity-10 border-0 small py-2 mb-0 mt-2 text-center fw-semibold">
+                                            <i class="fa-solid fa-tag me-1"></i> Early Bird Discount: BDT 8,000
+                                            Off
+                                        </div>
+                                    </div>
+
+                                    <!-- 9. Booking Information -->
+                                    <div class="dash-card mb-3">
+                                        <h6 class="fw-bold mb-3 small text-dark"><i
+                                                class="fa-solid fa-users me-2 text-primary"></i>Booking Status
+                                        </h6>
+                                        <div class="mb-3">
+                                            <div class="d-flex justify-content-between small mb-1">
+                                                <span class="text-muted">Occupancy</span>
+                                                <span class="fw-semibold">28 / 40 Booked</span>
+                                            </div>
+                                            <div class="progress" style="height: 8px;">
+                                                <div class="progress-bar bg-primary" role="progressbar"
+                                                    style="width: 70%" aria-valuenow="70" aria-valuemin="0"
+                                                    aria-valuemax="100"></div>
+                                            </div>
+                                            <div class="d-flex justify-content-between mt-1" style="font-size: 11px;">
+                                                <span class="text-muted">Available: 12 seats</span>
+                                                <span class="text-muted">70% Full</span>
+                                            </div>
+                                        </div>
+                                        <div class="d-flex align-items-center gap-2 small text-muted mb-2">
+                                            <i class="fa-solid fa-clock text-warning"></i>
+                                            <span>Booking closes in <strong class="text-dark">14
+                                                    days</strong></span>
+                                        </div>
+                                        <button class="btn btn-primary w-100 fw-semibold" data-bs-toggle="tooltip"
+                                            title="This will open the booking creation flow">
+                                            <i class="fa-solid fa-bolt me-1"></i> Book This Package
+                                        </button>
+                                    </div>
+
+                                    <!-- 13. SEO Preview (Admin Only) -->
+                                    <div class="dash-card mb-3 bg-light border-dashed">
+                                        <div class="d-flex align-items-center gap-2 mb-2">
+                                            <i class="fa-solid fa-lock text-muted small"></i>
+                                            <h6 class="fw-bold mb-0 small text-muted">Admin SEO Preview</h6>
+                                        </div>
+                                        <div class="small">
+                                            <div class="text-primary text-decoration-none mb-1 text-truncate"
+                                                style="font-size: 13px;" data-seo-title>Exclusive Premium Umrah
+                                                Package 2026 | ST Trip</div>
+                                            <div class="text-success text-truncate mb-1" style="font-size: 12px;"
+                                                data-seo-url>
+                                                sttrip.com/package/premium-umrah-2026</div>
+                                            <div class="text-muted" style="font-size: 12px; line-height: 1.4;"
+                                                data-seo-desc>Book our premium 5-star Umrah package for 2026.
+                                                Includes flights, Zamzam hotel, and guided Ziyarat. Limited
+                                                seats available.</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 14. Package Metadata -->
+                                    <div class="dash-card">
+                                        <h6 class="fw-bold mb-2 small text-muted">Package Metadata</h6>
+                                        <div class="small text-muted" style="font-size: 11px;">
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Created By:</span>
+                                                <span class="text-dark fw-semibold">Admin</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Created Date:</span>
+                                                <span class="text-dark fw-semibold">10 Sep 2026</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between mb-1">
+                                                <span>Last Updated:</span>
+                                                <span class="text-dark fw-semibold">10 Sep 2026</span>
+                                            </div>
+                                            <div class="d-flex justify-content-between">
+                                                <span>Updated By:</span>
+                                                <span class="text-dark fw-semibold">MD. Shaokat Hossain</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 15. Modal Footer / Action Bar -->
+                <div class="modal-footer border-top bg-white sticky-bottom z-2 py-3">
+                    <div class="d-flex align-items-center gap-2 me-auto">
+                        <span class="small text-muted">Status:</span>
+                        <span
+                            class="badge bg-success bg-opacity-10 text-success border border-success border-opacity-25 px-2 py-1"
+                            data-package-status>● Active</span>
+                    </div>
+                    <div class="d-flex flex-wrap gap-2">
+                        <button type="button" class="btn btn-light border" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-outline-secondary" id="previewEditBtn"><i
+                                class="fa-solid fa-pen me-1"></i> Edit Package</button>
+                        <button type="button" class="btn btn-primary px-4" id="previewPublishBtn">
+                            <span class="btn-text"><i class="fa-solid fa-check me-1"></i> Update Package</span>
+                            <span class="spinner-border spinner-border-sm d-none" role="status"
+                                aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container for Preview Actions -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 1060;">
+        <div id="previewSuccessToast" class="toast align-items-center text-bg-success border-0" role="alert"
+            aria-live="assertive" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">
+                    <i class="fa-solid fa-circle-check me-2"></i> Action completed successfully!
+                </div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                    aria-label="Close"></button>
+            </div>
+        </div>
+    </div>
+    <!-- Mobile Bottom Nav (Preserved) -->
+    <nav class="mobile-bottom-nav d-md-none">
+        <a href="#" class="mbn-item"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="#" class="mbn-item"><i class="fa-solid fa-receipt"></i><span>Invoice</span></a>
+        <a href="#" class="mbn-fab"><i class="fa-solid fa-plus"></i></a>
+        <a href="#" class="mbn-item"><i class="fa-solid fa-boxes-stacked"></i><span>Stock</span></a>
+        <a href="#" class="mbn-item"><i class="fa-solid fa-bars"></i><span>More</span></a>
+    </nav>
+
+
+    <!-- Floating Tooltip & Flyout (Preserved) -->
+    <div class="sidebar-floating-tooltip" id="sidebarTooltip"></div>
+    <div class="sidebar-flyout-menu" id="sidebarFlyout"></div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/packages.js"></script>
+</body>
+
+</html>

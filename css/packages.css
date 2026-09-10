@@ -1,0 +1,1307 @@
+/* ==========================================
+   PACKAGE MANAGEMENT SCREEN ADDITIONS
+   ========================================== */
+
+:root {
+    --brand-success: #00A651;
+    --brand-danger: #ED1C24;
+}
+
+/* 5-Column KPI Row Override */
+.kpi-row.package-kpi {
+    grid-template-columns: repeat(5, 1fr);
+}
+
+@media (max-width: 1200px) {
+    .kpi-row.package-kpi {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .kpi-row.package-kpi {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .kpi-row.package-kpi {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Package Thumbnail */
+.package-thumb {
+    width: 48px;
+    height: 48px;
+    border-radius: 8px;
+    background-size: cover;
+    background-position: center;
+    background-color: var(--bg-light);
+    flex-shrink: 0;
+    border: 1px solid var(--border-color);
+}
+
+/* Bulk Action Bar Animation */
+.bulk-action-bar {
+    animation: slideDown 0.25s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Status Badge Overrides for Brand Colors */
+.status-badge.confirmed {
+    background: rgba(0, 166, 81, 0.1);
+    color: var(--brand-success);
+}
+
+.status-badge.completed {
+    background: rgba(237, 28, 36, 0.1);
+    color: var(--brand-danger);
+}
+
+/* ==========================================
+   RESPONSIVE TABLE TO CARD VIEW (Mobile)
+   ========================================== */
+@media (max-width: 992px) {
+    .package-table thead {
+        display: none;
+    }
+
+    .package-table,
+    .package-table tbody,
+    .package-table tr,
+    .package-table td {
+        display: block;
+        width: 100%;
+    }
+
+    .package-table tr {
+        margin-bottom: 12px;
+        border: 1px solid var(--border-color);
+        border-radius: var(--radius);
+        padding: 12px;
+        background: #fff;
+        box-shadow: var(--shadow-sm);
+    }
+
+    .package-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 0;
+        border-bottom: 1px solid #f1f5f9;
+        text-align: right;
+    }
+
+    .package-table td:last-child {
+        border-bottom: none;
+        justify-content: flex-end;
+        padding-top: 12px;
+    }
+
+    .package-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--text-muted);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        text-align: left;
+        margin-right: 12px;
+        flex-shrink: 0;
+    }
+
+    .package-table td:first-child {
+        justify-content: flex-start;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+
+    .package-table td:first-child::before {
+        display: none;
+    }
+
+    /* Ensure package info stacks nicely on mobile */
+    .package-table td[data-label="Package"] {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .package-table td[data-label="Package"]::before {
+        margin-bottom: 4px;
+    }
+
+    .package-table td[data-label="Package"] .d-flex {
+        width: 100%;
+    }
+}
+
+
+/* ==========================================
+   ADD PACKAGE FORM STYLING
+   ========================================== */
+
+/* Form Card Enhancements */
+.dash-card {
+    border: 1px solid var(--border-color);
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.dash-card:hover {
+    box-shadow: var(--shadow-md);
+}
+
+/* Drag & Drop Zone */
+.drag-drop-zone {
+    border: 2px dashed var(--border-color);
+    border-radius: var(--radius);
+    background: var(--bg-light);
+    transition: all 0.2s ease;
+    cursor: pointer;
+    position: relative;
+}
+
+.drag-drop-zone:hover,
+.drag-drop-zone.drag-over {
+    border-color: var(--primary);
+    background: var(--primary-light);
+}
+
+.image-preview {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.image-preview img {
+    max-height: 250px;
+    width: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+}
+
+.btn-remove-image {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(237, 28, 36, 0.9);
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.15s;
+}
+
+.btn-remove-image:hover {
+    transform: scale(1.1);
+}
+
+/* Gallery Preview Grid */
+#galleryPreview .gallery-thumb {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+#galleryPreview .gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#galleryPreview .gallery-thumb .btn-remove-image {
+    width: 22px;
+    height: 22px;
+    font-size: 10px;
+    top: 4px;
+    right: 4px;
+}
+
+/* Dynamic Rows (Inclusions/Exclusions) */
+.dynamic-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    animation: slideInRow 0.3s ease forwards;
+}
+
+@keyframes slideInRow {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dynamic-row .form-control {
+    flex: 1;
+}
+
+.dynamic-row .btn-remove-row {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: var(--danger);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.dynamic-row .btn-remove-row:hover {
+    background: var(--danger-bg);
+    border-color: var(--danger);
+}
+
+/* Itinerary Accordion Customization */
+.itinerary-day-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.itinerary-day-card:hover {
+    box-shadow: var(--shadow-sm);
+}
+
+.itinerary-day-card .accordion-button {
+    background: var(--bg-light);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-dark);
+    padding: 12px 16px;
+}
+
+.itinerary-day-card .accordion-button:not(.collapsed) {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    box-shadow: none;
+}
+
+.itinerary-day-card .accordion-button::after {
+    background-size: 14px;
+}
+
+.itinerary-day-card .accordion-body {
+    padding: 16px;
+}
+
+.btn-remove-day {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--danger);
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.itinerary-day-card .accordion-button:hover .btn-remove-day {
+    opacity: 1;
+}
+
+/* Sticky Sidebar & Action Bar */
+.sticky-sidebar {
+    position: sticky;
+    top: calc(var(--header-height) + 20px);
+    z-index: 10;
+}
+
+.sticky-action-bar {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+    padding: 16px 0;
+    z-index: 1020;
+    margin: 0 -24px -30px;
+    /* Counteract dashboard-content padding */
+}
+
+@media (max-width: 768px) {
+    .sticky-action-bar {
+        margin: 0 -14px -90px;
+        /* Counteract mobile padding */
+        padding: 12px 14px;
+    }
+
+    .sticky-action-bar .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Character Counter */
+.char-count {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.char-count.warning {
+    color: var(--warning);
+}
+
+.char-count.danger {
+    color: var(--danger);
+}
+
+/* Form Validation Styling */
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    border-color: var(--danger);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ef4444'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ef4444' stroke='none'/%3e%3c/svg%3e");
+}
+
+.was-validated .form-select:invalid,
+.form-select.is-invalid {
+    border-color: var(--danger);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ef4444' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ef4444'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ef4444' stroke='none'/%3e%3c/svg%3e");
+}
+
+
+
+/* ==========================================
+   PACKAGE PREVIEW MODAL STYLING
+   ========================================== */
+
+/* Modal Base Enhancements */
+.modal-preview-package .modal-content {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-preview-package .modal-dialog {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fullscreen Toggle State */
+.modal-preview-package.modal-fullscreen-custom .modal-dialog {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+}
+
+.modal-preview-package.modal-fullscreen-custom .modal-content {
+    height: 100vh;
+    border-radius: 0;
+}
+
+.modal-preview-package.modal-fullscreen-custom .preview-hero-img {
+    height: 450px;
+}
+
+/* Admin Preview Banner */
+.admin-preview-banner {
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.admin-preview-banner .btn-close {
+    padding: 0.5rem;
+    opacity: 0.5;
+}
+
+.admin-preview-banner .btn-close:hover {
+    opacity: 1;
+}
+
+/* Gallery Thumbnails */
+#previewGallery {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+
+#previewGallery::-webkit-scrollbar {
+    height: 4px;
+}
+
+#previewGallery::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.gallery-thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+.gallery-thumb:hover {
+    border-color: var(--primary);
+}
+
+.gallery-thumb:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-thumb.active {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(6, 176, 239, 0.2);
+}
+
+/* Preview Sections */
+.preview-section {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.preview-section:last-child {
+    border-bottom: none;
+}
+
+/* Sticky Sidebar in Preview */
+.sticky-sidebar-preview {
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+}
+
+/* Accordion Customization for Preview */
+#previewItineraryAccordion .accordion-button,
+#previewPolicyAccordion .accordion-button {
+    font-size: 13px;
+    padding: 12px 16px;
+    background: #fff;
+    color: var(--text-dark);
+}
+
+#previewItineraryAccordion .accordion-button:not(.collapsed),
+#previewPolicyAccordion .accordion-button:not(.collapsed) {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    box-shadow: none;
+}
+
+#previewItineraryAccordion .accordion-button::after,
+#previewPolicyAccordion .accordion-button::after {
+    background-size: 12px;
+}
+
+/* Border Dashed for Admin Sections */
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 1px !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .preview-hero-img {
+        height: 250px !important;
+    }
+
+    .sticky-sidebar-preview {
+        position: static;
+    }
+
+    .modal-preview-package.modal-fullscreen-custom .preview-hero-img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-preview-package .modal-dialog {
+        margin: 0;
+        height: 100vh;
+        max-width: 100%;
+    }
+
+    .modal-preview-package .modal-content {
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .preview-hero-img {
+        height: 200px !important;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-footer>div {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+    }
+}
+
+/* Smooth Fade Up for Modal Content */
+.modal-preview-package .modal-body>div {
+    animation: modalFadeUp 0.4s ease forwards;
+}
+
+@keyframes modalFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+/* ==========================================
+   EDIT PACKAGE FORM STYLING
+   ========================================== */
+
+/* Existing Image Container with Hover Actions */
+.existing-image-container {
+    position: relative;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.existing-image-container img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: filter 0.2s;
+}
+
+.existing-image-container:hover img {
+    filter: brightness(0.7);
+}
+
+.image-overlay-actions {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.2s;
+    display: flex;
+    gap: 8px;
+}
+
+.existing-image-container:hover .image-overlay-actions {
+    opacity: 1;
+}
+
+/* Gallery Grid */
+#galleryGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.gallery-thumb-item {
+    width: 80px;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    position: relative;
+    cursor: grab;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.gallery-thumb-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-sm);
+}
+
+.gallery-thumb-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.btn-remove-gallery {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: rgba(237, 28, 36, 0.9);
+    color: #fff;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.gallery-thumb-item:hover .btn-remove-gallery {
+    opacity: 1;
+}
+
+.gallery-thumb-item.add-new-gallery {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-light);
+    border: 2px dashed var(--border-color);
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.gallery-thumb-item.add-new-gallery:hover {
+    border-color: var(--primary);
+    background: var(--primary-light);
+    color: var(--primary);
+}
+
+/* Dynamic Rows (Enhanced for Edit) */
+.dynamic-row {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    margin-bottom: 10px;
+    animation: slideInRow 0.3s ease forwards;
+}
+
+@keyframes slideInRow {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dynamic-row .form-control {
+    flex: 1;
+}
+
+.dynamic-row .btn-remove-row {
+    width: 38px;
+    height: 38px;
+    flex-shrink: 0;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-color);
+    background: #fff;
+    color: var(--danger);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.dynamic-row .btn-remove-row:hover {
+    background: var(--danger-bg);
+    border-color: var(--danger);
+}
+
+/* Itinerary Accordion Customization */
+.itinerary-day-card {
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+}
+
+.itinerary-day-card:hover {
+    box-shadow: var(--shadow-sm);
+}
+
+.itinerary-day-card .accordion-button {
+    background: var(--bg-light);
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text-dark);
+    padding: 12px 16px;
+}
+
+.itinerary-day-card .accordion-button:not(.collapsed) {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    box-shadow: none;
+}
+
+.itinerary-day-card .accordion-button::after {
+    display: none;
+    /* Hide default chevron, we use custom layout */
+}
+
+.itinerary-day-card .accordion-body {
+    padding: 16px;
+}
+
+.btn-reorder {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+.btn-reorder:hover {
+    background: var(--bg-light);
+}
+
+/* Activity Timeline Compact */
+.activity-timeline-compact {
+    position: relative;
+    padding-left: 16px;
+}
+
+.activity-timeline-compact::before {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border-color);
+}
+
+.activity-item-compact {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.activity-item-compact:last-child {
+    margin-bottom: 0;
+}
+
+.activity-dot {
+    position: absolute;
+    left: -15px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 1px var(--border-color);
+}
+
+.activity-content-compact {
+    padding-left: 8px;
+}
+
+/* Sticky Action Bar & Unsaved Indicator */
+.sticky-action-bar {
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+    border-top: 1px solid var(--border-color);
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+    padding: 16px 0;
+    z-index: 1020;
+    margin: 0 -24px -30px;
+}
+
+@media (max-width: 768px) {
+    .sticky-action-bar {
+        margin: 0 -14px -90px;
+        padding: 12px 14px;
+    }
+
+    .sticky-action-bar .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+.unsaved-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--warning);
+    border-radius: 50%;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 6px rgba(245, 158, 11, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+    }
+}
+
+/* Character Counter */
+.char-count {
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.char-count.warning {
+    color: var(--warning);
+}
+
+.char-count.danger {
+    color: var(--danger);
+}
+
+/* Form Validation Styling */
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    border-color: var(--danger);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23ef4444'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23ef4444' stroke='none'/%3e%3c/svg%3e");
+}
+
+
+
+/* ==========================================
+   PACKAGE PREVIEW MODAL STYLING
+   ========================================== */
+
+/* Modal Base Enhancements */
+.modal-preview-package .modal-content {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-preview-package .modal-dialog {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fullscreen Toggle State */
+.modal-preview-package.modal-fullscreen-custom .modal-dialog {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+}
+
+.modal-preview-package.modal-fullscreen-custom .modal-content {
+    height: 100vh;
+    border-radius: 0;
+}
+
+.modal-preview-package.modal-fullscreen-custom .preview-hero-img {
+    height: 450px;
+}
+
+/* Admin Preview Banner */
+.admin-preview-banner {
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.admin-preview-banner .btn-close {
+    padding: 0.5rem;
+    opacity: 0.5;
+}
+
+.admin-preview-banner .btn-close:hover {
+    opacity: 1;
+}
+
+/* Gallery Thumbnails */
+#previewGallery {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+
+#previewGallery::-webkit-scrollbar {
+    height: 4px;
+}
+
+#previewGallery::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.gallery-thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+.gallery-thumb:hover {
+    border-color: var(--primary);
+}
+
+.gallery-thumb:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-thumb.active {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(6, 176, 239, 0.2);
+}
+
+/* Preview Sections */
+.preview-section {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.preview-section:last-child {
+    border-bottom: none;
+}
+
+/* Sticky Sidebar in Preview */
+.sticky-sidebar-preview {
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+}
+
+/* Accordion Customization for Preview */
+#previewItineraryAccordion .accordion-button,
+#previewPolicyAccordion .accordion-button {
+    font-size: 13px;
+    padding: 12px 16px;
+    background: #fff;
+    color: var(--text-dark);
+}
+
+#previewItineraryAccordion .accordion-button:not(.collapsed),
+#previewPolicyAccordion .accordion-button:not(.collapsed) {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    box-shadow: none;
+}
+
+#previewItineraryAccordion .accordion-button::after,
+#previewPolicyAccordion .accordion-button::after {
+    background-size: 12px;
+}
+
+/* Border Dashed for Admin Sections */
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 1px !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .preview-hero-img {
+        height: 250px !important;
+    }
+
+    .sticky-sidebar-preview {
+        position: static;
+    }
+
+    .modal-preview-package.modal-fullscreen-custom .preview-hero-img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-preview-package .modal-dialog {
+        margin: 0;
+        height: 100vh;
+        max-width: 100%;
+    }
+
+    .modal-preview-package .modal-content {
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .preview-hero-img {
+        height: 200px !important;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-footer>div {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+    }
+}
+
+/* Smooth Fade Up for Modal Content */
+.modal-preview-package .modal-body>div {
+    animation: modalFadeUp 0.4s ease forwards;
+}
+
+@keyframes modalFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+
+
+/* ==========================================
+   PACKAGE PREVIEW MODAL STYLING
+   ========================================== */
+
+/* Modal Base Enhancements */
+.modal-preview-package .modal-content {
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.modal-preview-package .modal-dialog {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Fullscreen Toggle State */
+.modal-preview-package.modal-fullscreen-custom .modal-dialog {
+    max-width: 100%;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+}
+
+.modal-preview-package.modal-fullscreen-custom .modal-content {
+    height: 100vh;
+    border-radius: 0;
+}
+
+.modal-preview-package.modal-fullscreen-custom .preview-hero-img {
+    height: 450px;
+}
+
+/* Admin Preview Banner */
+.admin-preview-banner {
+    font-size: 12px;
+    transition: all 0.3s ease;
+}
+
+.admin-preview-banner .btn-close {
+    padding: 0.5rem;
+    opacity: 0.5;
+}
+
+.admin-preview-banner .btn-close:hover {
+    opacity: 1;
+}
+
+/* Gallery Thumbnails */
+#previewGallery {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-color) transparent;
+}
+
+#previewGallery::-webkit-scrollbar {
+    height: 4px;
+}
+
+#previewGallery::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 4px;
+}
+
+.gallery-thumb {
+    width: 80px;
+    height: 60px;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.gallery-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.2s ease;
+}
+
+.gallery-thumb:hover {
+    border-color: var(--primary);
+}
+
+.gallery-thumb:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-thumb.active {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(6, 176, 239, 0.2);
+}
+
+/* Preview Sections */
+.preview-section {
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.preview-section:last-child {
+    border-bottom: none;
+}
+
+/* Sticky Sidebar in Preview */
+.sticky-sidebar-preview {
+    position: sticky;
+    top: 20px;
+    z-index: 10;
+}
+
+/* Accordion Customization for Preview */
+#previewItineraryAccordion .accordion-button,
+#previewPolicyAccordion .accordion-button {
+    font-size: 13px;
+    padding: 12px 16px;
+    background: #fff;
+    color: var(--text-dark);
+}
+
+#previewItineraryAccordion .accordion-button:not(.collapsed),
+#previewPolicyAccordion .accordion-button:not(.collapsed) {
+    background: var(--primary-light);
+    color: var(--primary-dark);
+    box-shadow: none;
+}
+
+#previewItineraryAccordion .accordion-button::after,
+#previewPolicyAccordion .accordion-button::after {
+    background-size: 12px;
+}
+
+/* Border Dashed for Admin Sections */
+.border-dashed {
+    border-style: dashed !important;
+    border-width: 1px !important;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 992px) {
+    .preview-hero-img {
+        height: 250px !important;
+    }
+
+    .sticky-sidebar-preview {
+        position: static;
+    }
+
+    .modal-preview-package.modal-fullscreen-custom .preview-hero-img {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .modal-preview-package .modal-dialog {
+        margin: 0;
+        height: 100vh;
+        max-width: 100%;
+    }
+
+    .modal-preview-package .modal-content {
+        height: 100vh;
+        border-radius: 0;
+    }
+
+    .preview-hero-img {
+        height: 200px !important;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .modal-footer>div {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+    }
+}
+
+/* Smooth Fade Up for Modal Content */
+.modal-preview-package .modal-body>div {
+    animation: modalFadeUp 0.4s ease forwards;
+}
+
+@keyframes modalFadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
