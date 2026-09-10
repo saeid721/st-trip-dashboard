@@ -1735,15 +1735,14 @@ body {
 
 .dest-card-country {
   position: absolute;
-  top: 8px;
   right: 8px;
-  background: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 4px;
-  backdrop-filter: blur(4px);
+}
+
+.dest-card-country img {
+  width: 16px;
+  height: 12px;
+  object-fit: cover;
+  vertical-align: middle;
 }
 
 .dest-card-city {
