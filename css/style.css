@@ -978,6 +978,11 @@ body {
   color: #06b6d4;
 }
 
+.kpi-icon.red {
+  background: #fef2f2;
+  color: #ef4444;
+}
+
 .kpi-title {
   font-size: 11px;
   color: var(--text-muted);
