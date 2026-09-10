@@ -358,9 +358,17 @@ setTimeout(animateCounters, 800);
 // Nav item click
 document.querySelectorAll('.nav-item-custom').forEach(item => {
   item.addEventListener('click', (e) => {
-    e.preventDefault();
+    const href = item.getAttribute('href');
+    const isRealLink = href && href !== '#';
+
+    // Only block navigation for placeholder/submenu-toggle links ("#")
+    if (!isRealLink) {
+      e.preventDefault();
+    }
+
     document.querySelectorAll('.nav-item-custom').forEach(i => i.classList.remove('active'));
     item.classList.add('active');
+
     if (window.innerWidth < 992) {
       sidebar.classList.remove('open');
       overlay.classList.remove('show');
